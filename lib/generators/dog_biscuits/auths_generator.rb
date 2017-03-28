@@ -6,40 +6,29 @@ class DogBiscuits::AuthsGenerator < Rails::Generators::Base
   end
 
   def inject_into_dog_biscuits
-    file_path = 'config/initializers/dog_biscuits.rb'
-    unless File.exist?(file_path)
-      copy_file 'dog_biscuits.rb', file_path
-    end
-    file_content = File.read(file_path)
-    ::DogBiscuits::Terms.constants.each do |term|
-      t = term.to_s
-      term_string = "Qa::Authorities::Local.register_subauthority('#{t.gsub('Terms', '').underscore.downcase}s', 'DogBiscuits::Terms::#{t}')"
-      unless file_content.include? term_string
-        inject_into_file file_path, after: '# include Terms' do
-          "\n#{term_string}"
-        end
-      end
-    end
-  end
-
-  def inject_into_dog_biscuits
     init_path = 'config/initializers/dog_biscuits.rb'
     file_path = 'config/dog_biscuits.yml'
     unless File.exist?(file_path)
       copy_file 'dog_biscuits.yml', file_path
       copy_file 'dog_biscuits.rb', init_path
     end
+    file_content = File.read(init_path)
     text = File.read(file_path)
-
-    # insert
     ::DogBiscuits::Terms.constants.each do |term|
-      t = term.to_s.gsub('Terms', '').underscore.pluralize
+      t = term.to_s
+      term_string = "Qa::Authorities::Local.register_subauthority('#{t.gsub('Terms', '').underscore.downcase}s', 'DogBiscuits::Terms::#{t}')"
+      unless file_content.include? term_string
+        inject_into_file init_path, after: '# include Terms' do
+          "\n#{term_string}"
+        end
+      end
       unless text.include? t
         inject_into_file file_path, after: '# authorities' do
-          "\n#{t}: \"\""
+          "\n#{t.gsub('Terms', '').underscore.pluralize}: \"\""
         end
       end
     end
+
   end
 
   def inject_into_authority_service
