@@ -1,0 +1,41 @@
+# REVIEW: http://rightsstatements.org/page/1.0/?language=en
+terms:
+    - id: http://dlib.york.ac.uk/licences#yorkrestricted
+      term: York Restricted
+      active: true
+    - id: http://creativecommons.org/licenses/by-sa/4.0/
+      term: Creative Commons Attribution 4.0 International (CC BY-SA 4.0)
+      active: true
+    - id: http://creativecommons.org/licenses/by-nc-sa/2.0/uk/
+      term: Creative Commons (by-nc-sa)
+      active: true
+    - id: http://dlib.york.ac.uk/licences#creative-commons-by-nc-sa-preview
+      term: Creative Commons (by-nc-sa) some rights reserved
+      active: true
+    - id: http://creativecommons.org/licenses/by-nc-nd/2.0/uk/
+      term: Creative Commons (by-nc-nd)
+      active: true
+    - id: http://dlib.york.ac.uk/licences#creative-commons-by-nc-nd-preview
+      term: Creative Commons (by-nc-nd) some rights reserved
+      active: true
+    - id: http://dlib.york.ac.uk/licences#onlineonly
+      term: Viewable Online Only
+      active: true
+    - id: http://dlib.york.ac.uk/licences#personaluseonly
+      term: Personal Use Only
+      active: true
+    - id: http://creativecommons.org/publicdomain/mark/1.0/
+      term: Public Domain Mark 1.0
+      active: true
+    - id: http://creativecommons.org/publicdomain/zero/1.0/
+      term: CC0 1.0 Universal
+      active: true
+    - id: http://www.europeana.eu/portal/rights/rr-r.html
+      term: All rights reserved
+      active: true
+    - id: http://dlib.york.ac.uk/licences#allrightsreservedrestricted
+      term: Admin Only Restricted
+      active: true
+    - id: http://dlib.york.ac.uk/licences#undetermined
+      term: Undetermined
+      active: true

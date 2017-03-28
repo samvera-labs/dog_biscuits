@@ -1,0 +1,13 @@
+terms:
+  - id: http://london.ac.uk/qualification_levels#masters-pg
+    term: Masters (Postgraduate)
+    active: true
+  - id: http://london.ac.uk/qualification_levels#diploma-pg
+    term: Diploma (Postgraduate)
+    active: true
+  - id: http://london.ac.uk/qualification_levels#bachelors-ug
+    term: Bachelors (Undergraduate)
+    active: true
+  - id: http://london.ac.uk/qualification_levels#doctoral-pg
+    term: Doctoral (Postgraduate)
+    active: true

@@ -1,0 +1,25 @@
+terms:
+  - id: http://london.ac.uk/journal_article_version#AO
+    term: Author's Original
+    active: true
+  - id: http://london.ac.uk/journal_article_version#SMUR
+    term: Submitted Manuscript Under Review
+    active: true
+  - id: http://london.ac.uk/journal_article_version#AM
+    term: Accepted Manuscript
+    active: true
+  - id: http://london.ac.uk/journal_article_version#P
+    term: Proof
+    active: true
+  - id: http://london.ac.uk/journal_article_version#VoR
+    term: Version of Record
+    active: true
+  - id: http://london.ac.uk/journal_article_version#CVoR
+    term: Corrected Version of Record
+    active: true
+  - id: http://london.ac.uk/journal_article_version#EVoR
+    term: Enhanced Version of Record
+    active: true
+  - id: http://london.ac.uk/journal_article_version#NA
+    term: Not Applicable (or Unknown)
+    active: true

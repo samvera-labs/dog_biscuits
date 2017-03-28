@@ -1,0 +1,6 @@
+Description:
+    Adds DogBiscuits authorities into your rails application.
+      * adds the dog_biscuits authorities into config/authorities
+
+Example:
+    rails generate dog_biscuits:auths

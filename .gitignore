@@ -1,0 +1,21 @@
+coverage
+rdoc
+/.bundle
+tmp
+
+# bad gem etiquette, man
+.ruby-version
+.ruby-gemset
+ruby-version
+ruby-gemset
+.rvmrc
+Gemfile.lock
+
+## rcov
+coverage.data
+coverage/*
+
+*.log
+*~
+
+.internal_test_app

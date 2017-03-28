@@ -1,0 +1,16 @@
+terms:
+  - id: http://london.ac.uk/publication_status#published
+    term: Published
+    active: true
+  - id: http://london.ac.uk/publication_status#earlyOnline
+    term: E-Pub ahead of publication
+    active: true
+  - id: http://london.ac.uk/publication_status#accepted
+    term: In press / Accepted
+    active: true
+  - id: http://london.ac.uk/publication_status#submitted
+    term: Submitted
+    active: true
+  - id: http://london.ac.uk/publication_status#unpublished
+    term: Unpublished
+    active: true
