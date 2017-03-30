@@ -14,9 +14,9 @@ module DogBiscuits
 
     # custom rules apply to agents as preflabel gets constructed from existing metadata
     def validate_agents(record)
-      if record.current_person? and (record.given_name.nil? and record.family_name.nil? and record.preflabel.nil?)
+      if record.person? and (record.given_name.nil? and record.family_name.nil? and record.preflabel.nil?)
         record.errors[:preflabel] << 'You must provide a preflabel, family name and/or given name for current person'
-      elsif !record.current_person? and record.preflabel.nil?
+      elsif !record.person? and record.preflabel.nil?
           record.errors[:preflabel] << 'You must provide a preflabel for agents'
       end
     end

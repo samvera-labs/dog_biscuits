@@ -3,7 +3,7 @@ shared_examples_for 'funder' do
 
   before(:each) do
     model_str = model.to_s.split('::')[1]
-    @funder = FactoryGirl.build_stubbed(:current_organisation)
+    @funder = FactoryGirl.build_stubbed(:organisation)
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
     @stubby.funder_resource << @funder
   end

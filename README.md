@@ -1,10 +1,9 @@
 # DogBiscuits
 
-[![Code Climate](https://codeclimate.com/github/digital-york/dog_biscuits/badges/gpa.svg)](https://codeclimate.com/github/digital-york/dog_biscuits)
-[![Issue Count](https://codeclimate.com/github/digital-york/dog_biscuits/badges/issue_count.svg)](https://codeclimate.com/github/digital-york/dog_biscuits)
+[![Code Climate](https://codeclimate.com/github/geekscruff/dog_biscuits/badges/gpa.svg)](https://codeclimate.com/github/geekscruff/dog_biscuits)
+[![Issue Count](https://codeclimate.com/github/geekscruff/dog_biscuits/badges/issue_count.svg)](https://codeclimate.com/github/geekscruff/dog_biscuits)
 
-
-Models, vocabularies and behaviours for York Digital Library Hydra applications.
+Models, vocabularies and behaviours for Hyrax applications.
 
 
 ## Installation
@@ -12,7 +11,7 @@ Models, vocabularies and behaviours for York Digital Library Hydra applications.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'dog_biscuits', :git => 'git://github.com/digital-york/dog_biscuits.git', branch: 'hyrax_jal'
+gem 'dog_biscuits', :git => 'git://github.com/geekscruff/dog_biscuits.git'
 ```
 
 And then execute:

@@ -3,7 +3,7 @@ shared_examples_for 'department' do
 
   before(:each) do
     model_str = model.to_s.split('::')[1]
-    @org = FactoryGirl.build_stubbed(:current_organisation)
+    @org = FactoryGirl.build_stubbed(:organisation)
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
     @stubby.department_resource << @org
 

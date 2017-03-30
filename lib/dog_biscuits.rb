@@ -40,9 +40,9 @@ module DogBiscuits
   end
   autoload_under 'models/authorities/agents' do
     autoload :Group
+    autoload :HistoricPerson
+    autoload :Organisation
     autoload :Person
-    autoload :CurrentPerson
-    autoload :CurrentOrganisation
   end
 
   autoload_under 'models/collections' do
@@ -99,6 +99,7 @@ module DogBiscuits
     autoload :AccessRights
     autoload :Available
     autoload :Creator
+    autoload :Contributor
     autoload :Date
     autoload :DateAccepted
     autoload :Description

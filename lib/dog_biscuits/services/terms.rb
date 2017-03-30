@@ -3,7 +3,7 @@ module DogBiscuits
     include Qa::Authorities::WebServiceBase
 
     # Sub-set of Current Organisations
-    class DepartmentTerms < TermsService
+    class DepartmentsTerms < TermsService
       def terms_list
         'departments'
       end
@@ -13,14 +13,14 @@ module DogBiscuits
     #     'qualification_names'
     #   end
     # end
-    class CurrentPersonTerms < TermsService
+    class PeopleTerms < TermsService
       def terms_list
-        'current_people'
+        'people'
       end
     end
-    class CurrentOrganisationTerms < TermsService
+    class OrganisationsTerms < TermsService
       def terms_list
-        'current_organisations'
+        'organisations'
       end
     end
     # class SubjectTerms < TermsService
@@ -33,7 +33,7 @@ module DogBiscuits
     #     'journals'
     #   end
     # end
-    class ProjectTerms < TermsService
+    class ProjectsTerms < TermsService
       def terms_list
         'projects'
       end
