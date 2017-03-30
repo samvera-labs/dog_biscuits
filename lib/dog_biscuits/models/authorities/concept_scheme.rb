@@ -6,9 +6,9 @@ module DogBiscuits
             # Hydra::Works::WorkBehavior - not pcdm objects or hydra works
 
     has_many :concepts, class_name: 'DogBiscuits::Concept', inverse_of: :concept_scheme #, :dependent => :destroy
-    has_many :current_organisations, class_name: 'DogBiscuits::CurrentOrganisation', inverse_of: :concept_scheme
-    has_many :departments, class_name: 'DogBiscuits::CurrentOrganisation', inverse_of: :concept_scheme
-    has_many :current_people, class_name: 'DogBiscuits::CurrentPerson', inverse_of: :concept_scheme
+    has_many :organisations, class_name: 'DogBiscuits::Organisation', inverse_of: :concept_scheme
+    has_many :departments, class_name: 'DogBiscuits::Organisation', inverse_of: :concept_scheme
+    has_many :people, class_name: 'DogBiscuits::Person', inverse_of: :concept_scheme
     has_many :persons #, :dependent => :destroy
     has_many :places #, :dependent => :destroy
     has_many :groups #, :dependent => :destroy

@@ -9,7 +9,7 @@ describe DogBiscuits::Dataset do
   let(:generic_work) { FactoryGirl.build(:generic_work) }
   let(:fs) { FactoryGirl.build_stubbed(:file_set) }
   let(:readme) { FactoryGirl.build_stubbed(:file_set) }
-  let(:org) { FactoryGirl.build_stubbed(:current_organisation) }
+  let(:org) { FactoryGirl.build_stubbed(:organisation) }
 
   it 'is a dataset' do
     expect(dataset).to be_dataset

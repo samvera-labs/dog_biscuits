@@ -3,7 +3,7 @@ shared_examples_for 'advisor' do
 
   before(:each) do
     model_str = model.to_s.split('::')[1]
-    @person = FactoryGirl.build_stubbed(:current_person)
+    @person = FactoryGirl.build_stubbed(:person)
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
     @stubby.advisor_resource << @person
   end

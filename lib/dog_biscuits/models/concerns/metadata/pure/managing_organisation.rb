@@ -5,7 +5,7 @@ module DogBiscuits
 
     included do
       has_and_belongs_to_many :managing_organisation_resource,
-                              class_name: 'DogBiscuits::CurrentOrganisation',
+                              class_name: 'DogBiscuits::Organisation',
                               predicate:
                                   DogBiscuits::Vocab::PureTerms.pureManagingUnit
     end

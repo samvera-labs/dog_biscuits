@@ -4,7 +4,7 @@ shared_examples_for 'publisher' do
   before(:each) do
     model_str = model.to_s.split('::')[1]
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
-    @publisher = FactoryGirl.build(:current_organisation)
+    @publisher = FactoryGirl.build(:organisation)
     @stubby.publisher_resource << @publisher
   end
   it 'will have the metadata' do

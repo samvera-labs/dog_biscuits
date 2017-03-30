@@ -53,7 +53,7 @@ FactoryGirl.define do
     group_type ['group type']
   end
 
-  factory :person, class: DogBiscuits::Person do
+  factory :historic_person, class: DogBiscuits::HistoricPerson do
     association :concept_scheme, factory: :concept_scheme, strategy: :build
 
     preflabel 'label'
@@ -73,12 +73,12 @@ FactoryGirl.define do
     dates_of_office '1500-1510'
   end
 
-  factory :current_organisation, class: DogBiscuits::CurrentOrganisation do
+  factory :organisation, class: DogBiscuits::Organisation do
     preflabel 'University of York. Department of Miserabilism'
     name 'name'
   end
 
-  factory :current_person, class: DogBiscuits::CurrentPerson do
+  factory :person, class: DogBiscuits::Person do
     preflabel 'Smith, Mark E.'
     family_name 'Morrissey'
     given_name 'Stephen Patrick'

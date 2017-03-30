@@ -1,6 +1,6 @@
 module DogBiscuits
   # contemporary (current) organisation
-  class CurrentOrganisation < DogBiscuits::Agent
+  class Organisation < DogBiscuits::Agent
     include DogBiscuits::FoafName,
             DogBiscuits::Pure
             # Hydra::Works::WorkBehavior - not pcdm objects or hydra works
@@ -17,10 +17,10 @@ module DogBiscuits
       type << DogBiscuits::Vocab::PureTerms.Organisation unless pure_uuid.nil?
     end
 
-    def current_organisation?
+    def organisation?
       true
     end
-    def current_person?
+    def person?
       false
     end
   end

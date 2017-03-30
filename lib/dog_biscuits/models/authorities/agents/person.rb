@@ -1,56 +1,49 @@
 module DogBiscuits
-  # person
-  # this is not a RWO, could say #rwo is the RWO
+  # current person (not historical)
   class Person < DogBiscuits::Agent
-    include DogBiscuits::BorthwickNote,
-            DogBiscuits::FoafNameParts,
-            DogBiscuits::HubDates
-            # Hydra::Works::WorkBehavior - not pcdm objects or hydra works
+    include DogBiscuits::FoafNameParts,
+            DogBiscuits::Pure,
+            DogBiscuits::RdfType,
+            DogBiscuits::Orcid
 
-    # TODO create preflabel
+    before_save :add_pure_type, :add_preflabel
 
     type [::RDF::URI.new('http://schema.org/Person'),
-          ::RDF::URI.new('http://vocab.getty.edu/ontology#PersonConcept'),
           ::RDF::Vocab::FOAF.Agent,
-          ::RDF::Vocab::FOAF.Person,
-         ]
+          ::RDF::Vocab::FOAF.Person]
 
-    # ::RDF::URI.new('http://purl.org/vra/Person')
-
-    # in VRA this includes family as well as individual (use group)
-    # vra:hasCulture
-    # vra:name == foaf.name
-    # vra:birthDate
-    # vra:deathDate
-
-    # Eg. NCA Rules 2.5C.
-    property :pre_title, predicate: DogBiscuits::Vocab::Generic.preTitle,
-                         multiple: false do |index|
-      index.as :stored_searchable
-    end
-
-    # Eg. NCA Rules 2.5B.
-    property :post_title,
-             predicate: ::RDF::URI.new('http://data.archiveshub.ac.uk/def/title'),
-             multiple: false do |index|
-      index.as :stored_searchable
-    end
-
-    # Eg. NCA Rules 2.5D.
-    property :epithet,
-             predicate: ::RDF::URI.new('http://data.archiveshub.ac.uk/def/epithet'),
-             multiple: false do |index|
-      index.as :stored_searchable
-    end
-
-    property :dates_of_office,
-             predicate: DogBiscuits::Vocab::Generic.datesOfOffice,
-             multiple: false do |index|
-      index.as :stored_searchable
+    # TODO review as specific to York local requirements
+    def add_pure_type
+      rdf_type << DogBiscuits::Vocab::PureTerms.Person unless pure_uuid.nil?
     end
 
     def person?
       true
+    end
+
+    # TODO review as specific to York local requirements
+    def phd
+      rdf_type << DogBiscuits::Vocab::PureTerms.PhdStudent
+    end
+
+    # Create a preflabel from the name in Family, Given form
+    #   if family and given exist, overwrite existing preflabel
+    def add_preflabel
+      unless family_name.blank?
+        label = family_name
+      end
+
+      unless given_name.blank?
+        if label.nil?
+          label = given_name
+        else
+          label += ", #{given_name}"
+        end
+      end
+
+      unless label.blank?
+        self.preflabel = label
+      end
     end
   end
 end
