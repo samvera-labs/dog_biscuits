@@ -13,8 +13,8 @@ Gem::Specification.new do |spec|
     spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
   end
 
-  spec.summary       = 'Models for York Digital Library and related projects'
-  spec.description   = 'Using this gem will provide various re-usable data models designed for York Digital Library.'
+  spec.summary       = 'Models, vocabularies and behaviours for Hyrax applications'
+  spec.description   = 'Using this gem will provide various re-usable data models and authorities.'
   spec.homepage      = 'https://github.com/geekscruff/dog_biscuits'
   spec.license       = 'APACHE2'
 
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = %w(lib app)
 
-  spec.add_dependency 'hyrax', '1.0.0.rc1' # can't add git references in here
+  spec.add_dependency 'hyrax', '1.0.0.rc1'
 
   spec.add_development_dependency 'rspec', '~> 3.1'
   spec.add_development_dependency 'rspec-rails', '~> 3.1'
