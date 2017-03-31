@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'hydra/works'
-require 'active_fedora'
-require 'action_view'
 
 describe DogBiscuits::ConceptScheme do
   let(:concept) { FactoryGirl.build(:concept) }
@@ -29,7 +26,7 @@ describe DogBiscuits::ConceptScheme do
       concept.top_concept_of << scheme1
     end
 
-    it 'has a top concept' do
+    it 'has top concept' do
       expect(scheme1.has_top_concept.to_a.size).to eq(1)
     end
 

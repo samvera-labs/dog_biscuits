@@ -5,22 +5,22 @@ shared_examples_for 'generic_authority_terms' do
     model_str = model.to_s.split('::')[1]
     @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
   end
-  it 'has an approved' do
+  it 'has approved' do
     expect(@stubby.approved).to eq('true')
   end
-  it 'has a used' do
+  it 'has used' do
     expect(@stubby.used).to eq('true')
   end
-  it 'has a rules' do
+  it 'has rules' do
     expect(@stubby.rules).to eq('nca')
   end
-  it 'has dlib generic approved predicate' do
+  it 'has approved predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/generic#approved')))
   end
-  it 'has dlib generic used predicate' do
+  it 'has used predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/generic#used')))
   end
-  it 'has dlib generic rules predicate' do
+  it 'has rules predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/generic#rules')))
   end
 end

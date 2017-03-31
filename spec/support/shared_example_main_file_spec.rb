@@ -8,15 +8,16 @@ shared_examples_for 'main_file' do
     @stubby.mainfile << @main
   end
 
-  it 'has a main file' do
+  it 'has main file' do
     expect(@stubby.mainfile.first).to eq(@main)
   end
-  # failing because stubbed objects don't save
-  it 'main file is added to members' do
+
+  # main file is added to members
+  it 'has one member' do
     @stubby.add_member
     expect(@stubby.members.size).to eq(1)
   end
-  it 'main file is not added to members a second time' do
+  it 'has one member when member is added a second time' do
     @stubby.add_member
     expect(@stubby.members.size).to eq(1)
   end

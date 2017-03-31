@@ -5,10 +5,10 @@ shared_examples_for 'generic_qualifier' do
     model_str = model.to_s.split('::')[1]
     @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
   end
-  it 'will have a qualifier' do
+  it 'has qualifier' do
     expect(@stubby.qualifier).to eq('order of the phoenix')
   end
-  it 'will have the generic.qualifier predicate' do
+  it 'has qualifier predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/generic#qualifier')))
   end
 end

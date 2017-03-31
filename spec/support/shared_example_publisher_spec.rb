@@ -7,12 +7,17 @@ shared_examples_for 'publisher' do
     @publisher = FactoryGirl.build(:organisation)
     @stubby.publisher_resource << @publisher
   end
-  it 'will have the metadata' do
+  it 'has publisher' do
     expect(@stubby.publisher).to eq(['Rough Trade Records'])
     expect(@stubby.publisher_resource.first).to eq(@publisher)
   end
-  it 'will have the predicate' do
+  it 'has publisher predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/elements/1.1/publisher')))
     expect(@stubby.resource.dump(:ttl).should(include('http://id.loc.gov/vocabulary/relators/pbl')))
+  end
+
+  it 'has _value in solr' do
+    expect(@stubby.to_solr.should(include('publisher_value_tesim')))
+    expect(@stubby.to_solr.should(include('publisher_value_sim')))
   end
 end

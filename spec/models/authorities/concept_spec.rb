@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 # TODO: test concerns and validators only once; only test concept specific stuff here
 
@@ -36,7 +33,7 @@ describe DogBiscuits::Concept do
   end
 
   describe '#related objects' do
-    # helpful? http://stackoverflow.com/questions/2937326/populating-an-association-with-children-in-factory-girl
+    # http://stackoverflow.com/questions/2937326/populating-an-association-with-children-in-factory-girl
     it 'is related to the parent scheme' do
       expect(concept1.concept_scheme.preflabel).to eq('label')
     end
@@ -59,11 +56,11 @@ describe DogBiscuits::Concept do
       concept1.broader << concept2
     end
 
-    it 'has a broader concept' do
+    it 'has broader concept' do
       expect(concept1.broader.first.preflabel).to eq('broader object')
     end
 
-    it 'has a narrower concept' do
+    it 'has narrower concept' do
       expect(concept2.narrower.first.preflabel).to eq('label')
     end
 

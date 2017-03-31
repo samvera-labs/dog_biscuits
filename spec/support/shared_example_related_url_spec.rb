@@ -6,11 +6,11 @@ shared_examples_for 'related_url' do
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
   end
 
-  it 'has a related url' do
+  it 'has related url' do
     expect(@stubby.related_url).to eq(['http://www.ulcc.ac.uk'])
   end
 
-  it 'will have the dc11 and dc language predicates' do
+  it 'has see also predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://www.w3.org/2000/01/rdf-schema#seeAlso')))
   end
 end

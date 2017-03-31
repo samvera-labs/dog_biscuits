@@ -7,11 +7,16 @@ shared_examples_for 'project_output' do
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
     @stubby.project_resource << @project
   end
-  it 'will be in a project' do
+  it 'has project' do
     expect(@stubby.project_resource.first).to eq(@project)
   end
-  it 'will have the project predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://ulcc.ac.uk/ontologies/terms#outputOf')))
+  it 'has project predicate' do
+    expect(@stubby.resource.dump(:ttl).should(include('http://london.ac.uk/ontologies/terms#outputOf')))
+  end
+
+  it 'has _value in solr' do
+    expect(@stubby.to_solr.should(include('project_value_tesim')))
+    expect(@stubby.to_solr.should(include('project_value_sim')))
   end
 end
 

@@ -10,7 +10,7 @@ shared_examples_for 'in_journal' do
   it 'will be in a journal' do
     expect(@stubby.journal_resource.first).to eq(@journal)
   end
-  it 'will have the frbr:partOf predicate' do
+  it 'has frbr:partOf predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('https://vocab.org/frbr/core#partOf')))
   end
 end

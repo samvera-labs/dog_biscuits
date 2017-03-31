@@ -8,15 +8,14 @@ shared_examples_for 'readme_file' do
     @stubby.readmefile << @readme
   end
 
-  it 'has a readme file' do
+  it 'has readme file' do
     expect(@stubby.readmefile.first).to eq(@readme)
   end
-  # failing because stubbed objects don't save
-  it 'readme file is added to members' do
+  it 'has readme file in members' do
     @stubby.add_member_fs
     expect(@stubby.members.size).to eq(1)
   end
-  it 'readme file is not added to members a second time' do
+  it ' has only one readme file in members' do
     @stubby.add_member_fs
     expect(@stubby.members.size).to eq(1)
   end

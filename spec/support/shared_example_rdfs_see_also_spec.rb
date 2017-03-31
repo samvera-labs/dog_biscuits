@@ -11,11 +11,11 @@ shared_examples_for 'rdfs_see_also' do
     @stubby.see_also << @stubbier
   end
 
-  it 'has a see_also' do
+  it 'has see_also' do
     expect(@stubby.see_also.first.preflabel).to eq('seealso object')
   end
 
-  it 'has a reciprocal see_also' do
+  it 'has reciprocal see_also' do
     expect(@stubbier.see_also.first.preflabel).to eq('label')
   end
 end

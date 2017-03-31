@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 describe DogBiscuits::Thesis do
   let(:thesis) { FactoryGirl.build(:thesis) }

@@ -2,7 +2,7 @@ module DogBiscuits
   class TermsService < Hyrax::QaSelectService
     attr_reader :authority
 
-    def initialize(*args)
+    def initialize(_args)
       @authority = self
     end
 

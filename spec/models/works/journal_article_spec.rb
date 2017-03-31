@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 describe DogBiscuits::JournalArticle do
   let(:journal) { FactoryGirl.build(:journal_article) }
@@ -26,6 +23,7 @@ describe DogBiscuits::JournalArticle do
   it_behaves_like 'project_output'
   it_behaves_like 'identifier'
   it_behaves_like 'related_url'
+  it_behaves_like 'managing_organisation'
 
   describe '#metadata' do
     specify { journal.type.should include('http://purl.org/spar/fabio/JournalArticle') }
@@ -35,7 +33,7 @@ describe DogBiscuits::JournalArticle do
     before do
       journal.combine_dates
     end
-    specify { journal.date.should eq(["2016", "2015", "2013", "2014"]) }
+    specify { journal.date.should eq(%w(2016 2015 2013 2014)) }
   end
 
   describe '#predicates' do

@@ -4,13 +4,18 @@ shared_examples_for 'language' do
   before(:each) do
     model_str = model.to_s.split('::')[1]
     @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
-    #@stubby.add_language_value
   end
-  it 'will have a language' do
+  it 'has language' do
     expect(@stubby.language).to eq(['English'])
   end
-  it 'will have the dc11 and dc language predicates' do
-    # expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/language')))
+  it 'has language predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/elements/1.1/language')))
+  end
+
+  it 'has language code' do
+    expect(@stubby.language_code).to eq(['en-GB'])
+  end
+  it 'has language code predicate' do
+    expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/language')))
   end
 end

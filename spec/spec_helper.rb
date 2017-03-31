@@ -1,6 +1,8 @@
 # spec/spec_helper.rb
 require 'simplecov'
 
+# TODO REVIEW
+
 SimpleCov.start do
   add_filter '/spec/'
   add_filter '/.internal_test_app'
@@ -24,7 +26,7 @@ require 'listen'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
-FactoryGirl.definition_file_paths = [File.expand_path("../factories", __FILE__)]
+FactoryGirl.definition_file_paths = [File.expand_path('../factories', __FILE__)]
 FactoryGirl.find_definitions
 
 require 'active_fedora/cleaner'

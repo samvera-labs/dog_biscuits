@@ -7,12 +7,12 @@ shared_examples_for 'date_of_award' do
 
   end
   # metadata
-  it 'will have a date of award' do
+  it 'has date of award' do
     expect(@stubby.date_of_award).to eq('2016-01-01')
   end
 
   # predicates
-  it 'will have dc date availabe' do
+  it 'has date of award predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/dateAccepted')))
   end
 

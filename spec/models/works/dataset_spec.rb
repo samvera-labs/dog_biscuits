@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 describe DogBiscuits::Dataset do
   let(:dataset) { FactoryGirl.build(:dataset) }
@@ -15,8 +12,6 @@ describe DogBiscuits::Dataset do
     expect(dataset).to be_dataset
   end
 
-  # Concerns
-  # it_behaves_like "add_datacite_mandatory"
   it_behaves_like 'pure'
   it_behaves_like 'for_indexing'
   it_behaves_like 'simple_versions'
@@ -52,16 +47,16 @@ describe DogBiscuits::Dataset do
       dataset.members << fs
       dataset.members << readme
     end
-    it 'has a packaged by' do
+    it 'has packaged by' do
       expect(dataset.packaged_by.size).to eq(1)
     end
     it 'has an aip' do
       expect(dataset.aips.size).to eq(1)
     end
-    it 'has a dip' do
+    it 'has dip' do
       expect(dataset.dips.size).to eq(1)
     end
-    it 'has an two members' do
+    it 'has two members' do
       expect(dataset.members.size).to eq(2)
     end
   end

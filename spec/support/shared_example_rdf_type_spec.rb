@@ -9,10 +9,10 @@ shared_examples_for 'rdf_type' do
   before(:each) do
     @stubby.rdf_type << 'http://www.w3.org/2004/02/skos/core#' + @model_str
   end
-  it 'will have dates' do
+  it 'has rdf type' do
     expect(@stubby.rdf_type).to eq(['http://www.w3.org/2004/02/skos/core#' + @model_str])
   end
-  it 'will have the rdf type predicate' do
+  it 'has rdf type predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('<> a')))
   end
 end

@@ -7,18 +7,18 @@ shared_examples_for 'qualification' do
 
   end
   # metadata
-  it 'will have a qualification name' do
+  it 'has qualification name' do
     expect(@stubby.qualification_name).to eq(['qualification'])
   end
-  it 'will have an qualification level' do
+  it 'has an qualification level' do
     expect(@stubby.qualification_level).to eq(['PhD'])
   end
 
   # predicates
-  it 'will have uketd qualificationLevel' do
+  it 'has qualification level predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/uketd#qualificationLevel')))
   end
-  it 'will have uketd qualificationName' do
+  it 'has qualification name predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/uketd#qualificationName>')))
   end
 

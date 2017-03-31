@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 describe DogBiscuits::FileSet do
 
@@ -11,7 +8,6 @@ describe DogBiscuits::FileSet do
     expect(fileset).to be_file_set
   end
 
-  # Concerns
   it_behaves_like 'content_version'
 
 end

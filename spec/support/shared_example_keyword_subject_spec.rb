@@ -7,19 +7,19 @@ shared_examples_for 'keyword_subject' do
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
     #@stubby.subject_resource << @sub
   end
-  it 'will have a subject' do
+  it 'has subject' do
     #expect(@stubby.subject_resource.first).to eq(@sub)
   end
-  it 'will have a keyword' do
+  it 'has keyword' do
     expect(@stubby.keyword).to eq(['northern misery'])
   end
-  it 'will have the dc.subject predicate' do
+  it 'has subject predicate' do
     #expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/subject')))
   end
-  it 'will have the dc11.subject predicate' do
+  it 'has dc11.subject predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/elements/1.1/subject')))
   end
-  it 'will have _value_tesim in the solr response' do
+  it 'has _value_tesim in the solr response' do
     #expect(@stubby.to_solr.should(include('subject_value_tesim')))
   end
 end

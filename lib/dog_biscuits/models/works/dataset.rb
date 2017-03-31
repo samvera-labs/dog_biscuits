@@ -5,12 +5,12 @@ module DogBiscuits
 
     filters_association :packaged_by, as: :aips, condition: :aip?
     filters_association :packaged_by, as: :dips, condition: :dip?
+    # TODO REVIEW
     #filters_association :members, as: :packages, condition: :package?
 
     type << ::RDF::Vocab::DCAT.Dataset
 
-    # TODO look at how CC handles this and fix clash
-    # where does this come from? is it in pure? NOT IN PUREE check ws
+    # TODO move these into concerns
     property :embargo_release,
              predicate: DogBiscuits::Vocab::Generic.embargoRelease,
              multiple: false do |index|

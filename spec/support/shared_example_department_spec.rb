@@ -9,13 +9,17 @@ shared_examples_for 'department' do
 
   end
   # metadata
-  it 'will have a department' do
+  it 'has department' do
     expect(@stubby.department_resource.first).to eq(@org)
   end
 
-  # predicates
-  it 'will have uketd department' do
+  it 'has department predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/uketd#department')))
+  end
+
+  it 'has _value in solr' do
+    expect(@stubby.to_solr.should(include('department_value_tesim')))
+    expect(@stubby.to_solr.should(include('department_value_sim')))
   end
 
 end

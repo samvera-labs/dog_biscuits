@@ -5,10 +5,10 @@ shared_examples_for 'date_published' do
     model_str = model.to_s.split('::')[1]
     @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
   end
-  it 'will have an date_published' do
+  it 'has date_published' do
     expect(@stubby.date_published).to eq('2016')
   end
-  it 'will have the schema:datePublished predicate' do
+  it 'has date published predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://schema.org/datePublished')))
   end
 end

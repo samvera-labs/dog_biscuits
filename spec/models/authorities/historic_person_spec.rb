@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 describe DogBiscuits::HistoricPerson do
   let(:historic_person) { FactoryGirl.build(:historic_person) }
