@@ -7,7 +7,7 @@ module DogBiscuits
       # Add all properties called *_resource to ensure the preflabel and altlabel of the related object
       #   are indexed in solr
       def get_values_to_index
-        ['creator', 'project','managing_organisation','department']
+        %w(creator project managing_organisation department)
       end
 
       # Add any properties to ensure they are 'mixed in' with the *_values field in solr

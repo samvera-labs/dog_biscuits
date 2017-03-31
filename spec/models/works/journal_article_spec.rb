@@ -35,7 +35,7 @@ describe DogBiscuits::JournalArticle do
     before do
       journal.combine_dates
     end
-    specify { journal.date.should eq(["2016", "2015", "2013", "2014"]) }
+    specify { journal.date.should eq(%w(2016 2015 2013 2014)) }
   end
 
   describe '#predicates' do

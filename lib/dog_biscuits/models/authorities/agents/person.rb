@@ -29,21 +29,15 @@ module DogBiscuits
     # Create a preflabel from the name in Family, Given form
     #   if family and given exist, overwrite existing preflabel
     def add_preflabel
-      unless family_name.blank?
-        label = family_name
-      end
+      label = family_name unless family_name.blank?
 
-      unless given_name.blank?
-        if label.nil?
-          label = given_name
-        else
-          label += ", #{given_name}"
-        end
-      end
+      if label.nil?
+        label = given_name
+      else
+        label += ", #{given_name}"
+      end unless given_name.blank?
 
-      unless label.blank?
-        self.preflabel = label
-      end
+      self.preflabel = label unless label.blank?
     end
   end
 end
