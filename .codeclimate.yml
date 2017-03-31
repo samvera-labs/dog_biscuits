@@ -1,48 +1,9 @@
 ---
 engines:
   duplication:
-    enabled: true
+    enabled: false
     exclude_fingerprints:
-        # ignore duplicate lines (they are necessary duplication)
-        - 09a31c1ae3bcddf71dc43b4c6f173e0a
-        - 0f1493e6c403635bc6b45cff105c6262
-        - 11b4bdcdaf330eecc6dc114bedcef034
-        - 137ad16bc49351d96a4a2482781764b3
-        - 1cb5ad2e02ab95ca026bcf868f6a9772
-        - 2048a9b8f3b14fbdfbca172dc54d4b81
-        - 27de9c0c36b0f4e16fa84b74066b2882
-        - 2bb15da40cdb3263933438643992f0ea
-        - 2d7f53c3270331d8d4a30391da2d7e93
-        - 33f223d423d0aa7abd541ffed80e01bf
-        - 480bf08513c1b2cb5b85e90e4312f0f7
-        - 52e2bc1e30955c536db05728f145cd41
-        - 558c6e39e2c4329f04b80e48f4995e24
-        - 5bc527ba7105438e4504e61686795c28
-        - 710b6e6392f5d365aab0188051e5542b
-        - 76c3a31dd015a9dfef6b1a36a8fea880
-        - 8ba4a3dfc67463c6fb5f61fd45f960c9
-        - 9848af52624058c5058953c6ebfbaa48
-        - 98d13720a1e5ca6272c0f791177406e4
-        - 9912af452b1ce7a95ee704c9f6001961
-        - 9badcc5f88d850fae40a6947345f5d3e
-        - a4a79d9079dbb571b04a1aec0aaa714f
-        - a7941379b6ed9530441f381131b0da42
-        - acaf43808e6a215368b1194d6981fc45
-        - ae1cfefea507749e3189cd7ba1113738
-        - b8d9b63a9f9fbe8dc95d81e1cf9f8fd5
-        - b91e5391f2fe646fa9a53245550c3574
-        - cbf23710d8dc3fc2cc8c5139897b92f6
-        - ce93acfdd72772e7222927d25c9e8acc
-        - d77ca54d1ad97ae7e8829097fe6879c6
-        - da8717c3b70cca24a0ef169fe804e7fe
-        - dde050322a7e089563fafa5eb9a7433b
-        - e2b07bd58c1d4b9d081e65d3ef3c35fd
-        - e7fc541e5ce702b1d171318c018cce94
-        - f7d034bee60f823e1f4d0703ab12e02e
-        - 394c9b6305c9021532d80f33b8e23a93
-        - f9da956d34c8c7bbac0e9491385e9b78
-        - f7af70378feb645cf3d9d1054ecf390c
-        - b7f2bdd5f87a8af79436b53618456871
+        - ''
     config:
       languages:
       - ruby
