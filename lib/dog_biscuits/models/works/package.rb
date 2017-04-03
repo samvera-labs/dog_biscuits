@@ -2,7 +2,8 @@ module DogBiscuits
   class Package < Work
     include DogBiscuits::AddPackageMetadata
 
-    # belongs_to - one only; has_and_belongs_to_many - lots
+    # TODO define what a package is
+
     has_and_belongs_to_many :packages,
                             class_name: 'DogBiscuits::Work',
                             predicate: DogBiscuits::Vocab::Generic.packages,
@@ -20,30 +21,20 @@ module DogBiscuits
       true
     end
 
+    # It's an AIP if it has an AIP UUID
     def aip?
-      if aip_uuid.nil?
-        false
-      else
-        true
-      end
+      aip_uuid ? true : false
     end
 
+    # It's a DIP if it has an AIP UUID
     def dip?
-      if dip_uuid.nil?
-        false
-      else
-        true
-      end
+      dip_uuid ? true : false
     end
 
-    # If DIP/AIP has been created, add the rdf type
+    # If object is a DIP/AIP, add the rdf type
     def add_types
-      unless dip_uuid.nil?
-        rdf_type << DogBiscuits::Vocab::OaisArchivematica.DisseminationInformationPackage
-      end
-      unless aip_uuid.nil?
-        rdf_type << DogBiscuits::Vocab::OaisArchivematica.ArchivalInformationPackage
-      end
+      rdf_type << DogBiscuits::Vocab::OaisArchivematica.DisseminationInformationPackage unless dip_uuid.nil?
+      rdf_type << DogBiscuits::Vocab::OaisArchivematica.ArchivalInformationPackage unless aip_uuid.nil?
     end
   end
 end

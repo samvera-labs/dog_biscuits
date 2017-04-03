@@ -1,25 +1,30 @@
 module DogBiscuits
   module AddWorkBehaviour
     extend ActiveSupport::Concern
-    # include Hyrax::WorkBehavior
-    # These are what WorkBehavior includes - include only what we need:
+
+    # include Hyrax::WorkBehavior # include only what we need from Hyrax::WorkBehavior
     include ::Hydra::Works::WorkBehavior
     include ::Hyrax::Noid
-    include ::Hyrax::RequiredMetadata
-    # include ::Hyrax::HumanReadableType
-    # include ::Hyrax::Permissions
-    # include ::Hyrax::Serializers
-    # include ::Hydra::WithDepositor
-    # include ::Solrizer::Common
+    include ::Hyrax::RequiredMetadata # changing to CoreMetadata in Hyrax 2
+    # Without these three, tests fail for indexers
     include ::Hyrax::HasRepresentative
-    # include ::Hyrax::WithFileSets
-    # include ::Hyrax::Naming
-    include Hyrax::InAdminSet
-    # include ::Hydra::AccessControls::Embargoable
-    # include ::GlobalID::Identification
+    include ::Hyrax::InAdminSet
     include ::Hyrax::Suppressible
-    # RuntimeError: Circular dependency detected while autoloading constant Thesis
-    # In CC app
-    # include Hyrax::NestedWorks
+
+    # include HumanReadableType
+    # include Permissions
+    # include Serializers
+    # include Hydra::WithDepositor
+    # include Solrizer::Common
+    # include WithFileSets
+    # include Naming
+    # include Hydra::AccessControls::Embargoable
+    # include GlobalID::Identification
+    # include NestedWorks # RuntimeError: Circular dependency detected in calling app
+    # include ProxyDeposit
+    # include Works::Trophies
+    # include Works::Metadata
+    # include Works::Featured
+    # include WithEvents
   end
 end

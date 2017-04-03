@@ -25,16 +25,16 @@ module DogBiscuits
       ['admin']
     end
 
-    # find any objects that use the authority term being updated or destroyed
-    # update solr if it's a '_value'
-    # re-save the object if it's a 'saved string'
+    # Find any objects that use the authority term being updated or destroyed
+    #   run a solr update on each object.
     def update_usages
-      SolrQuery.new.solr_query("values_tesim:#{self.id}",'id',1000)['response']['docs'].each do | r |
+      ActiveFedora::SolrService.get(
+          "values_tesim:#{self.id}",
+          {
+              :fl => 'id',
+              :rows => 1000}
+      )['response']['docs'].each do | r |
         ActiveFedora::Base.find(r['id']).update_index
-      end
-
-      SolrQuery.new.solr_query("authorities_tesim:#{self.id}",'id',1000)['response']['docs'].each do | r |
-        ActiveFedora::Base.find(r['id']).save
       end
     end
   end
