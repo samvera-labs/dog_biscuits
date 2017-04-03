@@ -1,5 +1,6 @@
 module DogBiscuits
   class Package < Work
+    include DogBiscuits::AddWorkBehaviour
     include DogBiscuits::AddPackageMetadata
 
     # TODO define what a package is

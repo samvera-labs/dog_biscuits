@@ -15,7 +15,7 @@ describe DogBiscuits::ConceptScheme do
     expect(scheme).to be_concept_scheme
   end
 
-  describe '#metadata' do
+  describe '#rdftypes' do
     specify { scheme.type.should include('http://www.w3.org/2004/02/skos/core#ConceptScheme') }
   end
 

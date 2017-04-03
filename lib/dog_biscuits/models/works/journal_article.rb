@@ -1,6 +1,7 @@
 module DogBiscuits
   # Journal Article
   class JournalArticle < Work
+    include DogBiscuits::AddWorkBehaviour
     include DogBiscuits::AddJournalArticleMetadata
 
     before_save :combine_dates

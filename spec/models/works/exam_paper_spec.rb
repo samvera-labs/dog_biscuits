@@ -19,9 +19,13 @@ describe DogBiscuits::ExamPaper do
   it_behaves_like 'module_code'
   it_behaves_like 'collections_category'
 
-
-  describe '#metadata' do
+  describe '#rdftypes' do
+    specify { exam.type.should_not include('http://www.w3.org/ns/dcat#Dataset') }
+    specify { exam.type.should_not include('http://dlib.york.ac.uk/ontologies/generic#Package') }
+    specify { exam.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
     specify { exam.type.should include('http://purl.org/spar/fabio/ExaminationPaper') }
+    specify { exam.type.should_not include('http://purl.org/spar/fabio/JournalArticle') }
+
   end
 
   describe '#predicates' do

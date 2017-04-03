@@ -25,7 +25,6 @@ describe DogBiscuits::Dataset do
   it_behaves_like 'number_of_downloads'
 
   describe '#metadata' do
-    specify { dataset.type.should include('http://www.w3.org/ns/dcat#Dataset') }
     specify { dataset.embargo_release.should eq(2016 - 12 - 12) }
     specify { dataset.retention_policy.should eq(['10 years from last access']) }
     specify { dataset.restriction_note.should eq(['restriction note']) }
@@ -33,6 +32,15 @@ describe DogBiscuits::Dataset do
       dataset.managing_organisation_resource << org
     end
     specify { dataset.managing_organisation_resource.first.should eq(org) }
+  end
+
+  describe '#rdftypes' do
+    specify { dataset.type.should include('http://www.w3.org/ns/dcat#Dataset') }
+    specify { dataset.type.should_not include('http://dlib.york.ac.uk/ontologies/generic#Package') }
+    specify { dataset.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
+    specify { dataset.type.should_not include('http://purl.org/spar/fabio/ExaminationPaper') }
+    specify { dataset.type.should_not include('http://purl.org/spar/fabio/JournalArticle') }
+    
   end
 
   describe '#predicates' do

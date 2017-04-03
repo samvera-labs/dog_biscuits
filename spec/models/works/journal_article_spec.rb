@@ -25,7 +25,11 @@ describe DogBiscuits::JournalArticle do
   it_behaves_like 'related_url'
   it_behaves_like 'managing_organisation'
 
-  describe '#metadata' do
+  describe '#rdftypes' do
+    specify { journal.type.should_not include('http://www.w3.org/ns/dcat#Dataset') }
+    specify { journal.type.should_not include('http://dlib.york.ac.uk/ontologies/generic#Package') }
+    specify { journal.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
+    specify { journal.type.should_not include('http://purl.org/spar/fabio/ExaminationPaper') }
     specify { journal.type.should include('http://purl.org/spar/fabio/JournalArticle') }
   end
 

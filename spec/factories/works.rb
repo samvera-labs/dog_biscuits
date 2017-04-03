@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :generic_work, class: DogBiscuits::GenericWork do
+  factory :generic_work, class: ActiveFedora::Base do
     title ['Generic Work']
   end
 

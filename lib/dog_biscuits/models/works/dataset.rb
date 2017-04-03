@@ -1,6 +1,7 @@
 module DogBiscuits
   # dataset
   class Dataset < Work
+    include DogBiscuits::AddWorkBehaviour
     include DogBiscuits::AddDatasetMetadata
 
     filters_association :packaged_by, as: :aips, condition: :aip?

@@ -25,8 +25,12 @@ describe DogBiscuits::Thesis do
   it_behaves_like 'department'
   it_behaves_like 'qualification'
 
-  describe '#metadata' do
+  describe '#rdftypes' do
+    specify { thesis.type.should_not include('http://www.w3.org/ns/dcat#Dataset') }
+    specify { thesis.type.should_not include('http://dlib.york.ac.uk/ontologies/generic#Package') }
     specify { thesis.type.should include('http://purl.org/ontology/bibo/Thesis') }
+    specify { thesis.type.should_not include('http://purl.org/spar/fabio/ExaminationPaper') }
+    specify { thesis.type.should_not include('http://purl.org/spar/fabio/JournalArticle') }
   end
 
   describe '#predicates' do

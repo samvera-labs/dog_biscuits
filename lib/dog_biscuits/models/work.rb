@@ -1,7 +1,8 @@
 module DogBiscuits
   class Work < ActiveFedora::Base
-    include DogBiscuits::AddWorkBehaviour,
-            DogBiscuits::AddDefaultPermissions
+
+    # DO NOT include AddWorkBehaviour here otherwise individual works will get the 'type' from others
+    include DogBiscuits::AddDefaultPermissions
 
     has_and_belongs_to_many :packaged_by,
                             class_name: 'DogBiscuits::Package',
