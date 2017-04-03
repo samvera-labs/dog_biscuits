@@ -19,7 +19,7 @@ module DogBiscuits
     # include WithFileSets
     # include Naming
     # include Hydra::AccessControls::Embargoable
-    # include GlobalID::Identification
+    include GlobalID::Identification
     # include NestedWorks # RuntimeError: Circular dependency detected in calling app
     # include ProxyDeposit
     # include Works::Trophies

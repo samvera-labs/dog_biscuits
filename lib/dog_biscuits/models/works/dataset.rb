@@ -9,6 +9,8 @@ module DogBiscuits
     # TODO REVIEW
     #filters_association :members, as: :packages, condition: :package?
 
+    before_save :combine_dates
+
     type << ::RDF::Vocab::DCAT.Dataset
 
     # TODO move these into concerns
@@ -49,6 +51,11 @@ module DogBiscuits
 
     def self.indexer
       DatasetIndexer
+    end
+
+    def combine_dates
+      self.date = []
+      self.date << self.date_available
     end
   end
 end

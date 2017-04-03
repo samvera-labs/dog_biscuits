@@ -8,7 +8,6 @@ describe DogBiscuits::Concept do
   let(:concept1) { FactoryGirl.build(:concept) }
   let(:concept2) { FactoryGirl.build_stubbed(:broader_concept) }
   let(:concept3) { FactoryGirl.build(:concept) }
-  let(:thesis) {FactoryGirl.build(:thesis) }
 
   it 'is a concept' do
     expect(concept1).to be_concept
@@ -66,4 +65,5 @@ describe DogBiscuits::Concept do
 
     # TODO test exact and close
   end
+
 end

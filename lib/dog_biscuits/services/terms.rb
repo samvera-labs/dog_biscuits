@@ -2,7 +2,6 @@ module DogBiscuits
   module Terms
     include Qa::Authorities::WebServiceBase
 
-    # Sub-set of Current Organisations
     class DepartmentsTerms < TermsService
       def terms_list
         'departments'
@@ -24,6 +23,12 @@ module DogBiscuits
     class ProjectsTerms < TermsService
       def terms_list
         'projects'
+      end
+    end
+
+    class SubjectsTerms < TermsService
+      def terms_list
+        'subjects'
       end
     end
   end

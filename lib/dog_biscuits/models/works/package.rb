@@ -3,6 +3,8 @@ module DogBiscuits
     include DogBiscuits::AddWorkBehaviour
     include DogBiscuits::AddPackageMetadata
 
+    before_save :add_types
+
     # TODO define what a package is
 
     has_and_belongs_to_many :packages,
@@ -11,8 +13,6 @@ module DogBiscuits
                             inverse_of: :packaged_by
 
     type << DogBiscuits::Vocab::Generic.Package
-
-    before_save :add_types
 
     property :requestor_email, predicate: DogBiscuits::Vocab::Generic.requestorEmail, multiple: true do |index|
       index.as :stored_searchable

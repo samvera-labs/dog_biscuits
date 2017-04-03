@@ -3,7 +3,6 @@ module DogBiscuits
     include DogBiscuits::CommonLabels,
             DogBiscuits::Description,
             Hyrax::Noid
-            # Hydra::Works::WorkBehavior - not pcdm objects or hydra works
 
     has_many :concepts, class_name: 'DogBiscuits::Concept', inverse_of: :concept_scheme #, :dependent => :destroy
     has_many :organisations, class_name: 'DogBiscuits::Organisation', inverse_of: :concept_scheme

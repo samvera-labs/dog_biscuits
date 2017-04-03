@@ -5,6 +5,26 @@ FactoryGirl.define do
     description ['description']
   end
 
+  factory :subjects, class: DogBiscuits::ConceptScheme do
+    preflabel 'subjects'
+  end
+
+  factory :departments, class: DogBiscuits::ConceptScheme do
+    preflabel 'departments'
+  end
+
+  factory :organisations, class: DogBiscuits::ConceptScheme do
+    preflabel 'organisations'
+  end
+
+  factory :projects, class: DogBiscuits::ConceptScheme do
+    preflabel 'projects'
+  end
+
+  factory :people, class: DogBiscuits::ConceptScheme do
+    preflabel 'people'
+  end
+
   factory :broader_concept, class: DogBiscuits::Concept do
     preflabel 'broader object'
   end
@@ -88,11 +108,8 @@ FactoryGirl.define do
     preflabel 'miserabilism'
   end
 
-  factory :journal, class: DogBiscuits::Journal do
-    preflabel 'The Journal of Woe'
-  end
-
   factory :project, class: DogBiscuits::Project do
+    preflabel 'A scientific study into misery'
     name 'A scientific study into misery'
     identifier ['identifier_test']
     funder ['funder']

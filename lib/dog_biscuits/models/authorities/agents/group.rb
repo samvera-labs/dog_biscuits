@@ -5,12 +5,9 @@ module DogBiscuits
             DogBiscuits::FoafName,
             DogBiscuits::GenericQualifier,
             DogBiscuits::HubDates
-    # Hydra::Works::WorkBehavior - not pcdm objects or hydra works
 
     # TODO create preflabel
 
-    # removed ::RDF::URI.new('https://schema.org/Organization')
-    # ::RDF::URI.new('http://purl.org/vra/Organization')
     type [::RDF::URI.new('http://vocab.getty.edu/ontology#GroupConcept'),
           ::RDF::Vocab::FOAF.Agent,
           ::RDF::Vocab::FOAF.Group]

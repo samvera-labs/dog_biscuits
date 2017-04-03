@@ -54,7 +54,7 @@ module DogBiscuits
     def search(q)
       parse_authority_response(
           ActiveFedora::SolrService.get(
-              "inScheme_ssim:\"#{terms_id}\" AND preflabel_tesim:\"#{id}\"",
+              "inScheme_ssim:\"#{terms_id}\" AND preflabel_tesim:\"#{q}\"",
               {
                   :fl => 'id,preflabel_tesim,definition_tesim,broader_ssim',
                   :rows => 1000}
@@ -98,14 +98,13 @@ module DogBiscuits
     # @return [String] the preflabel
     def find_value_string(id)
       parse_string(
-          parse_terms_id_response(
+
               ActiveFedora::SolrService.get(
-                  "inScheme_ssim:\"#{terms_id}\" AND preflabel_si:\"#{ID}\"",
+                  "inScheme_ssim:\"#{terms_id}\" AND id:\"#{id}\"",
                   {
                       :fl => 'preflabel_tesim',
                       :rows => 1}
               )
-          )
       )
     end
     

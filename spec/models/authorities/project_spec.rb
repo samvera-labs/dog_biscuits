@@ -17,7 +17,7 @@ describe DogBiscuits::Project do
     specify { project.funder.should eq(['funder']) }
   end
 
-  it 'gets a preflabel from given and family name' do
+  it 'has a preflabel combining name and identifier' do
     project.add_preflabel
     expect(project.preflabel).to eq('A scientific study into misery (id: identifier_test)')
   end

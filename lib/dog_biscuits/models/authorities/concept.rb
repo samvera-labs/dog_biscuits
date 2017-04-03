@@ -7,11 +7,6 @@ module DogBiscuits
             DogBiscuits::OwlSameAs,
             DogBiscuits::RdfsSeeAlso, # use for external see also links
             Hyrax::Noid
-            # Hydra::Works::WorkBehavior - not pcdm objects or hydra works
-
-    # after_save :update_related
-    # before_destroy :destroy_references
-    # how would we figure out what used it?
 
     # Use for nested schemes
     has_and_belongs_to_many :top_concept_of,

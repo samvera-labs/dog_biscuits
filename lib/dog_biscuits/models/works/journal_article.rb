@@ -22,7 +22,7 @@ module DogBiscuits
     end
 
     def combine_dates
-      self.date ||= []
+      self.date = []
       self.date << self.date_published
       self.date << self.date_available
       self.date << self.date_accepted

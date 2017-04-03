@@ -4,6 +4,8 @@ module DogBiscuits
     include DogBiscuits::AddWorkBehaviour
     include DogBiscuits::AddThesisMetadata
 
+    before_save :combine_dates
+
     type << ::RDF::URI.new('http://purl.org/ontology/bibo/Thesis')
 
     def thesis?
@@ -17,6 +19,11 @@ module DogBiscuits
 
     def self.indexer
       ThesisIndexer
+    end
+
+    def combine_dates
+      self.date = []
+      self.date << self.date_of_award
     end
   end
 end

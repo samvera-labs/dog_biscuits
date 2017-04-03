@@ -6,8 +6,6 @@ module DogBiscuits
 
     type << ::RDF::URI.new('http://purl.org/spar/fabio/ExaminationPaper')
 
-    before_save :add_qualification_name_values
-
     def exam_paper?
       true
     end

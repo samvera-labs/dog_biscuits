@@ -35,7 +35,6 @@ module DogBiscuits
     autoload :ConceptScheme
     autoload :Place
     autoload :Agent
-    autoload :Journal
     autoload :Project
   end
   autoload_under 'models/authorities/agents' do
@@ -55,7 +54,6 @@ module DogBiscuits
     autoload :Package
     autoload :Dataset
     autoload :ExamPaper
-    autoload :GenericWork # TODO refactor
     autoload :Thesis
     autoload :JournalArticle
   end
@@ -110,7 +108,7 @@ module DogBiscuits
     autoload :ResourceType
     autoload :Rights
     autoload :RightsHolder
-    # autoload :Title # part of RequiredMetadata
+    # autoload :Title # part of CoreMetadata
     autoload :SimpleVersions
   end
 
@@ -166,7 +164,6 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata/rdf' do
     # RDF and RDFS
     autoload :RdfsSeeAlso
-    autoload :RdfsLabel
     autoload :RdfType
     autoload :RelatedUrl
   end

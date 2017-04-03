@@ -75,6 +75,7 @@ FactoryGirl.define do
     language ['English']
     language_code ['en-GB']
     keyword ['northern misery']
+    subject ['Official Heading for Woe']
     rights_holder ['Johnny Marr']
     rights ['https://creativecommons.org/publicdomain/mark/1.0/']
     rights_statement ['rights_statement_test']
@@ -100,6 +101,7 @@ FactoryGirl.define do
     refereed true
     official_url ['http://www.london.ac.uk']
     publication_status 'Published'
+    journal ['The Journal of Woe']
   end
 
 end

@@ -43,7 +43,7 @@ describe DogBiscuits::Thesis do
       thesis.members << other_file
     end
 
-    it 'has an two members' do
+    it 'has two members' do
       expect(thesis.members.size).to eq(2)
     end
   end

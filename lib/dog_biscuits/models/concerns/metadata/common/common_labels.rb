@@ -4,7 +4,6 @@ module DogBiscuits
   module CommonLabels
     extend ActiveSupport::Concern
     include DogBiscuits::SkosLabels,
-            DogBiscuits::RdfsLabel,
             DogBiscuits::ValidateLabel
   end
 end
