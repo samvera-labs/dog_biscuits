@@ -23,7 +23,7 @@ end
 
 # desc "Run continuous integration build"
 task ci: ['engine_cart:generate'] do
-  #Rake::Task['solr_fcrepo_ci'].invoke
+  # Rake::Task['solr_fcrepo_ci'].invoke
   Rake::Task['spec'].invoke
 end
 
