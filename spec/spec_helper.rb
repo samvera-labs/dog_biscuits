@@ -14,7 +14,9 @@ end
 require 'webmock/rspec'
 require 'factory_girl_rails'
 require 'engine_cart'
+
 EngineCart.load_application!
+require 'byebug' unless ENV['TRAVIS']
 
 require 'jquery-rails'
 require 'coffee-rails'
