@@ -54,11 +54,11 @@ FactoryGirl.define do
     dip_resource_uri 'dip-uri'
     origin_pipeline 'origin-pipeline'
 
-    after(:build, &:add_types)
-
-    trait :with_before_save_callback do
-      after(:build, &:add_types)
-    end
+    # after(:build, &:add_types)
+    #
+    # trait :with_before_save_callback do
+    #   after(:build, &:add_types)
+    # end
   end
 
   factory :thesis, class: DogBiscuits::Thesis do

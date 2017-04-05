@@ -9,7 +9,9 @@ task :solr_fcrepo_ci do
   within_test_app do
     system "solr_wrapper clean"
     system "solr_wrapper --config config/solr_wrapper_test.yml &"
+    system "sleep 60"
     system "fcrepo_wrapper --config config/fcrepo_wrapper_test.yml &"
+    system "sleep 30"
   end
 end
 
