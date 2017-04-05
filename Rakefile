@@ -8,8 +8,8 @@ require 'rubocop/rake_task'
 task :solr_fcrepo_ci do
   within_test_app do
     system "solr_wrapper clean"
-    system "solr_wrapper &"
-    system "fcrepo_wrapper &"
+    system "solr_wrapper --config config/solr_wrapper_test.yml &"
+    system "fcrepo_wrapper --config config/fcrepo_wrapper_test.yml &"
   end
 end
 
