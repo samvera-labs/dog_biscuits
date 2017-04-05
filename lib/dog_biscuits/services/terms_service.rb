@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   class TermsService < Hyrax::QaSelectService
     attr_reader :authority
@@ -11,10 +13,10 @@ module DogBiscuits
     # @return id of the ConceptScheme object
     def terms_id
       parse_terms_id_response(
-          ActiveFedora::SolrService.get(
-              "has_model_ssim:\"DogBiscuits::ConceptScheme\" AND preflabel_tesim:\"#{terms_list} \"",
-              {}
-          )
+        ActiveFedora::SolrService.get(
+          "has_model_ssim:\"DogBiscuits::ConceptScheme\" AND preflabel_tesim:\"#{terms_list} \"",
+          {}
+        )
       )
     end
 
@@ -22,13 +24,13 @@ module DogBiscuits
     def all
       sort_order = 'preflabel_si asc'
       parse_authority_response(
-          ActiveFedora::SolrService.get(
-              "inScheme_ssim:\"#{terms_id}\"",
-              {
-                  :fl => 'id,preflabel_tesim,definition_tesim,broader_ssim',
-                  :rows => 1000,
-                  :sort => sort_order}
-          )
+        ActiveFedora::SolrService.get(
+          "inScheme_ssim:\"#{terms_id}\"",
+          fl: 'id,preflabel_tesim,definition_tesim,broader_ssim',
+          rows: 1000,
+          sort: sort_order
+
+        )
       )
     end
 
@@ -38,12 +40,12 @@ module DogBiscuits
     # @return [Hash] all info about the authority
     def find(id)
       parse_authority_response(
-          ActiveFedora::SolrService.get(
-              "inScheme_ssim:\"#{terms_id}\" AND id:\"#{id}\"",
-              {
-                  :fl => 'id,preflabel_tesim,definition_tesim,broader_ssim',
-                  :rows => 1}
-          )
+        ActiveFedora::SolrService.get(
+          "inScheme_ssim:\"#{terms_id}\" AND id:\"#{id}\"",
+          fl: 'id,preflabel_tesim,definition_tesim,broader_ssim',
+          rows: 1
+
+        )
       )
     end
 
@@ -53,12 +55,12 @@ module DogBiscuits
     # @return [Hash] search results
     def search(q)
       parse_authority_response(
-          ActiveFedora::SolrService.get(
-              "inScheme_ssim:\"#{terms_id}\" AND preflabel_tesim:\"#{q}\"",
-              {
-                  :fl => 'id,preflabel_tesim,definition_tesim,broader_ssim',
-                  :rows => 1000}
-          )
+        ActiveFedora::SolrService.get(
+          "inScheme_ssim:\"#{terms_id}\" AND preflabel_tesim:\"#{q}\"",
+          fl: 'id,preflabel_tesim,definition_tesim,broader_ssim',
+          rows: 1000
+
+        )
       )
     end
 
@@ -68,12 +70,12 @@ module DogBiscuits
     # @return the term id
     def find_id(term)
       parse_terms_id_response(
-          ActiveFedora::SolrService.get(
-              "inScheme_ssim:\"#{terms_id}\" AND preflabel_si:\"#{term}\"",
-              {
-                  :fl => 'id',
-                  :rows => 1}
-          )
+        ActiveFedora::SolrService.get(
+          "inScheme_ssim:\"#{terms_id}\" AND preflabel_si:\"#{term}\"",
+          fl: 'id',
+          rows: 1
+
+        )
       )
     end
 
@@ -83,12 +85,12 @@ module DogBiscuits
     # @return the term id
     def find_id_with_alts(term)
       parse_terms_id_response(
-          ActiveFedora::SolrService.get(
-              "inScheme_ssim:\"#{terms_id}\" AND (preflabel_si:\"#{term}\" OR altlabel_tesim:\"#{term}\")",
-              {
-                  :fl => 'id',
-                  :rows => 1}
-          )
+        ActiveFedora::SolrService.get(
+          "inScheme_ssim:\"#{terms_id}\" AND (preflabel_si:\"#{term}\" OR altlabel_tesim:\"#{term}\")",
+          fl: 'id',
+          rows: 1
+
+        )
       )
     end
 
@@ -99,68 +101,66 @@ module DogBiscuits
     def find_value_string(id)
       parse_string(
 
-              ActiveFedora::SolrService.get(
-                  "inScheme_ssim:\"#{terms_id}\" AND id:\"#{id}\"",
-                  {
-                      :fl => 'preflabel_tesim',
-                      :rows => 1}
-              )
+        ActiveFedora::SolrService.get(
+          "inScheme_ssim:\"#{terms_id}\" AND id:\"#{id}\"",
+          fl: 'preflabel_tesim',
+          rows: 1
+
+        )
       )
     end
-    
+
     def select_all_options
       authority.all.map { |e| [e[:label], e[:id]] }
     end
 
     private
 
-    # Reformats the data received from the service
-    #
-    # @param response [SolrResponse] for the Solr query
-    # @return [Hash] authority data
-    def parse_authority_response(response)
-      response['response']['docs'].map do |result|
-        hash = {:id => result['id'],
-         :label => if result['preflabel_tesim']
-                     result['preflabel_tesim'].join
-                   end,
-         :definition => if result['definition_tesim']
-                          result['definition_tesim'].join
-                        end
-        }
-        # Only add broader where it exists (ie. subjects)
-        # Assumes only one broader
-        if result['broader_ssim']
-          hash['broader_id'] = result['broader_ssim'].join
-          hash['broader_label'] = find_value_string(result['broader_ssim'].join).join
+      # Reformats the data received from the service
+      #
+      # @param response [SolrResponse] for the Solr query
+      # @return [Hash] authority data
+      def parse_authority_response(response)
+        response['response']['docs'].map do |result|
+          hash = {
+            id: result['id']
+          }
+
+          hash[:label] = result['preflabel_tesim'].join if result['preflabel_tesim']
+          hash[:definition] = result['definition_tesim'].join if result['definition_tesim']
+
+          # Only add broader where it exists (ie. subjects)
+          # Assumes only one broader
+          if result['broader_ssim']
+            hash[:broader_id] = result['broader_ssim'].join
+            hash[:broader_label] = find_value_string(result['broader_ssim'].join).join
+          end
+          hash
         end
-        hash
       end
-    end
 
-    # Parse the id from the solr response
-    #
-    # @param response [SolrResponse] for the Solr query
-    # @return [String] id
-    def parse_terms_id_response(response)
-      id = ''
-      response['response']['docs'].map do |result|
-        id = result['id']
+      # Parse the id from the solr response
+      #
+      # @param response [SolrResponse] for the Solr query
+      # @return [String] id
+      def parse_terms_id_response(response)
+        id = ''
+        response['response']['docs'].map do |result|
+          id = result['id']
+        end
+        id
       end
-      id
-    end
 
-    # Parse the preflabel from the solr response
-    #
-    # @param response [SolrResponse] for the Solr query
-    # @return [String] preflabel
-    def parse_string(response)
-      str = ''
-      response['response']['docs'].map do |result|
-        str = result['preflabel_tesim']
+      # Parse the preflabel from the solr response
+      #
+      # @param response [SolrResponse] for the Solr query
+      # @return [String] preflabel
+      def parse_string(response)
+        str = ''
+        response['response']['docs'].map do |result|
+          str = result['preflabel_tesim']
+        end
+        str
       end
-      str
-    end
-
   end
 end

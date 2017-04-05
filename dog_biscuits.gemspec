@@ -1,6 +1,10 @@
 # coding: utf-8
+# frozen_string_literal: true
+
 lib = File.expand_path('../lib', __FILE__)
+
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
 require 'dog_biscuits/version'
 
 Gem::Specification.new do |spec|
@@ -22,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = %w(lib app)
+  spec.require_paths = ['lib', 'app']
 
   spec.add_dependency 'hyrax', '1.0.0.rc1'
 
@@ -31,5 +35,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'factory_girl_rails' # , :require => false
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'engine_cart'
-
 end

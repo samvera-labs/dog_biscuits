@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # exam paper
   class ExamPaper < Work
@@ -18,6 +20,5 @@ module DogBiscuits
     def self.indexer
       ExamPaperIndexer
     end
-
   end
 end

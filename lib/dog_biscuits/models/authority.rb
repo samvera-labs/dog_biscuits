@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # all authority classes extend this
   class Authority < ActiveFedora::Base
-
     after_save :update_usages
     after_destroy :update_usages
 
@@ -12,15 +13,19 @@ module DogBiscuits
     def authority?
       true
     end
+
     def work?
       false
     end
+
     def file_set?
       false
     end
+
     def collection?
       false
     end
+
     def edit_groups
       ['admin']
     end
@@ -29,11 +34,11 @@ module DogBiscuits
     #   run a solr update on each object.
     def update_usages
       ActiveFedora::SolrService.get(
-          "values_tesim:#{self.id}",
-          {
-              :fl => 'id',
-              :rows => 1000}
-      )['response']['docs'].each do | r |
+        "values_tesim:#{id}",
+        fl: 'id',
+        rows: 1000
+
+      )['response']['docs'].each do |r|
         ActiveFedora::Base.find(r['id']).update_index
       end
     end

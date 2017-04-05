@@ -25,7 +25,6 @@ describe DogBiscuits::ExamPaper do
     specify { exam.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
     specify { exam.type.should include('http://purl.org/spar/fabio/ExaminationPaper') }
     specify { exam.type.should_not include('http://purl.org/spar/fabio/JournalArticle') }
-
   end
 
   describe '#predicates' do
@@ -33,7 +32,7 @@ describe DogBiscuits::ExamPaper do
   end
 
   describe '#related objects' do
-    before(:each) do
+    before do
       exam.members << main_file
       exam.members << other_file
     end

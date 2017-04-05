@@ -1,7 +1,7 @@
 shared_examples_for 'common_labels' do
   let(:model) { described_class } # the class that includes the concern
 
-  before(:each) do
+  before do
     model_str = model.to_s.split('::')[1]
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
   end
@@ -18,6 +18,5 @@ shared_examples_for 'common_labels' do
     else
       expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/title')))
     end
-
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # qualification
   module Qualification
@@ -11,7 +13,6 @@ module DogBiscuits
       property :qualification_level, predicate: DogBiscuits::Vocab::Uketd.qualificationLevel, multiple: true do |index|
         index.as :stored_searchable, :facetable
       end
-
     end
   end
 end

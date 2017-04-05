@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # Journal Article
   class JournalArticle < Work
@@ -23,11 +25,10 @@ module DogBiscuits
 
     def combine_dates
       self.date = []
-      self.date << self.date_published
-      self.date << self.date_available
-      self.date << self.date_accepted
-      self.date << self.date_submitted
+      date << date_published
+      date << date_available
+      date << date_accepted
+      date << date_submitted
     end
-
   end
 end

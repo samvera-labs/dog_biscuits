@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # archives hub dates
   module HubDates

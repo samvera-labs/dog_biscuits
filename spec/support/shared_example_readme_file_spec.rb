@@ -1,7 +1,7 @@
 shared_examples_for 'readme_file' do
   let(:model) { described_class } # the class that includes the concern
 
-  before(:each) do
+  before do
     model_str = model.to_s.split('::').last
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
     @readme = FactoryGirl.build_stubbed(:file_set)

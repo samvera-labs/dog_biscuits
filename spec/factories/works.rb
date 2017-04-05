@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :generic_work, class: ActiveFedora::Base do
     title ['Generic Work']
   end
@@ -21,7 +20,6 @@ FactoryGirl.define do
     creator ['Marr, Johnny']
     last_access '2016-01-01'
     number_of_downloads '52'
-
   end
 
   factory :exam_paper, class: DogBiscuits::ExamPaper do
@@ -61,7 +59,6 @@ FactoryGirl.define do
     trait :with_before_save_callback do
       after(:build, &:add_types)
     end
-
   end
 
   factory :thesis, class: DogBiscuits::Thesis do
@@ -83,7 +80,6 @@ FactoryGirl.define do
     doi ['xxx-xxx-xxx']
   end
 
-
   factory :journal_article, class: DogBiscuits::JournalArticle do
     title ['Journal Article test']
     creator ['Digital York']
@@ -103,5 +99,4 @@ FactoryGirl.define do
     publication_status 'Published'
     journal ['The Journal of Woe']
   end
-
 end

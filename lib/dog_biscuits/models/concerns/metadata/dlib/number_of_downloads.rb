@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # number of downloads
   module NumberOfDownloads
@@ -5,7 +7,7 @@ module DogBiscuits
 
     included do
       property :number_of_downloads, predicate: DogBiscuits::Vocab::Generic.numberOfDownloads,
-                             multiple: false do |index|
+                                     multiple: false do |index|
         index.as :stored_searchable
       end
     end

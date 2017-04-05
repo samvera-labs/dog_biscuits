@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe DogBiscuits::Project do
-  
   let(:project) { FactoryGirl.build(:project) }
-  
+
   it_behaves_like 'identifier'
 
   it 'is a project' do

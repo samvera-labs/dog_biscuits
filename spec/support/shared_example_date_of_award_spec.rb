@@ -1,10 +1,9 @@
 shared_examples_for 'date_of_award' do
   let(:model) { described_class } # the class that includes the concern
 
-  before(:each) do
+  before do
     model_str = model.to_s.split('::')[1]
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
-
   end
   # metadata
   it 'has date of award' do
@@ -15,5 +14,4 @@ shared_examples_for 'date_of_award' do
   it 'has date of award predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/dateAccepted')))
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   extend ActiveSupport::Autoload
 
@@ -45,7 +47,7 @@ module DogBiscuits
   end
 
   autoload_under 'models/collections' do
-    autoload :Collection # TODO refactor
+    autoload :Collection # TODO: refactor
   end
   autoload_under 'models/filesets' do
     autoload :FileSet
@@ -181,7 +183,6 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata/vivo' do
-
   end
 
   autoload_under 'models/concerns/metadata/uketd' do

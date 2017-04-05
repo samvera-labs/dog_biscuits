@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # SKOS labels
   module SkosLabels

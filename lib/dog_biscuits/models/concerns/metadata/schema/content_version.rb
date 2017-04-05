@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # content version
   module ContentVersion
@@ -5,7 +7,7 @@ module DogBiscuits
 
     included do
       property :content_version, predicate: RDF::Vocab::SCHEMA.version,
-                           multiple: true do |index|
+                                 multiple: true do |index|
         index.as :stored_searchable, :facetable
       end
     end

@@ -1,7 +1,7 @@
 shared_examples_for 'advisor' do
   let(:model) { described_class } # the class that includes the concern
 
-  before(:each) do
+  before do
     model_str = model.to_s.split('::')[1]
     @person = FactoryGirl.build_stubbed(:person)
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
@@ -28,5 +28,4 @@ shared_examples_for 'advisor' do
     expect(@stubby.to_solr.should(include('contributor_tesim')))
     expect(@stubby.to_solr.should(include('contributor_sim')))
   end
-
 end

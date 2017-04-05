@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   class Package < Work
     include DogBiscuits::AddWorkBehaviour
@@ -5,7 +7,7 @@ module DogBiscuits
 
     before_save :add_types
 
-    # TODO define what a package is
+    # TODO: define what a package is
 
     has_and_belongs_to_many :packages,
                             class_name: 'DogBiscuits::Work',

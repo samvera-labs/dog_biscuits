@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe DogBiscuits::Terms::DepartmentsTerms do
-
   let(:terms) { described_class.new('departments') }
 
   it 'has no terms' do
@@ -18,7 +17,7 @@ describe DogBiscuits::Terms::DepartmentsTerms do
 
   it 'has term hash' do
     departments.departments << organisation
-    terms.all.should eq([{:id=>"#{organisation.id}", :label=>"University of York. Department of Miserabilism", :definition=>nil}])
+    terms.all.should eq([{ id: organisation.id.to_s, label: "University of York. Department of Miserabilism"}])
   end
 
   it 'does not find the term by id' do
@@ -53,7 +52,6 @@ describe DogBiscuits::Terms::DepartmentsTerms do
 
   it 'returns all for options list' do
     departments.departments << organisation
-    terms.select_all_options.should eq([["University of York. Department of Miserabilism", "#{organisation.id}"]])
+    terms.select_all_options.should eq([["University of York. Department of Miserabilism", organisation.id.to_s]])
   end
-
 end

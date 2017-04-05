@@ -40,7 +40,6 @@ describe DogBiscuits::Dataset do
     specify { dataset.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
     specify { dataset.type.should_not include('http://purl.org/spar/fabio/ExaminationPaper') }
     specify { dataset.type.should_not include('http://purl.org/spar/fabio/JournalArticle') }
-    
   end
 
   describe '#predicates' do
@@ -50,7 +49,7 @@ describe DogBiscuits::Dataset do
   end
 
   describe '#related objects' do
-    before(:each) do
+    before do
       dataset.packaged_by << package
       dataset.members << fs
       dataset.members << readme

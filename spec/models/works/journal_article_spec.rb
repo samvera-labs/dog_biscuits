@@ -43,5 +43,4 @@ describe DogBiscuits::JournalArticle do
   describe '#predicates' do
     specify { journal.resource.dump(:ttl).should include('http://purl.org/dc/terms/date') }
   end
-
 end

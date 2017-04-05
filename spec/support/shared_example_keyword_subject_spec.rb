@@ -1,7 +1,7 @@
 shared_examples_for 'keyword_subject' do
   let(:model) { described_class } # the class that includes the concern
 
-  before(:each) do
+  before do
     model_str = model.to_s.split('::')[1]
     @sub = FactoryGirl.build_stubbed(:simple_concept)
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)

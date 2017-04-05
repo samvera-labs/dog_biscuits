@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe DogBiscuits::Terms::SubjectsTerms do
-
   let(:terms) { described_class.new('subjects') }
 
   it 'has no terms' do
@@ -18,7 +17,7 @@ describe DogBiscuits::Terms::SubjectsTerms do
 
   it 'has term hash' do
     subjects.concepts << concept
-    terms.all.should eq([{:id=>"#{concept.id}", :label=>"label", :definition=>"my definition is this"}])
+    terms.all.should eq([{ id: concept.id.to_s, label: "label", definition: "my definition is this" }])
   end
 
   it 'does not find the term by id' do
@@ -58,7 +57,6 @@ describe DogBiscuits::Terms::SubjectsTerms do
 
   it 'returns all for options list' do
     subjects.concepts << concept
-    terms.select_all_options.should eq([["label", "#{concept.id}"]])
+    terms.select_all_options.should eq([["label", concept.id.to_s]])
   end
-
 end

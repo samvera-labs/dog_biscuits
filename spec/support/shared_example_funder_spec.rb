@@ -1,7 +1,7 @@
 shared_examples_for 'funder' do
   let(:model) { described_class } # the class that includes the concern
 
-  before(:each) do
+  before do
     model_str = model.to_s.split('::')[1]
     @funder = FactoryGirl.build_stubbed(:organisation)
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
@@ -14,4 +14,3 @@ shared_examples_for 'funder' do
     expect(@stubby.resource.dump(:ttl).should(include('http://id.loc.gov/vocabulary/relators/fnd')))
   end
 end
-

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # dataset
   class Dataset < Work
@@ -6,14 +8,14 @@ module DogBiscuits
 
     filters_association :packaged_by, as: :aips, condition: :aip?
     filters_association :packaged_by, as: :dips, condition: :dip?
-    # TODO REVIEW
-    #filters_association :members, as: :packages, condition: :package?
+    # TODO: REVIEW
+    # filters_association :members, as: :packages, condition: :package?
 
     before_save :combine_dates
 
     type << ::RDF::Vocab::DCAT.Dataset
 
-    # TODO move these into concerns
+    # TODO: move these into concerns
     property :embargo_release,
              predicate: DogBiscuits::Vocab::Generic.embargoRelease,
              multiple: false do |index|
@@ -55,7 +57,7 @@ module DogBiscuits
 
     def combine_dates
       self.date = []
-      self.date << self.date_available
+      date << date_available
     end
   end
 end

@@ -1,18 +1,19 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # person
   # this is not a RWO, could say #rwo is the RWO
   class HistoricPerson < DogBiscuits::Person
-    include DogBiscuits::BorthwickNote,
-            DogBiscuits::FoafNameParts,
-            DogBiscuits::HubDates
+    include DogBiscuits::BorthwickNote
+    include DogBiscuits::FoafNameParts
+    include DogBiscuits::HubDates
 
-    # TODO create preflabel
+    # TODO: create preflabel
 
     type [::RDF::URI.new('http://schema.org/Person'),
           ::RDF::URI.new('http://vocab.getty.edu/ontology#PersonConcept'),
           ::RDF::Vocab::FOAF.Agent,
-          ::RDF::Vocab::FOAF.Person,
-         ]
+          ::RDF::Vocab::FOAF.Person]
 
     # ::RDF::URI.new('http://purl.org/vra/Person')
 

@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe DogBiscuits::Package do
-
   let(:package) { FactoryGirl.build(:package) }
-
 
   it 'is a package' do
     expect(package).to be_package
@@ -23,5 +21,4 @@ describe DogBiscuits::Package do
   describe '#predicates' do
     # none
   end
-
 end

@@ -22,17 +22,14 @@ class DogBiscuits::AuthsGenerator < Rails::Generators::Base
           "\n#{term_string}"
         end
       end
-      unless text.include? t
-        inject_into_file file_path, after: '# authorities' do
-          "\n#{t.gsub('Terms', '').underscore.pluralize}: \"\""
-        end
+      next if text.include? t
+      inject_into_file file_path, after: '# authorities' do
+        "\n#{t.gsub('Terms', '').underscore.pluralize}: \"\""
       end
     end
-
   end
 
   def inject_into_authority_service
-
     file_path = 'app/services/authority_service.rb'
     copy_file 'authority_service.rb', file_path
 
@@ -45,11 +42,10 @@ class DogBiscuits::AuthsGenerator < Rails::Generators::Base
     end
 
     Dir.entries('config/authorities').each do |file|
-      if file.end_with?('.yml')
-        term_string = "\n\tclass #{file.gsub('.yml', '').camelize}Service < Hyrax::QaSelectService\n\tinclude ::FileAuthorityConcern\n\t\tdef initialize\n\t\t\tsuper('#{file.gsub('.yml', '')}')\n\t\tend\n\tend"
-        inject_into_file file_path, after: '# File based' do
-          term_string
-        end
+      next unless file.end_with?('.yml')
+      term_string = "\n\tclass #{file.gsub('.yml', '').camelize}Service < Hyrax::QaSelectService\n\tinclude ::FileAuthorityConcern\n\t\tdef initialize\n\t\t\tsuper('#{file.gsub('.yml', '')}')\n\t\tend\n\tend"
+      inject_into_file file_path, after: '# File based' do
+        term_string
       end
     end
   end

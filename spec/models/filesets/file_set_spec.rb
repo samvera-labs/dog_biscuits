@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe DogBiscuits::FileSet do
-
   let(:fileset) { FactoryGirl.build(:file_set) }
 
   it 'is a fileset' do
@@ -9,5 +8,4 @@ describe DogBiscuits::FileSet do
   end
 
   it_behaves_like 'content_version'
-
 end

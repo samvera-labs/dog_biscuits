@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe DogBiscuits::Terms::PeopleTerms do
-
   let(:terms) { described_class.new('people') }
 
   it 'has no terms' do
@@ -18,7 +17,7 @@ describe DogBiscuits::Terms::PeopleTerms do
 
   it 'has term hash' do
     people.people << person
-    terms.all.should eq([{:id=>"#{person.id}", :label=>"Morrissey, Stephen Patrick", :definition=>nil}])
+    terms.all.should eq([{ id: person.id.to_s, label: "Morrissey, Stephen Patrick"}])
   end
 
   it 'does not find the term by id' do
@@ -53,7 +52,6 @@ describe DogBiscuits::Terms::PeopleTerms do
 
   it 'returns all for options list' do
     people.people << person
-    terms.select_all_options.should eq([["Morrissey, Stephen Patrick", "#{person.id}"]])
+    terms.select_all_options.should eq([["Morrissey, Stephen Patrick", person.id.to_s]])
   end
-
 end

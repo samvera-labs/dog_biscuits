@@ -51,7 +51,7 @@ describe DogBiscuits::Concept do
       expect(concept1.topconcept?).to be_falsey
     end
 
-    before(:each) do
+    before do
       concept1.broader << concept2
     end
 
@@ -63,7 +63,6 @@ describe DogBiscuits::Concept do
       expect(concept2.narrower.first.preflabel).to eq('label')
     end
 
-    # TODO test exact and close
+    # TODO: test exact and close
   end
-
 end

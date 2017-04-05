@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # common metadata for all
   module CommonMetadata

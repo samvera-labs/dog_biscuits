@@ -12,4 +12,3 @@ before_install:
   - gem update --system
 before_script:
   - jdk_switcher use oraclejdk8
-  - solr_wrapper & fcrepo_wrapper &

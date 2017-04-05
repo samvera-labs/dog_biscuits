@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # thesis metadata
   module Advisor
@@ -11,7 +13,6 @@ module DogBiscuits
       property :advisor, predicate: DogBiscuits::Vocab::Uketd.advisor, multiple: true do |index|
         index.as :stored_searchable, :facetable
       end
-
     end
   end
 end

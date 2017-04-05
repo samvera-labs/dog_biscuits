@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # foaf name
   module FoafName

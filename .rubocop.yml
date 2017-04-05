@@ -1,21 +1,39 @@
-inherit_from: .rubocop_todo.yml
-
 AllCops:
-  TargetRubyVersion: 2.1
+  TargetRubyVersion: 2.3
   DisplayCopNames: true
   Include:
     - '**/Rakefile'
   Exclude:
-    - 'spec/test_app_templates/**/*'
+    - 'spec/**/*'
+    - 'lib/generators/**/*'
+    - 'lib/dog_biscuits/vocab/**/*'
+    - 'lib/dog_biscuits/models/to_refactor_or_remove/**/*'
+    - 'Gemfile'
 
 Metrics/LineLength:
   Max: 200
+  Exclude:
 
 Metrics/AbcSize:
   Max: 28
 
 Metrics/MethodLength:
   Max: 14
+  Exclude:
+    - 'lib/dog_biscuits/validators/has_label_validator.rb'
+    - 'lib/dog_biscuits/models/concerns/indexers/indexes_common.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/dog_biscuits/models/concerns/metadata/archivematica/archivematica.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/dog_biscuits/validators/has_label_validator.rb'
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'lib/dog_biscuits.rb'
 
 Style/IndentationConsistency:
   EnforcedStyle: rails
@@ -50,32 +68,4 @@ Rails:
   Enabled: true
 
 Rails/DynamicFindBy:
-  Enabled: false
-
-RSpec/DescribeClass:
-  Exclude:
-    - 'spec/factories/**/*'
-
-# By default RSpec/MessageSpies has the following:
-#   Prefer have_received for setting message expectations. Setup form as a spy using allow or instance_spy.
-# The default assumes EnforcedStyle is 'have_received'. Most of our specs are 'receive'
-RSpec/MessageSpies:
-  Enabled: false
-
-RSpec/ExpectActual:
-  Enabled: false
-
-RSpec/LetSetup:
-  Enabled: false
-
-RSpec/MessageExpectation:
-  Enabled: false
-
-RSpec/MultipleExpectations:
-  Enabled: false
-
-RSpec/NestedGroups:
-  Enabled: false
-
-RSpec/LeadingSubject:
   Enabled: false

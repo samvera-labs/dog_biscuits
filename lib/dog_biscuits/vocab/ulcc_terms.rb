@@ -5,7 +5,6 @@ module DogBiscuits
     class UlccTerms < RDF::Vocabulary('http://london.ac.uk/ontologies/terms#')
       # Class definitions
 
-
       # Property definitions
       property :refereed,
                comment:

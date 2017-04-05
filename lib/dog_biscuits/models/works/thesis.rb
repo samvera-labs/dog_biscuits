@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # thesis
   class Thesis < Work
@@ -23,7 +25,7 @@ module DogBiscuits
 
     def combine_dates
       self.date = []
-      self.date << self.date_of_award
+      date << date_of_award
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # local terms for workflow status
   module GenericWorkflow

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   class Work < ActiveFedora::Base
-
     # DO NOT include AddWorkBehaviour here otherwise individual works will get the 'type' from others
     include DogBiscuits::AddDefaultPermissions
 
@@ -12,15 +13,19 @@ module DogBiscuits
     def authority?
       false
     end
+
     def agent?
       false
     end
+
     def work?
       true
     end
+
     def file_set?
       false
     end
+
     def collection?
       false
     end
@@ -28,6 +33,5 @@ module DogBiscuits
     def edit_groups
       ['admin']
     end
-
   end
 end

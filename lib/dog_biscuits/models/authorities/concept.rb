@@ -1,18 +1,20 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # concept
   class Concept < Authority
     # TODO: add an after save, to find any usages and update_index / object; ditto for people etc.
-    include DogBiscuits::CommonLabels,
-            DogBiscuits::GenericAuthorityTerms,
-            DogBiscuits::OwlSameAs,
-            DogBiscuits::RdfsSeeAlso, # use for external see also links
-            Hyrax::Noid
+    include DogBiscuits::CommonLabels
+    include DogBiscuits::GenericAuthorityTerms
+    include DogBiscuits::OwlSameAs
+    include DogBiscuits::RdfsSeeAlso # use for external see also links
+    include Hyrax::Noid
 
     # Use for nested schemes
     has_and_belongs_to_many :top_concept_of,
-               class_name: 'DogBiscuits::ConceptScheme',
-               predicate: ::RDF::Vocab::SKOS.topConceptOf,
-               inverse_of: :has_top_concept
+                            class_name: 'DogBiscuits::ConceptScheme',
+                            predicate: ::RDF::Vocab::SKOS.topConceptOf,
+                            inverse_of: :has_top_concept
     # Use only for Broader. Narrower will be added by default as the inverse.
     has_and_belongs_to_many :broader,
                             class_name: 'DogBiscuits::Concept',
@@ -53,7 +55,24 @@ module DogBiscuits
     def concept?
       true
     end
+
     def agent?
+      false
+    end
+
+    def person?
+      false
+    end
+
+    def organisation?
+      false
+    end
+
+    def group?
+      false
+    end
+
+    def place?
       false
     end
 

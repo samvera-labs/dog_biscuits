@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # DC date available
   module DateAccepted
@@ -5,7 +7,7 @@ module DogBiscuits
 
     included do
       property :date_accepted, predicate: ::RDF::Vocab::DC.dateAccepted,
-                                multiple: false do |index|
+                               multiple: false do |index|
         index.as :stored_searchable, :facetable, :dateable
       end
     end

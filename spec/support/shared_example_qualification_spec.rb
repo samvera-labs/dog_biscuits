@@ -1,10 +1,9 @@
 shared_examples_for 'qualification' do
   let(:model) { described_class } # the class that includes the concern
 
-  before(:each) do
+  before do
     model_str = model.to_s.split('::')[1]
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
-
   end
   # metadata
   it 'has qualification name' do
@@ -21,5 +20,4 @@ shared_examples_for 'qualification' do
   it 'has qualification name predicate' do
     expect(@stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/uketd#qualificationName>')))
   end
-
 end

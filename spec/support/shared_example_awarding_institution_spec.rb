@@ -1,7 +1,7 @@
 shared_examples_for 'awarding_institution' do
   let(:model) { described_class } # the class that includes the concern
 
-  before(:each) do
+  before do
     model_str = model.to_s.split('::')[1]
     @org = FactoryGirl.build_stubbed(:organisation)
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
@@ -20,5 +20,4 @@ shared_examples_for 'awarding_institution' do
     expect(@stubby.to_solr.should(include('awarding_institution_value_tesim')))
     expect(@stubby.to_solr.should(include('awarding_institution_value_sim')))
   end
-
 end

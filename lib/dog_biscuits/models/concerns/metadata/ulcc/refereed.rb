@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # refereed
   module Refereed
@@ -5,7 +7,7 @@ module DogBiscuits
 
     included do
       property :refereed, predicate: DogBiscuits::Vocab::UlccTerms.refereed,
-               multiple: false do |index|
+                          multiple: false do |index|
         index.as :stored_searchable, :facetable
       end
     end

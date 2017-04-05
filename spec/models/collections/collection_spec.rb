@@ -7,7 +7,7 @@ describe DogBiscuits::Collection do
   it 'is a collection' do
     expect(collection).to be_collection
   end
-  
+
   it_behaves_like 'keyword_subject'
   it_behaves_like 'language'
   it_behaves_like 'common_rights'
@@ -16,7 +16,7 @@ describe DogBiscuits::Collection do
   it_behaves_like 'date'
 
   describe '#related objects' do
-    before(:each) do
+    before do
       collection.members << thesis
     end
 

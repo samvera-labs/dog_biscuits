@@ -1,11 +1,11 @@
 shared_examples_for 'archivematica' do
   let(:model) { described_class } # the class that includes the concern
 
-  before(:each) do
+  before do
     model_str = model.to_s.split('::')[1]
     @stubby = FactoryGirl.build(model_str.underscore.to_sym, :with_before_save_callback)
   end
-  
+
   # metadata
   it 'has aip_uuid' do
     expect(@stubby.aip_uuid).to eq('aip-uuid')
@@ -74,11 +74,11 @@ shared_examples_for 'archivematica' do
 
   it 'has an aip package type' do
     @stubby.add_types
-    expect(@stubby.type.should include('http://dlib.york.ac.uk/ontologies/oais-archivematica#ArchivalInformationPackage'))
+    expect(@stubby.type.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#ArchivalInformationPackage')))
   end
 
   it 'has dip package type' do
     @stubby.add_types
-    expect(@stubby.type.should include('http://dlib.york.ac.uk/ontologies/oais-archivematica#DisseminationInformationPackage'))
+    expect(@stubby.type.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#DisseminationInformationPackage')))
   end
 end

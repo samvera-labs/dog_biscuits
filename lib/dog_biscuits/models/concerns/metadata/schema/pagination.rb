@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # Pagination
   module Pagination
@@ -5,7 +7,7 @@ module DogBiscuits
 
     included do
       property :pagination, predicate: RDF::Vocab::SCHEMA.pagination,
-                           multiple: false do |index|
+                            multiple: false do |index|
         index.as :stored_searchable
       end
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # DC keyword and subject
   module KeywordSubject
@@ -12,7 +14,6 @@ module DogBiscuits
                               class_name: 'DogBiscuits::Concept',
                               # predicate: ::RDF::Vocab::DC.subject
                               predicate: ::RDF::Vocab::MODS.subjectTopic
-
 
       # DC11 for uncontrolled keywords.
       property :keyword, predicate: ::RDF::Vocab::DC11.subject,

@@ -37,6 +37,5 @@ describe DogBiscuits::ConceptScheme do
     it 'cannot have a work as a concept' do
       expect { scheme.concepts << work }.to raise_error(ActiveFedora::AssociationTypeMismatch)
     end
-
   end
 end

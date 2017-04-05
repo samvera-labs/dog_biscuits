@@ -38,7 +38,7 @@ describe DogBiscuits::Thesis do
   end
 
   describe '#related objects' do
-    before(:each) do
+    before do
       thesis.members << main_file
       thesis.members << other_file
     end
