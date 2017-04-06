@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # DC rights holder and license
   module Rights
@@ -6,7 +8,7 @@ module DogBiscuits
     included do
       # Align with https://wiki.duraspace.org/display/hydra/Rights+Metadata+Recommendation
       property :rights_statement, predicate: ::RDF::Vocab::DC.rights,
-               multiple: true do |index|
+                                  multiple: true do |index|
         index.as :stored_searchable
       end
     end

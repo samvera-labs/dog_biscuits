@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 describe DogBiscuits::JournalArticle do
   let(:journal) { FactoryGirl.build(:journal_article) }
@@ -26,8 +23,13 @@ describe DogBiscuits::JournalArticle do
   it_behaves_like 'project_output'
   it_behaves_like 'identifier'
   it_behaves_like 'related_url'
+  it_behaves_like 'managing_organisation'
 
-  describe '#metadata' do
+  describe '#rdftypes' do
+    specify { journal.type.should_not include('http://www.w3.org/ns/dcat#Dataset') }
+    specify { journal.type.should_not include('http://dlib.york.ac.uk/ontologies/generic#Package') }
+    specify { journal.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
+    specify { journal.type.should_not include('http://purl.org/spar/fabio/ExaminationPaper') }
     specify { journal.type.should include('http://purl.org/spar/fabio/JournalArticle') }
   end
 
@@ -41,5 +43,4 @@ describe DogBiscuits::JournalArticle do
   describe '#predicates' do
     specify { journal.resource.dump(:ttl).should include('http://purl.org/dc/terms/date') }
   end
-
 end

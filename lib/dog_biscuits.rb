@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   extend ActiveSupport::Autoload
 
@@ -35,7 +37,6 @@ module DogBiscuits
     autoload :ConceptScheme
     autoload :Place
     autoload :Agent
-    autoload :Journal
     autoload :Project
   end
   autoload_under 'models/authorities/agents' do
@@ -46,7 +47,7 @@ module DogBiscuits
   end
 
   autoload_under 'models/collections' do
-    autoload :Collection # TODO refactor
+    autoload :Collection # TODO: refactor
   end
   autoload_under 'models/filesets' do
     autoload :FileSet
@@ -55,7 +56,6 @@ module DogBiscuits
     autoload :Package
     autoload :Dataset
     autoload :ExamPaper
-    autoload :GenericWork # TODO refactor
     autoload :Thesis
     autoload :JournalArticle
   end
@@ -110,7 +110,7 @@ module DogBiscuits
     autoload :ResourceType
     autoload :Rights
     autoload :RightsHolder
-    # autoload :Title # part of RequiredMetadata
+    # autoload :Title # part of CoreMetadata
     autoload :SimpleVersions
   end
 
@@ -166,7 +166,6 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata/rdf' do
     # RDF and RDFS
     autoload :RdfsSeeAlso
-    autoload :RdfsLabel
     autoload :RdfType
     autoload :RelatedUrl
   end
@@ -184,7 +183,6 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata/vivo' do
-
   end
 
   autoload_under 'models/concerns/metadata/uketd' do

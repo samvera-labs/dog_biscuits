@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # DC creator
   module Creator
@@ -5,7 +7,7 @@ module DogBiscuits
 
     included do
       property :contributor, predicate: ::RDF::Vocab::DC11.contributor,
-               multiple: true do |index|
+                             multiple: true do |index|
         index.as :stored_searchable, :sortable, :facetable
       end
     end

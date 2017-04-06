@@ -1,6 +1,5 @@
 FactoryGirl.define do
-
-  factory :generic_work, class: DogBiscuits::GenericWork do
+  factory :generic_work, class: ActiveFedora::Base do
     title ['Generic Work']
   end
 
@@ -21,7 +20,6 @@ FactoryGirl.define do
     creator ['Marr, Johnny']
     last_access '2016-01-01'
     number_of_downloads '52'
-
   end
 
   factory :exam_paper, class: DogBiscuits::ExamPaper do
@@ -31,6 +29,7 @@ FactoryGirl.define do
     qualification_level ['PhD']
     qualification_name ['qualification']
     language ['English']
+    language_code ['en-GB']
     rights_holder ['Johnny Marr']
     rights ['https://creativecommons.org/publicdomain/mark/1.0/']
     former_id ['york:1234']
@@ -55,12 +54,11 @@ FactoryGirl.define do
     dip_resource_uri 'dip-uri'
     origin_pipeline 'origin-pipeline'
 
-    after(:build, &:add_types)
-
-    trait :with_before_save_callback do
-      after(:build, &:add_types)
-    end
-
+    # after(:build, &:add_types)
+    #
+    # trait :with_before_save_callback do
+    #   after(:build, &:add_types)
+    # end
   end
 
   factory :thesis, class: DogBiscuits::Thesis do
@@ -72,14 +70,15 @@ FactoryGirl.define do
     qualification_level ['PhD']
     qualification_name ['qualification']
     language ['English']
+    language_code ['en-GB']
     keyword ['northern misery']
+    subject ['Official Heading for Woe']
     rights_holder ['Johnny Marr']
     rights ['https://creativecommons.org/publicdomain/mark/1.0/']
     rights_statement ['rights_statement_test']
     former_id ['york:1234']
     doi ['xxx-xxx-xxx']
   end
-
 
   factory :journal_article, class: DogBiscuits::JournalArticle do
     title ['Journal Article test']
@@ -98,6 +97,6 @@ FactoryGirl.define do
     refereed true
     official_url ['http://www.london.ac.uk']
     publication_status 'Published'
+    journal ['The Journal of Woe']
   end
-
 end

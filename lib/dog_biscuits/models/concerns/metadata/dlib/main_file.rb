@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # main file
   module MainFile
@@ -17,16 +19,10 @@ module DogBiscuits
       # Ensure the FileSet is added to the members
       before_save :add_member
 
-      # TODO remove duplication with main file - this method can be the same
       # Add the FileSet to the members if it has not been added.
       def add_member
-        unless self.mainfile.empty?
-          unless self.members.include? self.mainfile.first
-            self.members << self.mainfile.first
-          end
-        end
+        members << mainfile.first unless mainfile.empty? || members.include?(mainfile.first)
       end
     end
-
   end
 end

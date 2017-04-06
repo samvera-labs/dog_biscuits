@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # RDF type
   module Funder
@@ -9,7 +11,7 @@ module DogBiscuits
                               predicate: ::RDF::Vocab::MARCRelators.fnd
 
       property :funder, predicate: ::RDF::Vocab::MARCRelators.fnd,
-               multiple: true do |index|
+                        multiple: true do |index|
         index.as :stored_searchable, :facetable
       end
     end

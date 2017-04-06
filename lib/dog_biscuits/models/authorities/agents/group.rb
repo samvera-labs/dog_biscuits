@@ -1,16 +1,15 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # historical group or organisation
   class Group < DogBiscuits::Agent
-    include DogBiscuits::BorthwickNote,
-            DogBiscuits::FoafName,
-            DogBiscuits::GenericQualifier,
-            DogBiscuits::HubDates
-    # Hydra::Works::WorkBehavior - not pcdm objects or hydra works
+    include DogBiscuits::BorthwickNote
+    include DogBiscuits::FoafName
+    include DogBiscuits::GenericQualifier
+    include DogBiscuits::HubDates
 
-    # TODO create preflabel
+    # TODO: create preflabel
 
-    # removed ::RDF::URI.new('https://schema.org/Organization')
-    # ::RDF::URI.new('http://purl.org/vra/Organization')
     type [::RDF::URI.new('http://vocab.getty.edu/ontology#GroupConcept'),
           ::RDF::Vocab::FOAF.Agent,
           ::RDF::Vocab::FOAF.Group]
@@ -21,6 +20,22 @@ module DogBiscuits
     end
     def group?
       true
+    end
+
+    def agent?
+      false
+    end
+
+    def person?
+      false
+    end
+
+    def organisation?
+      false
+    end
+
+    def place?
+      false
     end
   end
 end

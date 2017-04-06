@@ -1,7 +1,5 @@
 module AuthorityService
+  # Object based
 
-# Object based
-
-# File based
-
+  # File based
 end

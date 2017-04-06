@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # DC publisher
   module Publisher
@@ -7,7 +9,7 @@ module DogBiscuits
       # use MARCRelator instead of dc.creator to avoid solr conflict with creator property
       has_and_belongs_to_many :publisher_resource,
                               class_name: 'DogBiscuits::Agent',
-                              #predicate: ::RDF::Vocab::DC.publisher
+                              # predicate: ::RDF::Vocab::DC.publisher
                               predicate: ::RDF::Vocab::MARCRelators.pbl
 
       # DC11 for publisher name as string

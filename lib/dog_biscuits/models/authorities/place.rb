@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # place
   class Place < Authority
-    include DogBiscuits::OwlSameAs,
-            DogBiscuits::CommonLabels,
-            DogBiscuits::BorthwickNote,
-            DogBiscuits::MadsRelatedAuthority,
-            DogBiscuits::GenericAuthorityTerms,
-            Hyrax::Noid
-            # Hydra::Works::WorkBehavior,
+    include DogBiscuits::OwlSameAs
+    include DogBiscuits::CommonLabels
+    include DogBiscuits::BorthwickNote
+    include DogBiscuits::MadsRelatedAuthority
+    include DogBiscuits::GenericAuthorityTerms
+    include Hyrax::Noid
 
-  # TODO create preflabel
+    # TODO: create preflabel
     # TODO: GVP CLASS AdminPlaceConcept or PhysPlaceConcept
     # TODO: which are place objects and which are place strings
 
@@ -85,7 +86,20 @@ module DogBiscuits
     def place?
       true
     end
+
     def agent?
+      false
+    end
+
+    def person?
+      false
+    end
+
+    def organisation?
+      false
+    end
+
+    def group?
       false
     end
   end

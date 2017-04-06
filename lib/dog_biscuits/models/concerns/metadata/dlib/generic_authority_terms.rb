@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # local authorities terms defined in generic vocab
   module GenericAuthorityTerms

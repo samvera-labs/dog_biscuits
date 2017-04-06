@@ -11,5 +11,4 @@ class DogBiscuits::DepositorGenerator < Rails::Generators::NamedBase
     # find and replace the depositor value with the supplied value
     gsub_file file_path, /depositor:\s\S{2,}\n/, "depositor: '#{file_name}'\n"
   end
-
 end

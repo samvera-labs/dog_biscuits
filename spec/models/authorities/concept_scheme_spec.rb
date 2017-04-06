@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'hydra/works'
-require 'active_fedora'
-require 'action_view'
 
 describe DogBiscuits::ConceptScheme do
   let(:concept) { FactoryGirl.build(:concept) }
@@ -18,7 +15,7 @@ describe DogBiscuits::ConceptScheme do
     expect(scheme).to be_concept_scheme
   end
 
-  describe '#metadata' do
+  describe '#rdftypes' do
     specify { scheme.type.should include('http://www.w3.org/2004/02/skos/core#ConceptScheme') }
   end
 
@@ -29,7 +26,7 @@ describe DogBiscuits::ConceptScheme do
       concept.top_concept_of << scheme1
     end
 
-    it 'has a top concept' do
+    it 'has top concept' do
       expect(scheme1.has_top_concept.to_a.size).to eq(1)
     end
 
@@ -40,6 +37,5 @@ describe DogBiscuits::ConceptScheme do
     it 'cannot have a work as a concept' do
       expect { scheme.concepts << work }.to raise_error(ActiveFedora::AssociationTypeMismatch)
     end
-
   end
 end

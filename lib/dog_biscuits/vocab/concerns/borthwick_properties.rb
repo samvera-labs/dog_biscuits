@@ -3,7 +3,7 @@ module DogBiscuits
   module BorthwickProperties
     extend ActiveSupport::Concern
     included do
-# Property definitions
+      # Property definitions
       property :asWritten,
                label: 'As Written'.freeze,
                comment:

@@ -10,8 +10,9 @@ gemspec
 group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
-  gem 'simplecov', :require => false, :group => :test
+  gem 'simplecov', :require => false
 end
+
 # BEGIN ENGINE_CART BLOCK
 # engine_cart: 1.1.0
 # engine_cart stanza: 0.10.0

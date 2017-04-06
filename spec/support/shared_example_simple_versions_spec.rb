@@ -1,7 +1,7 @@
 shared_examples_for 'simple_versions' do
   let(:model) { described_class } # the class that includes the concern
 
-  before(:each) do
+  before do
     model_str = model.to_s.split('::').last
     @stubby = FactoryGirl.build(model_str.underscore.to_sym)
     @replaces = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
@@ -23,5 +23,4 @@ shared_examples_for 'simple_versions' do
   it 'is inverse of replaces' do
     expect(@replaced_by.replaces.first).to eq(@stubby)
   end
-
 end

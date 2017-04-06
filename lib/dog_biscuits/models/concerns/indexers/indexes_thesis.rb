@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   module IndexesThesis
     extend ActiveSupport::Concern
@@ -7,13 +9,13 @@ module DogBiscuits
       # Add all properties called *_resource to ensure the preflabel and altlabel of the related object
       #   are indexed in solr
       # Method must exist, but can return an empty array
-      def get_values_to_index
-        %w(creator department awarding_institution advisor)
+      def values_to_index
+        ['creator', 'department', 'awarding_institution', 'advisor']
       end
 
       # Add any properties to ensure they are 'mixed in' with the *_values field in solr
       # Method must exist, but can return an empty array
-      def get_strings_to_index
+      def strings_to_index
         []
       end
 

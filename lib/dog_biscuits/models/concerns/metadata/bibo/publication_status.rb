@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # DC abstract
   module PublicationStatus
@@ -5,7 +7,7 @@ module DogBiscuits
 
     included do
       property :publication_status, predicate: ::RDF::Vocab::BIBO.status,
-                          multiple: false do |index|
+                                    multiple: false do |index|
         index.as :stored_searchable, :facetable
       end
     end

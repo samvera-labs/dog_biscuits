@@ -1,7 +1,5 @@
-5require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
+require 'spec_helper'
 
 describe DogBiscuits::Place do
+  # TODO: this!
 end

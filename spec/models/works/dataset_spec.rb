@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 describe DogBiscuits::Dataset do
   let(:dataset) { FactoryGirl.build(:dataset) }
@@ -15,8 +12,6 @@ describe DogBiscuits::Dataset do
     expect(dataset).to be_dataset
   end
 
-  # Concerns
-  # it_behaves_like "add_datacite_mandatory"
   it_behaves_like 'pure'
   it_behaves_like 'for_indexing'
   it_behaves_like 'simple_versions'
@@ -30,7 +25,6 @@ describe DogBiscuits::Dataset do
   it_behaves_like 'number_of_downloads'
 
   describe '#metadata' do
-    specify { dataset.type.should include('http://www.w3.org/ns/dcat#Dataset') }
     specify { dataset.embargo_release.should eq(2016 - 12 - 12) }
     specify { dataset.retention_policy.should eq(['10 years from last access']) }
     specify { dataset.restriction_note.should eq(['restriction note']) }
@@ -40,6 +34,14 @@ describe DogBiscuits::Dataset do
     specify { dataset.managing_organisation_resource.first.should eq(org) }
   end
 
+  describe '#rdftypes' do
+    specify { dataset.type.should include('http://www.w3.org/ns/dcat#Dataset') }
+    specify { dataset.type.should_not include('http://dlib.york.ac.uk/ontologies/generic#Package') }
+    specify { dataset.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
+    specify { dataset.type.should_not include('http://purl.org/spar/fabio/ExaminationPaper') }
+    specify { dataset.type.should_not include('http://purl.org/spar/fabio/JournalArticle') }
+  end
+
   describe '#predicates' do
     specify { dataset.resource.dump(:ttl).should include('http://dlib.york.ac.uk/ontologies/generic#embargoRelease') }
     specify { dataset.resource.dump(:ttl).should include('http://dlib.york.ac.uk/ontologies/generic#retentionPolicy') }
@@ -47,21 +49,21 @@ describe DogBiscuits::Dataset do
   end
 
   describe '#related objects' do
-    before(:each) do
+    before do
       dataset.packaged_by << package
       dataset.members << fs
       dataset.members << readme
     end
-    it 'has a packaged by' do
+    it 'has packaged by' do
       expect(dataset.packaged_by.size).to eq(1)
     end
     it 'has an aip' do
       expect(dataset.aips.size).to eq(1)
     end
-    it 'has a dip' do
+    it 'has dip' do
       expect(dataset.dips.size).to eq(1)
     end
-    it 'has an two members' do
+    it 'has two members' do
       expect(dataset.members.size).to eq(2)
     end
   end
