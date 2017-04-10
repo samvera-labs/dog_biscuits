@@ -7,12 +7,18 @@ require 'rubocop/rake_task'
 
 task :solr_fcrepo_ci do
   within_test_app do
-    system "solr_wrapper clean"
+    system "solr_wrapper --config config/solr_wrapper_test.yml clean &"
+    system "sleep 30"
     system "solr_wrapper --config config/solr_wrapper_test.yml &"
     system "sleep 60"
-    system "fcrepo_wrapper --config config/fcrepo_wrapper_test.yml &"
-    system "sleep 30"
+    system "fcrepo_wrapper  --config config/fcrepo_wrapper_test.yml &"
+    system "sleep 60"
   end
+end
+
+task :solr_fcrepo_ci_kill do
+  system "pkill -f fcrepo_wrapper"
+  system "pkill -f solr_wrapper"
 end
 
 RSpec::Core::RakeTask.new(:spec)
@@ -23,13 +29,13 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = true
 end
 
-# desc "Run continuous integration build"
+desc "Run continuous integration build"
 task ci: ['engine_cart:generate'] do
   # Rake::Task['solr_fcrepo_ci'].invoke
   Rake::Task['spec'].invoke
 end
 
 desc 'Run continuous integration build'
-task ci: ['rubocop', 'solr_fcrepo_ci', 'spec']
+task ci: ['rubocop', 'solr_fcrepo_ci', 'spec', 'solr_fcrepo_ci_kill']
 
 task default: :ci
