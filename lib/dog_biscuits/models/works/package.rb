@@ -7,8 +7,6 @@ module DogBiscuits
 
     before_save :add_types
 
-    # TODO: define what a package is
-
     has_and_belongs_to_many :packages,
                             class_name: 'DogBiscuits::Work',
                             predicate: DogBiscuits::Vocab::Generic.packages,
@@ -29,15 +27,15 @@ module DogBiscuits
       aip_uuid ? true : false
     end
 
-    # It's a DIP if it has an AIP UUID
+    # It's a DIP if it has a DIP UUID
     def dip?
       dip_uuid ? true : false
     end
 
     # If object is a DIP/AIP, add the rdf type
     def add_types
-      rdf_type << DogBiscuits::Vocab::OaisArchivematica.DisseminationInformationPackage unless dip_uuid.nil?
-      rdf_type << DogBiscuits::Vocab::OaisArchivematica.ArchivalInformationPackage unless aip_uuid.nil?
+      rdf_type << DogBiscuits::Vocab::OaisArchivematica.DisseminationInformationPackage if dip?
+      rdf_type << DogBiscuits::Vocab::OaisArchivematica.ArchivalInformationPackage if aip?
     end
   end
 end

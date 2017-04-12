@@ -48,6 +48,8 @@ FactoryGirl.define do
     rules 'nca'
     used 'true'
     same_as %w(http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212)
+    close_match ['uri-to-close-matching-concept']
+    exact_match ['uri-to-exact-matching-concept']
 
     # after(:build, &:map_labels)
     #
@@ -114,4 +116,21 @@ FactoryGirl.define do
     identifier ['identifier_test']
     funder ['funder']
   end
+
+  factory :place, class: DogBiscuits::Place do
+    feature_code ['city']
+    place_name 'Didsbury'
+    parent_ADM4 'Madeup Parish'
+    parent_ADM3 'Manchester'
+    parent_ADM2 'Greater Manchester'
+    parent_ADM1 'England'
+    parent_country 'United Kingdom'
+    note ['note']
+    same_as %w(http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212)
+    related_authority ['related authority']
+    approved 'true'
+    rules 'nca'
+    used 'true'
+  end
+
 end

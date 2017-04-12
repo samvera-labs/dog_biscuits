@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # validate labels
-  module ValidateLabel
+  # validate place
+  module ValidatePlace
     extend ActiveSupport::Concern
 
     included do
-      validates_with DogBiscuits::LabelValidator
+      validates_with DogBiscuits::PlaceValidator
     end
   end
 end

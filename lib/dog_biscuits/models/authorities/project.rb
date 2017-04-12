@@ -3,7 +3,6 @@
 module DogBiscuits
   # Project
   class Project < Authority
-    include DogBiscuits::CommonLabels
     include DogBiscuits::FoafName
     include DogBiscuits::GenericAuthorityTerms
     include DogBiscuits::Identifier

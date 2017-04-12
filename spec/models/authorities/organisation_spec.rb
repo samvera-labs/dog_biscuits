@@ -26,4 +26,10 @@ describe DogBiscuits::Organisation do
   describe '#predicates' do
     specify { current_org.resource.dump(:ttl).should include('http://xmlns.com/foaf/0.1/name') }
   end
+
+  it 'has rdftypes for PURE' do
+    current_org.pure_uuid = 'pure-uui'
+    current_org.add_pure_type
+    expect(current_org.type).to include('http://dlib.york.ac.uk/ontologies/pure#Organisation')
+  end
 end

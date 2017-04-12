@@ -2,7 +2,6 @@
 
 module DogBiscuits
   class ConceptScheme < Authority
-    include DogBiscuits::CommonLabels
     include DogBiscuits::Description
     include Hyrax::Noid
 

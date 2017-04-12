@@ -5,17 +5,13 @@ module DogBiscuits
   module AddDefaultPermissions
     extend ActiveSupport::Concern
 
-    # call this from within the calling app to add a depositor
+    # Call this from within the calling app to add a depositor
     #   if no params are included the application looks for the DOGBISCUITS['depositor'] value
-    #   this requires that the dog_biscuits depositor generator has been run
+    #   this requires that the dog_biscuits generator has been run
     included do
       def apply_depositor(dep = nil)
-        self.depositor = if dep.nil?
-                           DOGBISCUITS['depositor']
-                         else
-                           dep
-                         end
-        self.edit_users += [depositor]
+        self.depositor = (dep ? dep : DOGBISCUITS['depositor'])
+        edit_users ? edit_users << depositor : self.edit_users = [depositor]
       end
     end
   end

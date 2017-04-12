@@ -13,20 +13,20 @@ module DogBiscuits
     include ::Hyrax::InAdminSet
     include ::Hyrax::Suppressible
 
-    # include HumanReadableType
-    # include Permissions
-    # include Serializers
+    # include Hyrax::HumanReadableType
+    # include Hyrax::Permissions
+    # include Hyrax::Serializers
     # include Hydra::WithDepositor
     # include Solrizer::Common
-    # include WithFileSets
-    # include Naming
+    # include Hyrax::WithFileSets
+    # include Hyrax::Naming
     # include Hydra::AccessControls::Embargoable
     include GlobalID::Identification
-    # include NestedWorks # RuntimeError: Circular dependency detected in calling app
-    # include ProxyDeposit
+    # include Hyrax::NestedWorks # RuntimeError: Circular dependency detected in calling app
+    # include Hyrax::ProxyDeposit
     # include Works::Trophies
     # include Works::Metadata
     # include Works::Featured
-    # include WithEvents
+    # include Hyrax::WithEvents
   end
 end

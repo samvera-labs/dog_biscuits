@@ -1,4 +1,4 @@
-require 'spec_helper'
+  require 'spec_helper'
 
 # TODO: test concerns and validators only once; only test concept specific stuff here
 
@@ -24,6 +24,8 @@ describe DogBiscuits::Concept do
     specify { concept1.type.should include('http://www.w3.org/2004/02/skos/core#Concept') }
     specify { concept1.definition.should eq('my definition is this') }
     specify { concept1.skos_note.should eq('notes') }
+    specify { concept1.exact_match.should eq(['uri-to-exact-matching-concept']) }
+    specify { concept1.close_match.should eq(['uri-to-close-matching-concept']) }
   end
 
   describe '#predicates' do

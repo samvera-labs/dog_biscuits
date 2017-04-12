@@ -4,7 +4,6 @@ module DogBiscuits
   # concept
   class Concept < Authority
     # TODO: add an after save, to find any usages and update_index / object; ditto for people etc.
-    include DogBiscuits::CommonLabels
     include DogBiscuits::GenericAuthorityTerms
     include DogBiscuits::OwlSameAs
     include DogBiscuits::RdfsSeeAlso # use for external see also links
@@ -32,14 +31,6 @@ module DogBiscuits
                             predicate: ::RDF::Vocab::SKOS.related,
                             inverse_of: :see_also
 
-    has_and_belongs_to_many :exact_match,
-                            class_name: 'DogBiscuits::Concept',
-                            predicate: ::RDF::Vocab::SKOS.exactMatch
-
-    has_and_belongs_to_many :close_match,
-                            class_name: 'DogBiscuits::Concept',
-                            predicate: ::RDF::Vocab::SKOS.closeMatch
-
     type [::RDF::URI.new('http://www.w3.org/2004/02/skos/core#Concept')]
 
     property :definition, predicate: ::RDF::Vocab::SKOS.definition,
@@ -49,6 +40,16 @@ module DogBiscuits
 
     property :skos_note, predicate: ::RDF::Vocab::SKOS.note,
                          multiple: false do |index|
+      index.as :stored_searchable
+    end
+
+    property :exact_match, predicate: ::RDF::Vocab::SKOS.exactMatch,
+                           multiple: true do |index|
+      index.as :stored_searchable
+    end
+
+    property :close_match, predicate: ::RDF::Vocab::SKOS.closeMatch,
+                           multiple: true do |index|
       index.as :stored_searchable
     end
 

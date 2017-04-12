@@ -1,6 +1,7 @@
 Description:
-    Adds DogBiscuits authorities into your rails application.
+    Adds DogBiscuits installation and prepares your application to use dog_biscuits models
       * adds the dog_biscuits authorities into config/authorities
+      * adds dog_biscuits initializer and yaml file
 
 Example:
-    rails generate dog_biscuits:auths
+    rails generate dog_biscuits:install

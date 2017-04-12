@@ -4,38 +4,35 @@ module DogBiscuits
   # place
   class Place < Authority
     include DogBiscuits::OwlSameAs
-    include DogBiscuits::CommonLabels
     include DogBiscuits::BorthwickNote
     include DogBiscuits::MadsRelatedAuthority
     include DogBiscuits::GenericAuthorityTerms
     include Hyrax::Noid
+    include DogBiscuits::ValidatePlace
 
-    # TODO: create preflabel
-    # TODO: GVP CLASS AdminPlaceConcept or PhysPlaceConcept
-    # TODO: which are place objects and which are place strings
+    before_save :add_preflabel
 
-    has_and_belongs_to_many :contained_in_place,
-                            class_name: 'DogBiscuits::Place',
-                            predicate: ::RDF::URI.new('https://schema.org/containedInPlace'),
-                            inverse_of: :contains_place
-    has_and_belongs_to_many :contains_place,
-                            class_name: 'DogBiscuits::Place',
-                            predicate: ::RDF::URI.new('https://schema.org/containsPlace'),
-                            inverse_of: :contained_in_place
+    # TODO: Alternative approach to parent_ADMx needs more work
+    # See also GVP CLASS AdminPlaceConcept or PhysPlaceConcept
+    # has_and_belongs_to_many :contained_in_place,
+    #                         class_name: 'DogBiscuits::Place',
+    #                         predicate: ::RDF::URI.new('https://schema.org/containedInPlace'),
+    #                         inverse_of: :contains_place
+    # has_and_belongs_to_many :contains_place,
+    #                         class_name: 'DogBiscuits::Place',
+    #                         predicate: ::RDF::URI.new('https://schema.org/containsPlace'),
+    #                         inverse_of: :contained_in_place
 
     type [::RDF::URI.new('http://schema.org/Place'),
           ::RDF::URI.new('http://purl.org/vra/Place')]
 
-    # TODO: classes of place
-    # vra subclasses of Place (feature codes in this model)
+    # Consider VRA subclasses of Place (added into feature codes property as metadata rather than as Classes here)
     # http://purl.org/vra/CivicStructure
     # http://purl.org/vra/Continent
     # http://purl.org/vra/AdministrativeArea s
     #   subclasses http://purl.org/vra/State, http://purl.org/vra/City
 
     # use http://unlock.edina.ac.uk/ws/supportedFeatureTypes?&gazetteer=deep&format=json
-    # TODO: should be generic
-    # TODO: needs a proper vocabulary - crossover with RDF types
     property :feature_code,
              predicate: DogBiscuits::Vocab::BorthwickRegisters.featureType,
              multiple: true do |index|
@@ -101,6 +98,17 @@ module DogBiscuits
 
     def group?
       false
+    end
+
+    def add_preflabel
+      label = place_name.to_s
+      label += ", #{parent_ADM4}" if parent_ADM4.present?
+      label += ", #{parent_ADM3}" if parent_ADM3.present?
+      label += ", #{parent_ADM2}" if parent_ADM2.present?
+      label += ", #{parent_ADM1}" if parent_ADM1.present?
+      label += ", #{parent_country}" if parent_country.present?
+
+      self.preflabel = label
     end
   end
 end

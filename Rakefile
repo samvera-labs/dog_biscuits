@@ -16,9 +16,8 @@ task :solr_fcrepo_ci do
   end
 end
 
-task :solr_fcrepo_ci_kill do
-  system "pkill -f fcrepo_wrapper"
-  system "pkill -f solr_wrapper"
+task :kill_solr_fcrepo do
+  system "pkill -f _wrapper"
 end
 
 RSpec::Core::RakeTask.new(:spec)
@@ -36,6 +35,6 @@ task ci: ['engine_cart:generate'] do
 end
 
 desc 'Run continuous integration build'
-task ci: ['rubocop', 'solr_fcrepo_ci', 'spec', 'solr_fcrepo_ci_kill']
+task ci: ['rubocop', 'kill_solr_fcrepo', 'solr_fcrepo_ci', 'spec', 'kill_solr_fcrepo']
 
 task default: :ci

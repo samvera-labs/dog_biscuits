@@ -11,8 +11,7 @@
             generate 'hyrax:install', '-f'
             rails_command 'db:migrate'
             rails_command 'hyrax:workflow:load'
-            # generate 'dog_biscuits:install'
-            generate 'dog_biscuits:auths', '-f'
+            generate 'dog_biscuits:install', '-f'
           end
         end
 

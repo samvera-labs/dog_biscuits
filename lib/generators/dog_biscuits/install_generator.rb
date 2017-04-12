@@ -1,4 +1,4 @@
-class DogBiscuits::AuthsGenerator < Rails::Generators::Base
+class DogBiscuits::InstallGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 
   def copy_authorities

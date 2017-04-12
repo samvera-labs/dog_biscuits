@@ -206,6 +206,7 @@ module DogBiscuits
     # Validations
     autoload :ValidateConceptScheme
     autoload :ValidateLabel
+    autoload :ValidatePlace
   end
 
   autoload_under 'models/concerns/indexers' do
@@ -219,7 +220,8 @@ module DogBiscuits
   end
 
   autoload_under 'validators' do
-    autoload :HasLabelValidator
+    autoload :LabelValidator
+    autoload :PlaceValidator
     autoload :ConceptSchemeMemberValidator
   end
 end
