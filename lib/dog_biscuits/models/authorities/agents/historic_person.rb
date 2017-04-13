@@ -60,7 +60,7 @@ module DogBiscuits
       label += ", #{dates}" if dates.present?
       label += ", #{post_title}" if post_title.present?
       label += ", #{epithet}" if epithet.present?
-      label = label.sub(', ','') if label.starts_with? ', '
+      label = label.sub(', ', '') if label.starts_with? ', '
       self.preflabel = label
     end
   end

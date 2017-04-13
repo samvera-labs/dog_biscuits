@@ -51,7 +51,7 @@ module DogBiscuits
       label += ", #{family_name}" if family_name.present?
       label += ", #{given_name}" if given_name.present?
       label += ", #{dates}" if dates.present?
-      label = label.sub(', ','') if label.starts_with? ', '
+      label = label.sub(', ', '') if label.starts_with? ', '
       self.preflabel = label
     end
   end

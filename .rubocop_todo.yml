@@ -24,10 +24,14 @@ Metrics/ClassLength:
   Exclude:
     - 'lib/dog_biscuits/vocab/**/*'
 
-Metrics/CyclomaticComplexity:
-  Exclude:
-    - 'lib/dog_biscuits/validators/has_label_validator.rb'
-
 Metrics/ModuleLength:
   Exclude:
     - 'lib/dog_biscuits.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/dog_biscuits/models/authorities/agents/historic_person.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'lib/dog_biscuits/models/authorities/agents/historic_person.rb'
