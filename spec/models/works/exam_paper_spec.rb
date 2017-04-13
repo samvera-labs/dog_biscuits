@@ -30,10 +30,6 @@ describe DogBiscuits::ExamPaper do
     specify { exam.type.should_not include('http://purl.org/spar/fabio/JournalArticle') }
   end
 
-  describe '#predicates' do
-    # none
-  end
-
   describe '#related objects' do
     before do
       exam.members << main_file

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Entry < ActiveFedora::Base
   include Hyrax::Noid, Generic, RdfType, AssignRdfTypes
 

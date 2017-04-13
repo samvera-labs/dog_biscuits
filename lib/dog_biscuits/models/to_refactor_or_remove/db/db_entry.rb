@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DbEntry < ActiveRecord::Base
   has_many :db_entry_types
   has_many :db_section_types
@@ -12,6 +14,6 @@ class DbEntry < ActiveRecord::Base
   has_many :db_related_agents
 
   def add_rdf_types
-    %w(http://dlib.york.ac.uk/ontologies/borthwick-registers#Entry http://www.shared-canvas.org/ns/Zone http://pcdm.org/models#Object)
+    %w[http://dlib.york.ac.uk/ontologies/borthwick-registers#Entry http://www.shared-canvas.org/ns/Zone http://pcdm.org/models#Object]
   end
 end

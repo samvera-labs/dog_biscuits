@@ -10,17 +10,16 @@ RSpec::Core::RakeTask.new(:spec)
 desc 'Run style checker'
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.requires << 'rubocop-rspec'
-  task.fail_on_error = false
+  task.fail_on_error = true
 end
 
 desc "Run continuous integration build"
 task ci: ['engine_cart:generate'] do
-  # Rake::Task['solr_fcrepo_ci'].invoke
   Rake::Task['spec'].invoke
 end
 
 desc 'Run continuous integration build'
-task ci: ['rubocop', 'start_solr_fcrepo_ci', 'spec', 'kill_solr_fcrepo']
+task ci: ['rubocop', 'kill_solr_fcrepo', 'start_solr_fcrepo_ci', 'spec', 'kill_solr_fcrepo']
 
 task default: :ci
 
@@ -39,7 +38,6 @@ task :start_solr_fcrepo do
 end
 
 task :start_solr_fcrepo_ci do
-  Rake::Task['kill_solr_fcrepo'].invoke
   within_test_app do
     system "solr_wrapper --config config/solr_wrapper_test.yml clean"
   end

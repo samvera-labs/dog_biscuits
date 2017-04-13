@@ -35,10 +35,6 @@ describe DogBiscuits::Thesis do
     specify { thesis.type.should_not include('http://purl.org/spar/fabio/JournalArticle') }
   end
 
-  describe '#predicates' do
-    # none
-  end
-
   describe '#related objects' do
     before do
       thesis.members << main_file

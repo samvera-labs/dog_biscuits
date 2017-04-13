@@ -7,7 +7,6 @@ module DogBiscuits
     include DogBiscuits::CommonLabels
     include DogBiscuits::CommonRights
     include DogBiscuits::FormerIdentifier
-    include DogBiscuits::AddDefaultPermissions
     include DogBiscuits::ContentVersion
 
     def authority?

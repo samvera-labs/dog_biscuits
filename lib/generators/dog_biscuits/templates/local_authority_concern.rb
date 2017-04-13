@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LocalAuthorityConcern
   extend ActiveSupport::Concern
   included do
@@ -6,7 +8,7 @@ module LocalAuthorityConcern
     end
 
     def include_current_value(value, _index, render_options, html_options)
-      unless value.blank?
+      if value.present?
         html_options[:class] << ' force-select'
         render_options += [[find_value_string(value).join, value]]
       end

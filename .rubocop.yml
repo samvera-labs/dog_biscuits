@@ -51,3 +51,9 @@ Rails:
 
 Rails/DynamicFindBy:
   Enabled: false
+
+RSpec/FilePath:
+  Enabled: false
+
+RSpec/ScatteredLet:
+  Enabled: false

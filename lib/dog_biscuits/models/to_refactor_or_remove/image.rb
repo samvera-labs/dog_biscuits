@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_fedora/noid'
 
 # This is a VRA image, NOT a VRA work

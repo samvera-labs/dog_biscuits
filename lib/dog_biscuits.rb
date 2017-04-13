@@ -202,7 +202,6 @@ module DogBiscuits
   autoload_under 'models/concerns/behaviours' do
     # Behaviour
     autoload :AddWorkBehaviour
-    autoload :AddDefaultPermissions
     # Validations
     autoload :ValidateConceptScheme
     autoload :ValidateLabel

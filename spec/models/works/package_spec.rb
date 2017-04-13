@@ -11,12 +11,12 @@ describe DogBiscuits::Package do
 
   it 'is not an aip' do
     package.aip_uuid = nil
-    expect(package).to_not be_aip
+    expect(package).not_to be_aip
   end
 
   it 'is not a dip' do
     package.dip_uuid = nil
-    expect(package).to_not be_dip
+    expect(package).not_to be_dip
   end
 
   describe '#rdftypes' do
@@ -40,13 +40,13 @@ describe DogBiscuits::Package do
     expect(package).to be_dip
   end
 
-  it 'has rdftypes for aip/dip' do
+  it 'has rdftypes for aip' do
     package.add_types
-    expect(package.type).to include('http://dlib.york.ac.uk/ontologies/oais-archivematica#DisseminationInformationPackage')
     expect(package.type).to include('http://dlib.york.ac.uk/ontologies/oais-archivematica#ArchivalInformationPackage')
   end
 
-  describe '#predicates' do
-    # none
+  it 'has rdftypes for dip' do
+    package.add_types
+    expect(package.type).to include('http://dlib.york.ac.uk/ontologies/oais-archivematica#DisseminationInformationPackage')
   end
 end

@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
 shared_examples_for 'access_rights' do
-  let(:model) { described_class } # the class that includes the concern
-
-  before do
-    model_str = model.to_s.split('::')[1]
-    @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
-  end
+  # the class that includes the concern
+  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
 
   it 'has access rights' do
-    expect(@stubby.dc_access_rights).to eq(['access rights'])
+    expect(stubby.dc_access_rights).to eq(['access rights'])
   end
 
   it 'has access rights predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/accessRights')))
+    expect(stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/accessRights')))
   end
 end

@@ -3,10 +3,7 @@
 module DogBiscuits
   class Work < ActiveFedora::Base
     # DO NOT include AddWorkBehaviour here otherwise individual works will get the 'type' from others
-    include DogBiscuits::AddDefaultPermissions
     include DogBiscuits::ValidateLabel
-
-    attr_accessor :edit_users
 
     has_and_belongs_to_many :packaged_by,
                             class_name: 'DogBiscuits::Package',

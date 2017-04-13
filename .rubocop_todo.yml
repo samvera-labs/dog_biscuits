@@ -35,3 +35,7 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Exclude:
     - 'lib/dog_biscuits/models/authorities/agents/historic_person.rb'
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/support/shared_example_common_labels_spec.rb'

@@ -1,16 +1,13 @@
 # frozen_string_literal: true
 
 shared_examples_for 'foaf_name' do
-  let(:model) { described_class } # the class that includes the concern
+  # the class that includes the concern
+  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
 
-  before do
-    model_str = model.to_s.split('::')[1]
-    @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
-  end
   it 'has name' do
-    expect(@stubby.name).to eq('name')
+    expect(stubby.name).to eq('name')
   end
   it 'has name predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://xmlns.com/foaf/0.1/name')))
+    expect(stubby.resource.dump(:ttl).should(include('http://xmlns.com/foaf/0.1/name')))
   end
 end

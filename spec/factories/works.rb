@@ -42,6 +42,7 @@ FactoryGirl.define do
   end
 
   factory :package, class: DogBiscuits::Package do
+    title ['title']
     transfer_uuid 'transfer-uuid'
     sip_uuid 'sip-uuid'
     aip_uuid 'aip-uuid'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Register < ActiveFedora::Base
   include DCTerms, RdfType, Hyrax::Noid, Generic, SkosLabels, AssignRdfTypes, ThumbnailUrl
   require 'active_fedora/aggregation'

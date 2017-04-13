@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SingleDate < ActiveFedora::Base
   include Hyrax::Noid, RdfType, AssignRdfTypes
 

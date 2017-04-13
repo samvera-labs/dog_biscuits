@@ -1,6 +1,0 @@
-Description:
-    Adds DogBiscuits depositor into your rails application.
-      * adds your dog_biscuits default depositor into config/dogbiscuits.yml
-
-Example:
-    rails generate dog_biscuits:depositor USERNAME_OF_DEPOSITOR

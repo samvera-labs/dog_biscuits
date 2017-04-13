@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Concept Scheme Member Validator' do
+describe DogBiscuits::ConceptSchemeMemberValidator do
   let(:concept) { FactoryGirl.build(:concept) }
   let(:person) { FactoryGirl.build(:historic_person) }
   let(:scheme) { FactoryGirl.build(:concept_scheme) }
