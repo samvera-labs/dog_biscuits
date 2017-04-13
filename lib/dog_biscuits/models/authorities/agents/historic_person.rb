@@ -5,10 +5,8 @@ module DogBiscuits
   # this is not a RWO, could say #rwo is the RWO
   class HistoricPerson < DogBiscuits::Person
     include DogBiscuits::BorthwickNote
-    include DogBiscuits::FoafNameParts
-    include DogBiscuits::HubDates
 
-    # TODO: create preflabel
+    before_save :add_preflabel
 
     type [::RDF::URI.new('http://schema.org/Person'),
           ::RDF::URI.new('http://vocab.getty.edu/ontology#PersonConcept'),
@@ -51,6 +49,19 @@ module DogBiscuits
 
     def historic_person?
       true
+    end
+
+    # Generate a preflabel from the name parts. Overwrite the existing preflabel.
+    def add_preflabel
+      label = ''
+      label += ", #{family_name}" if family_name.present?
+      label += ", #{pre_title}" if pre_title.present?
+      label += ", #{given_name}" if given_name.present?
+      label += ", #{dates}" if dates.present?
+      label += ", #{post_title}" if post_title.present?
+      label += ", #{epithet}" if epithet.present?
+      label = label.sub(', ','') if label.starts_with? ', '
+      self.preflabel = label
     end
   end
 end

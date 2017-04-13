@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rdf'
 module DogBiscuits
   module Vocab
@@ -8,40 +10,40 @@ module DogBiscuits
       # Property definitions
       property :qualificationName,
                comment:
-                   'This property is used for a resource URI for UKETD#qualificationName.'.freeze,
-               label: 'Qualification Name'.freeze,
-               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/local_resource_terms#'.freeze,
-               type: 'rdf:Property'.freeze
+                   'This property is used for a resource URI for UKETD#qualificationName.',
+               label: 'Qualification Name',
+               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/local_resource_terms#',
+               type: 'rdf:Property'
       property :localDepartment,
                comment:
-                   'This property is used for a resource URI for UKETD#department.'.freeze,
-               label: 'Department'.freeze,
-               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/local_resource_terms#'.freeze,
-               type: 'rdf:Property'.freeze
+                   'This property is used for a resource URI for UKETD#department.',
+               label: 'Department',
+               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/local_resource_terms#',
+               type: 'rdf:Property'
       property :awardingInstitution,
                comment:
-                   'This property is used for a resource URI for UKETD#awardingInstitution.'.freeze,
-               label: 'Awarding Institution'.freeze,
-               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/local_resource_terms#'.freeze,
-               subPropertyOf: 'http://dublincore.org/documents/dcmi-terms/identifier'.freeze,
-               type: 'rdf:Property'.freeze
+                   'This property is used for a resource URI for UKETD#awardingInstitution.',
+               label: 'Awarding Institution',
+               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/local_resource_terms#',
+               subPropertyOf: 'http://dublincore.org/documents/dcmi-terms/identifier',
+               type: 'rdf:Property'
       property :advisor,
                comment:
-                   'This property is used for a resource URI for UKETD#advisor.'.freeze,
-               label: 'Advisor'.freeze,
-               range: 'http://xmlns.com/foaf/0.1/Person'.freeze,
-               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/local_resource_terms#'.freeze,
-               type: 'rdf:Property'.freeze
+                   'This property is used for a resource URI for UKETD#advisor.',
+               label: 'Advisor',
+               range: 'http://xmlns.com/foaf/0.1/Person',
+               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/local_resource_terms#',
+               type: 'rdf:Property'
 
       # Extra definitions
       term :'',
            comment:
-               'Local resource terms ontology.'.freeze,
-           'dc:modified' => '2016'.freeze, # TODO: date
-           'dc:publisher' => 'http://dlib.york.ac.uk/'.freeze,
-           'dc:title' => 'York Digital Library Generic Ontology'.freeze,
-           label: 'Generic'.freeze,
-           'owl:versionInfo' => '2016'.freeze # TODO: date
+               'Local resource terms ontology.',
+           'dc:modified' => '2016', # TODO: date
+           'dc:publisher' => 'http://dlib.york.ac.uk/',
+           'dc:title' => 'York Digital Library Generic Ontology',
+           label: 'Generic',
+           'owl:versionInfo' => '2016' # TODO: date
     end
   end
 end

@@ -4,6 +4,7 @@ module DogBiscuits
   # current person (not historical)
   class Person < DogBiscuits::Agent
     include DogBiscuits::FoafNameParts
+    include DogBiscuits::HubDates
     include DogBiscuits::Pure
     include DogBiscuits::RdfType
     include DogBiscuits::Orcid
@@ -39,25 +40,19 @@ module DogBiscuits
       false
     end
 
-    # TODO: review as specific to York local requirements
+    # TODO: review as specific to York local requirements TEST
     def phd
       rdf_type << DogBiscuits::Vocab::PureTerms.PhdStudent
     end
 
-    # Create a preflabel from the name in Family, Given form
-    #   if family and given exist, overwrite existing preflabel
+    # Generate a preflabel from the name parts. Overwrite the existing preflabel.
     def add_preflabel
-      label = family_name if family_name.present?
-
-      if given_name.present?
-        if label.nil?
-          label = given_name
-        else
-          label += ", #{given_name}"
-        end
-      end
-
-      self.preflabel = label if label.present?
+      label = ''
+      label += ", #{family_name}" if family_name.present?
+      label += ", #{given_name}" if given_name.present?
+      label += ", #{dates}" if dates.present?
+      label = label.sub(', ','') if label.starts_with? ', '
+      self.preflabel = label
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :generic_work, class: ActiveFedora::Base do
     title ['Generic Work']
@@ -20,6 +22,7 @@ FactoryGirl.define do
     creator ['Marr, Johnny']
     last_access '2016-01-01'
     number_of_downloads '52'
+    resource_type ['Software']
   end
 
   factory :exam_paper, class: DogBiscuits::ExamPaper do
@@ -35,6 +38,7 @@ FactoryGirl.define do
     former_id ['york:1234']
     module_code ['XXXXXX']
     collections_category ['self-renewing']
+    contributor ['Joyce, Mike']
   end
 
   factory :package, class: DogBiscuits::Package do

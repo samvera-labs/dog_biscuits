@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/spec_helper.rb
 require 'simplecov'
 
@@ -25,6 +27,7 @@ require 'turbolinks'
 require 'sqlite3'
 require 'devise'
 require 'listen'
+require 'rake'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
@@ -33,15 +36,14 @@ FactoryGirl.find_definitions
 
 require 'active_fedora/cleaner'
 RSpec.configure do |config|
-  # ???
   config.expect_with :rspec do |c|
-    c.syntax = [:should, :expect]
+    c.syntax = %i[should expect]
   end
   config.before(:suite) do
-    # can we run wrappers here?
+    # would be nice to start wrappers here
   end
   config.before(:each) do
-    # ???
+    # nothing to do here
   end
   config.after(:suite) do
     ActiveFedora::Cleaner.clean!

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe DogBiscuits::HistoricPerson do
@@ -23,6 +25,11 @@ describe DogBiscuits::HistoricPerson do
     specify { historic_person.post_title.should eq('post_title') }
     specify { historic_person.epithet.should eq('epithet') }
     specify { historic_person.dates_of_office.should eq('1500-1510') }
+  end
+
+  it 'gets a preflabel from name elements' do
+    historic_person.add_preflabel
+    expect(historic_person.preflabel).to eq('Morrissey, pre_title, Stephen Patrick, 1500-1550, post_title, epithet')
   end
 
   describe 'related objects' do

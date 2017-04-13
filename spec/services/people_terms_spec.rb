@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe DogBiscuits::Terms::PeopleTerms do
@@ -17,7 +19,7 @@ describe DogBiscuits::Terms::PeopleTerms do
 
   it 'has term hash' do
     people.people << person
-    terms.all.should eq([{ id: person.id.to_s, label: "Morrissey, Stephen Patrick"}])
+    terms.all.should eq([{ id: person.id.to_s, label: "Morrissey, Stephen Patrick, 1959-" }])
   end
 
   it 'does not find the term by id' do
@@ -27,7 +29,7 @@ describe DogBiscuits::Terms::PeopleTerms do
 
   it 'finds the term by id' do
     people.people << person
-    terms.find(person.id).first[:label].should eq('Morrissey, Stephen Patrick')
+    terms.find(person.id).first[:label].should eq('Morrissey, Stephen Patrick, 1959-')
   end
 
   it 'returns one result' do
@@ -42,16 +44,16 @@ describe DogBiscuits::Terms::PeopleTerms do
 
   it 'finds the id by the label' do
     people.people << person
-    terms.find_id('Morrissey, Stephen Patrick').should eq(person.id)
+    terms.find_id('Morrissey, Stephen Patrick, 1959-').should eq(person.id)
   end
 
   it 'finds the label by the id' do
     people.people << person
-    terms.find_value_string(person.id).should eq(['Morrissey, Stephen Patrick'])
+    terms.find_value_string(person.id).should eq(['Morrissey, Stephen Patrick, 1959-'])
   end
 
   it 'returns all for options list' do
     people.people << person
-    terms.select_all_options.should eq([["Morrissey, Stephen Patrick", person.id.to_s]])
+    terms.select_all_options.should eq([["Morrissey, Stephen Patrick, 1959-", person.id.to_s]])
   end
 end

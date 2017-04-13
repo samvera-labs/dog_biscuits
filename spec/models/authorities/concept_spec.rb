@@ -1,4 +1,6 @@
-  require 'spec_helper'
+# frozen_string_literal: true
+
+require 'spec_helper'
 
 # TODO: test concerns and validators only once; only test concept specific stuff here
 

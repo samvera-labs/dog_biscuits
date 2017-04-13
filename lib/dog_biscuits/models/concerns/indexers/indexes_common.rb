@@ -4,6 +4,8 @@ module DogBiscuits
   module IndexesCommon
     extend ActiveSupport::Concern
 
+    attr_accessor :strings_to_index, :values_to_index
+
     included do
       def generate_solr_document
         super.tap do |solr_doc|

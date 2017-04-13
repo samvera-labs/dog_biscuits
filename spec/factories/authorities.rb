@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :concept_scheme, class: DogBiscuits::ConceptScheme do
     preflabel 'label'
@@ -47,7 +49,7 @@ FactoryGirl.define do
     approved 'true'
     rules 'nca'
     used 'true'
-    same_as %w(http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212)
+    same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
     close_match ['uri-to-close-matching-concept']
     exact_match ['uri-to-exact-matching-concept']
 
@@ -63,7 +65,7 @@ FactoryGirl.define do
 
     preflabel 'label'
     altlabel  ['alternative label']
-    same_as %w(http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212)
+    same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
     related_authority ['related authority']
     approved 'true'
     rules 'nca'
@@ -82,7 +84,7 @@ FactoryGirl.define do
     altlabel  ['alternative label']
     given_name 'Stephen Patrick'
     family_name 'Morrissey'
-    same_as %w(http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212)
+    same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
     related_authority ['related authority']
     approved 'true'
     rules 'nca'
@@ -98,11 +100,19 @@ FactoryGirl.define do
   factory :organisation, class: DogBiscuits::Organisation do
     preflabel 'University of York. Department of Miserabilism'
     name 'name'
+    dates '1500-1550'
+    qualifier 'order of the phoenix'
   end
 
   factory :person, class: DogBiscuits::Person do
     preflabel 'Smith, Mark E.'
     family_name 'Morrissey'
+    given_name 'Stephen Patrick'
+    dates '1959-'
+  end
+
+  factory :person_min, class: DogBiscuits::Person do
+    preflabel 'Smith, Mark E.'
     given_name 'Stephen Patrick'
   end
 
@@ -126,11 +136,10 @@ FactoryGirl.define do
     parent_ADM1 'England'
     parent_country 'United Kingdom'
     note ['note']
-    same_as %w(http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212)
+    same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
     related_authority ['related authority']
     approved 'true'
     rules 'nca'
     used 'true'
   end
-
 end

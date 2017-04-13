@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe DogBiscuits::Package do
@@ -47,5 +49,4 @@ describe DogBiscuits::Package do
   describe '#predicates' do
     # none
   end
-
 end

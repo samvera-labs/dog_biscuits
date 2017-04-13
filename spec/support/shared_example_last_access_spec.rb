@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'last_access' do
   let(:model) { described_class } # the class that includes the concern
 

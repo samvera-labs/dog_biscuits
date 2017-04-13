@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe DogBiscuits::Group do
@@ -22,6 +24,11 @@ describe DogBiscuits::Group do
     specify { group.type.should include('http://vocab.getty.edu/ontology#GroupConcept') }
     specify { group.type.should include('http://xmlns.com/foaf/0.1/Agent') }
     specify { group.group_type.should eq(['group type']) }
+  end
+
+  it 'gets a preflabel from name parts' do
+    group.add_preflabel
+    expect(group.preflabel).to eq('name, 1500-1550, order of the phoenix')
   end
 
   describe 'related objects' do

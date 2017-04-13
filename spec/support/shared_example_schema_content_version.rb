@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'content_version' do
   let(:model) { described_class } # the class that includes the concern
 

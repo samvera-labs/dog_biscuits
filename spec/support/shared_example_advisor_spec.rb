@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'advisor' do
   let(:model) { described_class } # the class that includes the concern
 
@@ -25,7 +27,7 @@ shared_examples_for 'advisor' do
 
   # additional indexing of fields in solr
   it 'has contributor in solr' do
-    expect(@stubby.to_solr.should(include('contributor_tesim')))
-    expect(@stubby.to_solr.should(include('contributor_sim')))
+    expect(@stubby.to_solr.should(include('contributor_value_tesim')))
+    expect(@stubby.to_solr.should(include('contributor_value_sim')))
   end
 end

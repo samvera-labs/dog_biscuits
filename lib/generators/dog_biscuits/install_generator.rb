@@ -2,15 +2,15 @@ class DogBiscuits::InstallGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 
   def copy_authorities
-    directory 'authorities', 'config/authorities'
+    directory 'config/authorities', 'config/authorities'
   end
 
   def inject_into_dog_biscuits
     init_path = 'config/initializers/dog_biscuits.rb'
     file_path = 'config/dog_biscuits.yml'
     unless File.exist?(file_path)
-      copy_file 'dog_biscuits.yml', file_path
-      copy_file 'dog_biscuits.rb', init_path
+      copy_file 'config/initializers/dog_biscuits.yml', file_path
+      copy_file 'config/dog_biscuits.rb', init_path
     end
     file_content = File.read(init_path)
     text = File.read(file_path)

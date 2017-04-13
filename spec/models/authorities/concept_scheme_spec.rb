@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe DogBiscuits::ConceptScheme do
@@ -32,10 +34,6 @@ describe DogBiscuits::ConceptScheme do
 
     it 'has two concepts' do
       expect(scheme.concepts.to_a.size).to eq(2)
-    end
-
-    it 'cannot have a work as a concept' do
-      expect { scheme.concepts << work }.to raise_error(ActiveFedora::AssociationTypeMismatch)
     end
   end
 end

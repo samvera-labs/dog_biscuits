@@ -15,7 +15,7 @@ module DogBiscuits
     end
 
     # Index additional fields into solr
-    class ThesisIndexer < Hyrax::WorkIndexer # Hydra::PCDM::PCDMIndexer
+    class ThesisIndexer < Hyrax::WorkIndexer
       include DogBiscuits::IndexesThesis
     end
 

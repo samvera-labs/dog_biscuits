@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe DogBiscuits::Terms::DepartmentsTerms do
@@ -17,7 +19,7 @@ describe DogBiscuits::Terms::DepartmentsTerms do
 
   it 'has term hash' do
     departments.departments << organisation
-    terms.all.should eq([{ id: organisation.id.to_s, label: "University of York. Department of Miserabilism"}])
+    terms.all.should eq([{ id: organisation.id.to_s, label: "name, 1500-1550, order of the phoenix" }])
   end
 
   it 'does not find the term by id' do
@@ -27,12 +29,12 @@ describe DogBiscuits::Terms::DepartmentsTerms do
 
   it 'finds the term by id' do
     departments.departments << organisation
-    terms.find(organisation.id).first[:label].should eq('University of York. Department of Miserabilism')
+    terms.find(organisation.id).first[:label].should eq('name, 1500-1550, order of the phoenix')
   end
 
   it 'returns one result' do
     departments.departments << organisation
-    terms.search('University of York. Department of Miserabilism').length.should eq(1)
+    terms.search('phoenix').length.should eq(1)
   end
 
   it 'returns no results' do
@@ -42,16 +44,16 @@ describe DogBiscuits::Terms::DepartmentsTerms do
 
   it 'finds the id by the label' do
     departments.departments << organisation
-    terms.find_id('University of York. Department of Miserabilism').should eq(organisation.id)
+    terms.find_id('name, 1500-1550, order of the phoenix').should eq(organisation.id)
   end
 
   it 'finds the label by the id' do
     departments.departments << organisation
-    terms.find_value_string(organisation.id).should eq(['University of York. Department of Miserabilism'])
+    terms.find_value_string(organisation.id).should eq(['name, 1500-1550, order of the phoenix'])
   end
 
   it 'returns all for options list' do
     departments.departments << organisation
-    terms.select_all_options.should eq([["University of York. Department of Miserabilism", organisation.id.to_s]])
+    terms.select_all_options.should eq([["name, 1500-1550, order of the phoenix", organisation.id.to_s]])
   end
 end

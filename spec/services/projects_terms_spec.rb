@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe DogBiscuits::Terms::ProjectsTerms do
@@ -17,7 +19,7 @@ describe DogBiscuits::Terms::ProjectsTerms do
 
   it 'has term hash' do
     projects.projects << project
-    terms.all.should eq([{ id: project.id.to_s, label: "A scientific study into misery (id: identifier_test)"}])
+    terms.all.should eq([{ id: project.id.to_s, label: "A scientific study into misery (id: identifier_test)" }])
   end
 
   it 'does not find the term by id' do

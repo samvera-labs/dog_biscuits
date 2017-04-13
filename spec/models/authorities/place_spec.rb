@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe DogBiscuits::Place do
@@ -7,7 +9,6 @@ describe DogBiscuits::Place do
   it_behaves_like 'generic_authority_terms'
   it_behaves_like 'mads_related_authority'
   it_behaves_like 'owl_same_as'
-
 
   it 'is a place' do
     expect(place).to be_place
@@ -44,5 +45,4 @@ describe DogBiscuits::Place do
     specify { place.resource.dump(:ttl).should include('http://www.geonames.org/ontology#parentCountry') }
     specify { place.resource.dump(:ttl).should include('http://dlib.york.ac.uk/ontologies/borthwick-registers#featureType') }
   end
-
 end

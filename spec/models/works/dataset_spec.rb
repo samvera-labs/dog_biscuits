@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe DogBiscuits::Dataset do
@@ -23,6 +25,7 @@ describe DogBiscuits::Dataset do
   it_behaves_like 'readme_file'
   it_behaves_like 'last_access'
   it_behaves_like 'number_of_downloads'
+  it_behaves_like 'resource_type'
 
   describe '#metadata' do
     specify { dataset.embargo_release.should eq(2016 - 12 - 12) }

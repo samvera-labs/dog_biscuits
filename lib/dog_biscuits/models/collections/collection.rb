@@ -35,7 +35,7 @@ module DogBiscuits
       false
     end
 
-    class CollectionIndexer < Hyrax::CollectionIndexer # Hydra::PCDM::PCDMIndexer
+    class CollectionIndexer < Hyrax::CollectionIndexer
       include DogBiscuits::IndexesCollection
     end
 

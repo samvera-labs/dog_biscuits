@@ -5,10 +5,10 @@ module DogBiscuits
   class Organisation < DogBiscuits::Agent
     include DogBiscuits::FoafName
     include DogBiscuits::Pure
+    include DogBiscuits::GenericQualifier
+    include DogBiscuits::HubDates
 
-    before_save :add_pure_type
-
-    # TODO: create preflabel
+    before_save :add_pure_type, :add_preflabel
 
     type [::RDF::URI.new('https://schema.org/Organization'),
           ::RDF::Vocab::FOAF.Agent,
@@ -36,6 +36,16 @@ module DogBiscuits
 
     def place?
       false
+    end
+
+    # Generate a preflabel from the name parts. Overwrite the existing preflabel.
+    def add_preflabel
+      label = ''
+      label += ", #{name}" if name.present?
+      label += ", #{dates}" if dates.present?
+      label += ", #{qualifier}" if qualifier.present?
+      label = label.sub(', ','') if label.starts_with? ', '
+      self.preflabel = label
     end
   end
 end

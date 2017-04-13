@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rdf'
 module DogBiscuits
   module Vocab
@@ -5,39 +7,39 @@ module DogBiscuits
       # TODO: publish whole thing
       # Property definitions
       property :advisor,
-               comment: 'TODO.'.freeze,
-               label: 'Advisory'.freeze,
-               'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/'.freeze,
-               type: 'rdf:Property'.freeze
+               comment: 'TODO.',
+               label: 'Advisory',
+               'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/',
+               type: 'rdf:Property'
       property :department,
-               comment: 'TODO.'.freeze,
-               label: 'Department'.freeze,
-               'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/'.freeze,
-               type: 'rdf:Property'.freeze
+               comment: 'TODO.',
+               label: 'Department',
+               'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/',
+               type: 'rdf:Property'
       property :qualificationLevel,
-               comment: 'TODO.'.freeze,
-               label: 'Qualification Level'.freeze,
-               'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/'.freeze,
-               type: 'rdf:Property'.freeze
+               comment: 'TODO.',
+               label: 'Qualification Level',
+               'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/',
+               type: 'rdf:Property'
       property :qualificationName,
-               comment: 'TODO.'.freeze,
-               label: 'Qualification Name'.freeze,
-               'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/'.freeze,
-               type: 'rdf:Property'.freeze
+               comment: 'TODO.',
+               label: 'Qualification Name',
+               'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/',
+               type: 'rdf:Property'
       property :institution,
-               comment: 'TODO.'.freeze,
-               label: 'Institution'.freeze,
-               'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/'.freeze,
-               type: 'rdf:Property'.freeze
+               comment: 'TODO.',
+               label: 'Institution',
+               'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/',
+               type: 'rdf:Property'
 
       # Extra definitions
       term :'',
-           comment: 'TODO'.freeze,
-           'dc:modified' => 'TODO'.freeze, # TODO: date
-           'dc:publisher' => 'http://dlib.york.ac.uk/'.freeze,
-           'dc:title' => 'TODO'.freeze,
-           label: 'Generic'.freeze,
-           'owl:versionInfo' => 'TODO'.freeze # TODO: version
+           comment: 'TODO',
+           'dc:modified' => 'TODO', # TODO: date
+           'dc:publisher' => 'http://dlib.york.ac.uk/',
+           'dc:title' => 'TODO',
+           label: 'Generic',
+           'owl:versionInfo' => 'TODO' # TODO: version
     end
   end
 end

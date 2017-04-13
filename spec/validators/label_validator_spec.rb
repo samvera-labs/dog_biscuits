@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Label Validator' do
-
-  let(:authority)  { DogBiscuits::Concept.new }
-  let(:collection)  { DogBiscuits::Collection.new }
-  let(:work)  { DogBiscuits::Dataset.new }
-  let(:person)  { DogBiscuits::Person.new }
+  let(:authority) { DogBiscuits::Concept.new }
+  let(:collection) { DogBiscuits::Collection.new }
+  let(:work) { DogBiscuits::Dataset.new }
+  let(:person) { DogBiscuits::Person.new }
   let(:organisation)  { DogBiscuits::Organisation.new }
 
   it 'should not save without a title' do
@@ -27,5 +28,4 @@ describe 'Label Validator' do
   it 'should not save without a preflabel or name' do
     expect(organisation.save).to be_falsey
   end
-
 end

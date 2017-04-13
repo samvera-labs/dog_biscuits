@@ -13,7 +13,7 @@ module DogBiscuits
     end
 
     # Index additional fields into solr
-    class ExamPaperIndexer < Hyrax::WorkIndexer # Hydra::PCDM::PCDMIndexer
+    class ExamPaperIndexer < Hyrax::WorkIndexer
       include DogBiscuits::IndexesExamPaper
     end
 
