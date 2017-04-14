@@ -10,7 +10,8 @@ FactoryGirl.define do
     keyword ['northern misery']
     subject ['Official Heading for Woe']
     rights_holder ['Johnny Marr']
-    rights ['https://creativecommons.org/publicdomain/mark/1.0/']
-    rights_statement ['rights_statement_test']
+    license ['https://creativecommons.org/publicdomain/mark/1.0/']
+    rights_statement ['http://rightsstatements.org/vocab/InC/1.0/']
+    rights_description ['some additoinal stuff about rights']
   end
 end

@@ -13,46 +13,51 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = true
 end
 
-desc "Run continuous integration build"
+desc 'Run continuous integration build'
 task ci: ['engine_cart:generate'] do
   Rake::Task['spec'].invoke
 end
 
 desc 'Run continuous integration build'
-task ci: ['rubocop', 'kill_solr_fcrepo', 'start_solr_fcrepo_ci', 'spec', 'kill_solr_fcrepo']
+task ci: ['rubocop', 'kill_sf_ci', 'start_sf_ci', 'spec', 'kill_sf_ci']
 
 task default: :ci
 
-task :start_solr_fcrepo do
-  Rake::Task['kill_solr_fcrepo'].invoke
+task :start_sf do
+  Rake::Task['kill_sf'].invoke
   within_test_app do
-    system "solr_wrapper clean"
-  end
-  system "sleep 10"
-  within_test_app do
-    system "solr_wrapper &"
+    system 'solr_wrapper &'
   end
   within_test_app do
-    system "fcrepo_wrapper &"
+    system 'fcrepo_wrapper &'
   end
 end
 
-task :start_solr_fcrepo_ci do
+task :start_sf_ci do
   within_test_app do
-    system "solr_wrapper --config config/solr_wrapper_test.yml clean"
-  end
-  system "sleep 10"
-  within_test_app do
-    system "solr_wrapper --config config/solr_wrapper_test.yml &"
+    system 'solr_wrapper --config config/solr_wrapper_test.yml & sleep 60'
   end
   within_test_app do
-    system "fcrepo_wrapper --config config/fcrepo_wrapper_test.yml &"
+    system 'fcrepo_wrapper --config config/fcrepo_wrapper_test.yml & sleep 30'
   end
-  system "sleep 60"
 end
 
-task :kill_solr_fcrepo do
-  system "pkill -f fcrepo_wrapper"
-  system "pkill -f solr_wrapper"
-  system "sleep 10"
+task :kill_sf_ci do
+  within_test_app do
+    system 'tmp/solr-test/bin/solr stop -p 8985 & sleep 10'
+    system 'pkill -f fcrepo_wrapper'
+  end
+  within_test_app do
+    system 'solr_wrapper --config config/solr_wrapper_test.yml clean'
+  end
+end
+
+task :kill_sf do
+  within_test_app do
+    system 'tmp/solr-development/bin/solr stop -p 8983'
+    system 'pkill -f fcrepo_wrapper'
+  end
+  within_test_app do
+    system 'solr_wrapper clean'
+  end
 end

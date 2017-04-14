@@ -34,7 +34,9 @@ FactoryGirl.define do
     language ['English']
     language_code ['en-GB']
     rights_holder ['Johnny Marr']
-    rights ['https://creativecommons.org/publicdomain/mark/1.0/']
+    license ['https://creativecommons.org/publicdomain/mark/1.0/']
+    rights_statement ['http://rightsstatements.org/vocab/InC/1.0/']
+    rights_description ['some additoinal stuff about rights']
     former_id ['york:1234']
     module_code ['XXXXXX']
     collections_category ['self-renewing']
@@ -79,8 +81,9 @@ FactoryGirl.define do
     keyword ['northern misery']
     subject ['Official Heading for Woe']
     rights_holder ['Johnny Marr']
-    rights ['https://creativecommons.org/publicdomain/mark/1.0/']
-    rights_statement ['rights_statement_test']
+    license ['https://creativecommons.org/publicdomain/mark/1.0/']
+    rights_statement ['http://rightsstatements.org/vocab/InC/1.0/']
+    rights_description ['some additoinal stuff about rights']
     former_id ['york:1234']
     doi ['xxx-xxx-xxx']
   end
@@ -88,8 +91,10 @@ FactoryGirl.define do
   factory :journal_article, class: DogBiscuits::JournalArticle do
     title ['Journal Article test']
     creator ['Digital York']
-    rights ['https://creativecommons.org/publicdomain/mark/1.0/']
-    rights_statement ['rights_statement_test']
+    rights_holder ['Johnny Marr']
+    license ['https://creativecommons.org/publicdomain/mark/1.0/']
+    rights_statement ['http://rightsstatements.org/vocab/InC/1.0/']
+    rights_description ['some additoinal stuff about rights']
     issue_number 'issue_number_test'
     volume_number 'volume_number_test'
     pagination 'pagination_test'
