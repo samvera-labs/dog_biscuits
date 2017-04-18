@@ -1,17 +1,21 @@
-shared_examples_for 'project_output' do
-  let(:model) { described_class } # the class that includes the concern
+# frozen_string_literal: true
 
-  before(:each) do
-    model_str = model.to_s.split('::')[1]
-    @project = FactoryGirl.build_stubbed(:project)
-    @stubby = FactoryGirl.build(model_str.underscore.to_sym)
-    @stubby.project_resource << @project
+shared_examples_for 'project_output' do
+  # the class that includes the concern
+  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+  let(:project) { FactoryGirl.build_stubbed(:project) }
+
+  before do
+    stubby.project_resource << project
   end
-  it 'will be in a project' do
-    expect(@stubby.project_resource.first).to eq(@project)
+  it 'has project' do
+    expect(stubby.project_resource.first).to eq(project)
   end
-  it 'will have the project predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://ulcc.ac.uk/ontologies/terms#outputOf')))
+  it 'has project predicate' do
+    expect(stubby.resource.dump(:ttl).should(include('http://london.ac.uk/ontologies/terms#outputOf')))
+  end
+
+  it 'has _value in solr' do
+    expect(stubby.to_solr.should(include('project_value_tesim')))
   end
 end
-

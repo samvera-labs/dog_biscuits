@@ -1,0 +1,58 @@
+terms:
+  - id: Abstract
+    term: Abstract
+    close_match: http://dictionary.casrai.org/Output_Types/Conference_Abstract; Conference Paper/Proceeding/Abstract (RIOXX)
+  - id: Article
+    term: Article
+    close_match: http://dictionary.casrai.org/Output_Types/Magazine_Article; http://dictionary.casrai.org/Output_Types/Newsletter_Article; http://dictionary.casrai.org/Output_Types/Newspaper_Article
+  - id: Audio
+    term: Audio
+  - id: Book
+    term: Book
+    exact_match: Book (RIOXX); http://dictionary.casrai.org/Output_Types/Book
+    close_match: Book edited (RIOXX); http://dictionary.casrai.org/Output_Types/Edited_Book
+  - id: Capstone Project
+    term: Capstone Project
+  - id: Conference Proceeding
+    term: Conference Proceeding
+  - id: Dataset
+    term: Dataset
+  - id: Dissertation
+    term: Dissertation
+    close_match: Thesis (RIOXX)
+    exact_match: http://dictionary.casrai.org/Output_Types/Dissertation
+  - id: Image
+    term: Image
+  - id: Journal
+    term: Journal
+    close_match: Journal Issue (RIOXX)
+  - id: Map or Cartographic Material
+    term: Map or Cartographic Material
+  - id: Masters Thesis
+    term: Masters Thesis
+  - id: Part of Book
+    term: Part of Book
+    close_match: Book chapter (RIOXX); http://dictionary.casrai.org/Output_Types/Book_Chapter
+  - id: Poster
+    term: Poster
+    close_match: http://dictionary.casrai.org/Output_Types/Conference_Poster; Conference Paper/Proceeding/Abstract (RIOXX)
+  - id: Presentation
+    term: Presentation
+    close_match: http://dictionary.casrai.org/Output_Types/Conference_Presentation; Conference Paper/Proceeding/Abstract (RIOXX)
+  - id: Project
+    term: Project
+  - id: http://dictionary.casrai.org/Output_Types/Report
+    term: Report
+    close_match: Consultancy Report (RIOXX); Policy briefing report (RIOXX); Technical Report (RIOXX)
+  - id: Research Paper
+    term: Research Paper
+    close_match: Journal Article/Review (RIOXX); http://dictionary.casrai.org/Output_Types/JournalArticle
+  - id: Software or Program Code
+    term: Software or Program Code
+  - id: Video
+    term: Video
+  - id: http://dictionary.casrai.org/Output_Types/Working_Paper
+    term: Working Paper
+    exact_match: Working paper (RIOXX)
+  - id: Other
+    term: Other

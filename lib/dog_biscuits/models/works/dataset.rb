@@ -1,16 +1,21 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # dataset
   class Dataset < Work
+    include DogBiscuits::AddWorkBehaviour
     include DogBiscuits::AddDatasetMetadata
 
     filters_association :packaged_by, as: :aips, condition: :aip?
     filters_association :packaged_by, as: :dips, condition: :dip?
-    #filters_association :members, as: :packages, condition: :package?
+    # TODO: REVIEW
+    # filters_association :members, as: :packages, condition: :package?
+
+    before_save :combine_dates
 
     type << ::RDF::Vocab::DCAT.Dataset
 
-    # TODO look at how CC handles this and fix clash
-    # where does this come from? is it in pure? NOT IN PUREE check ws
+    # TODO: move these into concerns
     property :embargo_release,
              predicate: DogBiscuits::Vocab::Generic.embargoRelease,
              multiple: false do |index|
@@ -42,12 +47,17 @@ module DogBiscuits
     #   than text type (solr sorting on string fields is case-sensitive,
     #   on text fields it's case-insensitive)
     # Extend Hydra::PCDM::PCDMIndexer instead of ActiveFedora::IndexingService
-    class DatasetIndexer < Hyrax::WorkIndexer # Hydra::PCDM::PCDMIndexer
+    class DatasetIndexer < Hyrax::WorkIndexer
       include DogBiscuits::IndexesDataset
     end
 
     def self.indexer
       DatasetIndexer
+    end
+
+    def combine_dates
+      self.date = []
+      date << date_available
     end
   end
 end

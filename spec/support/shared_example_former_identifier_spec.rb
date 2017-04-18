@@ -1,14 +1,13 @@
-shared_examples_for 'former_identifier' do
-  let(:model) { described_class } # the class that includes the concern
+# frozen_string_literal: true
 
-  before(:each) do
-    model_str = model.to_s.split('::')[1]
-    @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
+shared_examples_for 'former_identifier' do
+  # the class that includes the concern
+  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
+  it 'has former identifier' do
+    expect(stubby.former_id).to eq(['york:1234'])
   end
-  it 'will have a former identifier' do
-    expect(@stubby.former_id).to eq(['york:1234'])
-  end
-  it 'will have the foaf.name predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/generic#formerIdentifier')))
+  it 'has former identifier predicate' do
+    expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/generic#formerIdentifier')))
   end
 end

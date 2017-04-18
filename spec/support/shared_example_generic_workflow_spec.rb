@@ -1,14 +1,13 @@
-shared_examples_for 'generic_workflow' do
-  let(:model) { described_class } # the class that includes the concern
+# frozen_string_literal: true
 
-  before(:each) do
-    model_str = model.to_s.split('::')[1]
-    @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
+shared_examples_for 'generic_workflow' do
+  # the class that includes the concern
+  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
+  it 'has wf_status' do
+    expect(stubby.wf_status).to eq(['xxx-xxx-xxx'])
   end
-  it 'will have a xxx' do
-    expect(@stubby.xxx).to eq(['xxx-xxx-xxx'])
-  end
-  it 'will have the xxx predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('xxx')))
+  it 'has wf_status predicate' do
+    expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/generic#status')))
   end
 end

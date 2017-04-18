@@ -1,16 +1,18 @@
-class DogBiscuits::AuthsGenerator < Rails::Generators::Base
+# frozen_string_literal: true
+
+class DogBiscuits::InstallGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 
   def copy_authorities
-    directory 'authorities', 'config/authorities'
+    directory 'config/authorities', 'config/authorities'
   end
 
   def inject_into_dog_biscuits
     init_path = 'config/initializers/dog_biscuits.rb'
     file_path = 'config/dog_biscuits.yml'
     unless File.exist?(file_path)
-      copy_file 'dog_biscuits.yml', file_path
-      copy_file 'dog_biscuits.rb', init_path
+      copy_file 'config/initializers/dog_biscuits.rb', file_path
+      copy_file 'config/dog_biscuits.yml', init_path
     end
     file_content = File.read(init_path)
     text = File.read(file_path)
@@ -22,17 +24,14 @@ class DogBiscuits::AuthsGenerator < Rails::Generators::Base
           "\n#{term_string}"
         end
       end
-      unless text.include? t
-        inject_into_file file_path, after: '# authorities' do
-          "\n#{t.gsub('Terms', '').underscore.pluralize}: \"\""
-        end
+      next if text.include? t
+      inject_into_file file_path, after: '# authorities' do
+        "\n#{t.gsub('Terms', '').underscore.pluralize}: \"\""
       end
     end
-
   end
 
   def inject_into_authority_service
-
     file_path = 'app/services/authority_service.rb'
     copy_file 'authority_service.rb', file_path
 
@@ -45,11 +44,10 @@ class DogBiscuits::AuthsGenerator < Rails::Generators::Base
     end
 
     Dir.entries('config/authorities').each do |file|
-      if file.end_with?('.yml')
-        term_string = "\n\tclass #{file.gsub('.yml', '').camelize}Service < Hyrax::QaSelectService\n\tinclude ::FileAuthorityConcern\n\t\tdef initialize\n\t\t\tsuper('#{file.gsub('.yml', '')}')\n\t\tend\n\tend"
-        inject_into_file file_path, after: '# File based' do
-          term_string
-        end
+      next unless file.end_with?('.yml')
+      term_string = "\n\tclass #{file.gsub('.yml', '').camelize}Service < Hyrax::QaSelectService\n\tinclude ::FileAuthorityConcern\n\t\tdef initialize\n\t\t\tsuper('#{file.gsub('.yml', '')}')\n\t\tend\n\tend"
+      inject_into_file file_path, after: '# File based' do
+        term_string
       end
     end
   end

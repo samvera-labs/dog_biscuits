@@ -1,14 +1,13 @@
-shared_examples_for 'description' do
-  let(:model) { described_class } # the class that includes the concern
+# frozen_string_literal: true
 
-  before(:each) do
-    model_str = model.to_s.split('::')[1]
-    @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
+shared_examples_for 'description' do
+  # the class that includes the concern
+  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
+  it 'has description' do
+    expect(stubby.description).to eq(['description'])
   end
-  it 'will have an description' do
-    expect(@stubby.description).to eq(['description'])
-  end
-  it 'will have the dc.description predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/elements/1.1/description')))
+  it 'has description predicate' do
+    expect(stubby.resource.dump(:ttl).should(include('http://purl.org/dc/elements/1.1/description')))
   end
 end

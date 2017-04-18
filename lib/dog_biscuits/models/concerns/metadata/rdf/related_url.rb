@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # RDFS seeAlso
   module RelatedUrl
@@ -5,7 +7,7 @@ module DogBiscuits
 
     included do
       property :related_url, predicate: ::RDF::RDFS.seeAlso,
-                               multiple: true do |index|
+                             multiple: true do |index|
         index.as :stored_searchable
       end
     end

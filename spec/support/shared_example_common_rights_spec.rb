@@ -1,26 +1,30 @@
-shared_examples_for 'common_rights' do
-  let(:model) { described_class } # the class that includes the concern
+# frozen_string_literal: true
 
-  before(:each) do
-    model_str = model.to_s.split('::')[1]
-    @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
+shared_examples_for 'common_rights' do
+  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
+  it 'has rights holder' do
+    expect(stubby.rights_holder).to eq(['Johnny Marr'])
   end
-  it 'will have a rights holder' do
-    expect(@stubby.rights_holder).to eq(['Johnny Marr'])
+  it 'has rights statement' do
+    expect(stubby.rights_statement).to eq(['http://rightsstatements.org/vocab/InC/1.0/'])
   end
-  it 'will have a rights statement' do
-    expect(@stubby.rights_statement).to eq(['rights_statement_test'])
+  it 'has license' do
+    expect(stubby.license).to eq(['https://creativecommons.org/publicdomain/mark/1.0/'])
   end
-  it 'will have a license' do
-    expect(@stubby.rights).to eq(['https://creativecommons.org/publicdomain/mark/1.0/'])
+  it 'has rights description' do
+    expect(stubby.rights_description).to eq(['some additoinal stuff about rights'])
   end
-  it 'will have the dc.rightsHolder predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/rightsHolder')))
+  it 'has rightsholder predicate' do
+    expect(stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/rightsHolder')))
   end
-  it 'will have the dc.rights predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/rights')))
+  it 'has dc rights predicate' do
+    expect(stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/rights')))
   end
-  it 'will have the edm.rights predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://www.europeana.eu/schemas/edm/rights')))
+  it 'has dc11 rights predicate' do
+    expect(stubby.resource.dump(:ttl).should(include('http://purl.org/dc/elements/1.1/rights')))
+  end
+  it 'has edm rights predicate' do
+    expect(stubby.resource.dump(:ttl).should(include('http://www.europeana.eu/schemas/edm/rights')))
   end
 end

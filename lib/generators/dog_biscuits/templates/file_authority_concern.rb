@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FileAuthorityConcern
   extend ActiveSupport::Concern
   included do

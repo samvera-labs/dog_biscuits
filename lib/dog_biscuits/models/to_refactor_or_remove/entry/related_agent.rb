@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RelatedAgent < ActiveFedora::Base
   include Hyrax::Noid, RdfType
 
@@ -11,11 +13,11 @@ class RelatedAgent < ActiveFedora::Base
   has_and_belongs_to_many :related_agent, predicate: ::RDF::URI.new('http://dlib.york.ac.uk/ontologies/borthwick-registers#relatedAgentFor')
 
   def add_rdf_types_p
-    %w(http://dlib.york.ac.uk/ontologies/borthwick-registers#RelatedAgent http://xmlns.com/foaf/0.1/Person http://dlib.york.ac.uk/ontologies/borthwick-registers#All)
+    %w[http://dlib.york.ac.uk/ontologies/borthwick-registers#RelatedAgent http://xmlns.com/foaf/0.1/Person http://dlib.york.ac.uk/ontologies/borthwick-registers#All]
   end
 
   def add_rdf_types_g
-    %w(http://dlib.york.ac.uk/ontologies/borthwick-registers#RelatedAgent http://xmlns.com/foaf/0.1/Group http://dlib.york.ac.uk/ontologies/borthwick-registers#All)
+    %w[http://dlib.york.ac.uk/ontologies/borthwick-registers#RelatedAgent http://xmlns.com/foaf/0.1/Group http://dlib.york.ac.uk/ontologies/borthwick-registers#All]
   end
 
   property :person_same_as, predicate: ::RDF::URI.new('http://www.w3.org/2002/07/owl#sameAs'), multiple: false do |index|

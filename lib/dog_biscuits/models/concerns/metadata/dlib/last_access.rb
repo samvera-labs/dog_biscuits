@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # date of last access
   module LastAccess

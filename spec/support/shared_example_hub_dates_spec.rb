@@ -1,14 +1,13 @@
-shared_examples_for 'hub_dates' do
-  let(:model) { described_class } # the class that includes the concern
+# frozen_string_literal: true
 
-  before(:each) do
-    model_str = model.to_s.split('::')[1]
-    @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
+shared_examples_for 'hub_dates' do
+  # the class that includes the concern
+  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
+  it 'has dates' do
+    expect(stubby.dates).to eq('1500-1550')
   end
-  it 'will have dates' do
-    expect(@stubby.dates).to eq('1500-1550')
-  end
-  it 'will have the archiveshub.dates predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://data.archiveshub.ac.uk/def/dates')))
+  it 'has dates predicate' do
+    expect(stubby.resource.dump(:ttl).should(include('http://data.archiveshub.ac.uk/def/dates')))
   end
 end

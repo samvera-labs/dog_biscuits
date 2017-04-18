@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # readme text or readme file
   module ReadmeFile
     extend ActiveSupport::Concern
 
     included do
-      # TODO make this multiple
+      # TODO: make this multiple
       property :readme, predicate: DogBiscuits::Vocab::Generic.readme,
-               multiple: false do |index|
+                        multiple: false do |index|
         index.as :stored_searchable
       end
 
@@ -20,14 +22,10 @@ module DogBiscuits
       # Ensure the FileSet is added to the members
       before_save :add_member_fs
 
-      # TODO remove duplication with main file? could use classname
+      # TODO: remove duplication with main file? could use classname
       # Add the FileSet to the members if it has not been added.
       def add_member_fs
-        unless self.readmefile.empty?
-          unless self.members.include? self.readmefile.first
-            self.members << self.readmefile.first
-          end
-        end
+        members << readmefile.first unless readmefile.empty? || members.include?(readmefile.first)
       end
     end
   end

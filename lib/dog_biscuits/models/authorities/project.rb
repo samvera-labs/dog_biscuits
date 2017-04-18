@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # Project
   class Project < Authority
-
-    include DogBiscuits::CommonLabels,
-            DogBiscuits::FoafName,
-            DogBiscuits::GenericAuthorityTerms,
-            DogBiscuits::Identifier,
-            DogBiscuits::Funder,
-            Hyrax::Noid
+    include DogBiscuits::FoafName
+    include DogBiscuits::GenericAuthorityTerms
+    include DogBiscuits::Identifier
+    include DogBiscuits::Funder
+    include Hyrax::Noid
 
     before_save :add_preflabel
 
@@ -16,19 +16,34 @@ module DogBiscuits
     def project?
       true
     end
-    def agent?
-      false
-    end
+
     def concept?
       false
     end
 
-    def add_preflabel
-      unless name.blank?
-        self.preflabel = name
-        self.preflabel += " (id: #{identifier.join})" unless identifier.blank?
-      end
+    def agent?
+      false
     end
 
+    def person?
+      false
+    end
+
+    def organisation?
+      false
+    end
+
+    def group?
+      false
+    end
+
+    def place?
+      false
+    end
+
+    def add_preflabel
+      self.preflabel = name if name.present?
+      self.preflabel += " (id: #{identifier.join})" if identifier.present?
+    end
   end
 end

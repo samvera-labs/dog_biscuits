@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderedCollection < ActiveFedora::Base
   include Hyrax::Noid, RdfType, DCTerms, SkosLabels, AssignRdfTypes
   require 'active_fedora/aggregation'

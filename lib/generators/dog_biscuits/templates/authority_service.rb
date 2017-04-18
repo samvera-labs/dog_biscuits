@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 module AuthorityService
+  # Object based
 
-# Object based
-
-# File based
-
+  # File based
 end

@@ -1,12 +1,10 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 describe DogBiscuits::Project do
-  
   let(:project) { FactoryGirl.build(:project) }
-  
+
   it_behaves_like 'identifier'
 
   it 'is a project' do
@@ -20,7 +18,7 @@ describe DogBiscuits::Project do
     specify { project.funder.should eq(['funder']) }
   end
 
-  it 'gets a preflabel from given and family name' do
+  it 'has a preflabel combining name and identifier' do
     project.add_preflabel
     expect(project.preflabel).to eq('A scientific study into misery (id: identifier_test)')
   end

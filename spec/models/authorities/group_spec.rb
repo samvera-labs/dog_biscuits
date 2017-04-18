@@ -1,7 +1,6 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 describe DogBiscuits::Group do
   let(:group) { FactoryGirl.build(:group) }
@@ -20,7 +19,6 @@ describe DogBiscuits::Group do
     expect(group).to be_group
   end
 
-  # test metadata properties
   describe '#metadata' do
     specify { group.type.should include('http://xmlns.com/foaf/0.1/Group') }
     specify { group.type.should include('http://vocab.getty.edu/ontology#GroupConcept') }
@@ -28,14 +26,17 @@ describe DogBiscuits::Group do
     specify { group.group_type.should eq(['group type']) }
   end
 
-  # test related objects
+  it 'gets a preflabel from name parts' do
+    group.add_preflabel
+    expect(group.preflabel).to eq('name, 1500-1550, order of the phoenix')
+  end
+
   describe 'related objects' do
     it 'is related to the parent scheme' do
       expect(group.concept_scheme).to be_a(DogBiscuits::ConceptScheme)
     end
   end
 
-  # test predicates sent to fedora
   describe '#predicates' do
     specify { group.resource.dump(:ttl).should include('http://dlib.york.ac.uk/ontologies/generic#groupType') }
   end

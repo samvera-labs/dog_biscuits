@@ -1,7 +1,6 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 describe DogBiscuits::HistoricPerson do
   let(:historic_person) { FactoryGirl.build(:historic_person) }
@@ -18,7 +17,6 @@ describe DogBiscuits::HistoricPerson do
     expect(historic_person).to be_historic_person
   end
 
-  # test metadata properties
   describe '#metadata' do
     specify { historic_person.type.should include('http://schema.org/Person') }
     specify { historic_person.type.should include('http://xmlns.com/foaf/0.1/Agent') }
@@ -29,14 +27,17 @@ describe DogBiscuits::HistoricPerson do
     specify { historic_person.dates_of_office.should eq('1500-1510') }
   end
 
-  # test related objects
+  it 'gets a preflabel from name elements' do
+    historic_person.add_preflabel
+    expect(historic_person.preflabel).to eq('Morrissey, pre_title, Stephen Patrick, 1500-1550, post_title, epithet')
+  end
+
   describe 'related objects' do
     it 'is related to the parent scheme' do
       expect(historic_person.concept_scheme).to be_a(DogBiscuits::ConceptScheme)
     end
   end
 
-  # test predicates sent to fedora
   describe '#predicates' do
     specify { historic_person.resource.dump(:ttl).should include('http://data.archiveshub.ac.uk/def/epithet') }
     specify { historic_person.resource.dump(:ttl).should include('http://data.archiveshub.ac.uk/def/title') }

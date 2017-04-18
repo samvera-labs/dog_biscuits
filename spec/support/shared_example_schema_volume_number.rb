@@ -1,15 +1,13 @@
-shared_examples_for 'volume_number' do
-  let(:model) { described_class } # the class that includes the concern
+# frozen_string_literal: true
 
-  before(:each) do
-    model_str = model.to_s.split('::')[1]
-    @stubby = FactoryGirl.build_stubbed(model_str.underscore.to_sym)
+shared_examples_for 'volume_number' do
+  # the class that includes the concern
+  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
+  it 'has volume number' do
+    expect(stubby.volume_number).to eq('volume_number_test')
   end
-  it 'will have an volume number' do
-    expect(@stubby.volume_number).to eq('volume_number_test')
-  end
-  it 'will have the schema:volumeNumber predicate' do
-    expect(@stubby.resource.dump(:ttl).should(include('http://schema.org/volumeNumber')))
+  it 'has volume number predicate' do
+    expect(stubby.resource.dump(:ttl).should(include('http://schema.org/volumeNumber')))
   end
 end
-

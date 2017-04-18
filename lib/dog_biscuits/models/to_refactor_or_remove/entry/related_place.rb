@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RelatedPlace < ActiveFedora::Base
   include Hyrax::Noid, RdfType, AssignRdfTypes
 

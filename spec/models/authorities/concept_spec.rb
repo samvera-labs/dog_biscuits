@@ -1,7 +1,6 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
-require 'active_fedora'
-require 'hydra/works'
-require 'action_view'
 
 # TODO: test concerns and validators only once; only test concept specific stuff here
 
@@ -11,7 +10,6 @@ describe DogBiscuits::Concept do
   let(:concept1) { FactoryGirl.build(:concept) }
   let(:concept2) { FactoryGirl.build_stubbed(:broader_concept) }
   let(:concept3) { FactoryGirl.build(:concept) }
-  let(:thesis) {FactoryGirl.build(:thesis) }
 
   it 'is a concept' do
     expect(concept1).to be_concept
@@ -28,6 +26,8 @@ describe DogBiscuits::Concept do
     specify { concept1.type.should include('http://www.w3.org/2004/02/skos/core#Concept') }
     specify { concept1.definition.should eq('my definition is this') }
     specify { concept1.skos_note.should eq('notes') }
+    specify { concept1.exact_match.should eq(['uri-to-exact-matching-concept']) }
+    specify { concept1.close_match.should eq(['uri-to-close-matching-concept']) }
   end
 
   describe '#predicates' do
@@ -36,7 +36,7 @@ describe DogBiscuits::Concept do
   end
 
   describe '#related objects' do
-    # helpful? http://stackoverflow.com/questions/2937326/populating-an-association-with-children-in-factory-girl
+    # http://stackoverflow.com/questions/2937326/populating-an-association-with-children-in-factory-girl
     it 'is related to the parent scheme' do
       expect(concept1.concept_scheme.preflabel).to eq('label')
     end
@@ -55,18 +55,18 @@ describe DogBiscuits::Concept do
       expect(concept1.topconcept?).to be_falsey
     end
 
-    before(:each) do
+    before do
       concept1.broader << concept2
     end
 
-    it 'has a broader concept' do
+    it 'has broader concept' do
       expect(concept1.broader.first.preflabel).to eq('broader object')
     end
 
-    it 'has a narrower concept' do
+    it 'has narrower concept' do
       expect(concept2.narrower.first.preflabel).to eq('label')
     end
 
-    # TODO test exact and close
+    # TODO: test exact and close
   end
 end

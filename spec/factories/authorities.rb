@@ -1,8 +1,30 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :concept_scheme, class: DogBiscuits::ConceptScheme do
     preflabel 'label'
     altlabel  ['alternative label']
     description ['description']
+  end
+
+  factory :subjects, class: DogBiscuits::ConceptScheme do
+    preflabel 'subjects'
+  end
+
+  factory :departments, class: DogBiscuits::ConceptScheme do
+    preflabel 'departments'
+  end
+
+  factory :organisations, class: DogBiscuits::ConceptScheme do
+    preflabel 'organisations'
+  end
+
+  factory :projects, class: DogBiscuits::ConceptScheme do
+    preflabel 'projects'
+  end
+
+  factory :people, class: DogBiscuits::ConceptScheme do
+    preflabel 'people'
   end
 
   factory :broader_concept, class: DogBiscuits::Concept do
@@ -27,7 +49,9 @@ FactoryGirl.define do
     approved 'true'
     rules 'nca'
     used 'true'
-    same_as %w(http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212)
+    same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
+    close_match ['uri-to-close-matching-concept']
+    exact_match ['uri-to-exact-matching-concept']
 
     # after(:build, &:map_labels)
     #
@@ -41,7 +65,7 @@ FactoryGirl.define do
 
     preflabel 'label'
     altlabel  ['alternative label']
-    same_as %w(http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212)
+    same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
     related_authority ['related authority']
     approved 'true'
     rules 'nca'
@@ -60,7 +84,7 @@ FactoryGirl.define do
     altlabel  ['alternative label']
     given_name 'Stephen Patrick'
     family_name 'Morrissey'
-    same_as %w(http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212)
+    same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
     related_authority ['related authority']
     approved 'true'
     rules 'nca'
@@ -76,11 +100,19 @@ FactoryGirl.define do
   factory :organisation, class: DogBiscuits::Organisation do
     preflabel 'University of York. Department of Miserabilism'
     name 'name'
+    dates '1500-1550'
+    qualifier 'order of the phoenix'
   end
 
   factory :person, class: DogBiscuits::Person do
     preflabel 'Smith, Mark E.'
     family_name 'Morrissey'
+    given_name 'Stephen Patrick'
+    dates '1959-'
+  end
+
+  factory :person_min, class: DogBiscuits::Person do
+    preflabel 'Smith, Mark E.'
     given_name 'Stephen Patrick'
   end
 
@@ -88,13 +120,26 @@ FactoryGirl.define do
     preflabel 'miserabilism'
   end
 
-  factory :journal, class: DogBiscuits::Journal do
-    preflabel 'The Journal of Woe'
-  end
-
   factory :project, class: DogBiscuits::Project do
+    preflabel 'A scientific study into misery'
     name 'A scientific study into misery'
     identifier ['identifier_test']
     funder ['funder']
+  end
+
+  factory :place, class: DogBiscuits::Place do
+    feature_code ['city']
+    place_name 'Didsbury'
+    parent_ADM4 'Madeup Parish'
+    parent_ADM3 'Manchester'
+    parent_ADM2 'Greater Manchester'
+    parent_ADM1 'England'
+    parent_country 'United Kingdom'
+    note ['note']
+    same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
+    related_authority ['related authority']
+    approved 'true'
+    rules 'nca'
+    used 'true'
   end
 end

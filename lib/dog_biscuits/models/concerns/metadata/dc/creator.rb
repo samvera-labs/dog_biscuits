@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # DC creator
   module Creator
@@ -11,7 +13,7 @@ module DogBiscuits
                               class_name: 'DogBiscuits::Agent'
 
       property :creator, predicate: ::RDF::Vocab::DC11.creator,
-               multiple: true do |index|
+                         multiple: true do |index|
         index.as :stored_searchable, :sortable, :facetable
       end
     end

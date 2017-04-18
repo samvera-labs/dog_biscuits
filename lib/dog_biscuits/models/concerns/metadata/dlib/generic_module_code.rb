@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # local authorities terms defined in generic vocab
   module GenericModuleCode
@@ -5,7 +7,7 @@ module DogBiscuits
 
     included do
       property :module_code, predicate: DogBiscuits::Vocab::Generic.moduleCode,
-                          multiple: true do |index|
+                             multiple: true do |index|
         index.as :stored_searchable
       end
     end

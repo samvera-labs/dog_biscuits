@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DogBiscuits
   # dump field for indexing
   module ForIndexing
