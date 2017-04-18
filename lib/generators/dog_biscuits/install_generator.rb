@@ -11,8 +11,8 @@ class DogBiscuits::InstallGenerator < Rails::Generators::Base
     init_path = 'config/initializers/dog_biscuits.rb'
     file_path = 'config/dog_biscuits.yml'
     unless File.exist?(file_path)
-      copy_file 'config/initializers/dog_biscuits.yml', file_path
-      copy_file 'config/dog_biscuits.rb', init_path
+      copy_file 'config/initializers/dog_biscuits.rb', file_path
+      copy_file 'config/dog_biscuits.yml', init_path
     end
     file_content = File.read(init_path)
     text = File.read(file_path)
