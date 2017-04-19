@@ -38,10 +38,10 @@ end
 
 task :start_sf_test do
   within_test_app do
-    system 'solr_wrapper --config config/solr_wrapper_test.yml & sleep 60'
+    system 'solr_wrapper --config config/solr_wrapper_test.yml & sleep 90'
   end
   within_test_app do
-    system 'fcrepo_wrapper --config config/fcrepo_wrapper_test.yml & sleep 30'
+    system 'fcrepo_wrapper --config config/fcrepo_wrapper_test.yml & sleep 60'
   end
 end
 

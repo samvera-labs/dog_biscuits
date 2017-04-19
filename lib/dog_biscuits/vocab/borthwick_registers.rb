@@ -154,20 +154,6 @@ module DogBiscuits
                range: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#Entry',
                domain: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#Folio'
 
-      property :note,
-               label: 'Note',
-               comment:
-                   'This property is used for a note specific to the
-                    Object Class being described.',
-               subPropertyOf: 'dcterms:description',
-               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/borthwick-registers#',
-               # doesn't like multiple ranges
-               # range: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#Entry'.freeze,
-               # range: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#EntryDate'.freeze,
-               # range: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#RelatedPersonGroup'.freeze,
-               # range: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#RelatedPlace'.freeze,
-               domain: 'rdf:Literal'
-
       property :marginalia,
                label: 'Marginalia',
                comment: 'This property is used for marginal notes.',

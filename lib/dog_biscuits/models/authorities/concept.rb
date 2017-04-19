@@ -3,11 +3,12 @@
 module DogBiscuits
   # concept
   class Concept < Authority
-    # TODO: add an after save, to find any usages and update_index / object; ditto for people etc.
     include DogBiscuits::GenericAuthorityTerms
     include DogBiscuits::OwlSameAs
     include DogBiscuits::RdfsSeeAlso # use for external see also links
     include Hyrax::Noid
+
+    before_save :add_label
 
     # Use for nested schemes
     has_and_belongs_to_many :top_concept_of,
@@ -35,11 +36,6 @@ module DogBiscuits
 
     property :definition, predicate: ::RDF::Vocab::SKOS.definition,
                           multiple: false do |index|
-      index.as :stored_searchable
-    end
-
-    property :skos_note, predicate: ::RDF::Vocab::SKOS.note,
-                         multiple: false do |index|
       index.as :stored_searchable
     end
 
@@ -83,6 +79,11 @@ module DogBiscuits
       else
         false
       end
+    end
+
+    def add_label
+      self.rdfs_label = preflabel if preflabel.present?
+      self.preflabel = rdfs_label if rdfs_label.present?
     end
   end
 end

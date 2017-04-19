@@ -6,7 +6,6 @@ describe DogBiscuits::Group do
   let(:group) { FactoryGirl.build(:group) }
   let(:scheme) { FactoryGirl.build_stubbed(:concept_scheme) }
 
-  it_behaves_like 'borthwick_note'
   it_behaves_like 'foaf_name'
   it_behaves_like 'generic_authority_terms'
   it_behaves_like 'generic_qualifier'
@@ -14,6 +13,7 @@ describe DogBiscuits::Group do
   it_behaves_like 'mads_related_authority'
   it_behaves_like 'owl_same_as'
   it_behaves_like 'skos_labels'
+  it_behaves_like 'skos_note'
 
   it 'is a group' do
     expect(group).to be_group

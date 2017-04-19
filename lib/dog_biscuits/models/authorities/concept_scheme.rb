@@ -5,16 +5,18 @@ module DogBiscuits
     include DogBiscuits::Description
     include Hyrax::Noid
 
-    has_many :concepts, class_name: 'DogBiscuits::Concept', inverse_of: :concept_scheme # , :dependent => :destroy
+    before_save :add_label
+
+    has_many :concepts, class_name: 'DogBiscuits::Concept', inverse_of: :concept_scheme
     has_many :organisations, class_name: 'DogBiscuits::Organisation', inverse_of: :concept_scheme
     has_many :departments, class_name: 'DogBiscuits::Organisation', inverse_of: :concept_scheme
     has_many :people, class_name: 'DogBiscuits::Person', inverse_of: :concept_scheme
-    has_many :persons # , :dependent => :destroy
-    has_many :places # , :dependent => :destroy
-    has_many :groups # , :dependent => :destroy
+    has_many :persons
+    has_many :places
+    has_many :groups
     has_many :projects, class_name: 'DogBiscuits::Project', inverse_of: :concept_scheme
 
-    # Used for nested schemes. Will be added automatically.
+    # Used for nested schemes. Will be added automatically via Concept.
     has_and_belongs_to_many :has_top_concept,
                             class_name: 'DogBiscuits::Concept',
                             predicate: ::RDF::Vocab::SKOS.hasTopConcept,
@@ -48,6 +50,11 @@ module DogBiscuits
 
     def concept?
       false
+    end
+
+    def add_label
+      self.rdfs_label = preflabel if preflabel.present?
+      self.preflabel = rdfs_label if rdfs_label.present?
     end
   end
 end

@@ -68,6 +68,7 @@ module DogBiscuits
     autoload :AddThesisMetadata
     autoload :AddJournalArticleMetadata
     autoload :AddPersonProperties
+    autoload :AddPlaceProperties
   end
 
   autoload_under 'models/concerns/metadata/archivematica' do
@@ -85,10 +86,6 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata/bibo' do
     autoload :PublicationStatus
-  end
-
-  autoload_under 'models/concerns/metadata/borthwick' do
-    autoload :BorthwickNote
   end
 
   autoload_under 'models/concerns/metadata/common' do
@@ -184,6 +181,7 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata/skos' do
     autoload :SkosLabels
+    autoload :SkosNote
   end
 
   autoload_under 'models/concerns/metadata/vivo' do

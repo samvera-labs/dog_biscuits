@@ -4,8 +4,6 @@ module DogBiscuits
   # person
   # this is not a RWO, could say #rwo is the RWO
   class HistoricPerson < DogBiscuits::Person
-    include DogBiscuits::BorthwickNote
-
     before_save :add_preflabel
 
     type [::RDF::URI.new('http://schema.org/Person'),

@@ -6,11 +6,11 @@ describe DogBiscuits::HistoricPerson do
   let(:historic_person) { FactoryGirl.build(:historic_person) }
   let(:scheme) { FactoryGirl.build_stubbed(:concept_scheme) }
 
-  it_behaves_like 'borthwick_note'
   it_behaves_like 'hub_dates'
   it_behaves_like 'generic_authority_terms'
   it_behaves_like 'mads_related_authority'
   it_behaves_like 'owl_same_as'
+  it_behaves_like 'skos_note'
 
   it 'is a historic person' do
     expect(historic_person).to be_historic_person

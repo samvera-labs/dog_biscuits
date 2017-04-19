@@ -4,7 +4,6 @@ module DogBiscuits
   # historical group or organisation
   class Group < DogBiscuits::Agent
     # Additional
-    include DogBiscuits::BorthwickNote
     include DogBiscuits::GenericQualifier
     include DogBiscuits::HubDates
 
