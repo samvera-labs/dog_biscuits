@@ -19,7 +19,7 @@ describe DogBiscuits::Terms::PeopleTerms do
 
   it 'has term hash' do
     people.people << person
-    terms.all.should eq([{ id: person.id.to_s, label: "Morrissey, Stephen Patrick, 1959-" }])
+    terms.all.should eq([{ id: person.id.to_s, label: "Spaceman David Bowie PhD, 1947-2016" }])
   end
 
   it 'does not find the term by id' do
@@ -29,12 +29,12 @@ describe DogBiscuits::Terms::PeopleTerms do
 
   it 'finds the term by id' do
     people.people << person
-    terms.find(person.id).first[:label].should eq('Morrissey, Stephen Patrick, 1959-')
+    terms.find(person.id).first[:label].should eq('Spaceman David Bowie PhD, 1947-2016')
   end
 
   it 'returns one result' do
     people.people << person
-    terms.search('Morrissey').length.should eq(1)
+    terms.search('Bowie').length.should eq(1)
   end
 
   it 'returns no results' do
@@ -44,16 +44,16 @@ describe DogBiscuits::Terms::PeopleTerms do
 
   it 'finds the id by the label' do
     people.people << person
-    terms.find_id('Morrissey, Stephen Patrick, 1959-').should eq(person.id)
+    terms.find_id('Spaceman David Bowie PhD, 1947-2016').should eq(person.id)
   end
 
   it 'finds the label by the id' do
     people.people << person
-    terms.find_value_string(person.id).should eq(['Morrissey, Stephen Patrick, 1959-'])
+    terms.find_value_string(person.id).should eq(['Spaceman David Bowie PhD, 1947-2016'])
   end
 
   it 'returns all for options list' do
     people.people << person
-    terms.select_all_options.should eq([["Morrissey, Stephen Patrick, 1959-", person.id.to_s]])
+    terms.select_all_options.should eq([["Spaceman David Bowie PhD, 1947-2016", person.id.to_s]])
   end
 end

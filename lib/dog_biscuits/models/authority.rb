@@ -4,7 +4,7 @@ module DogBiscuits
   # all authority classes extend this
   class Authority < ActiveFedora::Base
     include DogBiscuits::CommonLabels
-    include DogBiscuits::ValidateLabel
+    # TODO: REFACTOR include DogBiscuits::ValidateLabel
 
     after_save :update_usages
     after_destroy :update_usages

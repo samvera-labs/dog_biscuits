@@ -4,7 +4,7 @@ shared_examples_for 'pagination' do
   # the class that includes the concern
   let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
 
-  it 'has an pagination' do
+  it 'has pagination' do
     expect(stubby.pagination).to eq('pagination_test')
   end
   it 'has pagination predicate' do

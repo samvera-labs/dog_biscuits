@@ -21,13 +21,17 @@ describe DogBiscuits::Group do
 
   describe '#metadata' do
     specify { group.type.should include('http://xmlns.com/foaf/0.1/Group') }
-    specify { group.type.should include('http://vocab.getty.edu/ontology#GroupConcept') }
     specify { group.type.should include('http://xmlns.com/foaf/0.1/Agent') }
     specify { group.group_type.should eq(['group type']) }
+    specify { group.foaf_member.should eq(['member']) }
   end
 
-  it 'gets a preflabel from name parts' do
-    group.add_preflabel
+  it 'gets a label from name parts' do
+    group.add_label
+    expect(group.rdfs_label).to eq('name, 1500-1550, order of the phoenix')
+  end
+  it 'gets preflabel from rdfs label' do
+    group.add_label
     expect(group.preflabel).to eq('name, 1500-1550, order of the phoenix')
   end
 
@@ -39,5 +43,6 @@ describe DogBiscuits::Group do
 
   describe '#predicates' do
     specify { group.resource.dump(:ttl).should include('http://dlib.york.ac.uk/ontologies/generic#groupType') }
+    specify { group.resource.dump(:ttl).should include('http://xmlns.com/foaf/0.1/member') }
   end
 end

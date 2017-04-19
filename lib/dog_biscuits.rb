@@ -61,11 +61,13 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata/add_metadata' do
+    autoload :AddAgentMetadata
     autoload :AddDatasetMetadata
     autoload :AddPackageMetadata
     autoload :AddExamPaperMetadata
     autoload :AddThesisMetadata
     autoload :AddJournalArticleMetadata
+    autoload :AddPersonProperties
   end
 
   autoload_under 'models/concerns/metadata/archivematica' do
@@ -78,6 +80,7 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata/bibframe' do
     autoload :AwardingInstitution
+    autoload :IdentifiedBy
   end
 
   autoload_under 'models/concerns/metadata/bibo' do
@@ -134,7 +137,6 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata/foaf' do
     autoload :FoafName
-    autoload :FoafNameParts
   end
 
   autoload_under 'models/concerns/metadata/frbr' do
@@ -168,6 +170,7 @@ module DogBiscuits
     autoload :RdfsSeeAlso
     autoload :RdfType
     autoload :RelatedUrl
+    autoload :RdfsLabel
   end
 
   autoload_under 'models/concerns/metadata/schema' do
@@ -176,6 +179,7 @@ module DogBiscuits
     autoload :IssueNumber
     autoload :Pagination
     autoload :VolumeNumber
+    autoload :AlternateName
   end
 
   autoload_under 'models/concerns/metadata/skos' do

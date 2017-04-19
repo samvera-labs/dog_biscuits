@@ -27,18 +27,6 @@ FactoryGirl.define do
     preflabel 'people'
   end
 
-  factory :broader_concept, class: DogBiscuits::Concept do
-    preflabel 'broader object'
-  end
-
-  factory :seealso_concept, class: DogBiscuits::Concept do
-    preflabel 'seealso object'
-  end
-
-  factory :top_concept, class: DogBiscuits::Concept do
-    association :top_concept_of, factory: :concept_scheme, strategy: :build
-  end
-
   factory :concept, class: DogBiscuits::Concept do
     association :concept_scheme, factory: :concept_scheme, strategy: :build
 
@@ -60,21 +48,65 @@ FactoryGirl.define do
     # end
   end
 
-  factory :group, class: DogBiscuits::Group do
-    association :concept_scheme, factory: :concept_scheme, strategy: :build
+  factory :simple_concept, class: DogBiscuits::Concept do
+    preflabel 'miserabilism'
+  end
 
-    preflabel 'label'
-    altlabel  ['alternative label']
-    same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
-    related_authority ['related authority']
-    approved 'true'
-    rules 'nca'
-    used 'true'
+  factory :broader_concept, class: DogBiscuits::Concept do
+    preflabel 'broader object'
+  end
+
+  factory :seealso_concept, class: DogBiscuits::Concept do
+    preflabel 'seealso object'
+  end
+
+  factory :top_concept, class: DogBiscuits::Concept do
+    association :top_concept_of, factory: :concept_scheme, strategy: :build
+  end
+
+  factory :project, class: DogBiscuits::Project do
+    preflabel 'A scientific study into misery'
+    name 'A scientific study into misery'
+    identifier ['identifier_test']
+    funder ['funder']
+  end
+
+  factory :agent, class: DogBiscuits::Agent do
+    rdfs_label 'Not Factory'
     name 'name'
-    dates '1500-1550'
-    qualifier 'order of the phoenix'
-    note ['note']
-    group_type ['group type']
+    alternate_name ['Ziggy Stardust']
+    email ['factory@hacienda.com']
+    homepage ['factory.com']
+    description ['a description of the factory']
+    identified_by ['identified_by']
+    account ['online_account']
+  end
+
+  factory :person, class: DogBiscuits::Person do
+    prefix 'Spaceman'
+    family_name 'Bowie'
+    given_name 'David'
+    suffix 'PhD'
+    birth_date '1947'
+    death_date '2016'
+    birth_place 'Brixton'
+    death_place 'Manhattan'
+    gender 'Fluid'
+    nationality 'Martian'
+    alternate_name ['Ziggy Stardust']
+    knows ['Mick Ronson']
+    affiliation ['NASA']
+    member_of ['The Spiders From Mars']
+  end
+
+  factory :person_one, class: DogBiscuits::Person do
+    name 'Morrissey'
+    dates '1959-'
+  end
+
+  factory :person_two, class: DogBiscuits::Person do
+    preflabel 'Smith, Mark E.'
+    given_name 'Stephen Patrick'
   end
 
   factory :historic_person, class: DogBiscuits::HistoricPerson do
@@ -97,34 +129,29 @@ FactoryGirl.define do
     dates_of_office '1500-1510'
   end
 
+  factory :group, class: DogBiscuits::Group do
+    association :concept_scheme, factory: :concept_scheme, strategy: :build
+
+    preflabel 'label'
+    altlabel  ['alternative label']
+    same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
+    related_authority ['related authority']
+    approved 'true'
+    rules 'nca'
+    used 'true'
+    name 'name'
+    dates '1500-1550'
+    qualifier 'order of the phoenix'
+    note ['note']
+    group_type ['group type']
+    foaf_member ['member']
+  end
+
   factory :organisation, class: DogBiscuits::Organisation do
     preflabel 'University of York. Department of Miserabilism'
     name 'name'
     dates '1500-1550'
     qualifier 'order of the phoenix'
-  end
-
-  factory :person, class: DogBiscuits::Person do
-    preflabel 'Smith, Mark E.'
-    family_name 'Morrissey'
-    given_name 'Stephen Patrick'
-    dates '1959-'
-  end
-
-  factory :person_min, class: DogBiscuits::Person do
-    preflabel 'Smith, Mark E.'
-    given_name 'Stephen Patrick'
-  end
-
-  factory :simple_concept, class: DogBiscuits::Concept do
-    preflabel 'miserabilism'
-  end
-
-  factory :project, class: DogBiscuits::Project do
-    preflabel 'A scientific study into misery'
-    name 'A scientific study into misery'
-    identifier ['identifier_test']
-    funder ['funder']
   end
 
   factory :place, class: DogBiscuits::Place do
