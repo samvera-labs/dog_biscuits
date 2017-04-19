@@ -1,23 +1,12 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # person
-  # this is not a RWO, could say #rwo is the RWO
   class HistoricPerson < DogBiscuits::Person
-    before_save :add_preflabel
+    before_save :add_label
 
-    type [::RDF::URI.new('http://schema.org/Person'),
-          ::RDF::URI.new('http://vocab.getty.edu/ontology#PersonConcept'),
-          ::RDF::Vocab::FOAF.Agent,
-          ::RDF::Vocab::FOAF.Person]
-
-    # ::RDF::URI.new('http://purl.org/vra/Person')
-
-    # in VRA this includes family as well as individual (use group)
-    # vra:hasCulture
-    # vra:name == foaf.name
-    # vra:birthDate
-    # vra:deathDate
+    type [::RDF::Vocab::FOAF.Agent,
+          ::RDF::Vocab::FOAF.Person,
+          DogBiscuits::Vocab::BorthwickRegisters.HistoricPerson]
 
     # Eg. NCA Rules 2.5C.
     property :pre_title, predicate: DogBiscuits::Vocab::Generic.preTitle,
@@ -49,8 +38,8 @@ module DogBiscuits
       true
     end
 
-    # Generate a preflabel from the name parts. Overwrite the existing preflabel.
-    def add_preflabel
+    # Generate a rdfs label from the name parts. Overwrite the existing label.
+    def add_label
       label = ''
       label += ", #{family_name}" if family_name.present?
       label += ", #{pre_title}" if pre_title.present?
@@ -59,7 +48,8 @@ module DogBiscuits
       label += ", #{post_title}" if post_title.present?
       label += ", #{epithet}" if epithet.present?
       label = label.sub(', ', '') if label.starts_with? ', '
-      self.preflabel = label
+      self.rdfs_label = label
+      add_preflabel
     end
   end
 end

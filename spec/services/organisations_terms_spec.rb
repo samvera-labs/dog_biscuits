@@ -19,7 +19,7 @@ describe DogBiscuits::Terms::OrganisationsTerms do
 
   it 'has term hash' do
     organisations.organisations << organisation
-    terms.all.should eq([{ id: organisation.id.to_s, label: "name, 1500-1550, order of the phoenix" }])
+    terms.all.should eq([{ id: organisation.id.to_s, label: "The Smiths, 1500-1550, order of the phoenix" }])
   end
 
   it 'does not find the term by id' do
@@ -29,7 +29,7 @@ describe DogBiscuits::Terms::OrganisationsTerms do
 
   it 'finds the term by id' do
     organisations.organisations << organisation
-    terms.find(organisation.id).first[:label].should eq('name, 1500-1550, order of the phoenix')
+    terms.find(organisation.id).first[:label].should eq('The Smiths, 1500-1550, order of the phoenix')
   end
 
   it 'returns one result' do
@@ -44,16 +44,16 @@ describe DogBiscuits::Terms::OrganisationsTerms do
 
   it 'finds the id by the label' do
     organisations.organisations << organisation
-    terms.find_id('name, 1500-1550, order of the phoenix').should eq(organisation.id)
+    terms.find_id('The Smiths, 1500-1550, order of the phoenix').should eq(organisation.id)
   end
 
   it 'finds the label by the id' do
     organisations.organisations << organisation
-    terms.find_value_string(organisation.id).should eq(['name, 1500-1550, order of the phoenix'])
+    terms.find_value_string(organisation.id).should eq(['The Smiths, 1500-1550, order of the phoenix'])
   end
 
   it 'returns all for options list' do
     organisations.organisations << organisation
-    terms.select_all_options.should eq([["name, 1500-1550, order of the phoenix", organisation.id.to_s]])
+    terms.select_all_options.should eq([["The Smiths, 1500-1550, order of the phoenix", organisation.id.to_s]])
   end
 end

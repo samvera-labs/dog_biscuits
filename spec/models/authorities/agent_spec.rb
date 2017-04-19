@@ -39,10 +39,10 @@ describe DogBiscuits::Agent do
 
   it 'gets rdfs label from name' do
     agent.add_label
-    expect(agent.rdfs_label).to eq('name')
+    expect(agent.rdfs_label).to eq('The Smiths')
   end
   it 'gets preflabel from rdfs label' do
     agent.add_label
-    expect(agent.preflabel).to eq('name')
+    expect(agent.preflabel).to eq('The Smiths')
   end
 end

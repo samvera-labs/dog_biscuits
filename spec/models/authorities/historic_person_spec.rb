@@ -16,18 +16,25 @@ describe DogBiscuits::HistoricPerson do
     expect(historic_person).to be_historic_person
   end
 
-  describe '#metadata' do
-    specify { historic_person.type.should include('http://schema.org/Person') }
+  describe '#rdftypes' do
+    specify { historic_person.type.should include('http://xmlns.com/foaf/0.1/Person') }
     specify { historic_person.type.should include('http://xmlns.com/foaf/0.1/Agent') }
-    specify { historic_person.type.should include('http://vocab.getty.edu/ontology#PersonConcept') }
+    specify { historic_person.type.should include('http://dlib.york.ac.uk/ontologies/borthwick-registers#HistoricPerson') }
+  end
+  describe '#metadata' do
     specify { historic_person.pre_title.should eq('pre_title') }
     specify { historic_person.post_title.should eq('post_title') }
     specify { historic_person.epithet.should eq('epithet') }
     specify { historic_person.dates_of_office.should eq('1500-1510') }
   end
 
-  it 'gets a preflabel from name elements' do
-    historic_person.add_preflabel
+  it 'gets a label from name elements' do
+    historic_person.add_label
+    expect(historic_person.rdfs_label).to eq('Morrissey, pre_title, Stephen Patrick, 1500-1550, post_title, epithet')
+  end
+
+  it 'gets a preflabel from rdfs_label' do
+    historic_person.add_label
     expect(historic_person.preflabel).to eq('Morrissey, pre_title, Stephen Patrick, 1500-1550, post_title, epithet')
   end
 

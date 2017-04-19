@@ -20,7 +20,7 @@ end
 
 # Because the specs create 'real' objects, solr and fcrepo must be running
 desc 'Run continuous integration build'
-task ci: ['rubocop', 'kill_sf_test', 'start_sf_test', 'spec', 'kill_sf_test']
+task ci: ['kill_sf_test', 'start_sf_test', 'rubocop', 'spec', 'kill_sf_test']
 
 task default: :ci
 

@@ -28,11 +28,11 @@ describe DogBiscuits::Group do
 
   it 'gets a label from name parts' do
     group.add_label
-    expect(group.rdfs_label).to eq('name, 1500-1550, order of the phoenix')
+    expect(group.rdfs_label).to eq('The Smiths, 1500-1550, order of the phoenix')
   end
   it 'gets preflabel from rdfs label' do
     group.add_label
-    expect(group.preflabel).to eq('name, 1500-1550, order of the phoenix')
+    expect(group.preflabel).to eq('The Smiths, 1500-1550, order of the phoenix')
   end
 
   describe 'related objects' do

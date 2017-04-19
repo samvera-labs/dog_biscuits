@@ -37,13 +37,12 @@ module DogBiscuits
                 entries.',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/borthwick-registers#'
 
-      term :RelatedAgent,
-           label: 'Related Agent',
-           subClassOf: 'http://xmlns.com/foaf/0.1/Agent',
+      term :HistoricPerson,
+           label: 'Historic Person',
+           subClassOf: 'http://xmlns.com/foaf/0.1/Person',
            comment:
-               'A person or group in the context of its relationship to another
-                Object Class. This class is not intended to describe Persons
-                or Groups independently.',
+               'A person of historical significance, living or dead. Likely to be described with specialist
+                metadata, eg. National Archives Council (NCA) Rules.',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/borthwick-registers#'
 
       term :RelatedPlace,

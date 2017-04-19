@@ -16,11 +16,6 @@ module DogBiscuits
     end
   end
 
-  autoload_under 'vocab/concerns' do
-    autoload :BorthwickClasses
-    autoload :BorthwickProperties
-  end
-
   autoload_under 'services' do
     autoload :Terms
     autoload :TermsService

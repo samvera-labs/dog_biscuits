@@ -24,12 +24,12 @@ describe DogBiscuits::Organisation do
 
   it 'gets a rdfs label from name parts' do
     org.add_label
-    expect(org.rdfs_label).to eq('name, 1500-1550, order of the phoenix')
+    expect(org.rdfs_label).to eq('The Smiths, 1500-1550, order of the phoenix')
   end
 
   it 'gets a preflabel from rdfs label' do
     org.add_label
-    expect(org.preflabel).to eq('name, 1500-1550, order of the phoenix')
+    expect(org.preflabel).to eq('The Smiths, 1500-1550, order of the phoenix')
   end
 
   describe '#predicates' do

@@ -7,24 +7,32 @@ FactoryGirl.define do
     description ['description']
   end
 
-  factory :subjects, class: DogBiscuits::ConceptScheme do
-    preflabel 'subjects'
-  end
-
   factory :departments, class: DogBiscuits::ConceptScheme do
     preflabel 'departments'
+  end
+
+  factory :groups, class: DogBiscuits::ConceptScheme do
+    preflabel 'groups'
   end
 
   factory :organisations, class: DogBiscuits::ConceptScheme do
     preflabel 'organisations'
   end
 
+  factory :people, class: DogBiscuits::ConceptScheme do
+    preflabel 'people'
+  end
+
+  factory :places, class: DogBiscuits::ConceptScheme do
+    preflabel 'places'
+  end
+
   factory :projects, class: DogBiscuits::ConceptScheme do
     preflabel 'projects'
   end
 
-  factory :people, class: DogBiscuits::ConceptScheme do
-    preflabel 'people'
+  factory :subjects, class: DogBiscuits::ConceptScheme do
+    preflabel 'subjects'
   end
 
   factory :concept, class: DogBiscuits::Concept do
@@ -73,7 +81,7 @@ FactoryGirl.define do
 
   factory :agent, class: DogBiscuits::Agent do
     rdfs_label 'Not Factory'
-    name 'name'
+    name 'The Smiths'
     alternate_name ['Ziggy Stardust']
     email ['factory@hacienda.com']
     homepage ['factory.com']
@@ -139,7 +147,7 @@ FactoryGirl.define do
     approved 'true'
     rules 'nca'
     used 'true'
-    name 'name'
+    name 'The Smiths'
     dates '1500-1550'
     qualifier 'order of the phoenix'
     note ['note']
@@ -149,7 +157,7 @@ FactoryGirl.define do
 
   factory :organisation, class: DogBiscuits::Organisation do
     preflabel 'University of York. Department of Miserabilism'
-    name 'name'
+    name 'The Smiths'
     dates '1500-1550'
     qualifier 'order of the phoenix'
   end
