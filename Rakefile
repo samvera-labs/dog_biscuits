@@ -20,7 +20,7 @@ end
 
 # Because the specs create 'real' objects, solr and fcrepo must be running
 desc 'Run continuous integration build'
-task ci: ['rubocop', 'kill_sf_test', 'start_sf_test', 'spec', 'kill_sf_test']
+task ci: ['kill_sf_test', 'start_sf_test', 'rubocop', 'spec', 'kill_sf_test']
 
 task default: :ci
 
@@ -38,10 +38,10 @@ end
 
 task :start_sf_test do
   within_test_app do
-    system 'solr_wrapper --config config/solr_wrapper_test.yml & sleep 60'
+    system 'solr_wrapper --config config/solr_wrapper_test.yml & sleep 90'
   end
   within_test_app do
-    system 'fcrepo_wrapper --config config/fcrepo_wrapper_test.yml & sleep 30'
+    system 'fcrepo_wrapper --config config/fcrepo_wrapper_test.yml & sleep 60'
   end
 end
 

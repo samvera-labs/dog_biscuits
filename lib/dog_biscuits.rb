@@ -16,11 +16,6 @@ module DogBiscuits
     end
   end
 
-  autoload_under 'vocab/concerns' do
-    autoload :BorthwickClasses
-    autoload :BorthwickProperties
-  end
-
   autoload_under 'services' do
     autoload :Terms
     autoload :TermsService
@@ -61,11 +56,14 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata/add_metadata' do
+    autoload :AddAgentMetadata
     autoload :AddDatasetMetadata
     autoload :AddPackageMetadata
     autoload :AddExamPaperMetadata
     autoload :AddThesisMetadata
     autoload :AddJournalArticleMetadata
+    autoload :AddPersonProperties
+    autoload :AddPlaceProperties
   end
 
   autoload_under 'models/concerns/metadata/archivematica' do
@@ -78,14 +76,11 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata/bibframe' do
     autoload :AwardingInstitution
+    autoload :IdentifiedBy
   end
 
   autoload_under 'models/concerns/metadata/bibo' do
     autoload :PublicationStatus
-  end
-
-  autoload_under 'models/concerns/metadata/borthwick' do
-    autoload :BorthwickNote
   end
 
   autoload_under 'models/concerns/metadata/common' do
@@ -134,7 +129,6 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata/foaf' do
     autoload :FoafName
-    autoload :FoafNameParts
   end
 
   autoload_under 'models/concerns/metadata/frbr' do
@@ -168,6 +162,7 @@ module DogBiscuits
     autoload :RdfsSeeAlso
     autoload :RdfType
     autoload :RelatedUrl
+    autoload :RdfsLabel
   end
 
   autoload_under 'models/concerns/metadata/schema' do
@@ -176,10 +171,12 @@ module DogBiscuits
     autoload :IssueNumber
     autoload :Pagination
     autoload :VolumeNumber
+    autoload :AlternateName
   end
 
   autoload_under 'models/concerns/metadata/skos' do
     autoload :SkosLabels
+    autoload :SkosNote
   end
 
   autoload_under 'models/concerns/metadata/vivo' do

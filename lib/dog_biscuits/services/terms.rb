@@ -10,9 +10,21 @@ module DogBiscuits
       end
     end
 
+    class GroupsTerms < TermsService
+      def terms_list
+        'groups'
+      end
+    end
+
     class PeopleTerms < TermsService
       def terms_list
         'people'
+      end
+    end
+
+    class PlacesTerms < TermsService
+      def terms_list
+        'places'
       end
     end
 

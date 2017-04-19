@@ -4,7 +4,9 @@ module DogBiscuits
   # all authority classes extend this
   class Authority < ActiveFedora::Base
     include DogBiscuits::CommonLabels
-    include DogBiscuits::ValidateLabel
+    include DogBiscuits::SkosNote
+    # TODO: REFACTOR
+    # include DogBiscuits::ValidateLabel
 
     after_save :update_usages
     after_destroy :update_usages
@@ -39,7 +41,7 @@ module DogBiscuits
       ActiveFedora::SolrService.get(
         "values_tesim:#{id}",
         fl: 'id',
-        rows: 1000
+        rows: 1000 # TODO: get num results and re-query
 
       )['response']['docs'].each do |r|
         ActiveFedora::Base.find(r['id']).update_index

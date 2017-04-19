@@ -6,7 +6,6 @@ describe DogBiscuits::Group do
   let(:group) { FactoryGirl.build(:group) }
   let(:scheme) { FactoryGirl.build_stubbed(:concept_scheme) }
 
-  it_behaves_like 'borthwick_note'
   it_behaves_like 'foaf_name'
   it_behaves_like 'generic_authority_terms'
   it_behaves_like 'generic_qualifier'
@@ -14,6 +13,7 @@ describe DogBiscuits::Group do
   it_behaves_like 'mads_related_authority'
   it_behaves_like 'owl_same_as'
   it_behaves_like 'skos_labels'
+  it_behaves_like 'skos_note'
 
   it 'is a group' do
     expect(group).to be_group
@@ -21,14 +21,18 @@ describe DogBiscuits::Group do
 
   describe '#metadata' do
     specify { group.type.should include('http://xmlns.com/foaf/0.1/Group') }
-    specify { group.type.should include('http://vocab.getty.edu/ontology#GroupConcept') }
     specify { group.type.should include('http://xmlns.com/foaf/0.1/Agent') }
     specify { group.group_type.should eq(['group type']) }
+    specify { group.foaf_member.should eq(['member']) }
   end
 
-  it 'gets a preflabel from name parts' do
-    group.add_preflabel
-    expect(group.preflabel).to eq('name, 1500-1550, order of the phoenix')
+  it 'gets a label from name parts' do
+    group.add_label
+    expect(group.rdfs_label).to eq('The Smiths, 1500-1550, order of the phoenix')
+  end
+  it 'gets preflabel from rdfs label' do
+    group.add_label
+    expect(group.preflabel).to eq('The Smiths, 1500-1550, order of the phoenix')
   end
 
   describe 'related objects' do
@@ -39,5 +43,6 @@ describe DogBiscuits::Group do
 
   describe '#predicates' do
     specify { group.resource.dump(:ttl).should include('http://dlib.york.ac.uk/ontologies/generic#groupType') }
+    specify { group.resource.dump(:ttl).should include('http://xmlns.com/foaf/0.1/member') }
   end
 end

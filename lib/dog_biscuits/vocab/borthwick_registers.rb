@@ -37,13 +37,12 @@ module DogBiscuits
                 entries.',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/borthwick-registers#'
 
-      term :RelatedAgent,
-           label: 'Related Agent',
-           subClassOf: 'http://xmlns.com/foaf/0.1/Agent',
+      term :HistoricPerson,
+           label: 'Historic Person',
+           subClassOf: 'http://xmlns.com/foaf/0.1/Person',
            comment:
-               'A person or group in the context of its relationship to another
-                Object Class. This class is not intended to describe Persons
-                or Groups independently.',
+               'A person of historical significance, living or dead. Likely to be described with specialist
+                metadata, eg. National Archives Council (NCA) Rules.',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/borthwick-registers#'
 
       term :RelatedPlace,
@@ -153,20 +152,6 @@ module DogBiscuits
                'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/borthwick-registers#',
                range: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#Entry',
                domain: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#Folio'
-
-      property :note,
-               label: 'Note',
-               comment:
-                   'This property is used for a note specific to the
-                    Object Class being described.',
-               subPropertyOf: 'dcterms:description',
-               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/borthwick-registers#',
-               # doesn't like multiple ranges
-               # range: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#Entry'.freeze,
-               # range: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#EntryDate'.freeze,
-               # range: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#RelatedPersonGroup'.freeze,
-               # range: 'http://dlib.york.ac.uk/ontologies/borthwick-registers#RelatedPlace'.freeze,
-               domain: 'rdf:Literal'
 
       property :marginalia,
                label: 'Marginalia',

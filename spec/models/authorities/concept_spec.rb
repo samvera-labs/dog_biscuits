@@ -25,7 +25,7 @@ describe DogBiscuits::Concept do
   describe '#metadata' do
     specify { concept1.type.should include('http://www.w3.org/2004/02/skos/core#Concept') }
     specify { concept1.definition.should eq('my definition is this') }
-    specify { concept1.skos_note.should eq('notes') }
+    specify { concept1.note.should eq(['note']) }
     specify { concept1.exact_match.should eq(['uri-to-exact-matching-concept']) }
     specify { concept1.close_match.should eq(['uri-to-close-matching-concept']) }
   end

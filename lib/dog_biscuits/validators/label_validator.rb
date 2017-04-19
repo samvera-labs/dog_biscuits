@@ -16,7 +16,9 @@ module DogBiscuits
     end
 
     def validate_authority(record)
-      if record.agent?
+      if record.concept?
+        validate_preflabel(record)
+      elsif record.agent?
         validate_agent(record)
       else
         validate_preflabel(record) unless record.place?
@@ -24,7 +26,7 @@ module DogBiscuits
     end
 
     def validate_agent(record)
-      record.errors[:preflabel] << 'You must provide a preflabel or name for agents' if record.preflabel.blank? && (record.name.blank? || (record.given_name.blank? && record.family_name.blank?))
+      record.errors[:rdfs_label] << 'You must provide a rdfs label or name for agents' if record.rdfs_label.blank? || record.name.blank?
     end
 
     def validate_title(record)
@@ -32,7 +34,11 @@ module DogBiscuits
     end
 
     def validate_preflabel(record)
-      record.errors[:preflabel] << 'You must provide a preflabel for authorities' if record.preflabel.blank?
+      record.errors[:rdfs_label] << 'You must provide a preflabel for concepts' if record.preflabel.blank?
+    end
+
+    def validate_rdfslabel(record)
+      record.errors[:rdfs_label] << 'You must provide a rdfs label' if record.rdfs_label.blank?
     end
   end
 end
