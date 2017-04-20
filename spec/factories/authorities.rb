@@ -161,6 +161,12 @@ FactoryGirl.define do
     qualifier 'order of the phoenix'
   end
 
+  factory :department, class: DogBiscuits::Organisation do
+    preflabel 'Department of Miserabilism'
+    name 'Department of Miserabilism'
+    dates '1500-1550'
+  end
+
   factory :place, class: DogBiscuits::Place do
     feature_code ['city']
     place_name 'Didsbury'

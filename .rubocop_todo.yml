@@ -10,6 +10,7 @@ AllCops:
     - 'lib/generators/**/*'
     - 'lib/dog_biscuits/models/to_refactor_or_remove/**/*'
     - 'Gemfile'
+    - 'spec/services/*'
 Metrics/MethodLength:
   Exclude:
     - 'lib/dog_biscuits/validators/has_label_validator.rb'

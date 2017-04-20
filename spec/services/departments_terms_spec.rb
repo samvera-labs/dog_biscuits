@@ -9,51 +9,51 @@ describe DogBiscuits::Terms::DepartmentsTerms do
     terms.all.should eq([])
   end
 
-  let(:organisation) { FactoryGirl.create(:organisation) }
+  let(:department) { FactoryGirl.create(:department) }
   let(:departments) { FactoryGirl.create(:departments) }
 
   it 'has one term' do
-    departments.departments << organisation
+    departments.departments << department
     terms.all.length.should eq(1)
   end
 
   it 'has term hash' do
-    departments.departments << organisation
-    terms.all.should eq([{ id: organisation.id.to_s, label: "The Smiths, 1500-1550, order of the phoenix" }])
+    departments.departments << department
+    terms.all.should eq([{ id: department.id.to_s, label: "Department of Miserabilism, 1500-1550" }])
   end
 
   it 'does not find the term by id' do
-    departments.departments << organisation
+    departments.departments << department
     terms.find('not-a-real-id').should eq([])
   end
 
   it 'finds the term by id' do
-    departments.departments << organisation
-    terms.find(organisation.id).first[:label].should eq('The Smiths, 1500-1550, order of the phoenix')
+    departments.departments << department
+    terms.find(department.id).first[:label].should eq('Department of Miserabilism, 1500-1550')
   end
 
   it 'returns one result' do
-    departments.departments << organisation
-    terms.search('phoenix').length.should eq(1)
+    departments.departments << department
+    terms.search('Miserabilism').length.should eq(1)
   end
 
   it 'returns no results' do
-    departments.departments << organisation
+    departments.departments << department
     terms.search('fake search').length.should eq(0)
   end
 
   it 'finds the id by the label' do
-    departments.departments << organisation
-    terms.find_id('The Smiths, 1500-1550, order of the phoenix').should eq(organisation.id)
+    departments.departments << department
+    terms.find_id('Department of Miserabilism, 1500-1550').should eq(department.id)
   end
 
   it 'finds the label by the id' do
-    departments.departments << organisation
-    terms.find_value_string(organisation.id).should eq(['The Smiths, 1500-1550, order of the phoenix'])
+    departments.departments << department
+    terms.find_value_string(department.id).should eq(['Department of Miserabilism, 1500-1550'])
   end
 
   it 'returns all for options list' do
-    departments.departments << organisation
-    terms.select_all_options.should eq([["The Smiths, 1500-1550, order of the phoenix", organisation.id.to_s]])
+    departments.departments << department
+    terms.select_all_options.should eq([["Department of Miserabilism, 1500-1550", department.id.to_s]])
   end
 end
