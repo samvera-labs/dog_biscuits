@@ -14,23 +14,22 @@ describe DogBiscuits::Dataset do
     expect(dataset).to be_dataset
   end
 
-  it_behaves_like 'pure'
-  it_behaves_like 'for_indexing'
-  it_behaves_like 'simple_versions'
-  it_behaves_like 'doi'
   it_behaves_like 'access_rights'
-  it_behaves_like 'publisher'
   it_behaves_like 'available'
   it_behaves_like 'creator'
-  it_behaves_like 'readme_file'
+  it_behaves_like 'doi'
+  it_behaves_like 'embargo_release'
+  it_behaves_like 'for_indexing'
+  it_behaves_like 'has_restriction'
   it_behaves_like 'last_access'
   it_behaves_like 'number_of_downloads'
+  it_behaves_like 'publisher'
+  it_behaves_like 'pure'
+  it_behaves_like 'readme_file'
   it_behaves_like 'resource_type'
+  it_behaves_like 'simple_versions'
 
   describe '#metadata' do
-    specify { dataset.embargo_release.should eq(2016 - 12 - 12) }
-    specify { dataset.retention_policy.should eq(['10 years from last access']) }
-    specify { dataset.restriction_note.should eq(['restriction note']) }
     before do
       dataset.managing_organisation_resource << org
     end
@@ -43,12 +42,6 @@ describe DogBiscuits::Dataset do
     specify { dataset.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
     specify { dataset.type.should_not include('http://purl.org/spar/fabio/ExaminationPaper') }
     specify { dataset.type.should_not include('http://purl.org/spar/fabio/JournalArticle') }
-  end
-
-  describe '#predicates' do
-    specify { dataset.resource.dump(:ttl).should include('http://dlib.york.ac.uk/ontologies/generic#embargoRelease') }
-    specify { dataset.resource.dump(:ttl).should include('http://dlib.york.ac.uk/ontologies/generic#retentionPolicy') }
-    specify { dataset.resource.dump(:ttl).should include('http://dlib.york.ac.uk/ontologies/generic#restrictionNote') }
   end
 
   describe '#related objects' do

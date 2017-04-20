@@ -37,9 +37,8 @@ FactoryGirl.define do
 
   factory :concept, class: DogBiscuits::Concept do
     association :concept_scheme, factory: :concept_scheme, strategy: :build
-
     preflabel 'label'
-    altlabel  ['alternative label']
+    altlabel ['alternative label']
     definition 'my definition is this'
     note ['note']
     approved 'true'

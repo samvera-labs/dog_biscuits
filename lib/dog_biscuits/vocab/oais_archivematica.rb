@@ -9,25 +9,24 @@ module DogBiscuits
            comment: 'A dissemination information package, as defined by the Reference Model for an Open Archival Information System (OAIS).',
            label: 'Dissemination Information Package (DIP)',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/oais-archivematica#',
-           # TODO: subClassOf: ''.freeze,
+           subClassOf: 'http://dlib.york.ac.uk/ontologies/generic#Package',
            type: 'rdf:Class'
 
       term :ArchivalInformationPackage,
            comment: 'An archival information package, as defined by the Reference Model for an Open Archival Information System (OAIS).',
            label: 'Archival Information Package (AIP)',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/oais-archivematica#',
-           # TODO: subClassOf: ''.freeze,
+           subClassOf: 'http://dlib.york.ac.uk/ontologies/generic#Package',
            type: 'rdf:Class'
 
       term :SubmissionInformationPackage,
            comment: 'A submission information package, as defined by the Reference Model for an Open Archival Information System (OAIS).',
            label: 'Submission Information Package (SIP)',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/oais-archivematica#',
-           # TODO: subClassOf: ''.freeze,
+           subClassOf: 'http://dlib.york.ac.uk/ontologies/generic#Package',
            type: 'rdf:Class'
 
       # Property definitions
-
       property :aipUuid,
                comment: 'This property should be used to for the unique identifier for an Archival Information Package (AIP).',
                label: 'AIP UUID',
@@ -107,11 +106,11 @@ module DogBiscuits
       # Extra definitions
       term :'',
            comment: 'General purpose ontology for York Digital Library.',
-           'dc:modified' => '2016', # TODO: date
-           'dc:publisher' => 'http://dlib.york.ac.uk/',
+           'dc:modified' => '2017',
+           'dc:publisher' => '',
            'dc:title' => 'York Digital Library OAIS and Archivematica Ontology',
            label: 'Generic',
-           'owl:versionInfo' => '2016' # TODO: date
+           'owl:versionInfo' => ''
     end
   end
 end

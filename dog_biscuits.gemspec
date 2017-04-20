@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Julie Allinson']
   spec.email         = ['julie.allinson@london.ac.uk']
 
-  if spec.respond_to?(:metadata)
+  if spec.respond_to?(:metadata_properties)
     spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
   end
 
@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'rspec', '~> 3.1'
   spec.add_development_dependency 'rspec-rails', '~> 3.1'
-  spec.add_development_dependency 'factory_girl_rails' # , :require => false
+  spec.add_development_dependency 'factory_girl_rails'
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'engine_cart'
 end

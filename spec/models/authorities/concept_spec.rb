@@ -2,8 +2,6 @@
 
 require 'spec_helper'
 
-# TODO: test concerns and validators only once; only test concept specific stuff here
-
 describe DogBiscuits::Concept do
   let(:scheme) { FactoryGirl.build(:concept_scheme) }
   let(:scheme1) { FactoryGirl.build_stubbed(:concept_scheme) }
@@ -33,6 +31,8 @@ describe DogBiscuits::Concept do
   describe '#predicates' do
     specify { concept1.resource.dump(:ttl).should include('http://www.w3.org/2004/02/skos/core#definition') }
     specify { concept1.resource.dump(:ttl).should include('http://www.w3.org/2004/02/skos/core#note') }
+    specify { concept1.resource.dump(:ttl).should include('http://www.w3.org/2004/02/skos/core#exactMatch') }
+    specify { concept1.resource.dump(:ttl).should include('http://www.w3.org/2004/02/skos/core#closeMatch') }
   end
 
   describe '#related objects' do
@@ -66,7 +66,5 @@ describe DogBiscuits::Concept do
     it 'has narrower concept' do
       expect(concept2.narrower.first.preflabel).to eq('label')
     end
-
-    # TODO: test exact and close
   end
 end

@@ -3,7 +3,6 @@
 require 'rdf'
 module DogBiscuits
   module Vocab
-    # borthwick registers ontology
     class BorthwickRegisters < RDF::Vocabulary('http://dlib.york.ac.uk/ontologies/borthwick-registers#')
       # Class definitions
       term :SingleDate,
@@ -50,6 +49,14 @@ module DogBiscuits
            comment:
                'A place in the context of its relationship to another Object
                 Class. This class is not intended to describe Places
+                independently.',
+           'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/borthwick-registers#'
+
+      term :RelatedPersonGroup,
+           label: 'Related Person or Group',
+           comment:
+               'A person or group in the context of its relationship to another Object
+                Class. This class is not intended to describe Person or Group
                 independently.',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/borthwick-registers#'
 
@@ -304,11 +311,11 @@ module DogBiscuits
            comment:
                'Borthwick Institute for Archives
                 ontology for Registers.',
-           'dc:modified' => '2016', # TODO: date
-           'dc:publisher' => 'http://dlib.york.ac.uk/',
+           'dc:modified' => '2017',
+           'dc:publisher' => '',
            'dc:title' => 'Borthwick Registers Ontology',
            label: 'Borthwick Registers',
-           'owl:versionInfo' => '2016' # TODO: date
+           'owl:versionInfo' => ''
     end
   end
 end

@@ -3,29 +3,20 @@
 require 'rdf'
 module DogBiscuits
   module Vocab
-    # dlib generic ontology
     class Generic < RDF::Vocabulary('http://dlib.york.ac.uk/ontologies/generic#')
       # Class definitions
-      term :OrderedCollection,
-           comment:
-               'A collection with members that has a logical order.',
-           label: 'Ordered Collection',
-           'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
-           # TODO: subClassOf: ''.freeze,
-           type: 'rdf:Class'
       term :GenericWork,
            comment:
                'A work that does not fit into any pre-existing model,
                 eg. an unidentified data file.',
            label: 'Generic Work',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
-           # TODO: subClassOf: ''.freeze,
            type: 'rdf:Class'
       term :Package,
-           comment: 'A package.',
+           comment: 'A package or batch of data. Intended for use to encapsualted a deposit or
+                    batch upload or similar. The use of this term is administrative rather than user-facing.',
            label: 'Package',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
-           # TODO: subClassOf: ''.freeze,
            type: 'rdf:Class'
       term :MainFile,
            comment:
@@ -34,7 +25,6 @@ module DogBiscuits
                 appendices.',
            label: 'Main File',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
-           # TODO: subClassOf: ''.freeze,
            type: 'rdf:Class'
       term :Readme,
            comment:
@@ -43,7 +33,6 @@ module DogBiscuits
                 Most common use would be for datasets or software.',
            label: 'Readme',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
-           # TODO: subClassOf: ''.freeze,
            type: 'rdf:Class'
 
       # Property definitions
@@ -131,13 +120,6 @@ module DogBiscuits
                label: 'For Index',
                'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
                type: 'rdf:Property'
-      property :embargoRelease,
-               comment:
-                   'This property should be used to specify the end date of
-                    an embargo period.',
-               label: 'Embargo Release Date',
-               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
-               type: 'rdf:Property'
       property :lastAccess,
                comment:
                    'This property should be used to for the date a resource,
@@ -156,22 +138,6 @@ module DogBiscuits
                comment: 'This property should be used to record the email
                           address of a requestor.',
                label: 'Requestor Email',
-               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
-               type: 'rdf:Property'
-      property :retentionPolicy,
-               comment:
-                   'This property should be used for the retention policy of
-                    the given resource. A value frim a conrolled vocabulary is
-                    recommended.',
-               label: 'Retention Policy',
-               'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
-               type: 'rdf:Property'
-      property :restrictionNote,
-               comment:
-                   'This property should be used for free-texts about data
-                    restrictions and access.',
-               label: 'Restriction Note',
-               # TODO: subproperty of dc.description
                'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
                type: 'rdf:Property'
       property :hasMainFile,
@@ -227,12 +193,12 @@ module DogBiscuits
       # Extra definitions
       term :'',
            comment:
-               'General purpose ontology for York Digital Library.',
-           'dc:modified' => '2016', # TODO: date
-           'dc:publisher' => 'http://dlib.york.ac.uk/',
+               'General purpose ontology for York Digital Library. Terms not found in other schemes.',
+           'dc:modified' => '2017',
+           'dc:publisher' => '',
            'dc:title' => 'York Digital Library Generic Ontology',
            label: 'Generic',
-           'owl:versionInfo' => '2016' # TODO: date
+           'owl:versionInfo' => ''
     end
   end
 end

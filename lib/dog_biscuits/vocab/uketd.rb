@@ -4,7 +4,6 @@ require 'rdf'
 module DogBiscuits
   module Vocab
     class Uketd < RDF::Vocabulary('http://dlib.york.ac.uk/ontologies/uketd#')
-      # TODO: publish whole thing
       # Property definitions
       property :advisor,
                comment: 'TODO.',
@@ -34,12 +33,12 @@ module DogBiscuits
 
       # Extra definitions
       term :'',
-           comment: 'TODO',
-           'dc:modified' => 'TODO', # TODO: date
-           'dc:publisher' => 'http://dlib.york.ac.uk/',
-           'dc:title' => 'TODO',
-           label: 'Generic',
-           'owl:versionInfo' => 'TODO' # TODO: version
+           comment: 'UKETD',
+           'dc:modified' => '2017',
+           'dc:publisher' => '',
+           'dc:title' => 'UKETD Ontology',
+           label: 'UKETD',
+           'owl:versionInfo' => ''
     end
   end
 end

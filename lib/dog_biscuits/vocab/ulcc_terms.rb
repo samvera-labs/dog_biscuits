@@ -3,7 +3,6 @@
 require 'rdf'
 module DogBiscuits
   module Vocab
-    # dlib generic ontology
     class UlccTerms < RDF::Vocabulary('http://london.ac.uk/ontologies/terms#')
       # Class definitions
 
@@ -43,7 +42,7 @@ module DogBiscuits
            'dc:publisher' => 'http://www.london.ac.uk/',
            'dc:title' => 'UlCC Terms Ontology',
            label: 'Generic',
-           'owl:versionInfo' => '2017'
+           'owl:versionInfo' => ''
     end
   end
 end

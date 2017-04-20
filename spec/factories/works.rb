@@ -8,10 +8,9 @@ FactoryGirl.define do
   factory :dataset, class: DogBiscuits::Dataset do
     title ['Strangeways, Here We Come']
     embargo_release 2016 - 12 - 12
-    retention_policy ['10 years from last access']
     dc_access_rights ['access rights']
     doi ['xxx-xxx-xxx']
-    restriction_note ['restriction note']
+    has_restriction ['10 years from last access']
     for_indexing ['lovely stuff for indexing']
     publisher ['Rough Trade Records']
     date_available '2015'

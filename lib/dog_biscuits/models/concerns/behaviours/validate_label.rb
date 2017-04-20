@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # validate labels
+  # Validate labels.
   module ValidateLabel
     extend ActiveSupport::Concern
 

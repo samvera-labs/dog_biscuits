@@ -7,11 +7,12 @@ module DogBiscuits
     # include Hyrax::WorkBehavior # include only what we need from Hyrax::WorkBehavior
     include ::Hydra::Works::WorkBehavior
     include ::Hyrax::Noid
-    include ::Hyrax::RequiredMetadata # changing to CoreMetadata in Hyrax 2
-    # Without these three, tests fail for indexers
+    include ::Hyrax::RequiredMetadata # for title; changing to CoreMetadata in Hyrax 2
+    # Without these, tests fail for indexers
     include ::Hyrax::HasRepresentative
     include ::Hyrax::InAdminSet
     include ::Hyrax::Suppressible
+    include GlobalID::Identification
 
     # include Hyrax::HumanReadableType
     # include Hyrax::Permissions
@@ -21,7 +22,6 @@ module DogBiscuits
     # include Hyrax::WithFileSets
     # include Hyrax::Naming
     # include Hydra::AccessControls::Embargoable
-    include GlobalID::Identification
     # include Hyrax::NestedWorks # RuntimeError: Circular dependency detected in calling app
     # include Hyrax::ProxyDeposit
     # include Works::Trophies

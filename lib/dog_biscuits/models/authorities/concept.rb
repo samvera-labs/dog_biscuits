@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # concept
   class Concept < Authority
     include DogBiscuits::GenericAuthorityTerms
     include DogBiscuits::OwlSameAs
     include DogBiscuits::RdfsSeeAlso # use for external see also links
+    include DogBiscuits::ValidateConceptSeeAlso
     include Hyrax::Noid
 
     before_save :add_label
 
-    # Use for nested schemes
+    # Use for nested schemes.
     has_and_belongs_to_many :top_concept_of,
                             class_name: 'DogBiscuits::ConceptScheme',
                             predicate: ::RDF::Vocab::SKOS.topConceptOf,
                             inverse_of: :has_top_concept
+
     # Use only for Broader. Narrower will be added by default as the inverse.
     has_and_belongs_to_many :broader,
                             class_name: 'DogBiscuits::Concept',
@@ -25,8 +26,7 @@ module DogBiscuits
                             predicate: ::RDF::Vocab::SKOS.narrower,
                             inverse_of: :broader
 
-    # The following MUST NOT be the same as broader or narrower.
-    # TODO: validate this?
+    # MUST NOT be the same as broader/narrower; validator in place
     has_and_belongs_to_many :see_also,
                             class_name: 'DogBiscuits::Concept',
                             predicate: ::RDF::Vocab::SKOS.related,
@@ -49,19 +49,15 @@ module DogBiscuits
       index.as :stored_searchable
     end
 
-    def concept?
-      true
-    end
-
     def agent?
       false
     end
 
-    def person?
-      false
+    def concept?
+      true
     end
 
-    def organisation?
+    def concept_scheme?
       false
     end
 
@@ -69,7 +65,19 @@ module DogBiscuits
       false
     end
 
+    def organisation?
+      false
+    end
+
+    def person?
+      false
+    end
+
     def place?
+      false
+    end
+
+    def project?
       false
     end
 
@@ -81,6 +89,7 @@ module DogBiscuits
       end
     end
 
+    # Ensure rdfs label and pref label and the same. Prefer preflabel for Concept.
     def add_label
       self.rdfs_label = preflabel if preflabel.present?
       self.preflabel = rdfs_label if rdfs_label.present?

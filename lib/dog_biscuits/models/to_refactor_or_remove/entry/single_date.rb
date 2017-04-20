@@ -9,7 +9,6 @@ class SingleDate < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  # TODO: update form to allow multiple
   property :date_certainty, predicate: ::RDF::URI.new('http://dlib.york.ac.uk/ontologies/borthwick-registers#certainty'), multiple: true do |index|
     index.as :stored_searchable
   end

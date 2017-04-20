@@ -29,11 +29,6 @@ module DogBiscuits
       ['admin']
     end
 
-    # don't know what this is for but I got an error in my tests without it
-    def suppressed?
-      false
-    end
-
     class CollectionIndexer < Hyrax::CollectionIndexer
       include DogBiscuits::IndexesCollection
     end

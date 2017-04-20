@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # agents, people and organisations extend this
+  # People, Groups and Organisations inherit from this.
   class Agent < Authority
     # HyBox
-    include DogBiscuits::FoafName
     include DogBiscuits::AlternateName
-    include DogBiscuits::IdentifiedBy
-    include DogBiscuits::CommonLabels
     include DogBiscuits::Description
+    include DogBiscuits::FoafName
+    include DogBiscuits::IdentifiedBy
     # Additional
-    include DogBiscuits::OwlSameAs
     include DogBiscuits::GenericAuthorityTerms
     include DogBiscuits::MadsRelatedAuthority
+    include DogBiscuits::OwlSameAs
     include Hyrax::Noid
 
     before_save :add_label
@@ -24,7 +23,7 @@ module DogBiscuits
       index.as :stored_searchable
     end
 
-    # foaf:OnlineAccount
+    # value should be foaf:OnlineAccount
     property :account, predicate: ::RDF::Vocab::FOAF.account,
                        multiple: true do |index|
       index.as :stored_searchable
@@ -43,13 +42,39 @@ module DogBiscuits
       false
     end
 
+    def concept_scheme?
+      false
+    end
+
+    def group?
+      false
+    end
+
+    def organisation?
+      false
+    end
+
+    def person?
+      false
+    end
+
+    def place?
+      false
+    end
+
+    def project?
+      false
+    end
+
+    # Generate a rdfs label from the name parts. Overwrite the existing label.
     def add_label
       self.rdfs_label = name if name.present?
       add_preflabel
     end
 
+    # Generate a preflabel from rdfs label.
     def add_preflabel
-      self.preflabel = rdfs_label
+      self.preflabel = rdfs_label if rdfs_label.present?
     end
   end
 end

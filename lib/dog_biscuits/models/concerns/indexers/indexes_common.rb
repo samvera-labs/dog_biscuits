@@ -11,6 +11,7 @@ module DogBiscuits
         super.tap do |solr_doc|
           solr_doc['values_tesim'] = []
 
+          # Index preflabel and altlabels into solr.
           values_to_index.each do |v|
             method = "#{v}_resource"
             solr_doc["#{v}_value_alt_tesim"] = []
@@ -22,7 +23,7 @@ module DogBiscuits
               solr_doc["#{v}_value_alt_tesim"] += a.altlabel.to_a
             end
 
-            # what's this one doing?
+            # This field is used for upating usages when an authority changes or is destroyed.
             solr_doc['values_tesim'] += object.send(method).collect(&:id)
           end
 
@@ -33,7 +34,7 @@ module DogBiscuits
             solr_doc["#{v}_value_sim"] = strings # facetable
           end
 
-          # add any additional local indexing for the including model
+          # Add any additional local indexing for the including model.
           do_local_indexing(solr_doc)
         end
       end

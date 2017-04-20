@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # thesis
   class Thesis < Work
     include DogBiscuits::AddWorkBehaviour
     include DogBiscuits::AddThesisMetadata
@@ -14,7 +13,6 @@ module DogBiscuits
       true
     end
 
-    # Index additional fields into solr
     class ThesisIndexer < Hyrax::WorkIndexer
       include DogBiscuits::IndexesThesis
     end
@@ -23,6 +21,7 @@ module DogBiscuits
       ThesisIndexer
     end
 
+    # Create single date field from all dates.
     def combine_dates
       self.date = []
       date << date_of_award

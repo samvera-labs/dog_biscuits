@@ -3,8 +3,6 @@
 # spec/spec_helper.rb
 require 'simplecov'
 
-# TODO: REVIEW
-
 SimpleCov.start do
   add_filter '/spec/'
   add_filter '/.internal_test_app'

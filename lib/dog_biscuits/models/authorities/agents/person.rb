@@ -1,33 +1,25 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # current person (not historical)
   class Person < DogBiscuits::Agent
     # HyBox
     include DogBiscuits::AlternateName
     include DogBiscuits::AddPersonProperties
     # Additional
     include DogBiscuits::HubDates
-    include DogBiscuits::Pure
+    include DogBiscuits::Pure # Metadata from PURE web service
+    include DogBiscuits::PureSpecific # Behaviour for dealing with PURE records
     include DogBiscuits::RdfType
     include DogBiscuits::Orcid
 
-    before_save :add_pure_type
-
-    # ::RDF::URI.new('http://schema.org/Person')
     type [::RDF::Vocab::FOAF.Agent,
           ::RDF::Vocab::FOAF.Person]
 
-    def person?
-      true
-    end
-
-    # incorrect
-    def agent?
+    def concept?
       false
     end
 
-    def organisation?
+    def concept_scheme?
       false
     end
 
@@ -35,20 +27,23 @@ module DogBiscuits
       false
     end
 
+    def organisation?
+      false
+    end
+
+    def person?
+      true
+    end
+
     def place?
       false
     end
 
-    # TODO: review as specific to York local requirements
-    def add_pure_type
-      rdf_type << DogBiscuits::Vocab::PureTerms.Person unless pure_uuid.nil?
+    def project?
+      false
     end
 
-    # TODO: review as specific to York local requirements TEST
-    def phd
-      rdf_type << DogBiscuits::Vocab::PureTerms.PhdStudent
-    end
-
+    # Generate dates string from birth/death.
     def add_dates
       dt = ''
       dt += "#{birth_date}-" if birth_date.present?
@@ -56,6 +51,7 @@ module DogBiscuits
       self.dates = dt if dt.present?
     end
 
+    # Generate the name from parts.
     def add_name
       nm = ''
       nm += prefix if prefix.present?
@@ -66,7 +62,7 @@ module DogBiscuits
       self.name = nm if nm.present?
     end
 
-    # Generate a preflabel from the name parts. Overwrite the existing preflabel.
+    # Generate a rdfs label from the name parts. Overwrite the existing label.
     def add_label
       add_name
       add_dates

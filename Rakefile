@@ -49,17 +49,20 @@ task :kill_sf_test do
   within_test_app do
     system 'tmp/solr-test/bin/solr stop -p 8985 & sleep 10'
     system 'pkill -f fcrepo_wrapper'
+    system 'rm -r tmp/fcrepo4*'
   end
   within_test_app do
     system 'solr_wrapper --config config/solr_wrapper_test.yml clean'
   end
 end
 
+# Kills fcrepo_wrapper and solr_wrapper in either test or dev mode; cleanss up data
 task :kill_sf do
   within_test_app do
     system 'tmp/solr-development/bin/solr stop -p 8983'
     system 'tmp/solr-test/bin/solr stop -p 8985'
     system 'pkill -f fcrepo_wrapper'
+    system 'rm -r tmp/fcrepo4*'
   end
   within_test_app do
     system 'solr_wrapper clean'

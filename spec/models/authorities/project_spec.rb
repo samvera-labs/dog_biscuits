@@ -19,7 +19,7 @@ describe DogBiscuits::Project do
   end
 
   it 'has a preflabel combining name and identifier' do
-    project.add_preflabel
+    project.add_label
     expect(project.preflabel).to eq('A scientific study into misery (id: identifier_test)')
   end
 

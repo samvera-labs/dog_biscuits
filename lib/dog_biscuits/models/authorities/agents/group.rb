@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # historical group or organisation
   class Group < DogBiscuits::Agent
     # Additional
     include DogBiscuits::GenericQualifier
     include DogBiscuits::HubDates
 
-    # ::RDF::URI.new('http://vocab.getty.edu/ontology#GroupConcept')
     type [::RDF::Vocab::FOAF.Agent,
           ::RDF::Vocab::FOAF.Group]
 
@@ -21,11 +19,19 @@ module DogBiscuits
       index.as :stored_searchable
     end
 
+    def concept?
+      false
+    end
+
+    def concept_scheme?
+      false
+    end
+
     def group?
       true
     end
 
-    def agent?
+    def organisation?
       false
     end
 
@@ -33,11 +39,11 @@ module DogBiscuits
       false
     end
 
-    def organisation?
+    def place?
       false
     end
 
-    def place?
+    def project?
       false
     end
 

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # Journal Article
   class JournalArticle < Work
     include DogBiscuits::AddWorkBehaviour
     include DogBiscuits::AddJournalArticleMetadata
@@ -14,7 +13,6 @@ module DogBiscuits
       true
     end
 
-    # Index additional fields into solr
     class JournalArticleIndexer < Hyrax::WorkIndexer
       include DogBiscuits::IndexesJournalArticle
     end
@@ -23,6 +21,7 @@ module DogBiscuits
       JournalArticleIndexer
     end
 
+    # Create single date field from all dates.
     def combine_dates
       self.date = []
       date << date_published

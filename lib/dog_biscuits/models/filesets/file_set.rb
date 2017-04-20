@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # dog_biscuits fileset
   class FileSet < ActiveFedora::Base
     include Hyrax::FileSetBehavior
     include DogBiscuits::CommonLabels

@@ -3,8 +3,8 @@
 require 'active_fedora/noid'
 
 # This is a VRA image, NOT a VRA work
-# TODO model how to deal with different types of image, including alternative versions and different file types
-# TODO model for use with RDFSource and NonRDFSource (and understand how AF does that)
+# TODO remodel this into FileSet, compare to Hyku
+# TODO model so it can use external and internal
 # For Mellon, we'll be using RDFSource, with a link to the image file in F3
 
 class Image < ActiveFedora::Base

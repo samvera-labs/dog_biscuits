@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # validate place
+  # Validate place name.
   module ValidatePlace
     extend ActiveSupport::Concern
 

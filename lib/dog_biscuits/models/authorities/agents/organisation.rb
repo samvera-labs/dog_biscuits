@@ -1,23 +1,27 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # contemporary (current) organisation
   class Organisation < DogBiscuits::Agent
-    # HyBox
-    include DogBiscuits::FoafName
     # Local
-    include DogBiscuits::Pure
     include DogBiscuits::GenericQualifier
     include DogBiscuits::HubDates
+    include DogBiscuits::Pure
+    include DogBiscuits::PureSpecific
+    include DogBiscuits::RdfType
 
-    before_save :add_pure_type
-
-    # ::RDF::URI.new('https://schema.org/Organization')
     type [::RDF::Vocab::FOAF.Agent,
           ::RDF::Vocab::FOAF.Organization]
 
-    def add_pure_type
-      type << DogBiscuits::Vocab::PureTerms.Organisation unless pure_uuid.nil?
+    def concept?
+      false
+    end
+
+    def concept_scheme?
+      false
+    end
+
+    def group?
+      false
     end
 
     def organisation?
@@ -28,15 +32,11 @@ module DogBiscuits
       false
     end
 
-    def agent?
-      false
-    end
-
-    def group?
-      false
-    end
-
     def place?
+      false
+    end
+
+    def project?
       false
     end
 

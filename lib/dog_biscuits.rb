@@ -42,7 +42,7 @@ module DogBiscuits
   end
 
   autoload_under 'models/collections' do
-    autoload :Collection # TODO: refactor
+    autoload :Collection
   end
   autoload_under 'models/filesets' do
     autoload :FileSet
@@ -55,7 +55,7 @@ module DogBiscuits
     autoload :JournalArticle
   end
 
-  autoload_under 'models/concerns/metadata/add_metadata' do
+  autoload_under 'models/concerns/metadata_groups' do
     autoload :AddAgentMetadata
     autoload :AddDatasetMetadata
     autoload :AddPackageMetadata
@@ -66,30 +66,30 @@ module DogBiscuits
     autoload :AddPlaceProperties
   end
 
-  autoload_under 'models/concerns/metadata/archivematica' do
-    autoload :Archivematica
-  end
-
-  autoload_under 'models/concerns/metadata/archives_hub' do
-    autoload :HubDates
-  end
-
-  autoload_under 'models/concerns/metadata/bibframe' do
-    autoload :AwardingInstitution
-    autoload :IdentifiedBy
-  end
-
-  autoload_under 'models/concerns/metadata/bibo' do
-    autoload :PublicationStatus
-  end
-
-  autoload_under 'models/concerns/metadata/common' do
+  autoload_under 'models/concerns/metadata_groups/common' do
     autoload :CommonLabels
     autoload :CommonMetadata
     autoload :CommonRights
   end
 
-  autoload_under 'models/concerns/metadata/dc' do
+  autoload_under 'models/concerns/metadata_properties/archivematica' do
+    autoload :Archivematica
+  end
+
+  autoload_under 'models/concerns/metadata_properties/archives_hub' do
+    autoload :HubDates
+  end
+
+  autoload_under 'models/concerns/metadata_properties/bibframe' do
+    autoload :AwardingInstitution
+    autoload :IdentifiedBy
+  end
+
+  autoload_under 'models/concerns/metadata_properties/bibo' do
+    autoload :PublicationStatus
+  end
+
+  autoload_under 'models/concerns/metadata_properties/dc' do
     autoload :Abstract
     autoload :AccessRights
     autoload :Available
@@ -109,55 +109,62 @@ module DogBiscuits
     autoload :SimpleVersions
   end
 
-  autoload_under 'models/concerns/metadata/dlib' do
+  autoload_under 'models/concerns/metadata_properties/dlib' do
     autoload :CollectionsCategory
     autoload :ForIndexing
     autoload :FormerIdentifier
     autoload :GenericAuthorityTerms
     autoload :GenericModuleCode
     autoload :GenericQualifier
-    autoload :GenericWorkflow
     autoload :LastAccess
     autoload :MainFile
     autoload :NumberOfDownloads
     autoload :ReadmeFile
   end
 
-  autoload_under 'models/concerns/metadata/edm' do
+  autoload_under 'models/concerns/metadata_properties/edm' do
     autoload :EdmRights
   end
 
-  autoload_under 'models/concerns/metadata/foaf' do
+  autoload_under 'models/concerns/metadata_properties/fabio' do
+    autoload :EmbargoRelease
+  end
+
+  autoload_under 'models/concerns/metadata_properties/foaf' do
     autoload :FoafName
   end
 
-  autoload_under 'models/concerns/metadata/frbr' do
+  autoload_under 'models/concerns/metadata_properties/frbr' do
     autoload :InJournal
   end
 
-  autoload_under 'models/concerns/metadata/lc_identifiers' do
+  autoload_under 'models/concerns/metadata_properties/lc_identifiers' do
     autoload :Doi
     autoload :Orcid
   end
 
-  autoload_under 'models/concerns/metadata/mads' do
+  autoload_under 'models/concerns/metadata_properties/mads' do
     autoload :MadsRelatedAuthority
   end
 
-  autoload_under 'models/concerns/metadata/marc_relators' do
+  autoload_under 'models/concerns/metadata_properties/marc_relators' do
     autoload :Funder
   end
 
-  autoload_under 'models/concerns/metadata/owl' do
+  autoload_under 'models/concerns/metadata_properties/owl' do
     autoload :OwlSameAs
   end
 
-  autoload_under 'models/concerns/metadata/pure' do
+  autoload_under 'models/concerns/metadata_properties/premis' do
+    autoload :HasRestriction
+  end
+
+  autoload_under 'models/concerns/metadata_properties/pure' do
     autoload :Pure
     autoload :ManagingOrganisation
   end
 
-  autoload_under 'models/concerns/metadata/rdf' do
+  autoload_under 'models/concerns/metadata_properties/rdf' do
     # RDF and RDFS
     autoload :RdfsSeeAlso
     autoload :RdfType
@@ -165,7 +172,7 @@ module DogBiscuits
     autoload :RdfsLabel
   end
 
-  autoload_under 'models/concerns/metadata/schema' do
+  autoload_under 'models/concerns/metadata_properties/schema' do
     autoload :ContentVersion
     autoload :DatePublished
     autoload :IssueNumber
@@ -174,22 +181,22 @@ module DogBiscuits
     autoload :AlternateName
   end
 
-  autoload_under 'models/concerns/metadata/skos' do
+  autoload_under 'models/concerns/metadata_properties/skos' do
     autoload :SkosLabels
     autoload :SkosNote
   end
 
-  autoload_under 'models/concerns/metadata/vivo' do
+  autoload_under 'models/concerns/metadata_properties/vivo' do
   end
 
-  autoload_under 'models/concerns/metadata/uketd' do
+  autoload_under 'models/concerns/metadata_properties/uketd' do
     autoload :Advisor
     autoload :DateOfAward
     autoload :Department
     autoload :Qualification
   end
 
-  autoload_under 'models/concerns/metadata/ulcc' do
+  autoload_under 'models/concerns/metadata_properties/ulcc' do
     autoload :DateSubmitted
     autoload :ProjectOutput
     autoload :OfficialUrl
@@ -199,8 +206,10 @@ module DogBiscuits
   autoload_under 'models/concerns/behaviours' do
     # Behaviour
     autoload :AddWorkBehaviour
+    autoload :PureSpecific
     # Validations
     autoload :ValidateConceptScheme
+    autoload :ValidateConceptSeeAlso
     autoload :ValidateLabel
     autoload :ValidatePlace
   end
@@ -219,5 +228,6 @@ module DogBiscuits
     autoload :LabelValidator
     autoload :PlaceValidator
     autoload :ConceptSchemeMemberValidator
+    autoload :ConceptSeeAlsoValidator
   end
 end

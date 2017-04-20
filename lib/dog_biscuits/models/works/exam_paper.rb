@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # exam paper
   class ExamPaper < Work
     include DogBiscuits::AddWorkBehaviour
     include DogBiscuits::AddExamPaperMetadata
@@ -12,7 +11,6 @@ module DogBiscuits
       true
     end
 
-    # Index additional fields into solr
     class ExamPaperIndexer < Hyrax::WorkIndexer
       include DogBiscuits::IndexesExamPaper
     end

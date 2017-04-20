@@ -7,25 +7,25 @@ describe DogBiscuits::LabelValidator do
   let(:collection) { DogBiscuits::Collection.new }
   let(:work) { DogBiscuits::Dataset.new }
   let(:person) { DogBiscuits::Person.new }
-  let(:organisation)  { DogBiscuits::Organisation.new }
+  let(:organisation) { DogBiscuits::Organisation.new }
 
-  skip 'saves without a title' do
+  it 'work does not save without a title' do
     expect(work.save).to be_falsey
   end
 
-  skip 'does not save without a title' do
+  it 'collection does not save without a title' do
     expect(collection.save).to be_falsey
   end
 
-  skip 'does not save without a preflabel' do
+  it 'authority does not save without a label' do
     expect(authority.save).to be_falsey
   end
 
-  skip 'does not save without a preflabel or name part' do
+  it 'person does not save without a label or name part' do
     expect(person.save).to be_falsey
   end
 
-  skip 'saves without a preflabel or name' do
+  it 'organisation does not same without a label or name' do
     expect(organisation.save).to be_falsey
   end
 end

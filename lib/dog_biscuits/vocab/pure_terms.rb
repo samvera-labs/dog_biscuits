@@ -9,13 +9,13 @@ module DogBiscuits
            comment: 'Person from PURE',
            label: 'Person',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/pure#',
-           # TODO: subClassOf: ''.freeze,
+           subClassOf: 'http://xmlns.com/foaf/0.1/Person',
            type: 'rdf:Class'
       term :Organisation,
            comment: 'Organisation from PURE.',
            label: 'Pure Organisation',
            'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/pure#',
-           # TODO: subClassOf: ''.freeze,
+           subClassOf: 'http://xmlns.com/foaf/0.1/Organisation',
            type: 'rdf:Class'
       term :PhdStudent,
            comment: 'Person from PURE, a PhD student.',
@@ -55,11 +55,11 @@ module DogBiscuits
       # Extra definitions
       term :'',
            comment: 'Ontology of terms from PURE.',
-           'dc:modified' => '2016', # TODO: date
-           'dc:publisher' => 'http://dlib.york.ac.uk/',
+           'dc:modified' => '2017',
+           'dc:publisher' => '',
            'dc:title' => 'York Digital Library PURE Ontology',
            label: 'Generic',
-           'owl:versionInfo' => '2016' # TODO: date
+           'owl:versionInfo' => ''
     end
   end
 end

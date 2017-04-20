@@ -58,6 +58,12 @@ describe DogBiscuits::Person do
     expect(person_two.rdfs_label).to eq('Stephen Patrick, 1959-')
   end
 
+  it 'has rdftypes for PURE' do
+    person.pure_uuid = 'pure-uuid'
+    person.add_pure_type
+    expect(person.type).to include('http://dlib.york.ac.uk/ontologies/pure#Person')
+  end
+
   describe '#update usages for thesis' do
     it 'thesis has creator' do
       thesis.creator_resource << person

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # validate a concept scheme
+  # Validates members of a concept scheme.
   module ValidateConceptScheme
     extend ActiveSupport::Concern
 

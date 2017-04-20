@@ -11,7 +11,7 @@ module DogBiscuits
 
     before_save :add_label
 
-    # Alternative approach to parent_ADMx
+    # Possible alternative approach to parent_ADMx
     # has_and_belongs_to_many :contained_in_place,
     #                         class_name: 'DogBiscuits::Place',
     #                         predicate: ::RDF::URI.new('https://schema.org/containedInPlace'),
@@ -24,19 +24,15 @@ module DogBiscuits
     type [::RDF::Vocab::SCHEMA.Place,
           ::RDF::Vocab::EDM.Place]
 
-    def place?
-      true
-    end
-
     def agent?
       false
     end
 
-    def person?
+    def concept?
       false
     end
 
-    def organisation?
+    def concept_scheme?
       false
     end
 
@@ -44,6 +40,23 @@ module DogBiscuits
       false
     end
 
+    def organisation?
+      false
+    end
+
+    def person?
+      false
+    end
+
+    def place?
+      true
+    end
+
+    def project?
+      false
+    end
+
+    # Generate a rdfs label from the name parts. Overwrite the existing label.
     def add_label
       label = place_name
       label = add_adm_parts(label)
@@ -52,6 +65,7 @@ module DogBiscuits
       add_preflabel
     end
 
+    # Generate a parent parts.
     def add_adm_parts(label)
       label += ", #{parent_ADM4}" if parent_ADM4.present?
       label += ", #{parent_ADM3}" if parent_ADM3.present?
@@ -60,6 +74,7 @@ module DogBiscuits
       label
     end
 
+    # Generate a preflabel from rdfs label.
     def add_preflabel
       self.preflabel = rdfs_label
     end
