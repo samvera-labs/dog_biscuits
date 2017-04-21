@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe DogBiscuits::Terms::OrganisationsTerms do
-  let(:terms) { described_class.new('organisations') }
+  let(:terms) { described_class.new }
 
   it 'has no terms' do
     terms.all.should eq([])

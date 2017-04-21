@@ -2,9 +2,7 @@
 
 module DogBiscuits
   class TermsService < Hyrax::QaSelectService
-    attr_reader :authority
-
-    def initialize(_args)
+    def initialize(_authority = nil)
       @authority = self
     end
 
@@ -111,7 +109,7 @@ module DogBiscuits
     end
 
     def select_all_options
-      authority.all.map { |e| [e[:label], e[:id]] }
+      all.map { |e| [e[:label], e[:id]] }
     end
 
     private
