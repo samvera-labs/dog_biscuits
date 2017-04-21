@@ -49,12 +49,14 @@ task :start_sf do
 end
 
 # These are awful, but I couldn't work out how to do this properly
+# These downloads can be length, so I'm giving 5 mins and 3 mins
+# It would be better to do these before engine_cart:generate
 task :start_sf_test do
   within_test_app do
-    sh 'solr_wrapper --config config/solr_wrapper_test.yml & sleep 90'
+    sh 'solr_wrapper --config config/solr_wrapper_test.yml & sleep 300'
   end
   within_test_app do
-    sh 'fcrepo_wrapper --config config/fcrepo_wrapper_test.yml & sleep 60'
+    sh 'fcrepo_wrapper --config config/fcrepo_wrapper_test.yml & sleep 120'
   end
 end
 

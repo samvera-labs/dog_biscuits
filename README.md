@@ -4,7 +4,7 @@
 [![Issue Count](https://codeclimate.com/github/geekscruff/dog_biscuits/badges/issue_count.svg)](https://codeclimate.com/github/geekscruff/dog_biscuits)
 [![Build Status](https://travis-ci.org/geekscruff/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/geekscruff/dog_biscuits)
 
-Models, vocabularies and behaviours for Hyrax applications.
+Models, vocabularies and behaviours for Hyrax applications :dog: :cookie:
 
 
 ## Installation
@@ -25,7 +25,9 @@ Or install it yourself as:
 
 Run the generator
 
-    $ rails generate dog_biscuits:auths
+    $ rails generate dog_biscuits:install
+
+Add the -f flag to overwrite any existing files with new ones.
 
 ## Usage
 

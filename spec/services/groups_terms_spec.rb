@@ -44,7 +44,7 @@ describe DogBiscuits::Terms::GroupsTerms do
 
   it 'finds the id by the label' do
     groups.groups << group
-    terms.find_id('The Smiths, 1500-1550, order of the phoenix').should eq(group.id)
+    terms.find_id('The Smiths, 1500-1550, order of the phoenix').should match(/[[:alnum:]]{9,}/)
   end
 
   it 'finds the label by the id' do
@@ -54,6 +54,6 @@ describe DogBiscuits::Terms::GroupsTerms do
 
   it 'returns all for options list' do
     groups.groups << group
-    terms.select_all_options.should eq([["The Smiths, 1500-1550, order of the phoenix", group.id.to_s]])
+    terms.select_all_options.should match([["The Smiths, 1500-1550, order of the phoenix", /[[:alnum:]]{9,}/]])
   end
 end
