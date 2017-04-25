@@ -1,5 +1,5 @@
 terms:
-  - id: http://london.ac.uk/qualification_names##ba
+  - id: http://london.ac.uk/qualification_names#ba
     term: Bachelor of Arts (BA)
     active: true
   - id: http://london.ac.uk/qualification_names#bphil
