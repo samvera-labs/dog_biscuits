@@ -5,6 +5,26 @@ FactoryGirl.define do
     title ['Generic Work']
   end
 
+  factory :published_item, class: DogBiscuits::PublishedItem do
+    title ['Published Item']
+    issue_number 'issue_number_test'
+    volume_number 'volume_number_test'
+    pagination 'pagination_test'
+    date_accepted '2014'
+    date_submitted '2013'
+    date_published '2016'
+    date_available '2015'
+    isbn ['xxx-xxx-xxx']
+    refereed true
+    official_url ['http://www.london.ac.uk']
+    publication_status 'Published'
+    edition ['First Edition']
+    part ['Part One']
+    series ['The Woeful Series']
+    place_of_publication ['Salford']
+    editor ['Stephen Street']
+  end
+
   factory :dataset, class: DogBiscuits::Dataset do
     title ['Strangeways, Here We Come']
     embargo_release 2016 - 12 - 12

@@ -19,7 +19,6 @@ module DogBiscuits
   autoload_under 'services' do
     autoload :Terms
     autoload :TermsService
-    autoload :SolrQuery
   end
 
   autoload_under 'models' do
@@ -48,20 +47,24 @@ module DogBiscuits
     autoload :FileSet
   end
   autoload_under 'models/works' do
-    autoload :Package
     autoload :Dataset
-    autoload :ExamPaper
-    autoload :Thesis
     autoload :JournalArticle
+    autoload :ExamPaper
+    autoload :Package
+    autoload :PublishedItem
+    autoload :Thesis
   end
 
   autoload_under 'models/concerns/metadata_groups' do
+    # Concerns
     autoload :AddAgentMetadata
     autoload :AddDatasetMetadata
-    autoload :AddPackageMetadata
     autoload :AddExamPaperMetadata
-    autoload :AddThesisMetadata
     autoload :AddJournalArticleMetadata
+    autoload :AddPackageMetadata
+    autoload :AddPublishedItemMetadata
+    autoload :AddThesisMetadata
+    # Properties
     autoload :AddPersonProperties
     autoload :AddPlaceProperties
   end
@@ -82,7 +85,11 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/bibframe' do
     autoload :AwardingInstitution
+    autoload :Edition
     autoload :IdentifiedBy
+    autoload :Part
+    autoload :PlaceOfPublication
+    autoload :Series
   end
 
   autoload_under 'models/concerns/metadata_properties/bibo' do
@@ -140,6 +147,7 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/lc_identifiers' do
     autoload :Doi
+    autoload :Isbn
     autoload :Orcid
   end
 
@@ -149,6 +157,7 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/marc_relators' do
     autoload :Funder
+    autoload :Editor
   end
 
   autoload_under 'models/concerns/metadata_properties/owl' do
@@ -220,6 +229,7 @@ module DogBiscuits
     autoload :IndexesDataset
     autoload :IndexesCollection
     autoload :IndexesExamPaper
+    autoload :IndexesPublishedItem
     autoload :IndexesThesis
     autoload :IndexesJournalArticle
   end

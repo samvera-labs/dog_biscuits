@@ -7,7 +7,7 @@ module DogBiscuits
 
     before_save :combine_dates
 
-    type << ::RDF::URI.new('http://purl.org/ontology/bibo/Thesis')
+    type << ::RDF::Vocab::BIBO.Thesis
 
     def thesis?
       true
