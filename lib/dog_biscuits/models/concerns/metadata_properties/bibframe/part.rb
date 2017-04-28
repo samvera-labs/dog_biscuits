@@ -6,7 +6,7 @@ module DogBiscuits
 
     included do
       property :part, predicate: ::RDF::Vocab::BF2.part,
-                               multiple: true do |index|
+                      multiple: true do |index|
         index.as :stored_searchable
       end
     end

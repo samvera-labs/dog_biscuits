@@ -6,7 +6,7 @@ module DogBiscuits
 
     included do
       property :place_of_publication, predicate: ::RDF::Vocab::Bibframe.providerPlace,
-                               multiple: true do |index|
+                                      multiple: true do |index|
         index.as :stored_searchable
       end
     end

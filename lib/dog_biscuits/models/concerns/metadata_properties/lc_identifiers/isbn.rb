@@ -6,7 +6,7 @@ module DogBiscuits
 
     included do
       property :isbn, predicate: ::RDF::Vocab::Identifiers.isbn,
-                     multiple: true do |index|
+                      multiple: true do |index|
         index.as :stored_searchable
       end
     end

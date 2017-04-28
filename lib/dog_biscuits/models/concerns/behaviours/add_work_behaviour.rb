@@ -7,7 +7,7 @@ module DogBiscuits
     # include Hyrax::WorkBehavior # include only what we need from Hyrax::WorkBehavior
     include ::Hydra::Works::WorkBehavior
     include ::Hyrax::Noid
-    include ::Hyrax::RequiredMetadata # for title; changing to CoreMetadata in Hyrax 2
+    include ::Hyrax::CoreMetadata # for title; changing to CoreMetadata in Hyrax 2
     # Without these, tests fail for indexers
     include ::Hyrax::HasRepresentative
     include ::Hyrax::InAdminSet
