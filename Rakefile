@@ -72,7 +72,7 @@ task :kill_sf_test do
   end
 end
 
-# Kills fcrepo_wrapper and solr_wrapper in either test or dev mode; cleanss up data
+# Kills fcrepo_wrapper and solr_wrapper in either test or dev mode; cleans up data
 task :kill_sf do
   within_test_app do
     system 'tmp/solr-development/bin/solr stop -p 8983'

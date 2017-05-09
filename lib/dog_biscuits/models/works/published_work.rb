@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  class PublishedItem < Work
+  class PublishedWork < Work
     include DogBiscuits::AddWorkBehaviour
-    include DogBiscuits::AddPublishedItemMetadata
+    include DogBiscuits::AddPublishedWorkMetadata
 
     before_save :combine_dates
 
     type << ::RDF::Vocab::BIBO.Document
 
-    def published_item?
+    def published_work?
       true
     end
 
-    class PublishedItemIndexer < Hyrax::WorkIndexer
-      include DogBiscuits::IndexesPublishedItem
+    class PublishedWorkIndexer < Hyrax::WorkIndexer
+      include DogBiscuits::IndexesPublishedWork
     end
 
     def self.indexer
-      PublishedItemIndexer
+      PublishedWorkIndexer
     end
 
     # Create single date field from all dates.

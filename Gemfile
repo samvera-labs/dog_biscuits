@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 # if using gems from git, we can't load them in the gemspec
 # gem 'git'
-gem 'hyrax', '2.0.0.alpha', github: 'projecthydra-labs/hyrax'
+gem 'hyrax', github: 'projecthydra-labs/hyrax'
 
 # Specify your gem's dependencies in dog_biscuits.gemspec
 gemspec

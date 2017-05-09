@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module IndexesPublishedItem
+  module IndexesPublishedWork
     extend ActiveSupport::Concern
     include DogBiscuits::IndexesCommon
 

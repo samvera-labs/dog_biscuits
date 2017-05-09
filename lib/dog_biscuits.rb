@@ -51,7 +51,7 @@ module DogBiscuits
     autoload :JournalArticle
     autoload :ExamPaper
     autoload :Package
-    autoload :PublishedItem
+    autoload :PublishedWork
     autoload :Thesis
   end
 
@@ -62,7 +62,7 @@ module DogBiscuits
     autoload :AddExamPaperMetadata
     autoload :AddJournalArticleMetadata
     autoload :AddPackageMetadata
-    autoload :AddPublishedItemMetadata
+    autoload :AddPublishedWorkMetadata
     autoload :AddThesisMetadata
     # Properties
     autoload :AddPersonProperties
@@ -229,7 +229,7 @@ module DogBiscuits
     autoload :IndexesDataset
     autoload :IndexesCollection
     autoload :IndexesExamPaper
-    autoload :IndexesPublishedItem
+    autoload :IndexesPublishedWork
     autoload :IndexesThesis
     autoload :IndexesJournalArticle
   end

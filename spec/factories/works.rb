@@ -5,7 +5,7 @@ FactoryGirl.define do
     title ['Generic Work']
   end
 
-  factory :published_item, class: DogBiscuits::PublishedItem do
+  factory :published_work, class: DogBiscuits::PublishedWork do
     title ['Published Item']
     issue_number 'issue_number_test'
     volume_number 'volume_number_test'
