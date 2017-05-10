@@ -5,6 +5,43 @@ FactoryGirl.define do
     title ['Generic Work']
   end
 
+  factory :conference_item, class: DogBiscuits::ConferenceItem do
+    title ['Published Item']
+    pagination 'pagination_test'
+    date_accepted '2014'
+    date_submitted '2013'
+    date_published '2016'
+    date_available '2015'
+    isbn ['xxx-xxx-xxx']
+    refereed true
+    official_url ['http://www.london.ac.uk']
+    publication_status 'Published'
+    place_of_publication ['Salford']
+    editor ['Stephen Street']
+    origin_date '2012'
+    proceeding ['Proceedings of the Conference of Misery']
+  end
+
+  factory :book, class: DogBiscuits::Book do
+    title ['Published Item']
+    issue_number 'issue_number_test'
+    volume_number 'volume_number_test'
+    pagination 'pagination_test'
+    date_accepted '2014'
+    date_submitted '2013'
+    date_published '2016'
+    date_available '2015'
+    isbn ['xxx-xxx-xxx']
+    refereed true
+    official_url ['http://www.london.ac.uk']
+    publication_status 'Published'
+    edition ['First Edition']
+    part ['Part One']
+    series ['The Woeful Series']
+    place_of_publication ['Salford']
+    editor ['Stephen Street']
+  end
+
   factory :published_work, class: DogBiscuits::PublishedWork do
     title ['Published Item']
     issue_number 'issue_number_test'

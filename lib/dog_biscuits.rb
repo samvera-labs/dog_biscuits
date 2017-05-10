@@ -47,9 +47,11 @@ module DogBiscuits
     autoload :FileSet
   end
   autoload_under 'models/works' do
+    autoload :Book
+    autoload :ConferenceItem
     autoload :Dataset
-    autoload :JournalArticle
     autoload :ExamPaper
+    autoload :JournalArticle
     autoload :Package
     autoload :PublishedWork
     autoload :Thesis
@@ -58,6 +60,8 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata_groups' do
     # Concerns
     autoload :AddAgentMetadata
+    autoload :AddBookMetadata
+    autoload :AddConferenceItemMetadata
     autoload :AddDatasetMetadata
     autoload :AddExamPaperMetadata
     autoload :AddJournalArticleMetadata
@@ -87,12 +91,17 @@ module DogBiscuits
     autoload :AwardingInstitution
     autoload :Edition
     autoload :IdentifiedBy
+    autoload :InJournal
+    autoload :InProceeding
+    autoload :OriginDate
     autoload :Part
+    autoload :PartOf
     autoload :PlaceOfPublication
     autoload :Series
   end
 
   autoload_under 'models/concerns/metadata_properties/bibo' do
+    autoload :PresentedAt
     autoload :PublicationStatus
   end
 
@@ -139,10 +148,6 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/foaf' do
     autoload :FoafName
-  end
-
-  autoload_under 'models/concerns/metadata_properties/frbr' do
-    autoload :InJournal
   end
 
   autoload_under 'models/concerns/metadata_properties/lc_identifiers' do
@@ -226,8 +231,10 @@ module DogBiscuits
   autoload_under 'models/concerns/indexers' do
     # Indexers
     autoload :IndexesCommon
-    autoload :IndexesDataset
+    autoload :IndexesBook
     autoload :IndexesCollection
+    autoload :IndexesConferenceItem
+    autoload :IndexesDataset
     autoload :IndexesExamPaper
     autoload :IndexesPublishedWork
     autoload :IndexesThesis

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module InJournal
+  module InProceeding
     extend ActiveSupport::Concern
 
     included do
-      property :journal,
-               predicate: ::RDF::URI.new('https://vocab.org/frbr/core#partOf'),
+      property :proceeding,
+               predicate: ::RDF::Vocab::BF2.partOf,
                multiple: true do |index|
         index.as :stored_searchable, :facetable
       end

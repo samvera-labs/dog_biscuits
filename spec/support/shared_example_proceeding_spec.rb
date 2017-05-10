@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
-shared_examples_for 'in_journal' do
+shared_examples_for 'proceeding' do
   # the class that includes the concern
   let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
 
-  it 'will be in a journal' do
-    expect(stubby.journal).to eq(['The Journal of Woe'])
+  it 'has proceeding' do
+    expect(stubby.proceeding).to eq(['Proceedings of the Conference of Misery'])
   end
-  it 'has frbr:partOf predicate' do
+
+  it 'has proceeding predicate' do
     expect(stubby.resource.dump(:ttl).should(include('http://id.loc.gov/ontologies/bibframe/partOf')))
   end
 end

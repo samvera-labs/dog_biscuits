@@ -59,6 +59,10 @@ FactoryGirl.define do
     preflabel 'miserabilism'
   end
 
+  factory :conference, class: DogBiscuits::Concept do
+    preflabel 'International Conference of Misery'
+  end
+
   factory :broader_concept, class: DogBiscuits::Concept do
     preflabel 'broader object'
   end

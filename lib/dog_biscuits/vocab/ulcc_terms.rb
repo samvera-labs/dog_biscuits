@@ -5,6 +5,13 @@ module DogBiscuits
   module Vocab
     class UlccTerms < RDF::Vocabulary('http://london.ac.uk/ontologies/terms#')
       # Class definitions
+      property :ConferenceItem,
+               comment:
+                   'An document created for delivery or presentation at a conference, for example a paper, presentation, workshop or poster.',
+               label: 'Refereed',
+               'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
+               type: 'rdf:Class'
+      # TODO: add subclass of and subclasses
 
       # Property definitions
       property :refereed,
