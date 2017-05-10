@@ -20,6 +20,7 @@ FactoryGirl.define do
     editor ['Stephen Street']
     origin_date '2012'
     proceeding ['Proceedings of the Conference of Misery']
+    presented_at ['The International Conference of Misery']
   end
 
   factory :book, class: DogBiscuits::Book do

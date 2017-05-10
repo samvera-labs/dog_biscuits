@@ -10,6 +10,7 @@ shared_examples_for 'presented_at' do
   end
   it 'has conference' do
     expect(stubby.presented_at_resource.first).to eq(conference)
+    expect(stubby.presented_at).to eq(['The International Conference of Misery'])
   end
   it 'has presented at predicate' do
     expect(stubby.resource.dump(:ttl).should(include('http://purl.org/ontology/bibo/presentedAt')))
