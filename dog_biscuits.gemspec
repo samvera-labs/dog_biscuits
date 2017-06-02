@@ -27,9 +27,9 @@ Gem::Specification.new do |spec|
   # spec.add_dependency 'hyrax', '1.0.0.rc1'
   spec.add_dependency 'hyrax', '1.0.1'
 
+  spec.add_development_dependency 'engine_cart', '~> 1.0'
   spec.add_development_dependency 'rspec', '~> 3.1'
   spec.add_development_dependency 'rspec-rails', '~> 3.1'
-  spec.add_development_dependency 'factory_girl_rails'
+  spec.add_development_dependency "factory_girl_rails", '~> 4.4'
   spec.add_development_dependency 'webmock'
-  spec.add_development_dependency 'engine_cart'
 end
