@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :pagination, predicate: RDF::Vocab::SCHEMA.pagination,
-                            multiple: false do |index|
+      property :pagination, predicate: RDF::Vocab::SCHEMA.pagination do |index|
         index.as :stored_searchable
       end
     end

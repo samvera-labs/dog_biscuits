@@ -6,36 +6,36 @@ FactoryGirl.define do
   end
 
   factory :conference_item, class: DogBiscuits::ConferenceItem do
-    title ['Published Item']
-    pagination 'pagination_test'
-    date_accepted '2014'
-    date_submitted '2013'
-    date_published '2016'
-    date_available '2015'
+    title ['Conference Item']
+    pagination ['pagination_test']
+    date_accepted ['2014']
+    date_submitted ['2013']
+    date_published ['2016']
+    date_available ['2015']
     isbn ['xxx-xxx-xxx']
-    refereed true
+    refereed [true]
     official_url ['http://www.london.ac.uk']
-    publication_status 'Published'
+    publication_status ['Published']
     place_of_publication ['Salford']
     editor ['Stephen Street']
-    origin_date '2012'
+    origin_date ['2012']
     proceeding ['Proceedings of the Conference of Misery']
     presented_at ['The International Conference of Misery']
   end
 
   factory :book, class: DogBiscuits::Book do
     title ['Published Item']
-    issue_number 'issue_number_test'
-    volume_number 'volume_number_test'
-    pagination 'pagination_test'
-    date_accepted '2014'
-    date_submitted '2013'
-    date_published '2016'
-    date_available '2015'
+    issue_number ['issue_number_test']
+    volume_number ['volume_number_test']
+    pagination ['pagination_test']
+    date_accepted ['2014']
+    date_submitted ['2013']
+    date_published ['2016']
+    date_available ['2015']
     isbn ['xxx-xxx-xxx']
-    refereed true
+    refereed [true]
     official_url ['http://www.london.ac.uk']
-    publication_status 'Published'
+    publication_status ['Published']
     edition ['First Edition']
     part ['Part One']
     series ['The Woeful Series']
@@ -45,17 +45,17 @@ FactoryGirl.define do
 
   factory :published_work, class: DogBiscuits::PublishedWork do
     title ['Published Item']
-    issue_number 'issue_number_test'
-    volume_number 'volume_number_test'
-    pagination 'pagination_test'
-    date_accepted '2014'
-    date_submitted '2013'
-    date_published '2016'
-    date_available '2015'
+    issue_number ['issue_number_test']
+    volume_number ['volume_number_test']
+    pagination ['pagination_test']
+    date_accepted ['2014']
+    date_submitted ['2013']
+    date_published ['2016']
+    date_available ['2015']
     isbn ['xxx-xxx-xxx']
-    refereed true
+    refereed [true]
     official_url ['http://www.london.ac.uk']
-    publication_status 'Published'
+    publication_status ['Published']
     edition ['First Edition']
     part ['Part One']
     series ['The Woeful Series']
@@ -130,7 +130,7 @@ FactoryGirl.define do
     abstract ['abstract']
     creator ['Marr, Johnny']
     advisor ['Rourke, Andy']
-    date_of_award '2016-01-01'
+    date_of_award ['2016-01-01']
     qualification_level ['PhD']
     qualification_name ['qualification']
     language ['English']
@@ -152,18 +152,18 @@ FactoryGirl.define do
     license ['https://creativecommons.org/publicdomain/mark/1.0/']
     rights_statement ['http://rightsstatements.org/vocab/InC/1.0/']
     rights_description ['some additoinal stuff about rights']
-    issue_number 'issue_number_test'
-    volume_number 'volume_number_test'
-    pagination 'pagination_test'
+    issue_number ['issue_number_test']
+    volume_number ['volume_number_test']
+    pagination ['pagination_test']
     identifier ['identifier_test']
     related_url ['http://www.ulcc.ac.uk']
-    date_accepted '2014'
-    date_submitted '2013'
-    date_published '2016'
-    date_available '2015'
-    refereed true
+    date_accepted ['2014']
+    date_submitted ['2013']
+    date_published ['2016']
+    date_available ['2015']
+    refereed [true]
     official_url ['http://www.london.ac.uk']
-    publication_status 'Published'
+    publication_status ['Published']
     journal ['The Journal of Woe']
   end
 end

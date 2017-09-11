@@ -57,6 +57,10 @@ module DogBiscuits
     autoload :Thesis
   end
 
+  autoload_under 'models/concerns' do
+    autoload :ExtendedSolrDocument
+  end
+
   autoload_under 'models/concerns/metadata_groups' do
     # Concerns
     autoload :AddAgentMetadata

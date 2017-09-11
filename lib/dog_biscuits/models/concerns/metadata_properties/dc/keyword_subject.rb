@@ -12,16 +12,14 @@ module DogBiscuits
       has_and_belongs_to_many :subject_resource,
                               class_name: 'DogBiscuits::Concept',
                               # predicate: ::RDF::Vocab::DC.subject
-                              predicate: ::RDF::Vocab::MODS.subjectTopic
+                              predicate: ::RDF::Vocab::DC.subject
 
       # DC11 for uncontrolled keywords.
-      property :keyword, predicate: ::RDF::Vocab::DC11.subject,
-                         multiple: true do |index|
+      property :keyword, predicate: ::RDF::Vocab::SCHEMA.keywords do |index|
         index.as :stored_searchable, :facetable
       end
       # Controlled Subjects from external schemes
-      property :subject, predicate: ::RDF::Vocab::DC.subject,
-                         multiple: true do |index|
+      property :subject, predicate: ::RDF::Vocab::DC11.subject do |index|
         index.as :stored_searchable, :facetable
       end
     end

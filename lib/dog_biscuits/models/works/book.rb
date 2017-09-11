@@ -7,7 +7,6 @@ module DogBiscuits
 
     before_save :combine_dates
 
-    # TODO: set proper type
     type << ::RDF::Vocab::BIBO.Book
 
     def book?

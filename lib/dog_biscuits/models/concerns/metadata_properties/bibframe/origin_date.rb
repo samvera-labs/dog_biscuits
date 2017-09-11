@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :origin_date, predicate: ::RDF::Vocab::BF2.originDate,
-                             multiple: false do |index|
+      property :origin_date, predicate: ::RDF::Vocab::BF2.originDate do |index|
         index.type :date
         index.as :stored_searchable
       end

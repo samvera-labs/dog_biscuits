@@ -5,7 +5,7 @@ shared_examples_for 'date_of_award' do
 
   # metadata
   it 'has date of award' do
-    expect(stubby.date_of_award).to eq('2016-01-01')
+    expect(stubby.date_of_award).to eq(['2016-01-01'])
   end
 
   # predicates

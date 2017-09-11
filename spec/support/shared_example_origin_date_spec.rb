@@ -5,7 +5,7 @@ shared_examples_for 'origin_date' do
   let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
 
   it 'has origin date' do
-    expect(stubby.origin_date).to eq('2012')
+    expect(stubby.origin_date).to eq(['2012'])
   end
 
   it 'has origin date predicate' do

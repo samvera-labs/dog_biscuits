@@ -2,6 +2,7 @@
 
 module DogBiscuits
   # Common metadata for all collections and works.
+  # TODO align with BasicMetadata
   module CommonMetadata
     extend ActiveSupport::Concern
 
@@ -25,6 +26,7 @@ module DogBiscuits
     include DogBiscuits::Doi
     include DogBiscuits::ManagingOrganisation
     include DogBiscuits::RelatedUrl
+    include DogBiscuits::SkosNote # general note
 
     # Common dlib properties
     include DogBiscuits::CollectionsCategory

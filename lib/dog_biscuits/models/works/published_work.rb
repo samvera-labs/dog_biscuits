@@ -7,6 +7,8 @@ module DogBiscuits
 
     before_save :combine_dates
 
+    # TODO: This is to broad; need a type that captures the idea of a single (or collected) published thing, that
+    #   incoporates book, report, monograph etc.
     type << ::RDF::Vocab::BIBO.Document
 
     def published_work?

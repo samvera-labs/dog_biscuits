@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :refereed, predicate: DogBiscuits::Vocab::UlccTerms.refereed,
-                          multiple: false do |index|
+      property :refereed, predicate: DogBiscuits::Vocab::UlccTerms.refereed do |index|
         index.as :stored_searchable, :facetable
       end
     end
