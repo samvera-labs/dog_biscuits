@@ -55,7 +55,7 @@ describe DogBiscuits::Terms::SubjectsTerms do
 
   it 'finds the label by the id' do
     subjects.concepts << concept
-    terms.find_value_string(concept.id).should eq(['label'])
+    terms.find_label_string(concept.id).should eq(['label'])
   end
 
   it 'returns all for options list' do

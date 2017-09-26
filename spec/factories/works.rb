@@ -23,26 +23,6 @@ FactoryGirl.define do
     presented_at ['The International Conference of Misery']
   end
 
-  factory :book, class: DogBiscuits::Book do
-    title ['Published Item']
-    issue_number ['issue_number_test']
-    volume_number ['volume_number_test']
-    pagination ['pagination_test']
-    date_accepted ['2014']
-    date_submitted ['2013']
-    date_published ['2016']
-    date_available ['2015']
-    isbn ['xxx-xxx-xxx']
-    refereed [true]
-    official_url ['http://www.london.ac.uk']
-    publication_status ['Published']
-    edition ['First Edition']
-    part ['Part One']
-    series ['The Woeful Series']
-    place_of_publication ['Salford']
-    editor ['Stephen Street']
-  end
-
   factory :published_work, class: DogBiscuits::PublishedWork do
     title ['Published Item']
     issue_number ['issue_number_test']
@@ -71,7 +51,7 @@ FactoryGirl.define do
     has_restriction ['10 years from last access']
     for_indexing ['lovely stuff for indexing']
     publisher ['Rough Trade Records']
-    date_available '2015'
+    date_available ['2015']
     pure_uuid 'xxxx-xxxx-xxxx-xxxx'
     pure_creation '2002-05-30T09:00:00'
     pure_type ['pure type']
@@ -117,12 +97,6 @@ FactoryGirl.define do
     aip_resource_uri 'aip-uri'
     dip_resource_uri 'dip-uri'
     origin_pipeline 'origin-pipeline'
-
-    # after(:build, &:add_types)
-    #
-    # trait :with_before_save_callback do
-    #   after(:build, &:add_types)
-    # end
   end
 
   factory :thesis, class: DogBiscuits::Thesis do

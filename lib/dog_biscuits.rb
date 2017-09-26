@@ -47,7 +47,6 @@ module DogBiscuits
     autoload :FileSet
   end
   autoload_under 'models/works' do
-    autoload :Book
     autoload :ConferenceItem
     autoload :Dataset
     autoload :ExamPaper
@@ -61,10 +60,8 @@ module DogBiscuits
     autoload :ExtendedSolrDocument
   end
 
-  autoload_under 'models/concerns/metadata_groups' do
-    # Concerns
+  autoload_under 'models/concerns/model_property_sets' do
     autoload :AddAgentMetadata
-    autoload :AddBookMetadata
     autoload :AddConferenceItemMetadata
     autoload :AddDatasetMetadata
     autoload :AddExamPaperMetadata
@@ -72,12 +69,9 @@ module DogBiscuits
     autoload :AddPackageMetadata
     autoload :AddPublishedWorkMetadata
     autoload :AddThesisMetadata
-    # Properties
-    autoload :AddPersonProperties
-    autoload :AddPlaceProperties
   end
 
-  autoload_under 'models/concerns/metadata_groups/common' do
+  autoload_under 'models/concerns/model_property_sets/common' do
     autoload :CommonLabels
     autoload :CommonMetadata
     autoload :CommonRights
@@ -119,12 +113,12 @@ module DogBiscuits
     autoload :DateAccepted
     autoload :Description
     autoload :Identifier
-    autoload :KeywordSubject
     autoload :Language
     autoload :Publisher
     autoload :ResourceType
     autoload :Rights
     autoload :RightsHolder
+    autoload :Subject
     # autoload :Title # part of CoreMetadata
     autoload :SimpleVersions
   end
@@ -177,6 +171,11 @@ module DogBiscuits
     autoload :HasRestriction
   end
 
+  autoload_under 'models/concerns/metadata_properties/property_sets' do
+    autoload :PersonProperties
+    autoload :PlaceProperties
+  end
+
   autoload_under 'models/concerns/metadata_properties/pure' do
     autoload :Pure
     autoload :ManagingOrganisation
@@ -194,6 +193,7 @@ module DogBiscuits
     autoload :ContentVersion
     autoload :DatePublished
     autoload :IssueNumber
+    autoload :Keyword
     autoload :Pagination
     autoload :VolumeNumber
     autoload :AlternateName
@@ -232,10 +232,18 @@ module DogBiscuits
     autoload :ValidatePlace
   end
 
-  autoload_under 'models/concerns/indexers' do
-    # Indexers
+  autoload_under 'indexers' do
+    # Indexer classes
+    autoload :ConferenceItemIndexer
+    autoload :DatasetIndexer
+    autoload :ExamPaperIndexer
+    autoload :JournalArticleIndexer
+    autoload :PublishedWorkIndexer
+    autoload :ThesisIndexer
+  end
+  autoload_under 'indexers/concerns' do
+    # Indexer modules
     autoload :IndexesCommon
-    autoload :IndexesBook
     autoload :IndexesCollection
     autoload :IndexesConferenceItem
     autoload :IndexesDataset

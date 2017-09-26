@@ -50,7 +50,7 @@ describe DogBiscuits::Terms::ProjectsTerms do
 
   it 'finds the label by the id' do
     projects.projects << project
-    terms.find_value_string(project.id).should eq(['A scientific study into misery (id: identifier_test)'])
+    terms.find_label_string(project.id).should eq(['A scientific study into misery (id: identifier_test)'])
   end
 
   it 'returns all for options list' do

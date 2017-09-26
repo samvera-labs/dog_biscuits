@@ -15,5 +15,5 @@ shared_examples_for 'contributor' do
     expect(stubby.contributor_resource.first).to eq(contributor)
   end
 
-  # Don't test for _value in solr - no models use this at the moment
+  # Don't test for _label in solr - no models use this at the moment
 end

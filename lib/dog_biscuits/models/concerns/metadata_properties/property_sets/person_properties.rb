@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module AddPersonProperties
+  module PersonProperties
     extend ActiveSupport::Concern
 
     # A set of properties for Person. These properties are only useful to Person and any classes that inherit from Person.

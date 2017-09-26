@@ -23,7 +23,7 @@ shared_examples_for 'creator' do
   it 'has creator resource' do
     expect(stubby.creator_resource.first).to eq(creator)
   end
-  it 'has _value in solr' do
-    expect(stubby.to_solr.should(include('creator_value_tesim')))
+  it 'has _label in solr' do
+    expect(stubby.to_solr.should(include('creator_label_tesim')))
   end
 end

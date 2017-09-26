@@ -23,9 +23,10 @@ describe DogBiscuits::Thesis do
   it_behaves_like 'doi'
   it_behaves_like 'former_identifier'
   it_behaves_like 'qualification'
-  it_behaves_like 'keyword_subject'
+  it_behaves_like 'keyword'
   it_behaves_like 'language'
   it_behaves_like 'main_file'
+  it_behaves_like 'subject'
 
   describe '#rdftypes' do
     specify { thesis.type.should_not include('http://www.w3.org/ns/dcat#Dataset') }

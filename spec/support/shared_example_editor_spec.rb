@@ -23,11 +23,11 @@ shared_examples_for 'editor' do
     expect(stubby.resource.dump(:ttl).should(include('http://purl.org/ontology/bibo/editor')))
   end
 
-  it 'has _value in solr' do
-    expect(stubby.to_solr.should(include('editor_value_tesim')))
+  it 'has _label in solr' do
+    expect(stubby.to_solr.should(include('editor_label_tesim')))
   end
 
   it 'has contributor in solr' do
-    expect(stubby.to_solr.should(include('contributor_value_tesim')))
+    expect(stubby.to_solr.should(include('contributor_label_tesim')))
   end
 end

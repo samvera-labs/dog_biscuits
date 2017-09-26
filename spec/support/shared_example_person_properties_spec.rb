@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples_for 'add_person_properties' do
+shared_examples_for 'person_properties' do
   # the class that includes the concern
   let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
 

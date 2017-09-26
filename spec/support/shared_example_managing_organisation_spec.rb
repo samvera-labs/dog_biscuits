@@ -15,7 +15,7 @@ shared_examples_for 'managing_organisation' do
     expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/pure#pureManagingUnit')))
   end
 
-  it 'has _value in solr' do
-    expect(stubby.to_solr.should(include('managing_organisation_value_tesim')))
+  it 'has _label in solr' do
+    expect(stubby.to_solr.should(include('managing_organisation_label_tesim')))
   end
 end

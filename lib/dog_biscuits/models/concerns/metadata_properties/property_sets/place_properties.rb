@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module AddPlaceProperties
+  module PlaceProperties
     extend ActiveSupport::Concern
 
     # A set of properties for Place. These properties are only useful to Place and any classes that inherit from Place.

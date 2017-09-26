@@ -20,7 +20,7 @@ shared_examples_for 'publisher' do
   it 'has pbl predicate' do
     expect(stubby.resource.dump(:ttl).should(include('http://id.loc.gov/vocabulary/relators/pbl')))
   end
-  it 'has _value in solr' do
-    expect(stubby.to_solr.should(include('publisher_value_tesim')))
+  it 'has _label in solr' do
+    expect(stubby.to_solr.should(include('publisher_label_tesim')))
   end
 end

@@ -2,7 +2,7 @@
 
 module DogBiscuits
   class Place < Authority
-    include DogBiscuits::AddPlaceProperties
+    include DogBiscuits::PlaceProperties
     include DogBiscuits::OwlSameAs
     include DogBiscuits::MadsRelatedAuthority
     include DogBiscuits::GenericAuthorityTerms

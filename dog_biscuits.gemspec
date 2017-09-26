@@ -1,4 +1,3 @@
-# coding: utf-8
 # frozen_string_literal: true
 
 lib = File.expand_path('../lib', __FILE__)
@@ -24,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'hyrax' # , '~> 1.0'
+  # spec.add_dependency 'hyrax'
 
   spec.add_development_dependency 'engine_cart', '~> 1.0'
   spec.add_development_dependency 'rspec', '~> 3.1'

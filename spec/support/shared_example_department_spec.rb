@@ -17,7 +17,7 @@ shared_examples_for 'department' do
     expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/uketd#department')))
   end
 
-  it 'has _value in solr' do
-    expect(stubby.to_solr.should(include('department_value_tesim')))
+  it 'has _label in solr' do
+    expect(stubby.to_solr.should(include('department_label_tesim')))
   end
 end

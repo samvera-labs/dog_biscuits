@@ -29,10 +29,6 @@ module DogBiscuits
       ['admin']
     end
 
-    class CollectionIndexer < Hyrax::CollectionIndexer
-      include DogBiscuits::IndexesCollection
-    end
-
     def self.indexer
       CollectionIndexer
     end

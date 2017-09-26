@@ -50,7 +50,7 @@ describe DogBiscuits::Terms::PeopleTerms do
 
   it 'finds the label by the id' do
     people.people << person
-    terms.find_value_string(person.id).should eq(['Spaceman David Bowie PhD, 1947-2016'])
+    terms.find_label_string(person.id).should eq(['Spaceman David Bowie PhD, 1947-2016'])
   end
 
   it 'returns all for options list' do

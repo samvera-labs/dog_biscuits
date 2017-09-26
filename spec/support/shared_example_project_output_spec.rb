@@ -15,7 +15,7 @@ shared_examples_for 'project_output' do
     expect(stubby.resource.dump(:ttl).should(include('http://london.ac.uk/ontologies/terms#outputOf')))
   end
 
-  it 'has _value in solr' do
-    expect(stubby.to_solr.should(include('project_value_tesim')))
+  it 'has _label in solr' do
+    expect(stubby.to_solr.should(include('project_label_tesim')))
   end
 end

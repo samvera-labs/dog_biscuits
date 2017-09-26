@@ -50,7 +50,7 @@ describe DogBiscuits::Terms::DepartmentsTerms do
 
   it 'finds the label by the id' do
     departments.departments << department
-    terms.find_value_string(department.id).should eq(['Department of Miserabilism, 1500-1550'])
+    terms.find_label_string(department.id).should eq(['Department of Miserabilism, 1500-1550'])
   end
 
   it 'returns all for options list' do

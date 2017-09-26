@@ -7,10 +7,10 @@ module LocalAuthorityConcern
       super
     end
 
-    def include_current_value(value, _index, render_options, html_options)
+    def include_current_label(value, _index, render_options, html_options)
       if value.present?
         html_options[:class] << ' force-select'
-        render_options += [[find_value_string(value).join, value]]
+        render_options += [[find_label_string(value).join, value]]
       end
       [render_options, html_options]
     end

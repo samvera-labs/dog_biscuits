@@ -11,7 +11,7 @@ describe DogBiscuits::Person do
   let(:thesis) { FactoryGirl.create(:thesis) }
 
   it_behaves_like 'schema_alternate_name'
-  it_behaves_like 'add_person_properties'
+  it_behaves_like 'person_properties'
 
   it 'is a person' do
     expect(person).to be_person
@@ -67,13 +67,13 @@ describe DogBiscuits::Person do
   describe '#update usages for thesis' do
     it 'thesis has creator' do
       thesis.creator_resource << person
-      expect(thesis.to_solr.should(include('creator_value_tesim')))
+      expect(thesis.to_solr.should(include('creator_label_tesim')))
     end
     #
     it 'thesis does not have the creator after person is destroyed' do
       person.destroy
       thesis.reload
-      expect(thesis.to_solr['creator_value_tesim']).to eq([])
+      expect(thesis.to_solr['creator_label_tesim']).to eq([])
     end
   end
 end

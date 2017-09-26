@@ -50,7 +50,7 @@ describe DogBiscuits::Terms::PlacesTerms do
 
   it 'finds the label by the id' do
     places.places << place
-    terms.find_value_string(place.id).should eq(['Didsbury, Madeup Parish, Manchester, Greater Manchester, England, United Kingdom'])
+    terms.find_label_string(place.id).should eq(['Didsbury, Madeup Parish, Manchester, Greater Manchester, England, United Kingdom'])
   end
 
   it 'returns all for options list' do

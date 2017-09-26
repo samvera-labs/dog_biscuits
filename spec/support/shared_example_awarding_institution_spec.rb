@@ -16,7 +16,7 @@ shared_examples_for 'awarding_institution' do
     expect(stubby.resource.dump(:ttl).should(include('http://bibframe.org/vocab/dissertationInstitution')))
   end
 
-  it 'has _value in solr' do
-    expect(stubby.to_solr.should(include('awarding_institution_value_tesim')))
+  it 'has _label in solr' do
+    expect(stubby.to_solr.should(include('awarding_institution_label_tesim')))
   end
 end

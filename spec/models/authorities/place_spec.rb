@@ -8,7 +8,7 @@ describe DogBiscuits::Place do
   it_behaves_like 'generic_authority_terms'
   it_behaves_like 'mads_related_authority'
   it_behaves_like 'owl_same_as'
-  it_behaves_like 'add_place_properties'
+  it_behaves_like 'place_properties'
   it_behaves_like 'skos_note'
 
   it 'is a place' do

@@ -15,12 +15,8 @@ module DogBiscuits
       true
     end
 
-    class PublishedWorkIndexer < Hyrax::WorkIndexer
-      include DogBiscuits::IndexesPublishedWork
-    end
-
     def self.indexer
-      PublishedWorkIndexer
+      DogBiscuits::PublishedWorkIndexer
     end
 
     # Create single date field from all dates.

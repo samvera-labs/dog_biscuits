@@ -11,12 +11,8 @@ module DogBiscuits
       true
     end
 
-    class ExamPaperIndexer < Hyrax::WorkIndexer
-      include DogBiscuits::IndexesExamPaper
-    end
-
     def self.indexer
-      ExamPaperIndexer
+      DogBiscuits::ExamPaperIndexer
     end
   end
 end

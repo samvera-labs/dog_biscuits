@@ -17,7 +17,7 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 14
 
-Style/IndentationConsistency:
+Layout/IndentationConsistency:
   EnforcedStyle: rails
 
 Style/CollectionMethods:
@@ -52,8 +52,5 @@ Rails:
 Rails/DynamicFindBy:
   Enabled: false
 
-RSpec/FilePath:
-  Enabled: false
-
-RSpec/ScatteredLet:
+Rails/FilePath:
   Enabled: false

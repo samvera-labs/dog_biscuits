@@ -14,20 +14,20 @@ module DogBiscuits
       end
 
       def advisor
-        self[Solrizer.solr_name('advisor_value')]
+        self[Solrizer.solr_name('advisor_label')]
       end
 
       def awarding_institution
-        self[Solrizer.solr_name('awarding_institution_value')]
+        self[Solrizer.solr_name('awarding_institution_label')]
       end
 
       def content_version
         self[Solrizer.solr_name('content_version')]
       end
 
-      # creator is used by other models so we need to distinguish _value
-      def creator_value
-        self[Solrizer.solr_name('creator_value')]
+      # creator is used by other models so we need to distinguish _label
+      def creator_label
+        self[Solrizer.solr_name('creator_label')]
       end
 
       def date
@@ -55,7 +55,7 @@ module DogBiscuits
       end
 
       def department
-        self[Solrizer.solr_name('department_value')]
+        self[Solrizer.solr_name('department_label')]
       end
 
       def doi
@@ -87,7 +87,7 @@ module DogBiscuits
       end
 
       def managing_organisation
-        self[Solrizer.solr_name('managing_organisation_value')]
+        self[Solrizer.solr_name('managing_organisation_label')]
       end
 
       def note
@@ -123,7 +123,7 @@ module DogBiscuits
       end
 
       def project
-        self[Solrizer.solr_name('project_value')]
+        self[Solrizer.solr_name('project_label')]
       end
 
       def publication_status

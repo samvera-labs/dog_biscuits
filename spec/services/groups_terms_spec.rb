@@ -49,7 +49,7 @@ describe DogBiscuits::Terms::GroupsTerms do
 
   it 'finds the label by the id' do
     groups.groups << group
-    terms.find_value_string(group.id).should eq(['The Smiths, 1500-1550, order of the phoenix'])
+    terms.find_label_string(group.id).should eq(['The Smiths, 1500-1550, order of the phoenix'])
   end
 
   it 'returns all for options list' do
