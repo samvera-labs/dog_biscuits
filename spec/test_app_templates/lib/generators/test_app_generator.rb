@@ -9,9 +9,12 @@ class TestAppGenerator < Rails::Generators::Base
   # into the test app, this generator will be run immediately
   # after setting up the application
 
+  # FROM template.rb
   def install_engine
+    gem 'hyrax', '2.0.0.beta4'
+    run 'bundle install'
     generate 'hyrax:install', '-f'
-    # rails_command 'hyrax:workflow:load'
+    rails_command 'db:migrate'
   end
 
   def create_generic_work

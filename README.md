@@ -1,10 +1,10 @@
 # DogBiscuits
 
-[![Code Climate](https://codeclimate.com/github/geekscruff/dog_biscuits/badges/gpa.svg)](https://codeclimate.com/github/geekscruff/dog_biscuits)
-[![Issue Count](https://codeclimate.com/github/geekscruff/dog_biscuits/badges/issue_count.svg)](https://codeclimate.com/github/geekscruff/dog_biscuits)
-[![Build Status](https://travis-ci.org/geekscruff/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/geekscruff/dog_biscuits)
-[![Dependency Status](https://gemnasium.com/badges/github.com/geekscruff/dog_biscuits.svg)](https://gemnasium.com/github.com/geekscruff/dog_biscuits)
-[![Inline docs](http://inch-ci.org/github/geekscruff/dog_biscuits.svg?branch=master)](http://inch-ci.org/github/geekscruff/dog_biscuits)
+[![Code Climate](https://codeclimate.com/github/ULCC/dog_biscuits/badges/gpa.svg)](https://codeclimate.com/github/ULCC/dog_biscuits)
+[![Issue Count](https://codeclimate.com/github/ULCC/dog_biscuits/badges/issue_count.svg)](https://codeclimate.com/github/ULCC/dog_biscuits)
+[![Build Status](https://travis-ci.org/ULCC/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/ULCC/dog_biscuits)
+[![Dependency Status](https://gemnasium.com/badges/github.com/ULCC/dog_biscuits.svg)](https://gemnasium.com/github.com/ULCC/dog_biscuits)
+[![Inline docs](http://inch-ci.org/github/ULCC/dog_biscuits.svg?branch=master)](http://inch-ci.org/github/ULCC/dog_biscuits)
 
 Models, vocabularies and behaviours for Hyrax applications :dog: :cookie:
 
