@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :resource_type, predicate: ::RDF::Vocab::DC.type,
-                               multiple: true do |index|
+      property :resource_type, predicate: ::RDF::Vocab::DC.type do |index|
         index.as :stored_searchable, :sortable
       end
     end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'date_of_award' do
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   # metadata
   it 'has date of award' do
@@ -10,6 +10,6 @@ shared_examples_for 'date_of_award' do
 
   # predicates
   it 'has date of award predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://purl.org/dc/terms/dateAccepted')))
+    expect(rdf.should(include('http://purl.org/dc/terms/dateAccepted')))
   end
 end

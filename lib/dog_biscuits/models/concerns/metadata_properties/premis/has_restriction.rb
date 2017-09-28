@@ -6,8 +6,7 @@ module DogBiscuits
 
     included do
       property :has_restriction,
-               predicate: ::RDF::Vocab::PREMIS.hasRestriction,
-               multiple: true do |index|
+               predicate: ::RDF::Vocab::PREMIS.hasRestriction do |index|
         index.type :date
         index.as :stored_searchable
       end

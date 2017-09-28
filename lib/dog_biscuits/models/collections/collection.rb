@@ -2,8 +2,8 @@
 
 module DogBiscuits
   class Collection < ActiveFedora::Base
-    include ::Hyrax::CollectionBehavior
     include DogBiscuits::CommonMetadata
+    include ::Hyrax::CollectionBehavior
 
     def authority?
       false

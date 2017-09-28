@@ -2,12 +2,13 @@
 
 shared_examples_for 'orcid' do
   # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   it 'has orcid' do
     expect(stubby.orcid).to eq(['xxx-xxx-xxx'])
   end
   it 'has orcid predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://id.loc.gov/vocabulary/identifiers/orcid')))
+    expect(rdf.should(include('http://id.loc.gov/vocabulary/identifiers/orcid')))
   end
 end

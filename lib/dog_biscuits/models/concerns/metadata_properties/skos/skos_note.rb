@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :note, predicate: ::RDF::Vocab::SKOS.note,
-                      multiple: true do |index|
+      property :note, predicate: ::RDF::Vocab::SKOS.note do |index|
         index.as :stored_searchable
       end
     end

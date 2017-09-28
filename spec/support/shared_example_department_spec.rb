@@ -2,8 +2,9 @@
 
 shared_examples_for 'department' do
   # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
   let(:org) { FactoryGirl.build_stubbed(:organisation) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
     stubby.department_resource << org
@@ -14,10 +15,10 @@ shared_examples_for 'department' do
   end
 
   it 'has department predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/uketd#department')))
+    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/uketd#department')))
   end
 
   it 'has _label in solr' do
-    expect(stubby.to_solr.should(include('department_label_tesim')))
+    expect(stubby.to_solr['department_label_tesim'].should(eq([org.preflabel])))
   end
 end

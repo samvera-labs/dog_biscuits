@@ -2,8 +2,9 @@
 
 shared_examples_for 'project_output' do
   # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
   let(:project) { FactoryGirl.build_stubbed(:project) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
     stubby.project_resource << project
@@ -12,7 +13,7 @@ shared_examples_for 'project_output' do
     expect(stubby.project_resource.first).to eq(project)
   end
   it 'has project predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://london.ac.uk/ontologies/terms#outputOf')))
+    expect(rdf.should(include('http://london.ac.uk/ontologies/terms#outputOf')))
   end
 
   it 'has _label in solr' do

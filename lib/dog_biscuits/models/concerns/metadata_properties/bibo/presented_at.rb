@@ -5,14 +5,13 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
+      # TODO: Event
       has_and_belongs_to_many :presented_at_resource,
-                              class_name: 'DogBiscuits::Authority', # TODO: model event
+                              class_name: DogBiscuits::Authority,
                               predicate: ::RDF::Vocab::BIBO.presentedAt
 
-      # TODO: review this
-      property :presented_at, predicate: ::RDF::Vocab::BIBO.presentedAt,
-                              multiple: true do |index|
-        index.as :stored_searchable
+      property :presented_at, predicate: DogBiscuits::Vocab::UlccTerms.presentedAtConference do |index|
+        index.as :stored_searchable, :facetable
       end
     end
   end

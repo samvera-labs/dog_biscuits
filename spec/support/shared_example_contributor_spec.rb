@@ -2,8 +2,9 @@
 
 shared_examples_for 'contributor' do
   # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
   let(:contributor) { FactoryGirl.build_stubbed(:person) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
     stubby.contributor_resource << contributor
@@ -13,6 +14,12 @@ shared_examples_for 'contributor' do
   end
   it 'has contributor resource' do
     expect(stubby.contributor_resource.first).to eq(contributor)
+  end
+  it 'has predicate' do
+    expect(rdf.should(include('http://purl.org/dc/elements/1.1/contributor')))
+  end
+  it 'has resource predicate' do
+    expect(rdf.should(include('http://id.loc.gov/vocabulary/relators/ctb')))
   end
 
   # Don't test for _label in solr - no models use this at the moment

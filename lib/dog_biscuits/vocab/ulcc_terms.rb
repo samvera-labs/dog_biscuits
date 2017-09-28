@@ -7,8 +7,14 @@ module DogBiscuits
       # Class definitions
       property :ConferenceItem,
                comment:
-                   'An document created for delivery or presentation at a conference, for example a paper, presentation, workshop or poster.',
-               label: 'Refereed',
+                   'A document created for delivery or presentation at a conference, for example a paper, presentation, workshop or poster.',
+               label: 'Conference Item',
+               'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
+               type: 'rdf:Class'
+      property :PublishedWork,
+               comment:
+                   'A single published work, eg. a book, report, monograph etc.',
+               label: 'Published Work',
                'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
                type: 'rdf:Class'
       # TODO: add subclass of and subclasses
@@ -38,6 +44,12 @@ module DogBiscuits
                comment:
                    'The date of submission, eg. to a journal.',
                label: 'Date Submitted',
+               'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
+               type: 'rdf:Property'
+      property :presentedAtConference,
+               comment:
+                   'Presented at a conference. Intended to be more relaxed so taht the domain can be a literal.',
+               label: 'Presented At Confernence',
                'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
                type: 'rdf:Property'
 

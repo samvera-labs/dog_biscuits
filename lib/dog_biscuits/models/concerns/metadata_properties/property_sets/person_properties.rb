@@ -73,21 +73,18 @@ module DogBiscuits
 
       # Value should be foaf:Person
       property :knows,
-               predicate: ::RDF::Vocab::FOAF.knows,
-               multiple: true do |index|
+               predicate: ::RDF::Vocab::FOAF.knows do |index|
         index.as :stored_searchable
       end
 
       # Value should be foaf:Organization
       property :affiliation,
-               predicate: ::RDF::Vocab::SCHEMA.affiliation,
-               multiple: true do |index|
+               predicate: ::RDF::Vocab::SCHEMA.affiliation do |index|
         index.as :stored_searchable
       end
 
       # Value should be foaf:Group
-      property :member_of, predicate: ::RDF::Vocab::SCHEMA.memberOf,
-                           multiple: true do |index|
+      property :member_of, predicate: ::RDF::Vocab::SCHEMA.memberOf do |index|
         index.as :stored_searchable
       end
     end

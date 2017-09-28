@@ -10,8 +10,7 @@ module DogBiscuits
       #   http://unlock.edina.ac.uk/ws/supportedFeatureTypes?&gazetteer=deep&format=json
       #   http://www.geonames.org/statistics/total.html
       property :feature_code,
-               predicate: ::RDF::Vocab::GEONAMES.featureCode,
-               multiple: true do |index|
+               predicate: ::RDF::Vocab::GEONAMES.featureCode do |index|
         index.as :stored_searchable
       end
 

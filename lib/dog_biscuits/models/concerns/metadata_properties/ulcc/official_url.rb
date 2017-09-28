@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :official_url, predicate: DogBiscuits::Vocab::UlccTerms.officialUrl,
-                              multiple: true do |index|
+      property :official_url, predicate: DogBiscuits::Vocab::UlccTerms.officialUrl do |index|
         index.as :stored_searchable
       end
     end

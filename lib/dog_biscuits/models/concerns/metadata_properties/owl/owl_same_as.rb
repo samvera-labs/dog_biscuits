@@ -5,7 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :same_as, predicate: ::RDF::OWL.sameAs, multiple: true do |index|
+      property :same_as, predicate: ::RDF::OWL.sameAs do |index|
         index.as :stored_searchable
       end
     end

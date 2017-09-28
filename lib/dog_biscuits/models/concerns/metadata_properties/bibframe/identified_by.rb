@@ -6,8 +6,7 @@ module DogBiscuits
 
     included do
       # Value should be bf:Identifier
-      property :identified_by, predicate: ::RDF::Vocab::BF2.identifiedBy,
-                               multiple: true do |index|
+      property :identified_by, predicate: ::RDF::Vocab::BF2.identifiedBy do |index|
         index.as :stored_searchable
       end
     end

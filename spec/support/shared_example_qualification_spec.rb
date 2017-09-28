@@ -2,7 +2,8 @@
 
 shared_examples_for 'qualification' do
   # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   # metadata
   it 'has qualification name' do
@@ -14,9 +15,9 @@ shared_examples_for 'qualification' do
 
   # predicates
   it 'has qualification level predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/uketd#qualificationLevel')))
+    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/uketd#qualificationLevel')))
   end
   it 'has qualification name predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/uketd#qualificationName>')))
+    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/uketd#qualificationName>')))
   end
 end

@@ -17,7 +17,7 @@ FactoryGirl.define do
     official_url ['http://www.london.ac.uk']
     publication_status ['Published']
     place_of_publication ['Salford']
-    editor ['Stephen Street']
+    editor ['Street, Stephen']
     origin_date ['2012']
     proceeding ['Proceedings of the Conference of Misery']
     presented_at ['The International Conference of Misery']
@@ -40,7 +40,7 @@ FactoryGirl.define do
     part ['Part One']
     series ['The Woeful Series']
     place_of_publication ['Salford']
-    editor ['Stephen Street']
+    editor ['Street, Stephen']
   end
 
   factory :dataset, class: DogBiscuits::Dataset do
@@ -76,7 +76,6 @@ FactoryGirl.define do
     rights_description ['some additoinal stuff about rights']
     former_id ['york:1234']
     module_code ['XXXXXX']
-    collections_category ['self-renewing']
     contributor ['Joyce, Mike']
   end
 

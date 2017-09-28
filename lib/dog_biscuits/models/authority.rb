@@ -7,6 +7,7 @@ module DogBiscuits
     include DogBiscuits::SkosNote
     include DogBiscuits::ValidateLabel
 
+    before_save :add_label
     after_save :update_usages
     after_destroy :update_usages
 
@@ -56,6 +57,12 @@ module DogBiscuits
         fl: 'id',
         rows: 0
       )['response']['numResults']
+    end
+
+    # Ensure rdfs label and pref label and the same. Prefer preflabel.
+    def add_label
+      self.rdfs_label = preflabel if preflabel.present?
+      self.preflabel = rdfs_label if rdfs_label.present?
     end
   end
 end

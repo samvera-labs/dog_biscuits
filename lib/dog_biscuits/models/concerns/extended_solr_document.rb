@@ -67,7 +67,7 @@ module DogBiscuits
       end
 
       def editor
-        self[Solrizer.solr_name('editor')]
+        self[Solrizer.solr_name('editor_label')]
       end
 
       def funder
@@ -115,7 +115,7 @@ module DogBiscuits
       end
 
       def presented_at
-        self[Solrizer.solr_name('presented_at')]
+        self[Solrizer.solr_name('presented_at_label')]
       end
 
       def proceeding

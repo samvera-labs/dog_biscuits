@@ -2,7 +2,8 @@
 
 shared_examples_for 'person_properties' do
   # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   describe '#person metadata' do
     specify { stubby.prefix.should eq('Spaceman') }
@@ -21,18 +22,18 @@ shared_examples_for 'person_properties' do
   end
 
   describe '#person predicates' do
-    specify { stubby.resource.dump(:ttl).should include('http://xmlns.com/foaf/0.1/familyName') }
-    specify { stubby.resource.dump(:ttl).should include('http://xmlns.com/foaf/0.1/givenName') }
-    specify { stubby.resource.dump(:ttl).should include('http://schema.org/honorificPrefix') }
-    specify { stubby.resource.dump(:ttl).should include('http://schema.org/honorificSuffix') }
-    specify { stubby.resource.dump(:ttl).should include('http://xmlns.com/foaf/0.1/gender') }
-    specify { stubby.resource.dump(:ttl).should include('http://schema.org/nationality') }
-    specify { stubby.resource.dump(:ttl).should include('http://schema.org/deathDate') }
-    specify { stubby.resource.dump(:ttl).should include('http://schema.org/birthDate') }
-    specify { stubby.resource.dump(:ttl).should include('http://schema.org/deathPlace') }
-    specify { stubby.resource.dump(:ttl).should include('http://schema.org/birthPlace') }
-    specify { stubby.resource.dump(:ttl).should include('http://schema.org/memberOf') }
-    specify { stubby.resource.dump(:ttl).should include('http://schema.org/affiliation') }
-    specify { stubby.resource.dump(:ttl).should include('http://xmlns.com/foaf/0.1/knows') }
+    specify { rdf.should include('http://xmlns.com/foaf/0.1/familyName') }
+    specify { rdf.should include('http://xmlns.com/foaf/0.1/givenName') }
+    specify { rdf.should include('http://schema.org/honorificPrefix') }
+    specify { rdf.should include('http://schema.org/honorificSuffix') }
+    specify { rdf.should include('http://xmlns.com/foaf/0.1/gender') }
+    specify { rdf.should include('http://schema.org/nationality') }
+    specify { rdf.should include('http://schema.org/deathDate') }
+    specify { rdf.should include('http://schema.org/birthDate') }
+    specify { rdf.should include('http://schema.org/deathPlace') }
+    specify { rdf.should include('http://schema.org/birthPlace') }
+    specify { rdf.should include('http://schema.org/memberOf') }
+    specify { rdf.should include('http://schema.org/affiliation') }
+    specify { rdf.should include('http://xmlns.com/foaf/0.1/knows') }
   end
 end

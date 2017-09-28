@@ -6,8 +6,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :for_indexing, predicate: DogBiscuits::Vocab::Generic.forIndexing,
-                              multiple: true do |index|
+      property :for_indexing, predicate: DogBiscuits::Vocab::Generic.forIndexing do |index|
         index.as :stored_searchable
       end
     end

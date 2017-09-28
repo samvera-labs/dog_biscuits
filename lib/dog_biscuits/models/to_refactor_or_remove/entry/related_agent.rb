@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RelatedAgent < ActiveFedora::Base
-  include Hyrax::Noid, RdfType
+  include RdfType
 
   belongs_to :entry, predicate: ::RDF::URI.new('http://dlib.york.ac.uk/ontologies/borthwick-registers#relatedAgentFor')
 

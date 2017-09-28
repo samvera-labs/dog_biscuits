@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EntryDate < ActiveFedora::Base
-  include Hyrax::Noid, RdfType, AssignRdfTypes
+  include RdfType, AssignRdfTypes
 
   belongs_to :entry, predicate: ::RDF::URI.new('http://dlib.york.ac.uk/ontologies/borthwick-registers#entryDateFor')
   has_many :single_dates, dependent: :destroy

@@ -2,7 +2,7 @@
 
 shared_examples_for 'simple_versions' do
   # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
   let(:replaces) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
   let(:replaced_by) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
 

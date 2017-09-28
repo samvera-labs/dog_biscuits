@@ -17,10 +17,11 @@ module DogBiscuits
     include DogBiscuits::Date
     include DogBiscuits::Description
     include DogBiscuits::Identifier
-    include DogBiscuits::KeywordSubject
+    include DogBiscuits::Keyword
     include DogBiscuits::Language
     include DogBiscuits::Publisher
     include DogBiscuits::ResourceType
+    include DogBiscuits::Subject
 
     # Common other properties
     include DogBiscuits::Doi
@@ -29,7 +30,6 @@ module DogBiscuits
     include DogBiscuits::SkosNote # general note
 
     # Common dlib properties
-    include DogBiscuits::CollectionsCategory
     include DogBiscuits::FormerIdentifier
   end
 end

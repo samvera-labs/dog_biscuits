@@ -13,9 +13,7 @@ module DogBiscuits
       true
     end
 
-    def self.indexer
-      DogBiscuits::JournalArticleIndexer
-    end
+    self.indexer = DogBiscuits::JournalArticleIndexer
 
     # Create single date field from all dates.
     def combine_dates

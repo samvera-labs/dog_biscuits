@@ -24,4 +24,13 @@ class TestAppGenerator < Rails::Generators::Base
   def install_dog_biscuits
     generate 'dog_biscuits:install', '-f'
   end
+
+  # Currently an old copy of the schema is turning up but I don't know where from
+  # Makes no fucking difference: "Solr configuration not found at solr/config. Using ActiveFedora defaults"
+  def update_solr_schema
+    run 'rm -rf ./solr/conf'
+    run 'rm ./solr/config/schema.xml'
+    run 'wget https://raw.githubusercontent.com/samvera/hyrax/master/solr/config/schema.xml'
+    run 'mv ./schema.xml ./solr/config/'
+  end
 end

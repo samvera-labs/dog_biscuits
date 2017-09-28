@@ -4,12 +4,10 @@ module DogBiscuits
   class Place < Authority
     include DogBiscuits::PlaceProperties
     include DogBiscuits::OwlSameAs
-    include DogBiscuits::MadsRelatedAuthority
+    include DogBiscuits::RelatedAuthority
     include DogBiscuits::GenericAuthorityTerms
-    include Hyrax::Noid
-    include DogBiscuits::ValidatePlace
 
-    before_save :add_label
+    include DogBiscuits::ValidatePlace
 
     # Possible alternative approach to parent_ADMx
     # has_and_belongs_to_many :contained_in_place,

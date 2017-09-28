@@ -6,8 +6,7 @@ module DogBiscuits
 
     included do
       property :journal,
-               predicate: ::RDF::Vocab::BF2.partOf,
-               multiple: true do |index|
+               predicate: ::RDF::Vocab::BF2.partOf do |index|
         index.as :stored_searchable, :facetable
       end
     end

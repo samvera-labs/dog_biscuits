@@ -11,8 +11,7 @@ module DogBiscuits
                               predicate: ::RDF::Vocab::MARCRelators.ctb,
                               class_name: 'DogBiscuits::Agent'
 
-      property :contributor, predicate: ::RDF::Vocab::DC11.contributor,
-                             multiple: true do |index|
+      property :contributor, predicate: ::RDF::Vocab::DC11.contributor do |index|
         index.as :stored_searchable, :sortable, :facetable
       end
     end

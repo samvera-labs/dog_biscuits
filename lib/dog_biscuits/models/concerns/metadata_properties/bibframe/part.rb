@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :part, predicate: ::RDF::Vocab::BF2.part,
-                      multiple: true do |index|
+      property :part, predicate: ::RDF::Vocab::BF2.part do |index|
         index.as :stored_searchable
       end
     end

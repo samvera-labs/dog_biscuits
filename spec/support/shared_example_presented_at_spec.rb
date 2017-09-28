@@ -2,17 +2,25 @@
 
 shared_examples_for 'presented_at' do
   # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
   let(:conference) { FactoryGirl.build_stubbed(:conference) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
+    conference.add_label
     stubby.presented_at_resource << conference
   end
   it 'has conference' do
-    expect(stubby.presented_at_resource.first).to eq(conference)
     expect(stubby.presented_at).to eq(['The International Conference of Misery'])
   end
+  it 'has conference resource' do
+    expect(stubby.presented_at_resource).to eq([conference])
+  end
   it 'has presented at predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://purl.org/ontology/bibo/presentedAt')))
+    expect(rdf.should(include('http://purl.org/ontology/bibo/presentedAt')))
+    expect(rdf.should(include('http://london.ac.uk/ontologies/terms#presentedAtConference')))
+  end
+
+  it 'has _label in solr' do
+    expect(stubby.to_solr['presented_at_label_tesim'].should(include('The International Conference of Misery', conference.preflabel)))
   end
 end

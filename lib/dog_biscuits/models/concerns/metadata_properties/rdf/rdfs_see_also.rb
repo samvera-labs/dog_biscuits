@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :rdfs_see_also, predicate: ::RDF::RDFS.seeAlso,
-                               multiple: true do |index|
+      property :rdfs_see_also, predicate: ::RDF::RDFS.seeAlso do |index|
         index.as :stored_searchable
       end
     end

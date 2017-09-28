@@ -2,7 +2,8 @@
 
 shared_examples_for 'place_properties' do
   # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   describe '#place metadata' do
     specify { stubby.feature_code.should eq(['city']) }
@@ -20,17 +21,17 @@ shared_examples_for 'place_properties' do
   end
 
   describe '#place predicates' do
-    specify { stubby.resource.dump(:ttl).should include('http://www.geonames.org/ontology#name') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.geonames.org/ontology#parentADM4') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.geonames.org/ontology#parentADM3') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.geonames.org/ontology#parentADM2') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.geonames.org/ontology#parentADM1') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.geonames.org/ontology#parentCountry') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.geonames.org/ontology#featureCode') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.geonames.org/ontology#countryCode') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.geonames.org/ontology#parentFeature') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.w3.org/2003/01/geo/wgs84_pos#lat') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.w3.org/2003/01/geo/wgs84_pos#long') }
-    specify { stubby.resource.dump(:ttl).should include('http://www.w3.org/2003/01/geo/wgs84_pos#alt') }
+    specify { rdf.should include('http://www.geonames.org/ontology#name') }
+    specify { rdf.should include('http://www.geonames.org/ontology#parentADM4') }
+    specify { rdf.should include('http://www.geonames.org/ontology#parentADM3') }
+    specify { rdf.should include('http://www.geonames.org/ontology#parentADM2') }
+    specify { rdf.should include('http://www.geonames.org/ontology#parentADM1') }
+    specify { rdf.should include('http://www.geonames.org/ontology#parentCountry') }
+    specify { rdf.should include('http://www.geonames.org/ontology#featureCode') }
+    specify { rdf.should include('http://www.geonames.org/ontology#countryCode') }
+    specify { rdf.should include('http://www.geonames.org/ontology#parentFeature') }
+    specify { rdf.should include('http://www.w3.org/2003/01/geo/wgs84_pos#lat') }
+    specify { rdf.should include('http://www.w3.org/2003/01/geo/wgs84_pos#long') }
+    specify { rdf.should include('http://www.w3.org/2003/01/geo/wgs84_pos#alt') }
   end
 end

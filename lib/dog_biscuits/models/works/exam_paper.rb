@@ -11,8 +11,6 @@ module DogBiscuits
       true
     end
 
-    def self.indexer
-      DogBiscuits::ExamPaperIndexer
-    end
+    self.indexer = DogBiscuits::ExamPaperIndexer
   end
 end

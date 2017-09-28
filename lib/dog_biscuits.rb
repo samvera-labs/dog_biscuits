@@ -3,6 +3,10 @@
 module DogBiscuits
   extend ActiveSupport::Autoload
 
+  eager_autoload do
+    autoload :Configuration
+  end
+
   module Vocab
     extend ActiveSupport::Autoload
     eager_autoload do
@@ -124,7 +128,6 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/dlib' do
-    autoload :CollectionsCategory
     autoload :ForIndexing
     autoload :FormerIdentifier
     autoload :GenericAuthorityTerms
@@ -155,7 +158,7 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/mads' do
-    autoload :MadsRelatedAuthority
+    autoload :RelatedAuthority
   end
 
   autoload_under 'models/concerns/metadata_properties/marc_relators' do
@@ -244,13 +247,6 @@ module DogBiscuits
   autoload_under 'indexers/concerns' do
     # Indexer modules
     autoload :IndexesCommon
-    autoload :IndexesCollection
-    autoload :IndexesConferenceItem
-    autoload :IndexesDataset
-    autoload :IndexesExamPaper
-    autoload :IndexesPublishedWork
-    autoload :IndexesThesis
-    autoload :IndexesJournalArticle
   end
 
   autoload_under 'validators' do
@@ -258,5 +254,20 @@ module DogBiscuits
     autoload :PlaceValidator
     autoload :ConceptSchemeMemberValidator
     autoload :ConceptSeeAlsoValidator
+  end
+
+  # @api public
+  #
+  # Exposes the DogBiscuits configuration
+  #
+  # @yield [DogBiscuits::Configuration] if a block is passed
+  # @return [DogBiscuits::Configuration]
+  # @see DogBiscuits::Configuration for configuration options
+  def self.config(&block)
+    @config ||= DogBiscuits::Configuration.new
+
+    yield @config if block
+
+    @config
   end
 end

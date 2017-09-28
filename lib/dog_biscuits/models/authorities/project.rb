@@ -6,9 +6,6 @@ module DogBiscuits
     include DogBiscuits::GenericAuthorityTerms
     include DogBiscuits::Identifier
     include DogBiscuits::Funder
-    include Hyrax::Noid
-
-    before_save :add_label
 
     type [::RDF::URI.new('http://xmlns.com/foaf/0.1/Project')]
 

@@ -7,17 +7,13 @@ module DogBiscuits
 
     before_save :combine_dates
 
-    # TODO: This is to broad; need a type that captures the idea of a single (or collected) published thing, that
-    #   incoporates book, report, monograph etc.
-    type << ::RDF::Vocab::BIBO.Document
+    type << DogBiscuits::Vocab::UlccTerms.PublishedWork
 
     def published_work?
       true
     end
 
-    def self.indexer
-      DogBiscuits::PublishedWorkIndexer
-    end
+    self.indexer = DogBiscuits::PublishedWorkIndexer
 
     # Create single date field from all dates.
     def combine_dates

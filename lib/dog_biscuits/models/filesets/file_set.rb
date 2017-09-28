@@ -2,11 +2,11 @@
 
 module DogBiscuits
   class FileSet < ActiveFedora::Base
-    include Hyrax::FileSetBehavior
     include DogBiscuits::CommonLabels
     include DogBiscuits::CommonRights
     include DogBiscuits::FormerIdentifier
     include DogBiscuits::ContentVersion
+    include Hyrax::FileSetBehavior # this needs to go AFTER properties as FileSetBehaviour contains BasicMetadata
 
     def authority?
       false

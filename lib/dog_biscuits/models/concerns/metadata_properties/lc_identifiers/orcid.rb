@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :orcid, predicate: ::RDF::Vocab::Identifiers.orcid,
-                       multiple: true do |index|
+      property :orcid, predicate: ::RDF::Vocab::Identifiers.orcid do |index|
         index.as :stored_searchable
       end
     end

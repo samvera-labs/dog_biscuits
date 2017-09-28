@@ -9,12 +9,10 @@ module DogBiscuits
 
     type << DogBiscuits::Vocab::UlccTerms.ConferenceItem
 
+    self.indexer = DogBiscuits::ConferenceItemIndexer
+
     def conference_item?
       true
-    end
-
-    def self.indexer
-      DogBiscuits::ConferenceItemIndexer
     end
 
     # Create single date field from all dates.

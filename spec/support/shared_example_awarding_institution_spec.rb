@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 shared_examples_for 'awarding_institution' do
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
   let(:org) { FactoryGirl.build_stubbed(:organisation) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
+    org.add_label
     stubby.awarding_institution_resource << org
   end
 
@@ -13,10 +15,10 @@ shared_examples_for 'awarding_institution' do
   end
 
   it 'has will have an awarding institution predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://bibframe.org/vocab/dissertationInstitution')))
+    expect(rdf.should(include('http://bibframe.org/vocab/dissertationInstitution')))
   end
 
   it 'has _label in solr' do
-    expect(stubby.to_solr.should(include('awarding_institution_label_tesim')))
+    expect(stubby.to_solr['awarding_institution_label_tesim'].should(eq([org.preflabel])))
   end
 end

@@ -9,12 +9,10 @@ module DogBiscuits
 
     type << ::RDF::Vocab::BIBO.Thesis
 
+    self.indexer = DogBiscuits::ThesisIndexer
+
     def thesis?
       true
-    end
-
-    def self.indexer
-      DogBiscuits::ThesisIndexer
     end
 
     # Create single date field from all dates.

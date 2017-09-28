@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :isbn, predicate: ::RDF::Vocab::Identifiers.isbn,
-                      multiple: true do |index|
+      property :isbn, predicate: ::RDF::Vocab::Identifiers.isbn do |index|
         index.as :stored_searchable
       end
     end

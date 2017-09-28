@@ -9,8 +9,7 @@ module DogBiscuits
                               class_name: 'DogBiscuits::Agent',
                               predicate: ::RDF::Vocab::MARCRelators.edc
 
-      property :editor, predicate: ::RDF::Vocab::BIBO.editor,
-                        multiple: true do |index|
+      property :editor, predicate: ::RDF::Vocab::BIBO.editor do |index|
         index.as :stored_searchable, :facetable
       end
     end

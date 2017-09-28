@@ -2,8 +2,9 @@
 
 shared_examples_for 'managing_organisation' do
   # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+
   let(:org) { FactoryGirl.build(:organisation) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
     stubby.managing_organisation_resource << org
@@ -12,10 +13,10 @@ shared_examples_for 'managing_organisation' do
     expect(stubby.managing_organisation_resource.first).to eq(org)
   end
   it 'has managing organisation predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/pure#pureManagingUnit')))
+    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/pure#pureManagingUnit')))
   end
 
   it 'has _label in solr' do
-    expect(stubby.to_solr.should(include('managing_organisation_label_tesim')))
+    expect(stubby.to_solr['managing_organisation_label_tesim'].should(eq([org.preflabel])))
   end
 end
