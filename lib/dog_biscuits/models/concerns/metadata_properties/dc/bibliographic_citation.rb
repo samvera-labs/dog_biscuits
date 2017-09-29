@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module RdfsSeeAlso
+  module BibliographicCitation
     extend ActiveSupport::Concern
 
     included do
-      property :rdfs_see_also, predicate: ::RDF::RDFS.seeAlso do |index|
+      property :bibliographic_citation, predicate: ::RDF::Vocab::DC.bibliographicCitation do |index|
         index.as :stored_searchable
       end
     end

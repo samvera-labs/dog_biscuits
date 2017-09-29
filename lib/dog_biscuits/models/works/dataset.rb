@@ -2,7 +2,11 @@
 
 module DogBiscuits
   class Dataset < Work
+    # Behavior
     include DogBiscuits::AddWorkBehaviour
+    # Local metadata
+    type << ::RDF::Vocab::DCAT.Dataset
+
     include DogBiscuits::AddDatasetMetadata
 
     filters_association :packaged_by, as: :aips, condition: :aip?
@@ -10,8 +14,6 @@ module DogBiscuits
     filters_association :packaged_by, as: :packages, condition: :package?
 
     before_save :combine_dates
-
-    type << ::RDF::Vocab::DCAT.Dataset
 
     def dataset?
       true

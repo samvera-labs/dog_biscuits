@@ -16,11 +16,7 @@ describe DogBiscuits::ExamPaper do
   end
 
   it_behaves_like 'creator'
-  it_behaves_like 'contributor'
   it_behaves_like 'date'
-  it_behaves_like 'description'
-  it_behaves_like 'former_identifier'
-  it_behaves_like 'language'
   it_behaves_like 'main_file'
   it_behaves_like 'module_code'
   it_behaves_like 'qualification'

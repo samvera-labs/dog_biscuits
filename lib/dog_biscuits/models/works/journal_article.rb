@@ -2,12 +2,14 @@
 
 module DogBiscuits
   class JournalArticle < Work
+    # Behavior
     include DogBiscuits::AddWorkBehaviour
+    # Local metadata
+    type << ::RDF::URI.new('http://purl.org/spar/fabio/JournalArticle')
+
     include DogBiscuits::AddJournalArticleMetadata
 
     before_save :combine_dates
-
-    type << ::RDF::URI.new('http://purl.org/spar/fabio/JournalArticle')
 
     def journal_article?
       true

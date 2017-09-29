@@ -19,5 +19,7 @@ module DogBiscuits
     include DogBiscuits::OriginDate
     include DogBiscuits::InProceeding
     include DogBiscuits::PresentedAt
+    # Controlled Properties must go last
+    include DogBiscuits::CommonMetadata
   end
 end

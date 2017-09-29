@@ -67,8 +67,8 @@ FactoryGirl.define do
     preflabel 'broader object'
   end
 
-  factory :seealso_concept, class: DogBiscuits::Concept do
-    preflabel 'seealso object'
+  factory :related_concept, class: DogBiscuits::Concept do
+    preflabel 'related object'
   end
 
   factory :top_concept, class: DogBiscuits::Concept do

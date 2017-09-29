@@ -2,8 +2,8 @@
 
 module DogBiscuits
   class Collection < ActiveFedora::Base
-    include DogBiscuits::CommonMetadata
     include ::Hyrax::CollectionBehavior
+    include DogBiscuits::CommonMetadata
 
     def authority?
       false
@@ -23,10 +23,6 @@ module DogBiscuits
 
     def collection?
       true
-    end
-
-    def edit_groups
-      ['admin']
     end
 
     def self.indexer

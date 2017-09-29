@@ -16,5 +16,7 @@ module DogBiscuits
     include DogBiscuits::Publisher
     include DogBiscuits::ReadmeFile
     include DogBiscuits::SimpleVersions
+    # Controlled Properties must go last
+    include DogBiscuits::CommonMetadata
   end
 end

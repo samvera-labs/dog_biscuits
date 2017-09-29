@@ -2,12 +2,14 @@
 
 module DogBiscuits
   class Thesis < Work
+    # Behavior
     include DogBiscuits::AddWorkBehaviour
+    # Local metadata
+    type << ::RDF::Vocab::BIBO.Thesis
+
     include DogBiscuits::AddThesisMetadata
 
     before_save :combine_dates
-
-    type << ::RDF::Vocab::BIBO.Thesis
 
     self.indexer = DogBiscuits::ThesisIndexer
 

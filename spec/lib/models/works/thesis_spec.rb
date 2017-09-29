@@ -18,10 +18,12 @@ describe DogBiscuits::Thesis do
   # Concerns
   it_behaves_like 'abstract'
   it_behaves_like 'advisor'
+  it_behaves_like 'bibliographic_citation'
   it_behaves_like 'awarding_institution'
   it_behaves_like 'common_labels'
   it_behaves_like 'common_rights'
   it_behaves_like 'creator'
+  it_behaves_like 'date_created'
   it_behaves_like 'date_of_award'
   it_behaves_like 'department'
   it_behaves_like 'doi'

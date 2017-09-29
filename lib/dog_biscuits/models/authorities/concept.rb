@@ -4,8 +4,8 @@ module DogBiscuits
   class Concept < Authority
     include DogBiscuits::GenericAuthorityTerms
     include DogBiscuits::OwlSameAs
-    include DogBiscuits::RdfsSeeAlso # use for external see also links
-    include DogBiscuits::ValidateConceptSeeAlso
+    include DogBiscuits::SkosRelated
+    include DogBiscuits::ValidateConceptRelated
 
     # Use for nested schemes.
     has_and_belongs_to_many :top_concept_of,
@@ -24,10 +24,10 @@ module DogBiscuits
                             inverse_of: :broader
 
     # MUST NOT be the same as broader/narrower; validator in place
-    has_and_belongs_to_many :see_also,
+    has_and_belongs_to_many :related,
                             class_name: 'DogBiscuits::Concept',
                             predicate: ::RDF::Vocab::SKOS.related,
-                            inverse_of: :see_also
+                            inverse_of: :related
 
     type [::RDF::URI.new('http://www.w3.org/2004/02/skos/core#Concept')]
 

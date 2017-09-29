@@ -2,12 +2,14 @@
 
 module DogBiscuits
   class ConferenceItem < Work
+    # Behavior
     include DogBiscuits::AddWorkBehaviour
+    # Local metadata
+    type << DogBiscuits::Vocab::UlccTerms.ConferenceItem
+    # Included metadata
     include DogBiscuits::AddConferenceItemMetadata
 
     before_save :combine_dates
-
-    type << DogBiscuits::Vocab::UlccTerms.ConferenceItem
 
     self.indexer = DogBiscuits::ConferenceItemIndexer
 

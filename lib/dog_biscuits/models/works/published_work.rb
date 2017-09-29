@@ -2,12 +2,14 @@
 
 module DogBiscuits
   class PublishedWork < Work
+    # Behavior
     include DogBiscuits::AddWorkBehaviour
+    # Local metadata
+    type << DogBiscuits::Vocab::UlccTerms.PublishedWork
+
     include DogBiscuits::AddPublishedWorkMetadata
 
     before_save :combine_dates
-
-    type << DogBiscuits::Vocab::UlccTerms.PublishedWork
 
     def published_work?
       true

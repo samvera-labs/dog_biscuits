@@ -22,5 +22,7 @@ module DogBiscuits
     include DogBiscuits::Department
     include DogBiscuits::Abstract
     include DogBiscuits::Orcid
+    # Controlled Properties must go last
+    include DogBiscuits::CommonMetadata
   end
 end

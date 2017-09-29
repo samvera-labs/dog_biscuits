@@ -2,6 +2,7 @@
 
 module DogBiscuits
   module IndexesCommon
+    # include Hyrax::IndexesLinkedMetadata # needs to be de-coupled from basic indexer
     attr_accessor :strings_to_index, :labels_to_index
 
     def generate_solr_document

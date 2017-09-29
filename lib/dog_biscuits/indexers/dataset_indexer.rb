@@ -14,7 +14,7 @@ module DogBiscuits
     # Add any properties to ensure they are 'mixed in' with the *_labels field in solr
     # Method must exist, but can return an empty array
     def strings_to_index
-      []
+      ['creator']
     end
 
     # Force the type of certain indexed fields in solr

@@ -14,8 +14,8 @@ shared_examples_for 'creator' do
   end
 
   before do
-    stubby.creator_resource << creator
     creator.add_label
+    stubby.creator_resource << creator
   end
 
   it 'has creator' do

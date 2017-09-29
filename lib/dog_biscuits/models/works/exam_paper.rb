@@ -2,10 +2,12 @@
 
 module DogBiscuits
   class ExamPaper < Work
+    # Behavior
     include DogBiscuits::AddWorkBehaviour
-    include DogBiscuits::AddExamPaperMetadata
-
+    # Local metadata
     type << ::RDF::URI.new('http://purl.org/spar/fabio/ExaminationPaper')
+
+    include DogBiscuits::AddExamPaperMetadata
 
     def exam_paper?
       true

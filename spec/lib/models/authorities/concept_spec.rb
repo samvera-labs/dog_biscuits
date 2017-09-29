@@ -19,7 +19,7 @@ describe DogBiscuits::Concept do
   it_behaves_like 'generic_authority_terms'
   it_behaves_like 'owl_same_as'
   it_behaves_like 'common_labels'
-  it_behaves_like 'rdfs_see_also'
+  it_behaves_like 'related'
 
   describe '#metadata' do
     specify { stubby.type.should include('http://www.w3.org/2004/02/skos/core#Concept') }

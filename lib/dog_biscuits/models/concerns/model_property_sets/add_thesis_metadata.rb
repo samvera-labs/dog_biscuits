@@ -12,5 +12,7 @@ module DogBiscuits
     include DogBiscuits::Advisor
     include DogBiscuits::AwardingInstitution
     include DogBiscuits::DateOfAward
+    # Controlled Properties must go last
+    include DogBiscuits::CommonMetadata
   end
 end

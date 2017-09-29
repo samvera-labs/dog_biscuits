@@ -16,8 +16,8 @@ require 'factory_girl_rails'
 require 'engine_cart'
 
 EngineCart.load_application!
-require 'byebug' unless ENV['TRAVIS']
 
+require 'byebug' unless ENV['TRAVIS']
 require 'jquery-rails'
 require 'coffee-rails'
 require 'bootstrap-sass'
@@ -38,7 +38,7 @@ RSpec.configure do |config|
     c.syntax = %i[should expect]
   end
   config.before(:suite) do
-    # would be nice to start wrappers here
+    # nothing to do here
   end
   config.before(:each) do
     # nothing to do here
@@ -48,4 +48,6 @@ RSpec.configure do |config|
   end
   # Include shared examples for concerns
   Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
+  # Fixtures
+  # config.fixture_path = File.expand_path("../fixtures", __FILE__)
 end

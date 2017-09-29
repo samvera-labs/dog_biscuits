@@ -2,11 +2,9 @@
 
 module DogBiscuits
   class Package < Work
+    # Behavior
     include DogBiscuits::AddWorkBehaviour
-    include DogBiscuits::AddPackageMetadata
-
-    before_save :add_types
-
+    # Local metadata
     has_and_belongs_to_many :packages,
                             class_name: 'DogBiscuits::Work',
                             predicate: DogBiscuits::Vocab::Generic.packages,
@@ -17,6 +15,10 @@ module DogBiscuits
     property :requestor_email, predicate: DogBiscuits::Vocab::Generic.requestorEmail, multiple: true do |index|
       index.as :stored_searchable
     end
+
+    include DogBiscuits::AddPackageMetadata
+
+    before_save :add_types
 
     def package?
       true

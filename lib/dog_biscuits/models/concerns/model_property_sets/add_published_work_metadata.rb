@@ -21,5 +21,7 @@ module DogBiscuits
     include DogBiscuits::Refereed
     include DogBiscuits::Series
     include DogBiscuits::VolumeNumber
+    # Controlled Properties must go last
+    include DogBiscuits::CommonMetadata
   end
 end

@@ -21,7 +21,6 @@ describe DogBiscuits::ConferenceItem do
   it_behaves_like 'date_published'
   it_behaves_like 'editor'
   it_behaves_like 'isbn'
-  it_behaves_like 'official_url'
   it_behaves_like 'origin_date'
   it_behaves_like 'pagination'
   it_behaves_like 'place_of_publication'

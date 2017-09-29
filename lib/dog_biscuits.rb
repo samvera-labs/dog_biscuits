@@ -111,10 +111,12 @@ module DogBiscuits
     autoload :Abstract
     autoload :AccessRights
     autoload :Available
+    autoload :BibliographicCitation
     autoload :Creator
     autoload :Contributor
     autoload :Date
     autoload :DateAccepted
+    autoload :DateCreated
     autoload :Description
     autoload :Identifier
     autoload :Language
@@ -122,6 +124,7 @@ module DogBiscuits
     autoload :ResourceType
     autoload :Rights
     autoload :RightsHolder
+    autoload :Source
     autoload :Subject
     # autoload :Title # part of CoreMetadata
     autoload :SimpleVersions
@@ -148,6 +151,7 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/foaf' do
+    autoload :BasedNear
     autoload :FoafName
   end
 
@@ -185,8 +189,6 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/rdf' do
-    # RDF and RDFS
-    autoload :RdfsSeeAlso
     autoload :RdfType
     autoload :RelatedUrl
     autoload :RdfsLabel
@@ -205,6 +207,7 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata_properties/skos' do
     autoload :SkosLabels
     autoload :SkosNote
+    autoload :SkosRelated
   end
 
   autoload_under 'models/concerns/metadata_properties/vivo' do
@@ -230,7 +233,7 @@ module DogBiscuits
     autoload :PureSpecific
     # Validations
     autoload :ValidateConceptScheme
-    autoload :ValidateConceptSeeAlso
+    autoload :ValidateConceptRelated
     autoload :ValidateLabel
     autoload :ValidatePlace
   end
@@ -253,7 +256,7 @@ module DogBiscuits
     autoload :LabelValidator
     autoload :PlaceValidator
     autoload :ConceptSchemeMemberValidator
-    autoload :ConceptSeeAlsoValidator
+    autoload :ConceptRelatedValidator
   end
 
   # @api public

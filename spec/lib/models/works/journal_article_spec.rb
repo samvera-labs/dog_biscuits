@@ -29,7 +29,6 @@ describe DogBiscuits::JournalArticle do
   it_behaves_like 'project_output'
   it_behaves_like 'publication_status'
   it_behaves_like 'refereed'
-  it_behaves_like 'related_url'
   it_behaves_like 'volume_number'
 
   describe '#rdftypes' do
