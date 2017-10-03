@@ -2,7 +2,7 @@
 
 shared_examples_for 'presented_at' do
   # the class that includes the concern
-  let(:conference) { FactoryGirl.build_stubbed(:conference) }
+  let(:conference) { FactoryGirl.build_stubbed(:event) }
   let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do

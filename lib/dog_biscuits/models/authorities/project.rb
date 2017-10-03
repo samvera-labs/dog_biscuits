@@ -21,6 +21,10 @@ module DogBiscuits
       false
     end
 
+    def event?
+      false
+    end
+
     def group?
       false
     end

@@ -59,8 +59,12 @@ FactoryGirl.define do
     preflabel 'miserabilism'
   end
 
-  factory :conference, class: DogBiscuits::Concept do
+  factory :event, class: DogBiscuits::Event do
     preflabel 'International Conference of Misery'
+    name 'International Conference of Misery'
+    start_date ['1-1-2016']
+    end_date ['10-1-2016']
+    # TODO: location
   end
 
   factory :broader_concept, class: DogBiscuits::Concept do
@@ -191,4 +195,5 @@ FactoryGirl.define do
     rules 'nca'
     used 'true'
   end
+
 end

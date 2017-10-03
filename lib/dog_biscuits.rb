@@ -33,6 +33,7 @@ module DogBiscuits
   autoload_under 'models/authorities' do
     autoload :Concept
     autoload :ConceptScheme
+    autoload :Event
     autoload :Place
     autoload :Agent
     autoload :Project
@@ -197,9 +198,12 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata_properties/schema' do
     autoload :ContentVersion
     autoload :DatePublished
+    autoload :EndDate
     autoload :IssueNumber
+    autoload :Location
     autoload :Keyword
     autoload :Pagination
+    autoload :StartDate
     autoload :VolumeNumber
     autoload :AlternateName
   end
