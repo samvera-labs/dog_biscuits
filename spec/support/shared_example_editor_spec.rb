@@ -2,8 +2,6 @@
 
 shared_examples_for 'editor' do
   let(:person) { FactoryGirl.build_stubbed(:person) }
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   before do
     person.add_label
     stubby.editor_resource << person
@@ -30,5 +28,18 @@ shared_examples_for 'editor' do
 
   it 'has contributor in solr' do
     expect(stubby.to_solr['contributor_label_tesim'].should(include('Street, Stephen', person.preflabel)))
+  end
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:editor)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:editor].should(be_truthy))
+  end
+
+  # TODO: label
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:editor)))
   end
 end

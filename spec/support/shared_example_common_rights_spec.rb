@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rights_holder and description currently not in any models
 shared_examples_for 'common_rights' do
   let(:rdf) { stubby.resource.dump(:ttl) }
 
@@ -26,5 +27,29 @@ shared_examples_for 'common_rights' do
   end
   it 'has edm rights predicate' do
     expect(rdf.should(include('http://www.europeana.eu/schemas/edm/rights')))
+  end
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:license)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:license].should(be_truthy))
+  end
+
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:license)))
+  end
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:rights_statement)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:rights_statement].should(be_truthy))
+  end
+
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:rights_statement)))
   end
 end

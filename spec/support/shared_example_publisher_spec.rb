@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'publisher' do
-  # the class that includes the concern
-
   let(:publisher) { FactoryGirl.build(:organisation) }
-  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
     stubby.publisher_resource << publisher
@@ -23,5 +20,18 @@ shared_examples_for 'publisher' do
   end
   it 'has _label in solr' do
     expect(stubby.to_solr.should(include('publisher_label_tesim')))
+  end
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:publisher)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:publisher].should(be_truthy))
+  end
+
+  # TODO: label
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:publisher)))
   end
 end

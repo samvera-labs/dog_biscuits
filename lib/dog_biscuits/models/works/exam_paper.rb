@@ -2,17 +2,23 @@
 
 module DogBiscuits
   class ExamPaper < Work
-    # Behavior
-    include DogBiscuits::AddWorkBehaviour
-    # Local metadata
+    # # Needed to set the type
+    include ::Hydra::Works::WorkBehavior
+
+    # Order matters because included metadata finalises things:
+    #  1) type and local metadata
+    #  2) indexer
+    #  3) included metadata
+
     type << ::RDF::URI.new('http://purl.org/spar/fabio/ExaminationPaper')
 
-    include DogBiscuits::AddExamPaperMetadata
+    # Indexer
+    # self.indexer = DogBiscuits::ExamPaperIndexer
+    # Metadata
+    # include DogBiscuits::ExamPaperMetadata
 
     def exam_paper?
       true
     end
-
-    self.indexer = DogBiscuits::ExamPaperIndexer
   end
 end

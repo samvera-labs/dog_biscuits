@@ -8,7 +8,7 @@ module DogBiscuits
     # Additional
     include DogBiscuits::HubDates
     include DogBiscuits::Pure # Metadata from PURE web service
-    include DogBiscuits::PureSpecific # Behaviour for dealing with PURE records
+    include DogBiscuits::PureSpecificBehaviour # Behaviour for dealing with PURE records
     include DogBiscuits::RdfType
     include DogBiscuits::Orcid
 

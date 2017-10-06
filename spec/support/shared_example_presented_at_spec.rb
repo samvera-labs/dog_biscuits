@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'presented_at' do
-  # the class that includes the concern
   let(:conference) { FactoryGirl.build_stubbed(:event) }
-  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
     conference.add_label
@@ -22,5 +20,18 @@ shared_examples_for 'presented_at' do
 
   it 'has _label in solr' do
     expect(stubby.to_solr['presented_at_label_tesim'].should(include('The International Conference of Misery', conference.preflabel)))
+  end
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:presented_at)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:presented_at].should(be_truthy))
+  end
+
+  # TODO: label
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:presented_at)))
   end
 end

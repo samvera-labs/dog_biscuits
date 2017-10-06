@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'pure' do
-  # the class that includes the concern
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   it 'has pure_uuid' do
     expect(stubby.pure_uuid).to eq('xxxx-xxxx-xxxx-xxxx')
   end

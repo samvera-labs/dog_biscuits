@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module AddPublishedWorkMetadata
+  module PublishedWorkMetadata
     extend ActiveSupport::Concern
     include DogBiscuits::Abstract
     include DogBiscuits::Available
@@ -13,7 +13,6 @@ module DogBiscuits
     include DogBiscuits::IssueNumber
     include DogBiscuits::Isbn
     include DogBiscuits::OfficialUrl
-    include DogBiscuits::ManagingOrganisation
     include DogBiscuits::Pagination
     include DogBiscuits::Part
     include DogBiscuits::PlaceOfPublication

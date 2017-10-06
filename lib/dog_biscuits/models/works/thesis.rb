@@ -2,16 +2,22 @@
 
 module DogBiscuits
   class Thesis < Work
-    # Behavior
-    include DogBiscuits::AddWorkBehaviour
-    # Local metadata
+    # Needed to set the type
+    include ::Hydra::Works::WorkBehavior
+
+    # Order matters because included metadata finalises things:
+    #  1) type and local metadata
+    #  2) indexer
+    #  3) included metadata
+
     type << ::RDF::Vocab::BIBO.Thesis
 
-    include DogBiscuits::AddThesisMetadata
+    ## Indexer
+    # self.indexer = DogBiscuits::ThesisIndexer
+    # Metadata
+    # include DogBiscuits::ThesisMetadata
 
     before_save :combine_dates
-
-    self.indexer = DogBiscuits::ThesisIndexer
 
     def thesis?
       true
@@ -21,6 +27,7 @@ module DogBiscuits
     def combine_dates
       self.date = []
       date << date_of_award
+      date << date_created
     end
   end
 end

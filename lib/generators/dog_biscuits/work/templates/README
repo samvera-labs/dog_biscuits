@@ -1,0 +1,44 @@
+===============================================================================
+
+After creating your work you may wish to:
+
+  1. Customize the show page:
+
+      In /app/views/hyrax/your_works
+      edit _attribute_rows.html.erb
+      eg. to add render_as:
+
+  2. Customize facets and search results
+
+      With DogBiscuits:
+        by configuring properties and required properties
+            in config/initializers/dog_biscuits.rb:
+        by changing the index display
+            in config/dog_biscuits.yml
+        and re-running rails g dog_biscuits:catalog_controller
+        (this will overwrite any changes to catalog_controller)
+
+      Or, directly in app/controllers/catalog_controller.rb
+          edit the config.add_facet_field
+          edit the config.add_index_field
+          eg. to change order and add new local properties
+
+  3. Further modify the model, actor, form or presenter,
+
+      eg. with locally defined properties.
+
+  To add a local property the dog_biscuits way:
+
+      add to the model, form, presenter and solr_document
+      add labels and help text to config/locales/
+
+      add to config/initializers/dog_biscuits.rb
+
+      re_generate schema_org with:
+        rails g dog_biscuits:schema_org -f
+      re_generate catalog_controller.rb with:
+        rails g dog_biscuits:catalog_controller -f
+      re_generate _attribute_rows.html.erb with:
+        rails g dog_biscuits:attribute_rows -f
+
+===============================================================================

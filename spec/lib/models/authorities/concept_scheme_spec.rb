@@ -9,6 +9,7 @@ describe DogBiscuits::ConceptScheme do
   let(:stubby) { FactoryGirl.build(:concept_scheme) }
   let(:scheme1) { FactoryGirl.build_stubbed(:concept_scheme) }
   let(:work) { FactoryGirl.build_stubbed(:thesis) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   it_behaves_like 'skos_labels'
   it_behaves_like 'description'

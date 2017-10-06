@@ -2,16 +2,22 @@
 
 module DogBiscuits
   class ConferenceItem < Work
-    # Behavior
-    include DogBiscuits::AddWorkBehaviour
-    # Local metadata
+    # Needed to set the type
+    include ::Hydra::Works::WorkBehavior
+
+    # Order matters because included metadata finalises things:
+    #  1) type and local metadata
+    #  2) indexer
+    #  3) included metadata
+
     type << DogBiscuits::Vocab::UlccTerms.ConferenceItem
-    # Included metadata
-    include DogBiscuits::AddConferenceItemMetadata
+
+    # Indexer
+    # self.indexer = DogBiscuits::ConferenceItemIndexer
+    # Metadata
+    # include DogBiscuits::ConferenceItemMetadata
 
     before_save :combine_dates
-
-    self.indexer = DogBiscuits::ConferenceItemIndexer
 
     def conference_item?
       true
@@ -24,7 +30,7 @@ module DogBiscuits
       date << date_available
       date << date_accepted
       date << date_submitted
-      date << origin_date
+      date << date_created
     end
   end
 end

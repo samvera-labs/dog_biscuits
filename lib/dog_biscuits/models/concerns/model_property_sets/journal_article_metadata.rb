@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module AddConferenceItemMetadata
+  # add journal article metadata
+  module JournalArticleMetadata
     extend ActiveSupport::Concern
     include DogBiscuits::Abstract
     include DogBiscuits::Available
     include DogBiscuits::DatePublished
     include DogBiscuits::DateSubmitted
     include DogBiscuits::DateAccepted
-    include DogBiscuits::Editor
-    include DogBiscuits::Isbn
-    include DogBiscuits::OfficialUrl
+    include DogBiscuits::InJournal
+    include DogBiscuits::IssueNumber
     include DogBiscuits::ManagingOrganisation
+    include DogBiscuits::OfficialUrl
+    include DogBiscuits::Orcid
     include DogBiscuits::Pagination
-    include DogBiscuits::PlaceOfPublication
+    include DogBiscuits::ProjectOutput
     include DogBiscuits::PublicationStatus
     include DogBiscuits::Refereed
-    include DogBiscuits::OriginDate
-    include DogBiscuits::InProceeding
-    include DogBiscuits::PresentedAt
+    include DogBiscuits::VolumeNumber
     # Controlled Properties must go last
     include DogBiscuits::CommonMetadata
   end

@@ -2,13 +2,15 @@
 
 require 'spec_helper'
 
-describe DogBiscuits::Dataset do
+describe Dataset do
   let(:stubby) { FactoryGirl.build(:dataset) }
   let(:package) { FactoryGirl.build_stubbed(:package) }
   let(:generic_work) { FactoryGirl.build(:generic_work) }
   let(:fs) { FactoryGirl.build_stubbed(:file_set) }
   let(:readme) { FactoryGirl.build_stubbed(:file_set) }
   let(:org) { FactoryGirl.build_stubbed(:organisation) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
+  let(:solr_doc) { SolrDocument.new(stubby.to_solr) }
 
   after do
     stubby.destroy
@@ -22,7 +24,6 @@ describe DogBiscuits::Dataset do
   it_behaves_like 'available'
   it_behaves_like 'creator'
   it_behaves_like 'doi'
-  it_behaves_like 'embargo_release'
   it_behaves_like 'for_indexing'
   it_behaves_like 'has_restriction'
   it_behaves_like 'last_access'
@@ -70,3 +71,5 @@ describe DogBiscuits::Dataset do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength

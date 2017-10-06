@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'generic_authority_terms' do
-  # the class that includes the concern
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   it 'has approved' do
     expect(stubby.approved).to eq('true')
   end

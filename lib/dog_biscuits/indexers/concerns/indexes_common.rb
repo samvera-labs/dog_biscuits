@@ -55,5 +55,15 @@ module DogBiscuits
         end
       end
     end
+
+    def index_contributor(solr_doc, labels)
+      if solr_doc['contributor_label_tesim'].blank? && labels.present?
+        solr_doc['contributor_label_tesim'] = labels.flatten.uniq
+        solr_doc['contributor_label_sim'] = labels.flatten.uniq
+      elsif labels.present?
+        solr_doc['contributor_label_tesim'].push(*labels).uniq
+        solr_doc['contributor_label_sim'].push(*labels).uniq
+      end
+    end
   end
 end

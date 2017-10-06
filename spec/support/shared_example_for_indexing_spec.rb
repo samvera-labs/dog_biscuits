@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'for_indexing' do
-  # the class that includes the concern
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   it 'has for_indexing' do
     expect(stubby.for_indexing).to eq(['lovely stuff for indexing'])
   end

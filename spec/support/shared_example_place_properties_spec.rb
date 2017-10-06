@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'place_properties' do
-  # the class that includes the concern
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   describe '#place metadata' do
     specify { stubby.feature_code.should eq(['city']) }
     specify { stubby.place_name.should eq('Didsbury') }

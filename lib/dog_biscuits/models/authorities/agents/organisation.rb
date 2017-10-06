@@ -6,7 +6,7 @@ module DogBiscuits
     include DogBiscuits::GenericQualifier
     include DogBiscuits::HubDates
     include DogBiscuits::Pure
-    include DogBiscuits::PureSpecific
+    include DogBiscuits::PureSpecificBehaviour
     include DogBiscuits::RdfType
 
     type [::RDF::Vocab::FOAF.Agent,

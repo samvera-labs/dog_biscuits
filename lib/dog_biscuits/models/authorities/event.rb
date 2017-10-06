@@ -12,7 +12,7 @@ module DogBiscuits
 
     type [::RDF::URI.new('http://schema.org/Event')]
 
-    # TODO add proper indexing
+    # TODO: add proper indexing
 
     def agent?
       false
@@ -53,12 +53,12 @@ module DogBiscuits
     # Generate a rdfs label from the name parts. Overwrite the existing label.
     def add_label
       self.rdfs_label = name if name.present?
-      if self.start_date.present? and self.end_date.present?
-        self.rdfs_label += " (#{self.start_date.first} - #{self.end_date.first})"
-      elsif self.start_date.present?
-        self.rdfs_label += " (#{self.start_date.first})"
-      elsif self.end_date.present?
-        self.rdfs_label += " (#{self.end_date.first})"
+      if start_date.present? && end_date.present?
+        self.rdfs_label += " (#{start_date.first} - #{end_date.first})"
+      elsif start_date.present?
+        self.rdfs_label += " (#{start_date.first})"
+      elsif end_date.present?
+        self.rdfs_label += " (#{end_date.first})"
       end
       add_preflabel
     end

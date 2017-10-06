@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  # add package metadata
-  module AddPackageMetadata
+  # add exam paper metadata
+  module ExamPaperMetadata
     extend ActiveSupport::Concern
-    include DogBiscuits::Archivematica
-    include DogBiscuits::RdfType
-    include DogBiscuits::SimpleVersions
+    include DogBiscuits::ModuleCode
+    include DogBiscuits::MainFile
+    include DogBiscuits::Qualification
     # Controlled Properties must go last
     include DogBiscuits::CommonMetadata
   end

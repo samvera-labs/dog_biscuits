@@ -6,6 +6,8 @@ describe DogBiscuits::Thesis do
   let(:stubby) { FactoryGirl.build(:thesis) }
   let(:main_file) { FactoryGirl.build_stubbed(:file_set) }
   let(:other_file) { FactoryGirl.build_stubbed(:file_set) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
+  let(:solr_doc) { SolrDocument.new(stubby.to_solr) }
 
   after do
     stubby.destroy

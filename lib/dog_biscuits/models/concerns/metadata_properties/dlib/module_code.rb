@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module OriginDate
+  module ModuleCode
     extend ActiveSupport::Concern
 
     included do
-      property :origin_date, predicate: ::RDF::Vocab::BF2.originDate do |index|
-        index.type :date
+      property :module_code, predicate: DogBiscuits::Vocab::Generic.moduleCode do |index|
         index.as :stored_searchable
       end
     end

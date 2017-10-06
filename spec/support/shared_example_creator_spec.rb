@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'creator' do
-  # the class that includes the concern
   model_str = described_class.to_s.split('::')[1]
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
 
   if model_str == 'ExamPaper'
     let(:creator) { FactoryGirl.build_stubbed(:organisation) }
@@ -32,5 +29,18 @@ shared_examples_for 'creator' do
   end
   it 'has _label in solr' do
     expect(stubby.to_solr['creator_label_tesim'].should(include('Marr, Johnny', creator.preflabel)))
+  end
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:creator)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:creator].should(be_truthy))
+  end
+
+  # TODO: label
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:creator)))
   end
 end

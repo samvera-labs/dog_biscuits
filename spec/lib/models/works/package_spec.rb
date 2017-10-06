@@ -2,8 +2,10 @@
 
 require 'spec_helper'
 
-describe DogBiscuits::Package do
+describe Package do
   let(:stubby) { FactoryGirl.build(:package) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
+  let(:solr_doc) { SolrDocument.new(stubby.to_solr) }
 
   after do
     stubby.destroy
@@ -31,6 +33,14 @@ describe DogBiscuits::Package do
   it_behaves_like 'archivematica'
   it_behaves_like 'simple_versions'
 
+  it 'has requestor_email' do
+    expect(stubby.requestor_email).to eq(['me@example.com'])
+  end
+
+  it 'has requestor_email predicate' do
+    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/generic#requestorEmail')))
+  end
+
   it 'is an aip' do
     expect(stubby).to be_aip
   end
@@ -49,3 +59,5 @@ describe DogBiscuits::Package do
     expect(stubby.type).to include('http://dlib.york.ac.uk/ontologies/oais-archivematica#DisseminationInformationPackage')
   end
 end
+
+# rubocop:enable Metrics/BlockLength

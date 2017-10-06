@@ -5,7 +5,7 @@ require 'spec_helper'
 describe DogBiscuits::LabelValidator do
   let(:authority) { DogBiscuits::Concept.new }
   let(:collection) { DogBiscuits::Collection.new }
-  let(:work) { DogBiscuits::Dataset.new }
+  let(:work) { Dataset.new }
   let(:person) { DogBiscuits::Person.new }
   let(:organisation) { DogBiscuits::Organisation.new }
 

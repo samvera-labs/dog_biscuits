@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'readme_file' do
-  # the class that includes the concern
-
   let(:readme) { FactoryGirl.build_stubbed(:file_set) }
-  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
     stubby.readmefile << readme

@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'person_properties' do
-  # the class that includes the concern
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   describe '#person metadata' do
     specify { stubby.prefix.should eq('Spaceman') }
     specify { stubby.family_name.should eq('Bowie') }

@@ -8,7 +8,7 @@ module DogBiscuits
     #   are indexed in solr
     # Method must exist, but can return an empty array
     def labels_to_index
-      ['creator']
+      ['creator', 'managing_organisation']
     end
 
     # Add any properties to ensure they are 'mixed in' with the *_labels field in solr

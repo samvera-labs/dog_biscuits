@@ -8,7 +8,7 @@ module DogBiscuits
     #   are indexed in the _label solr field
     # Method must exist, but can return an empty array
     def labels_to_index
-      ['creator', 'advisor', 'department', 'awarding_institution']
+      ['creator', 'advisor', 'department', 'awarding_institution', 'managing_organisation']
     end
 
     # Add string properties that have a parallel _resource property to ensure they are mixed into the _label solr field
@@ -21,17 +21,10 @@ module DogBiscuits
     #
     # @param [Hash] solr_doc
     def do_local_indexing(solr_doc)
-      (labels ||= []) << object.advisor_resource.collect(&:preflabel) if object.advisor_resource.present?
-      (labels ||= []) << object.advisor.to_a if object.advisor.present?
-      labels.flatten!.uniq!
-
-      if solr_doc['contributor_label_tesim'].blank? && labels.present?
-        solr_doc['contributor_label_tesim'] = labels
-        solr_doc['contributor_label_sim'] = labels
-      elsif labels.present?
-        solr_doc['contributor_label_tesim'].push(*labels).uniq!
-        solr_doc['contributor_label_sim'].push(*labels).uniq!
-      end
+      labels ||= []
+      labels << object.advisor_resource.collect(&:preflabel) if object.advisor_resource.present?
+      labels << object.advisor.to_a if object.advisor.present?
+      index_contributor(solr_doc, labels)
     end
   end
 end

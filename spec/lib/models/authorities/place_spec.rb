@@ -4,6 +4,7 @@ require 'spec_helper'
 
 describe DogBiscuits::Place do
   let(:stubby) { FactoryGirl.create(:place) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   it_behaves_like 'generic_authority_terms'
   it_behaves_like 'related_authority'

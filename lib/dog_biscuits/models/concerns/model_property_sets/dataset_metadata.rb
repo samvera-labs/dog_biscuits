@@ -1,19 +1,16 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module AddDatasetMetadata
+  module DatasetMetadata
     extend ActiveSupport::Concern
     include DogBiscuits::AccessRights
     include DogBiscuits::Available
-    include DogBiscuits::Doi
-    include DogBiscuits::EmbargoRelease
+    # include DogBiscuits::EmbargoRelease
     include DogBiscuits::ForIndexing
     include DogBiscuits::HasRestriction
     include DogBiscuits::LastAccess
-    include DogBiscuits::ManagingOrganisation
     include DogBiscuits::NumberOfDownloads
     include DogBiscuits::Pure
-    include DogBiscuits::Publisher
     include DogBiscuits::ReadmeFile
     include DogBiscuits::SimpleVersions
     # Controlled Properties must go last

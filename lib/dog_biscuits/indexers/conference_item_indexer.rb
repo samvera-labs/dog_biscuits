@@ -19,17 +19,10 @@ module DogBiscuits
     #
     # @param [Hash] solr_doc
     def do_local_indexing(solr_doc)
-      (labels ||= []) << object.editor_resource.collect(&:preflabel) if object.editor_resource.present?
-      (labels ||= []) << object.editor.to_a if object.editor.present?
-      labels.flatten!.uniq!
-
-      if solr_doc['contributor_label_tesim'].blank? && labels.present?
-        solr_doc['contributor_label_tesim'] = labels
-        solr_doc['contributor_label_sim'] = labels
-      elsif labels.present?
-        solr_doc['contributor_label_tesim'].push(*labels).uniq!
-        solr_doc['contributor_label_sim'].push(*labels).uniq!
-      end
+      labels ||= []
+      labels << object.editor_resource.collect(&:preflabel) if object.editor_resource.present?
+      labels << object.editor.to_a if object.editor.present?
+      index_contributor(solr_doc, labels)
     end
   end
 end

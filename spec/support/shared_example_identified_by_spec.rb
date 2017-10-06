@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'identified_by' do
-  # the class that includes the concern
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   it 'has identified_by' do
     expect(stubby.identified_by).to eq(['identified_by'])
   end

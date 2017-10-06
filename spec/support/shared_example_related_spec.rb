@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'related' do
-  # the class that includes the concern
-
   model_str = described_class.to_s.to_s.split('::')[1]
   let(:stubby) { FactoryGirl.build(model_str.underscore.to_sym) }
   model_u = 'related_' + model_str.underscore

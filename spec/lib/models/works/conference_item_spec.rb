@@ -5,6 +5,7 @@ require 'spec_helper'
 describe DogBiscuits::ConferenceItem do
   let(:stubby) { FactoryGirl.build(:conference_item) }
   let(:rdf) { stubby.resource.dump(:ttl) }
+  let(:solr_doc) { SolrDocument.new(stubby.to_solr) }
 
   after do
     stubby.destroy
@@ -21,7 +22,6 @@ describe DogBiscuits::ConferenceItem do
   it_behaves_like 'date_published'
   it_behaves_like 'editor'
   it_behaves_like 'isbn'
-  it_behaves_like 'origin_date'
   it_behaves_like 'pagination'
   it_behaves_like 'place_of_publication'
   it_behaves_like 'presented_at'
@@ -38,7 +38,7 @@ describe DogBiscuits::ConferenceItem do
     before do
       stubby.combine_dates
     end
-    specify { stubby.date.should eq(%w[2016 2015 2013 2014 2012]) }
+    specify { stubby.date.should eq(%w[2016 2015 2013 2014]) }
   end
 
   describe '#predicates' do

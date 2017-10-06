@@ -20,6 +20,10 @@ module DogBiscuits
     end
   end
 
+  autoload_under 'property_mappings' do
+    autoload :PropertyMappings
+  end
+
   autoload_under 'services' do
     autoload :Terms
     autoload :TermsService
@@ -66,14 +70,14 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/model_property_sets' do
-    autoload :AddAgentMetadata
-    autoload :AddConferenceItemMetadata
-    autoload :AddDatasetMetadata
-    autoload :AddExamPaperMetadata
-    autoload :AddJournalArticleMetadata
-    autoload :AddPackageMetadata
-    autoload :AddPublishedWorkMetadata
-    autoload :AddThesisMetadata
+    autoload :AgentMetadata
+    autoload :ConferenceItemMetadata
+    autoload :DatasetMetadata
+    autoload :ExamPaperMetadata
+    autoload :JournalArticleMetadata
+    autoload :PackageMetadata
+    autoload :PublishedWorkMetadata
+    autoload :ThesisMetadata
   end
 
   autoload_under 'models/concerns/model_property_sets/common' do
@@ -135,7 +139,7 @@ module DogBiscuits
     autoload :ForIndexing
     autoload :FormerIdentifier
     autoload :GenericAuthorityTerms
-    autoload :GenericModuleCode
+    autoload :ModuleCode
     autoload :GenericQualifier
     autoload :LastAccess
     autoload :MainFile
@@ -233,8 +237,8 @@ module DogBiscuits
 
   autoload_under 'models/concerns/behaviours' do
     # Behaviour
-    autoload :AddWorkBehaviour
-    autoload :PureSpecific
+    autoload :WorkBehaviour
+    autoload :PureSpecificBehaviour
     # Validations
     autoload :ValidateConceptScheme
     autoload :ValidateConceptRelated

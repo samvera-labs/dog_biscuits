@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'hub_dates' do
-  # the class that includes the concern
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   it 'has dates' do
     expect(stubby.dates).to eq('1500-1550')
   end

@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'archivematica' do
-  # the class that includes the concern
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   # metadata
   it 'has aip_uuid' do
     expect(stubby.aip_uuid).to eq('aip-uuid')

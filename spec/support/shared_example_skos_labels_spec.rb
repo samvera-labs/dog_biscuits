@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'skos_labels' do
-  # the class that includes the concern
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   it 'has preflabel' do
     expect(stubby.preflabel).to eq('label')
   end

@@ -2,7 +2,6 @@
 
 shared_examples_for 'advisor' do
   let(:person) { FactoryGirl.build_stubbed(:person) }
-  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
     person.add_label
@@ -30,5 +29,18 @@ shared_examples_for 'advisor' do
 
   it 'has contributor in solr' do
     expect(stubby.to_solr['contributor_label_tesim'].should(include('Rourke, Andy', person.preflabel)))
+  end
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:advisor)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:advisor].should(be_truthy))
+  end
+
+  # TODO: label
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:advisor)))
   end
 end

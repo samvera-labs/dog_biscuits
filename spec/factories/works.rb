@@ -5,7 +5,7 @@ FactoryGirl.define do
     title ['Generic Work']
   end
 
-  factory :conference_item, class: DogBiscuits::ConferenceItem do
+  factory :conference_item, class: ConferenceItem do
     title ['Conference Item']
     pagination ['pagination_test']
     date_accepted ['2014']
@@ -17,12 +17,11 @@ FactoryGirl.define do
     publication_status ['Published']
     place_of_publication ['Salford']
     editor ['Street, Stephen']
-    origin_date ['2012']
     proceeding ['Proceedings of the Conference of Misery']
     presented_at ['The International Conference of Misery']
   end
 
-  factory :published_work, class: DogBiscuits::PublishedWork do
+  factory :published_work, class: PublishedWork do
     title ['Published Item']
     issue_number ['issue_number_test']
     volume_number ['volume_number_test']
@@ -43,10 +42,9 @@ FactoryGirl.define do
     editor ['Street, Stephen']
   end
 
-  factory :dataset, class: DogBiscuits::Dataset do
+  factory :dataset, class: Dataset do
     title ['Strangeways, Here We Come']
     creator ['Marr, Johnny']
-    embargo_release 2016 - 12 - 12
     dc_access_rights ['access rights']
     doi ['xxx-xxx-xxx']
     has_restriction ['10 years from last access']
@@ -61,7 +59,7 @@ FactoryGirl.define do
     resource_type ['Software']
   end
 
-  factory :exam_paper, class: DogBiscuits::ExamPaper do
+  factory :exam_paper, class: ExamPaper do
     creator ['Marr, Johnny']
     date ['2016-01-01']
     qualification_level ['PhD']
@@ -69,7 +67,7 @@ FactoryGirl.define do
     module_code ['XXXXXX']
   end
 
-  factory :package, class: DogBiscuits::Package do
+  factory :package, class: Package do
     title ['title']
     transfer_uuid 'transfer-uuid'
     sip_uuid 'sip-uuid'
@@ -86,10 +84,11 @@ FactoryGirl.define do
     aip_resource_uri 'aip-uri'
     dip_resource_uri 'dip-uri'
     origin_pipeline 'origin-pipeline'
+    requestor_email ['me@example.com']
   end
 
   # validate all common metadata here
-  factory :thesis, class: DogBiscuits::Thesis do
+  factory :thesis, class: Thesis do
     title ['The Importance of Being Unhappy']
     abstract ['abstract']
     advisor ['Rourke, Andy']
@@ -100,7 +99,7 @@ FactoryGirl.define do
     date_of_award ['2016-01-01']
     description ['description']
     doi ['xxx-xxx-xxx']
-    former_id ['york:1234']
+    former_identifier ['york:1234']
     keyword ['northern misery']
     language ['English']
     language_code ['en-GB']
@@ -115,7 +114,7 @@ FactoryGirl.define do
     subject ['Official Heading for Woe']
   end
 
-  factory :journal_article, class: DogBiscuits::JournalArticle do
+  factory :journal_article, class: JournalArticle do
     title ['Journal Article test']
     creator ['Digital York']
     issue_number ['issue_number_test']

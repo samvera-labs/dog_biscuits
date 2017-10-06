@@ -4,6 +4,7 @@ require 'spec_helper'
 
 describe DogBiscuits::FileSet do
   let(:stubby) { FactoryGirl.build(:file_set) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   it 'is a fileset' do
     expect(stubby).to be_file_set

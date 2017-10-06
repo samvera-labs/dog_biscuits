@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'contributor' do
-  # the class that includes the concern
-
   let(:contributor) { FactoryGirl.build_stubbed(:person) }
-  let(:rdf) { stubby.resource.dump(:ttl) }
 
   before do
     stubby.contributor_resource << contributor
@@ -23,4 +20,16 @@ shared_examples_for 'contributor' do
   end
 
   # Don't test for _label in solr - no models use this at the moment
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:contributor)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:contributor].should(be_truthy))
+  end
+
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:contributor)))
+  end
 end

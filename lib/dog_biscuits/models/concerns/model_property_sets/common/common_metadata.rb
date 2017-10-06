@@ -19,14 +19,16 @@ module DogBiscuits
     include DogBiscuits::Contributor # BasicMetadata
     include DogBiscuits::Date
     include DogBiscuits::DateCreated # BasicMetadata
-    include DogBiscuits::Description
-    include DogBiscuits::Identifier
+    include DogBiscuits::Department
+    include DogBiscuits::Description # BasicMetadata
+    include DogBiscuits::Funder
+    include DogBiscuits::Identifier # BasicMetadata
     include DogBiscuits::Keyword # BasicMetadata (schema:keywords)
-    include DogBiscuits::Language
+    include DogBiscuits::Language # BasicMetadata
     include DogBiscuits::Publisher # BasicMetadata
     include DogBiscuits::ResourceType # BasicMetadata
     include DogBiscuits::Source # BasicMetadata
-    include DogBiscuits::Subject
+    include DogBiscuits::Subject # BasicMetadata
 
     # Common other properties
     include DogBiscuits::Doi
@@ -39,9 +41,11 @@ module DogBiscuits
     include DogBiscuits::FormerIdentifier
 
     # Controlled properties - must go at the end
-    include DogBiscuits::BasedNear
+    include DogBiscuits::BasedNear # BasicMetadata
 
     included do
+      # From BasicMetadata, error on package TODO: fix this properly
+      property :import_url, predicate: ::RDF::URI.new('http://scholarsphere.psu.edu/ns#importUrl'), multiple: false
       id_blank = proc { |attributes| attributes[:id].blank? }
       class_attribute :controlled_properties
       self.controlled_properties = [:based_near]

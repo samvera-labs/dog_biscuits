@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'related_authority' do
-  # the class that includes the concern
-
-  let(:rdf) { stubby.resource.dump(:ttl) }
-
   it 'has related authority' do
     expect(stubby.related_authority).to eq(['related authority'])
   end

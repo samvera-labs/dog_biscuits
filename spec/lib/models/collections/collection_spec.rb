@@ -5,6 +5,7 @@ require 'spec_helper'
 describe DogBiscuits::Collection do
   let(:stubby) { FactoryGirl.build(:collection) }
   let(:thesis) { FactoryGirl.build(:thesis) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   it 'is a collection' do
     expect(stubby).to be_collection

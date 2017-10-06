@@ -195,5 +195,4 @@ FactoryGirl.define do
     rules 'nca'
     used 'true'
   end
-
 end

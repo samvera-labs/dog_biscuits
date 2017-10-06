@@ -4,11 +4,11 @@ require 'spec_helper'
 
 describe DogBiscuits::Person do
   # Use create instead of build to enable testing of before destroy callback
-
   let(:stubby) { FactoryGirl.create(:person) }
   let(:person_one) { FactoryGirl.create(:person_one) }
   let(:person_two) { FactoryGirl.create(:person_two) }
   let(:thesis) { FactoryGirl.create(:thesis) }
+  let(:rdf) { stubby.resource.dump(:ttl) }
 
   it_behaves_like 'alternate_name'
   it_behaves_like 'person_properties'

@@ -10,6 +10,12 @@ module DogBiscuits
       end
     end
 
+    class EventsTerms < TermsService
+      def terms_list
+        'events'
+      end
+    end
+
     class GroupsTerms < TermsService
       def terms_list
         'groups'

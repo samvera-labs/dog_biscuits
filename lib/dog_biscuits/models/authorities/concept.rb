@@ -29,7 +29,7 @@ module DogBiscuits
                             predicate: ::RDF::Vocab::SKOS.related,
                             inverse_of: :related
 
-    type [::RDF::URI.new('http://www.w3.org/2004/02/skos/core#Concept')]
+    type [::RDF::URI.intern('http://www.w3.org/2004/02/skos/core#Concept')]
 
     property :definition, predicate: ::RDF::Vocab::SKOS.definition,
                           multiple: false do |index|

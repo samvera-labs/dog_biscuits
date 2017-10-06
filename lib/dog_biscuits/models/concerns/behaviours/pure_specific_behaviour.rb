@@ -2,7 +2,7 @@
 
 module DogBiscuits
   # Behaviour only used where data is being pulled in from the PURE CRIS system.
-  module PureSpecific
+  module PureSpecificBehaviour
     extend ActiveSupport::Concern
 
     included do

@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'subject' do
-  # the class that includes the concern
-
   # let(:sub) { FactoryGirl.build_stubbed(:simple_concept) }
-  let(:rdf) { stubby.resource.dump(:ttl) }
 
   # before do
   #   stubby.subject_resource << sub
@@ -22,4 +19,16 @@ shared_examples_for 'subject' do
     expect(rdf.should(include('http://purl.org/dc/elements/1.1/subject')))
   end
   # TODO: Test for _label in solr when models use it
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:subject)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:subject].should(be_truthy))
+  end
+
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:subject)))
+  end
 end
