@@ -13,6 +13,7 @@ module DogBiscuits
       end
     end
 
+    # TODO user solrizer syntax
     def solr_doc_for_labels(solr_doc)
       # Index preflabel and altlabels into solr for _resource HABMs.
       labels_to_index.each do |v|
@@ -56,13 +57,14 @@ module DogBiscuits
       end
     end
 
+    # TODO solr index contains weird data again
     def index_contributor(solr_doc, labels)
       if solr_doc['contributor_label_tesim'].blank? && labels.present?
-        solr_doc['contributor_label_tesim'] = labels.flatten.uniq
-        solr_doc['contributor_label_sim'] = labels.flatten.uniq
+        solr_doc['contributor_label_tesim'] = labels.flatten!.uniq!
+        solr_doc['contributor_label_sim'] = labels.flatten!.uniq!
       elsif labels.present?
-        solr_doc['contributor_label_tesim'].push(*labels).uniq
-        solr_doc['contributor_label_sim'].push(*labels).uniq
+        solr_doc['contributor_label_tesim'].push(*labels).uniq!
+        solr_doc['contributor_label_sim'].push(*labels).uniq!
       end
     end
   end

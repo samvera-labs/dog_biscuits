@@ -15,6 +15,7 @@ class TestAppGenerator < Rails::Generators::Base
     run 'bundle install'
     generate 'hyrax:install', '-f'
     rails_command 'db:migrate'
+    run 'bundle update active-fedora'
   end
 
   def install_dog_biscuits

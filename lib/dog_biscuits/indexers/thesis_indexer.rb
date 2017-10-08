@@ -24,7 +24,7 @@ module DogBiscuits
       labels ||= []
       labels << object.advisor_resource.collect(&:preflabel) if object.advisor_resource.present?
       labels << object.advisor.to_a if object.advisor.present?
-      index_contributor(solr_doc, labels)
+      index_contributor(solr_doc, labels) unless labels.empty?
     end
   end
 end

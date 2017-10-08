@@ -45,7 +45,11 @@ module DogBiscuits
 
     included do
       # From BasicMetadata, error on package TODO: fix this properly
-      property :import_url, predicate: ::RDF::URI.new('http://scholarsphere.psu.edu/ns#importUrl'), multiple: false
+      property :import_url, predicate: ::RDF::URI.new('http://scholarsphere.psu.edu/ns#importUrl'),
+               multiple: false do |index|
+        index.as :symbol
+      end
+
       id_blank = proc { |attributes| attributes[:id].blank? }
       class_attribute :controlled_properties
       self.controlled_properties = [:based_near]

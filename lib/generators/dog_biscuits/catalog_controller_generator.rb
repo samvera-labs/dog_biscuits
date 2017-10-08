@@ -12,17 +12,18 @@ class DogBiscuits::CatalogControllerGenerator < Rails::Generators::Base
     copy_file 'catalog_controller.rb', catalog_file
   end
 
-  # def comment
-  #   catalog_file = 'app/controllers/catalog_controller.rb'
-  #   comment_lines catalog_file, /config.add_index_field/
-  #   comment_lines catalog_file, /config.add_facet_field/
-  # end
-
   def biscuitify_catalog_controller_facets
     catalog_file = 'app/controllers/catalog_controller.rb'
     DogBiscuits.config.facet_properties.each do |prop|
-      injection = "    config.add_facet_field solr_name('#{prop}', :facetable), limit: 5\n"
-      inject_into_file catalog_file, before: '    # replace facets end' do
+      injection = "    config.add_facet_field solr_name('#{prop}', :facetable), limit: 5"
+      if DogBiscuits.config.property_mappings[prop]
+        if DogBiscuits.config.property_mappings[prop][:label]
+          injection += ", label: '#{DogBiscuits.config.property_mappings[prop][:label]}'"
+        end
+      end
+      injection += "\n"
+
+      inject_into_file catalog_file, before: "    # replace facets end" do
         injection
       end unless catalog_file.include? injection
     end
@@ -42,7 +43,7 @@ class DogBiscuits::CatalogControllerGenerator < Rails::Generators::Base
           injection += ", label:  '#{DogBiscuits.config.property_mappings[prop][:label]}'"
         end
         injection += "\n"
-        inject_into_file catalog_file, before: '    # solr fields to be displayed in the show (single result) view' do
+        inject_into_file catalog_file, before: '    # insert indexes end' do
           injection
         end
       end
@@ -59,7 +60,8 @@ class DogBiscuits::CatalogControllerGenerator < Rails::Generators::Base
   def biscuitify_catalog_controller_show_fields
     catalog_file = 'app/controllers/catalog_controller.rb'
     all_properties = []
-    DogBiscuits.config.available_models.each do |model|
+    # Add fields for selected models only
+    DogBiscuits.config.selected_models.each do |model|
       all_properties += DogBiscuits.config.send("#{model.underscore}_properties")
     end
     all_properties -= DogBiscuits.config.base_properties
@@ -83,6 +85,20 @@ class DogBiscuits::CatalogControllerGenerator < Rails::Generators::Base
       inject_into_file catalog_file, before: '    # "sort results by" select (pulldown)' do
         injection
       end unless catalog_file.include? injection
+    end
+  end
+
+  # TODO remove when fixed in Hyrax
+  def add_rights_statement_helper
+    helper = "\n\n  # A Blacklight index field helper_method" +
+        "\n  # @param [Hash] options from blacklight helper_method invocation. Maps rights URIs to links with labels." +
+        "\n  # @return [ActiveSupport::SafeBuffer] rights statement links, " +
+        "\n  def rights_statement_links(options)" +
+        "\n    service = Hyrax::RightsStatements.new" +
+        "\n    options[:value].map { |right| link_to service.label(right), right }.to_sentence.html_safe" +
+        "\n  end"
+    inject_into_file 'app/helpers/hyrax_helper.rb', after: 'include Hyrax::HyraxHelperBehavior' do
+      helper
     end
   end
 end

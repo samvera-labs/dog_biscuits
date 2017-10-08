@@ -147,6 +147,18 @@ module DogBiscuits
           has_restriction: {
             index: "('has_restriction', :stored_searchable)"
           },
+          human_readable_type: {
+            index: "('has_restriction', :stored_searchable)",
+            label: 'Type',
+            schema_org: {
+                'Conference Item' => 'http://schema.org/ScholarlyArticle',
+                'Dataset' => 'http://schema.org/Dataset',
+                'Exam Paper' => 'http://schema.org/CreativeWork',
+                'Journal Article' => 'http://schema.org/ScholarlyArticle',
+                'Package' => 'http://schema.org/Dataset',
+                'Published Work' => 'http://schema.org/CreativeWork',
+            },
+          },
           identifier: {
             index: "('identifier', :stored_searchable), helper_method: :index_field_link, field_name: 'identifier'",
             schema_org: nil,
@@ -297,7 +309,8 @@ module DogBiscuits
             }
           },
           rights_statement: {
-            index: "('rights_statement', :stored_searchable), helper_method: :license_links"
+            index: "('rights_statement', :stored_searchable), helper_method: :rights_statement_links",
+            label: "Rights Statement"
           },
           series: {
             index: "('series', :stored_searchable)",

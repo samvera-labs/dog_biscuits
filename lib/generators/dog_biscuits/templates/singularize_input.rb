@@ -2,6 +2,7 @@ class SingularizeInput < MultiValueInput
 
   # Code adapted from https://github.com/curationexperts/laevigata/blob/master/app/inputs/committee_member_input.rb
   # To use; copy https://github.com/samvera/hydra-editor/blob/master/app/views/records/edit_fields/_default.html.erb
+  #   to the local field you want to singularize, eg. view in app/views/records/edit_fields/_{field_name}.html.erb
   #   and change multi_value to singularize
 
   # Overriding method from hydra-editor:
@@ -10,13 +11,7 @@ class SingularizeInput < MultiValueInput
     @collection ||= begin
       val = object[attribute_name]
       val.reject { |value| value.to_s.strip.blank? } + ['']
-      val.blank? ? default_value(attribute_name) : val
     end
-  end
-
-  def default_value(attr_name)
-    defaults = { affiliation: ['Emory'] }
-    defaults.fetch(attr_name, [''])
   end
 
   # Overriding method from hydra-editor:

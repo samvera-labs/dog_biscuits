@@ -17,6 +17,11 @@ module DogBiscuits
       ['conference_item', 'exam_paper', 'journal_article', 'published_work', 'thesis', 'dataset', 'package'].freeze
     end
 
+    attr_writer :selected_models
+    def selected_models
+      @selected_models ||= ['conference_item', 'exam_paper', 'journal_article', 'published_work', 'thesis', 'dataset', 'package'].freeze
+    end
+
     def required_properties
       %i[title creator keyword rights_statement].freeze
     end
@@ -47,7 +52,7 @@ module DogBiscuits
                              'qualification_level', 'qualification_name', 'refereed', 'publication_status', 'content_version']
     end
 
-    # All solr fields to be displayed in the index (search results) view
+    # *All* solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     # The existing fields will be replaced so must be included here:
     #   title, description, tag, subject, creator, contributor, publisher, based_near_label, language,

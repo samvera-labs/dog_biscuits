@@ -22,7 +22,7 @@ module DogBiscuits
       labels ||= []
       labels << object.editor_resource.collect(&:preflabel) if object.editor_resource.present?
       labels << object.editor.to_a if object.editor.present?
-      index_contributor(solr_doc, labels)
+      index_contributor(solr_doc, labels) unless labels.empty?
     end
   end
 end

@@ -81,28 +81,35 @@ class DogBiscuits::WorkGenerator < Rails::Generators::NamedBase
     injection = ''
     DogBiscuits.config.send("#{class_name.underscore}_properties").each do |term|
       # Append _label onto any controlled properties
-      # if "#{class_name}".constantize.controlled_properties.include? term
-      #   injection += "\n<%= presenter.attribute_to_html(:#{term}_label) %>"
-      if term.to_s.include? 'url'
-        injection += "\n<%= presenter.attribute_to_html(:#{term}, render_as: :external_link) %>"
-      elsif DogBiscuits.config.facet_properties.include? term
-        injection += "\n<%= presenter.attribute_to_html(:#{term}, render_as: :faceted) %>"
-      else
-        injection += "\n<%= presenter.attribute_to_html(:#{term}) %>"
+      injection += "\n<%= presenter.attribute_to_html(:#{term}"
+      if "#{class_name}".constantize.controlled_properties.include? term
+        injection += "_label"
       end
+
+      if term.to_s.include? 'url'
+        injection += ", render_as: :external_link"
+      elsif DogBiscuits.config.facet_properties.include? term
+        injection += ", render_as: :faceted"
+      end
+      if DogBiscuits.config.property_mappings[term]
+        if DogBiscuits.config.property_mappings[term][:label]
+          injection += ", label: '#{DogBiscuits.config.property_mappings[term][:label]}'"
+        end
+      end
+      injection += ") %>"
     end
 
-    inject_into_file attributes_file, after: '# display fields for show page' do
+    inject_into_file attributes_file, after: '<%#= display fields for show page %>' do
       injection unless attributes_file.include? injection
     end
   end
 
   def biscuitify_locales
-    local_properties = DogBiscuits.config.send("#{class_name.underscore}_properties") - DogBiscuits.config.base_properties - [:resource_type]
+    properties = DogBiscuits.config.send("#{class_name.underscore}_properties")
     append_block = "\n  simple_form:\n    hints:\n"
     append_block += "    defaults:\n"
 
-    local_properties.each do |prop|
+    properties.each do |prop|
       if DogBiscuits.config.property_mappings[prop]
         if DogBiscuits.config.property_mappings[prop][:help_text]
           append_block += "      #{prop}: '#{DogBiscuits.config.property_mappings[prop][:help_text]}'\n"
@@ -111,7 +118,7 @@ class DogBiscuits::WorkGenerator < Rails::Generators::NamedBase
     end
     append_block += "    labels:\n"
 
-    local_properties.each do |prop|
+    properties.each do |prop|
       if DogBiscuits.config.property_mappings[prop]
         if DogBiscuits.config.property_mappings[prop][:label]
           append_block += "      #{prop}: '#{DogBiscuits.config.property_mappings[prop][:label]}'\n"
@@ -124,7 +131,6 @@ class DogBiscuits::WorkGenerator < Rails::Generators::NamedBase
   end
 
   # Regenerate schema.org from updated dog_biscuits.yml
-  # TODO this does not work
   def schema_org
     generate 'dog_biscuits:schema_org', '-f'
   end
