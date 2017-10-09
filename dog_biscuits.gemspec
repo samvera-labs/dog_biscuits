@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   # spec.add_dependency 'hyrax'
 
-  spec.add_development_dependency 'engine_cart', '~> 1.0'
+  spec.add_development_dependency 'engine_cart', '~> 1.2'
   spec.add_development_dependency 'rspec', '~> 3.1'
   spec.add_development_dependency 'rspec-rails', '~> 3.1'
   spec.add_development_dependency "factory_girl_rails", '~> 4.4'
