@@ -151,13 +151,13 @@ module DogBiscuits
             index: "('has_restriction', :stored_searchable)",
             label: 'Type',
             schema_org: {
-                'Conference Item' => 'http://schema.org/ScholarlyArticle',
-                'Dataset' => 'http://schema.org/Dataset',
-                'Exam Paper' => 'http://schema.org/CreativeWork',
-                'Journal Article' => 'http://schema.org/ScholarlyArticle',
-                'Package' => 'http://schema.org/Dataset',
-                'Published Work' => 'http://schema.org/CreativeWork',
-            },
+              'Conference Item' => 'http://schema.org/ScholarlyArticle',
+              'Dataset' => 'http://schema.org/Dataset',
+              'Exam Paper' => 'http://schema.org/CreativeWork',
+              'Journal Article' => 'http://schema.org/ScholarlyArticle',
+              'Package' => 'http://schema.org/Dataset',
+              'Published Work' => 'http://schema.org/CreativeWork'
+            }
           },
           identifier: {
             index: "('identifier', :stored_searchable), helper_method: :index_field_link, field_name: 'identifier'",

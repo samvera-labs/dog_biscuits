@@ -9,11 +9,12 @@ module DogBiscuits
       super.tap do |solr_doc|
         solr_doc_for_labels(solr_doc)
         solr_doc_for_strings(solr_doc)
+        solr_doc_for_contributors(solr_doc)
         do_local_indexing(solr_doc)
       end
     end
 
-    # TODO user solrizer syntax
+    # TODO: user solrizer syntax
     def solr_doc_for_labels(solr_doc)
       # Index preflabel and altlabels into solr for _resource HABMs.
       labels_to_index.each do |v|
@@ -57,15 +58,25 @@ module DogBiscuits
       end
     end
 
-    # TODO solr index contains weird data again
-    def index_contributor(solr_doc, labels)
-      if solr_doc['contributor_label_tesim'].blank? && labels.present?
-        solr_doc['contributor_label_tesim'] = labels.flatten!.uniq!
-        solr_doc['contributor_label_sim'] = labels.flatten!.uniq!
-      elsif labels.present?
-        solr_doc['contributor_label_tesim'].push(*labels).uniq!
-        solr_doc['contributor_label_sim'].push(*labels).uniq!
+    # rubocop:disable Style/GuardClause
+
+    def solr_doc_for_contributors(solr_doc)
+      if respond_to? :contributors_to_index
+        contributors_to_index.each do |v|
+          labels = object.send(v).to_a
+          labels.push(*object.send("#{v}_resource").collect(&:preflabel))
+          # If there is anything in the solr_doc, add to it
+          if solr_doc["contributor_label_tesim"]
+            solr_doc["contributor_label_tesim"].push(*labels).uniq!
+            solr_doc["#{v}_label_sim"].push(*labels).uniq!
+          else
+            solr_doc["contributor_label_tesim"] = labels
+            solr_doc["contributor_label_sim"] = labels
+          end
+        end
       end
     end
+
+    # rubocop:enable Style/GuardClause
   end
 end

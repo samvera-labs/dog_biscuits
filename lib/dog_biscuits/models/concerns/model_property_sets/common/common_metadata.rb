@@ -46,7 +46,7 @@ module DogBiscuits
     included do
       # From BasicMetadata, error on package TODO: fix this properly
       property :import_url, predicate: ::RDF::URI.new('http://scholarsphere.psu.edu/ns#importUrl'),
-               multiple: false do |index|
+                            multiple: false do |index|
         index.as :symbol
       end
 

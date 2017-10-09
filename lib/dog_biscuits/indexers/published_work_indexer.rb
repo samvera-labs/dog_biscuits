@@ -15,12 +15,13 @@ module DogBiscuits
       ['creator', 'editor', 'contributor']
     end
 
-    # Add any custom indexing into here. Method must exist, but can be empty.
-    def do_local_indexing(solr_doc)
-      labels ||= []
-      labels << object.editor_resource.collect(&:preflabel) if object.editor_resource.present?
-      labels << object.editor.to_a if object.editor.present?
-      index_contributor(solr_doc, labels) unless labels.empty?
+    def contributors_to_index
+      ['editor']
     end
+
+    # Add any custom indexing into here. Method must exist, but can be empty.
+    #
+    # @param [Hash] solr_doc
+    def do_local_indexing(solr_doc); end
   end
 end
