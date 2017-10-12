@@ -19,8 +19,6 @@ shared_examples_for 'contributor' do
     expect(rdf.should(include('http://id.loc.gov/vocabulary/relators/ctb')))
   end
 
-  # Don't test for _label in solr - no models use this at the moment
-
   it 'is in the solr_document' do
     expect(solr_doc.should(respond_to(:contributor)))
   end

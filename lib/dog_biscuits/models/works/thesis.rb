@@ -17,7 +17,7 @@ module DogBiscuits
     # Metadata
     # include DogBiscuits::ThesisMetadata
 
-    before_save :combine_dates
+    # before_save :combine_dates
 
     def thesis?
       true

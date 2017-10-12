@@ -1,2 +1,2 @@
 # Use this file to reference specific commits of gems.
-gem 'hyrax', '2.0.0.beta4'
+gem 'hyrax', '2.0.0.rc1'

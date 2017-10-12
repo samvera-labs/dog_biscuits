@@ -40,4 +40,10 @@ class DogBiscuits::InstallGenerator < Rails::Generators::Base
   def schema_org
     generate 'dog_biscuits:schema_org', '-f'
   end
+
+  # TODO remove when fixed
+  def copy_views
+    directory 'views/hyrax/base/_work_description.erb', 'app/views/hyrax/base/_work_description.erb'
+    directory 'views/shared/_citations.html.erb', 'app/views/shared/_citations.html.erb'
+  end
 end

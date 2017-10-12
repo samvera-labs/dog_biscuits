@@ -17,6 +17,14 @@ module DogBiscuits
     # Metadata
     # include DogBiscuits::ExamPaperMetadata
 
+    # before_save :combine_dates
+
+    def combine_dates
+      self.date = []
+      date << date_available
+      date << date_created
+    end
+
     def exam_paper?
       true
     end

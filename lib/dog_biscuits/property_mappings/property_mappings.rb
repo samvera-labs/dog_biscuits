@@ -6,6 +6,16 @@
 
 module DogBiscuits
   module PropertyMappings
+    attr_writer :property_mappings
+
+    # Add all properties to the hash.
+    # Allowed values:
+    #   index: text fragment for inclusion in the catalog_controller index section;
+    #     omit label and helper_method as these will be added by the generator using info below
+    #   schema_org: has containing property; can also include type and value
+    #   label: a human-readable label for the property (omit if the property name should be used)
+    #   help_text: help text to include in the form
+    #   render_as: a custom renderer for the field (omit facetable as this will be added by the generator)
     def property_mappings
       @property_mappings ||=
         {
@@ -13,27 +23,33 @@ module DogBiscuits
             index: "('file_format', :stored_searchable), link_to_search: solr_name('file_format', :facetable)"
           },
           embargo_release_date: {
-            index: "('embargo_release_date', :stored_sortable, type: :date), helper_method: :human_readable_date"
+            index: "('embargo_release_date', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
           },
           lease_expiration_date: {
-            index: "('lease_expiration_date', :stored_sortable, type: :date), helper_method: :human_readable_date"
+            index: "('lease_expiration_date', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
           },
           depositor: {
             index: "('depositor'), helper_method: :link_to_profile",
             label: 'Owner'
           },
           proxy_depositor: {
-            index: "('proxy_depositor', :symbol), helper_method: :link_to_profile",
+            index: "('proxy_depositor', :symbol)",
+            helper_method: :link_to_profile,
             label: 'Depositor'
           },
           date_uploaded: {
-            index: "('date_uploaded', :stored_sortable, type: :date), helper_method: :human_readable_date"
+            index: "('date_uploaded', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
           },
           date_modified: {
-            index: "('date_modified', :stored_sortable, type: :date), helper_method: :human_readable_date"
+            index: "('date_modified', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
           },
           abstract: {
-            index: "('abstract', :stored_searchable), helper_method: :iconify_auto_link",
+            index: "('abstract', :stored_searchable)",
+            helper_method: :iconify_auto_link,
             schema_org: {
               property: "description"
             }
@@ -45,7 +61,7 @@ module DogBiscuits
               type: "http://schema.org/Person",
               value: "name"
             },
-            help_text: 'an abstract'
+            help_text: 'A summary or abstract for the work.'
           },
           based_near_label: {
             index: "('based_near_label', :stored_searchable), link_to_search: solr_name('based_near_label', :facetable)",
@@ -66,6 +82,18 @@ module DogBiscuits
               type: "http://schema.org/Person",
               value: "name"
             }
+          },
+          contributor_combined: {
+            index: "('contributor_combined', :stored_searchable), link_to_search: solr_name('contributor_combined', :facetable)",
+            schema_org: {
+              property: "contributor",
+              type: "http://schema.org/Person",
+              value: "name"
+            },
+            label: 'Contributor'
+          },
+          contributor_type: {
+            label: 'Contributor Type'
           },
           creator: {
             index: "('creator', :stored_searchable), link_to_search: solr_name('creator', :facetable)",
@@ -111,11 +139,11 @@ module DogBiscuits
             label: "Access Rights"
           },
           description: {
-            index: "('description', :stored_searchable), helper_method: :iconify_auto_link",
+            index: "('description', :stored_searchable)",
+            helper_method: :iconify_auto_link,
             schema_org: {
               property: "description"
-            },
-            label: 'Abstract or Summary'
+            }
           },
           doi: {
             index: "('doi', :stored_searchable)",
@@ -160,7 +188,8 @@ module DogBiscuits
             }
           },
           identifier: {
-            index: "('identifier', :stored_searchable), helper_method: :index_field_link, field_name: 'identifier'",
+            index: "('identifier', :stored_searchable), field_name: 'identifier'",
+            helper_method: :index_field_link,
             schema_org: nil,
             property: "identifier"
           },
@@ -202,7 +231,9 @@ module DogBiscuits
             index: "('last_access', :stored_searchable)"
           },
           license: {
-            index: "('license', :stored_searchable), helper_method: :license_links"
+            index: "('license', :stored_searchable)",
+            helper_method: :license_links,
+            render_as: :license
           },
           module_code: {
             index: "('module_code', :stored_searchable)",
@@ -215,7 +246,8 @@ module DogBiscuits
             schema_org: {
               property: "note"
             },
-            help_text: 'A general note about the work.'
+            help_text: 'A general note about the work.',
+            label: 'Note'
           },
           number_of_downloads: {
             index: "('number_of_downloads', :stored_searchable)"
@@ -224,7 +256,8 @@ module DogBiscuits
             index: "('official_url', :stored_searchable)",
             schema_org: {
               property: "significantLink"
-            }
+            },
+            render_as: :external_link
           },
           pagination: {
             index: "('pagination', :stored_searchable)",
@@ -288,7 +321,8 @@ module DogBiscuits
             index: "('related_url', :stored_searchable)",
             schema_org: {
               property: "relatedLink"
-            }
+            },
+            render_as: :external_link
           },
           resource_type: {
             index: "('resource_type', :stored_searchable), link_to_search: solr_name('resource_type', :facetable)",
@@ -309,8 +343,9 @@ module DogBiscuits
             }
           },
           rights_statement: {
-            index: "('rights_statement', :stored_searchable), helper_method: :rights_statement_links",
-            label: "Rights Statement"
+            index: "('rights_statement', :stored_searchable)",
+            helper_method: :rights_statement_links,
+            # render_as: :rights_statement
           },
           series: {
             index: "('series', :stored_searchable)",
@@ -332,8 +367,7 @@ module DogBiscuits
             index: "('title', :stored_searchable), if: false",
             schema_org: {
               property: "name"
-            },
-            label: 'Title'
+            }
           },
           volume_number: {
             index: "('volume_number', :stored_searchable)",

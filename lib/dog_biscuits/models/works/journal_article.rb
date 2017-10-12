@@ -17,7 +17,7 @@ module DogBiscuits
     # Metadata
     # include DogBiscuits::JournalArticleMetadata
 
-    before_save :combine_dates
+    # before_save :combine_dates
 
     def journal_article?
       true

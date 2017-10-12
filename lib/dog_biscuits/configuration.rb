@@ -7,21 +7,14 @@ module DogBiscuits
   class Configuration
     include PropertyMappings
 
-    # attr_writer :creator_class
-    #
-    # def creator_class
-    #   @creator_class ||= String
-    # end
+    # TODO: valid_child_concerns
+    # TODO mix of string and symbol could be confusing
 
     def available_models
       ['conference_item', 'exam_paper', 'journal_article', 'published_work', 'thesis', 'dataset', 'package'].freeze
     end
 
-    attr_writer :selected_models
-    def selected_models
-      @selected_models ||= ['conference_item', 'exam_paper', 'journal_article', 'published_work', 'thesis', 'dataset', 'package'].freeze
-    end
-
+    # Default required properties.
     def required_properties
       %i[title creator keyword rights_statement].freeze
     end
@@ -35,8 +28,14 @@ module DogBiscuits
     # Common properties from DogBiscuits atop those in BasicMetadata
     # Also include resource_type which is part of BasicMetadata but not part of the Hyrax WorkForm
     # omitting managing_organisation_resource, department_resource, funder_resource
+    # omitting date as this is purely for faceting
     def common_properties
-      %i[date doi former_identifier note].freeze
+      %i[doi former_identifier note].freeze
+    end
+
+    attr_writer :selected_models
+    def selected_models
+      @selected_models ||= available_models
     end
 
     # All solr fields that will be treated as facets by the blacklight application
@@ -47,7 +46,7 @@ module DogBiscuits
     attr_writer :facet_properties
     # omitting funder
     def facet_properties
-      @facet_properties ||= ['human_readable_type', 'resource_type', 'creator', 'contributor', 'publisher', 'date',
+      @facet_properties ||= ['human_readable_type', 'resource_type', 'creator', 'contributor_combined', 'contributor_type', 'publisher', 'date',
                              'keyword', 'subject', 'language', 'based_near_label', 'journal', 'proceeding',
                              'qualification_level', 'qualification_name', 'refereed', 'publication_status', 'content_version']
     end
@@ -64,12 +63,14 @@ module DogBiscuits
         title
         creator
         publisher
+        contributor_combined
+        date
         keyword
         subject
         resource_type
         rights_statement
+        license
         language
-        contributor
         depositor
         proxy_depositor
         embargo_release_date
@@ -93,7 +94,6 @@ module DogBiscuits
                       date_submitted
                       editor
                       isbn
-                      note
                       official_url
                       pagination
                       place_of_publication
@@ -187,7 +187,8 @@ module DogBiscuits
     def exam_paper_properties
       properties = %i[module_code
                       qualification_level
-                      qualification_name]
+                      qualification_name
+                      date_available]
       @exam_paper_properties ||= base_properties + properties + common_properties
     end
 
@@ -229,7 +230,11 @@ module DogBiscuits
       @package_properties_required ||= required_properties
     end
 
-    attr_writer :property_mappings
+    # attr_writer :creator_class
+    #
+    # def creator_class
+    #   @creator_class ||= String
+    # end
   end
 end
 

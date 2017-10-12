@@ -29,5 +29,9 @@ module DogBiscuits
     def collection?
       false
     end
+
+    def combine_dates
+      self.date = []
+    end
   end
 end

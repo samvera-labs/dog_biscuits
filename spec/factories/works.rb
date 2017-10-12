@@ -61,7 +61,7 @@ FactoryGirl.define do
 
   factory :exam_paper, class: ExamPaper do
     creator ['Marr, Johnny']
-    date ['2016-01-01']
+    date_available ['2016-01-01']
     qualification_level ['PhD']
     qualification_name ['qualification']
     module_code ['XXXXXX']

@@ -14,6 +14,11 @@ shared_examples_for 'funder' do
   end
 
   # TODO: funder
+
+  # it 'has contributor in solr' do
+  #   expect(stubby.to_solr['contributor_combined_tesim'].should(include(funder.preflabel)))
+  #   expect(stubby.to_solr['contributor_type_sim'].should(include('editor')))
+  # end
   # it 'is in the solr_document' do
   #   expect(solr_doc.should respond_to(:funder))
   # end

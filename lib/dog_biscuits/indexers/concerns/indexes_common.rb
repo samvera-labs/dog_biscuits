@@ -2,7 +2,6 @@
 
 module DogBiscuits
   module IndexesCommon
-    # include Hyrax::IndexesLinkedMetadata # needs to be de-coupled from basic indexer
     attr_accessor :strings_to_index, :labels_to_index
 
     def generate_solr_document
@@ -14,7 +13,7 @@ module DogBiscuits
       end
     end
 
-    # TODO: user solrizer syntax
+    # Index resource fields into the _label field
     def solr_doc_for_labels(solr_doc)
       # Index preflabel and altlabels into solr for _resource HABMs.
       labels_to_index.each do |v|
@@ -29,8 +28,9 @@ module DogBiscuits
         prefs = object.send(method).collect(&:preflabel)
 
         # Create a new array
-        solr_doc["#{v}_label_tesim"] = prefs if prefs.present? # stored_searchable
-        solr_doc["#{v}_label_sim"] = prefs if prefs.present? # facetable
+
+        solr_doc[Solrizer.solr_name("#{v}_label", :stored_searchable)] = prefs if prefs.present?
+        solr_doc[Solrizer.solr_name("#{v}_label", :facetable)] = prefs if prefs.present?
 
         alts = object.send(method).collect(&:altlabel).to_a.flatten!
         solr_doc["#{v}_label_alt_tesim"] = alts if alts.present?
@@ -40,38 +40,49 @@ module DogBiscuits
       end
     end
 
+    # Index string fields into the _label field
     def solr_doc_for_strings(solr_doc)
       strings_to_index.each do |v|
         strings = object.send(v).to_a
         # This will replace the field, thus getting rid of any indexing conflicts with HABM
-        solr_doc["#{v}_tesim"] = strings
-        solr_doc["#{v}_sim"] = strings
+        solr_doc[Solrizer.solr_name(v, :stored_searchable)] = strings
+        solr_doc[Solrizer.solr_name(v, :facetable)] = strings
 
         # If there is anything in the solr_doc, add to it
         if solr_doc["#{v}_label_tesim"]
-          solr_doc["#{v}_label_tesim"].push(*strings).uniq!
-          solr_doc["#{v}_label_sim"].push(*strings).uniq!
+          solr_doc[Solrizer.solr_name("#{v}_label", :stored_searchable)].push(*strings).uniq!
+          solr_doc[Solrizer.solr_name("#{v}_label", :facetable)].push(*strings).uniq!
         else
-          solr_doc["#{v}_label_tesim"] = strings
-          solr_doc["#{v}_label_sim"] = strings
+          solr_doc[Solrizer.solr_name("#{v}_label", :stored_searchable)] = strings
+          solr_doc[Solrizer.solr_name("#{v}_label", :facetable)] = strings
         end
       end
     end
 
     # rubocop:disable Style/GuardClause
 
+    # Index different contributor types (relators, eg. editor, advisor) into contributor
+    # Index the contributor type itself
     def solr_doc_for_contributors(solr_doc)
       if respond_to? :contributors_to_index
         contributors_to_index.each do |v|
           labels = object.send(v).to_a
           labels.push(*object.send("#{v}_resource").collect(&:preflabel))
           # If there is anything in the solr_doc, add to it
-          if solr_doc["contributor_label_tesim"]
-            solr_doc["contributor_label_tesim"].push(*labels).uniq!
-            solr_doc["#{v}_label_sim"].push(*labels).uniq!
+          if solr_doc["contributor_combined_tesim"]
+            solr_doc[Solrizer.solr_name("contributor_combined", :stored_searchable)].push(*labels).uniq!
+            solr_doc[Solrizer.solr_name("contributor_combined", :facetable)].push(*labels).uniq!
           else
-            solr_doc["contributor_label_tesim"] = labels
-            solr_doc["contributor_label_sim"] = labels
+            solr_doc[Solrizer.solr_name("contributor_combined", :stored_searchable)] = labels
+            solr_doc[Solrizer.solr_name("contributor_combined", :facetable)] = labels
+          end
+          # I don't think the logic is quite right here as there will only ever be one result
+          labels.each do |_label|
+            if solr_doc['contributor_type_sim']
+              solr_doc[Solrizer.solr_name("contributor_type", :facetable)] << v
+            else
+              solr_doc[Solrizer.solr_name("contributor_type", :facetable)] = [v]
+            end
           end
         end
       end

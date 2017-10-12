@@ -17,7 +17,7 @@ module DogBiscuits
     # Metadata
     # include DogBiscuits::ConferenceItemMetadata
 
-    before_save :combine_dates
+    # before_save :combine_dates
 
     def conference_item?
       true

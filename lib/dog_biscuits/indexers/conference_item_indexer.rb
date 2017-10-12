@@ -15,6 +15,7 @@ module DogBiscuits
       ['creator', 'editor', 'presented_at']
     end
 
+    # NB. include 'contributor' here if it is used in the form
     def contributors_to_index
       ['editor']
     end

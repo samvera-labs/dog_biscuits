@@ -26,6 +26,7 @@ module DogBiscuits
     # Metadata
     # include DogBiscuits::PackageMetadata
 
+    # TODO: test this callback; it may have to move up to the application
     before_save :add_types
 
     def package?

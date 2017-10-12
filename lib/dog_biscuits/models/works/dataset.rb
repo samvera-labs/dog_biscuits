@@ -21,7 +21,7 @@ module DogBiscuits
     # Metadata
     # include DogBiscuits::DatasetMetadata
 
-    before_save :combine_dates
+    # before_save :combine_dates
 
     def dataset?
       true

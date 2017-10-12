@@ -10,10 +10,23 @@ class DogBiscuits::WorkGenerator < Rails::Generators::NamedBase
   end
 
   def hyrax_generator_run
-    unless File.exist? File.join('app/models/', class_path, "#{class_name.underscore}.rb")
-      say_status("error", "PLEASE RUN THE HYRAX WORK GENERATOR BEFORE RUNNING THE DOG BISCUITS ONE: rails generate hyrax:work #{class_name}", :red)
-      exit 0
+    if File.exist? File.join('app/models/', class_path, "#{class_name.underscore}.rb")
+
+    else
+
     end
+  end
+
+  def hyrax_generator_run
+    if File.exist? File.join('app/models/', class_path, "#{class_name.underscore}.rb")
+      answer = ask('It looks like you have already run the Hyrax generator. Any changes to the generated files will be overwritten. Is that OK? (y/n)').underscore
+      unless answer == 'y'
+        say_status("warn", "CANCELLED CREATING: #{class_name}", :orange)
+        exit 0
+      end
+    end
+    say_status("info", "RUNNING THE HYRAX GENERATOR: rails generate hyrax:work #{class_name}", :green)
+    generate "hyrax:work #{class_name}", '-f'
   end
 
   def supported_model
@@ -41,14 +54,26 @@ class DogBiscuits::WorkGenerator < Rails::Generators::NamedBase
     model = File.join('app/models/', class_path, "#{class_name.underscore}.rb")
 
     gsub_file model, /< ActiveFedora::Base/, "< ::DogBiscuits::#{class_name}"
-    gsub_file model, /self.indexer = #{class_name}/, "self.indexer = DogBiscuits::#{class_name}"
 
     comment_lines model, /include ::Hyrax::BasicMetadata/
     inject_into_file model, after: 'Hyrax::BasicMetadata' do
       "\n  include DogBiscuits::#{class_name}Metadata"
     end
+    inject_into_file model, before: "\nend" do
+      "\n  before_save :combine_dates"
+    end
     # inject indexer
     # inject metadata
+  end
+
+  def biscuitify_indexer
+    model = File.join('app/indexers/', class_path, "#{class_name.underscore}_indexer.rb")
+
+    gsub_file model, /< Hyrax::WorkIndexer/, "< ::DogBiscuits::#{class_name}Indexer"
+
+    comment_lines model, /include Hyrax::IndexesBasicMetadata/
+    # TODO remove this line once this is decoupled from IndexsBM
+    comment_lines model, /include Hyrax::IndexesLinkedMetadata/
   end
 
   def biscuitify_presenter
@@ -72,62 +97,12 @@ class DogBiscuits::WorkGenerator < Rails::Generators::NamedBase
 
   end
 
-  # TODO: add depositor, proxy_depositor, embargo_release_date, lease_expiration_date?
-  # TODO: more complex renderings
   def biscuitify_attribute_rows
-    attributes_file = File.join('app/views/hyrax', class_path, "#{class_name.underscore.pluralize}/_attribute_rows.html.erb")
-    copy_file '_attribute_rows.html.erb', attributes_file
-
-    injection = ''
-    DogBiscuits.config.send("#{class_name.underscore}_properties").each do |term|
-      # Append _label onto any controlled properties
-      injection += "\n<%= presenter.attribute_to_html(:#{term}"
-      if "#{class_name}".constantize.controlled_properties.include? term
-        injection += "_label"
-      end
-
-      if term.to_s.include? 'url'
-        injection += ", render_as: :external_link"
-      elsif DogBiscuits.config.facet_properties.include? term
-        injection += ", render_as: :faceted"
-      end
-      if DogBiscuits.config.property_mappings[term]
-        if DogBiscuits.config.property_mappings[term][:label]
-          injection += ", label: '#{DogBiscuits.config.property_mappings[term][:label]}'"
-        end
-      end
-      injection += ") %>"
-    end
-
-    inject_into_file attributes_file, after: '<%#= display fields for show page %>' do
-      injection unless attributes_file.include? injection
-    end
+    generate "dog_biscuits:attribute_rows #{class_name}", '-f'
   end
 
   def biscuitify_locales
-    properties = DogBiscuits.config.send("#{class_name.underscore}_properties")
-    append_block = "\n  simple_form:\n    hints:\n"
-    append_block += "    defaults:\n"
-
-    properties.each do |prop|
-      if DogBiscuits.config.property_mappings[prop]
-        if DogBiscuits.config.property_mappings[prop][:help_text]
-          append_block += "      #{prop}: '#{DogBiscuits.config.property_mappings[prop][:help_text]}'\n"
-        end
-      end
-    end
-    append_block += "    labels:\n"
-
-    properties.each do |prop|
-      if DogBiscuits.config.property_mappings[prop]
-        if DogBiscuits.config.property_mappings[prop][:label]
-          append_block += "      #{prop}: '#{DogBiscuits.config.property_mappings[prop][:label]}'\n"
-        end
-      end
-    end
-
-    append_file "config/locales/#{class_name.underscore}.en.yml", append_block
-
+    generate "dog_biscuits:locales #{class_name}", '-f'
   end
 
   # Regenerate schema.org from updated dog_biscuits.yml
@@ -135,6 +110,7 @@ class DogBiscuits::WorkGenerator < Rails::Generators::NamedBase
     generate 'dog_biscuits:schema_org', '-f'
   end
 
+  # Regenerate the whole catalog_controller
   def catalog_controller
     generate 'dog_biscuits:catalog_controller', '-f'
   end

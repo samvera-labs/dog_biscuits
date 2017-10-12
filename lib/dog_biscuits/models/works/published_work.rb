@@ -17,7 +17,7 @@ module DogBiscuits
     # Metadata
     # include DogBiscuits::PublishedWorkMetadata
 
-    before_save :combine_dates
+    # before_save :combine_dates
 
     def published_work?
       true

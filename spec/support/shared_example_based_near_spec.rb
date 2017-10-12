@@ -12,6 +12,7 @@ shared_examples_for 'based_near' do
 
   it 'is in the solr_document' do
     expect(solr_doc.should(respond_to(:based_near)))
+    expect(solr_doc.should(respond_to(:based_near_label)))
   end
 
   it 'is in the configuration property_mappings' do
