@@ -11,14 +11,6 @@ class DogBiscuits::WorkGenerator < Rails::Generators::NamedBase
 
   def hyrax_generator_run
     if File.exist? File.join('app/models/', class_path, "#{class_name.underscore}.rb")
-
-    else
-
-    end
-  end
-
-  def hyrax_generator_run
-    if File.exist? File.join('app/models/', class_path, "#{class_name.underscore}.rb")
       answer = ask('It looks like you have already run the Hyrax generator. Any changes to the generated files will be overwritten. Is that OK? (y/n)').underscore
       unless answer == 'y'
         say_status("warn", "CANCELLED CREATING: #{class_name}", :orange)

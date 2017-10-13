@@ -252,6 +252,7 @@ module DogBiscuits
     autoload :DatasetIndexer
     autoload :ExamPaperIndexer
     autoload :JournalArticleIndexer
+    autoload :PackageIndexer
     autoload :PublishedWorkIndexer
     autoload :ThesisIndexer
   end
