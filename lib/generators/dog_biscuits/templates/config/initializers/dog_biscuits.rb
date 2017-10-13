@@ -14,10 +14,12 @@ DogBiscuits.config do |config|
   # All solr fields that will be treated as facets by the blacklight application
   #   The ordering of the field names is the order of the display
   #   The properties must have been indexed as facetable
+  #   Add values as symbols (eg. :creator)
   # config.facet_properties = []
 
   # *All* solr fields to be displayed in the index (search results) view
   #   The ordering of the field names is the order of the display
+  #   Add values as symbols (eg. :creator)
   # config.index_properties = []
 
   # For each model, there are two configurations available, for example:

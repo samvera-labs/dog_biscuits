@@ -176,7 +176,7 @@ module DogBiscuits
             index: "('has_restriction', :stored_searchable)"
           },
           human_readable_type: {
-            index: "('has_restriction', :stored_searchable)",
+            index: "('human_readable_type', :stored_searchable)",
             label: 'Type',
             schema_org: {
               'Conference Item' => 'http://schema.org/ScholarlyArticle',

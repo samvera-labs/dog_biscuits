@@ -19,7 +19,7 @@ class DogBiscuits::CatalogControllerGenerator < Rails::Generators::Base
 
     DogBiscuits.config.facet_properties.each do |prop|
 
-      injection = "    config.add_facet_field solr_name('#{prop}', :facetable), limit: 5"
+      injection = "    config.add_facet_field solr_name('#{prop.to_s}', :facetable), limit: 5"
 
       if DogBiscuits.config.property_mappings[prop]
         if DogBiscuits.config.property_mappings[prop][:label]
@@ -76,7 +76,8 @@ class DogBiscuits::CatalogControllerGenerator < Rails::Generators::Base
     catalog_file = 'app/controllers/catalog_controller.rb'
     all_properties = []
     # Add fields for selected models only
-    DogBiscuits.config.selected_models.each do |model|
+    models = DogBiscuits.config.selected_models.collect {|m| m.underscore}
+    models.each do |model|
       all_properties += DogBiscuits.config.send("#{model.underscore}_properties")
     end
     # Basic Metadata properties are already there

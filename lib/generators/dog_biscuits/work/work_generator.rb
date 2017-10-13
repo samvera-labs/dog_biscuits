@@ -22,8 +22,8 @@ class DogBiscuits::WorkGenerator < Rails::Generators::NamedBase
   end
 
   def supported_model
-    unless DogBiscuits.config.available_models.include? class_name.underscore
-      say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect {|m| m.camelize}.join(', ') }", :red)
+    unless DogBiscuits.config.available_models.include? class_name
+      say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect {|m| m}.join(', ') }", :red)
       exit 0
     end
   end

@@ -9,12 +9,12 @@ class DogBiscuits::AttributeRowsGenerator < Rails::Generators::NamedBase
     say_status("info", "Generating _attribute_rows.html.erb for #{class_name}", :blue)
 
     if class_name == 'All'
-      @models = DogBiscuits.config.selected_models
+      @models = DogBiscuits.config.selected_models.collect {|m| m.underscore}
     else
-      if DogBiscuits.config.selected_models.include? class_name.underscore
+      if DogBiscuits.config.selected_models.include? class_name
         @models = [ class_name.underscore ]
       else
-        say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect {|m| m.camelize}.join(', ') }", :red)
+        say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect {|m| m}.join(', ') }", :red)
         exit 0
       end
     end

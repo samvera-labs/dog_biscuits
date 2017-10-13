@@ -18,7 +18,9 @@ class DogBiscuits::SchemaOrgGenerator < Rails::Generators::Base
 
     all_properties = []
 
-    DogBiscuits.config.available_models.each do |model|
+    @models = DogBiscuits.config.selected_models.collect {|m| m.underscore}
+
+    @models.each do |model|
       all_properties += DogBiscuits.config.send("#{model.underscore}_properties")
     end
     # Basic Metadata properties have already been added in Hyrax

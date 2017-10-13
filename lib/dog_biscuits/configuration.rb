@@ -11,7 +11,7 @@ module DogBiscuits
     # TODO mix of string and symbol could be confusing
 
     def available_models
-      ['conference_item', 'exam_paper', 'journal_article', 'published_work', 'thesis', 'dataset', 'package'].freeze
+      ['ConferenceItem', 'ExamPaper', 'JournalArticle', 'PublishedWork', 'Thesis', 'Dataset', 'Package'].freeze
     end
 
     # Default required properties.
@@ -46,9 +46,26 @@ module DogBiscuits
     attr_writer :facet_properties
     # omitting funder
     def facet_properties
-      @facet_properties ||= ['human_readable_type', 'resource_type', 'creator', 'contributor_combined', 'contributor_type', 'publisher', 'date',
-                             'keyword', 'subject', 'language', 'based_near_label', 'journal', 'proceeding',
-                             'qualification_level', 'qualification_name', 'refereed', 'publication_status', 'content_version']
+      @facet_properties ||= %i[
+        human_readable_type
+        resource_type
+        creator
+        contributor_combined
+        contributor_type
+        publisher
+        date
+        keyword
+        subject
+        language
+        based_near_label
+        journal
+        proceeding
+        qualification_level
+        qualification_name
+        refereed
+        publication_status
+        content_version
+      ]
     end
 
     # *All* solr fields to be displayed in the index (search results) view

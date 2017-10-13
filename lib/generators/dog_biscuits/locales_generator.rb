@@ -9,12 +9,12 @@ class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
     say_status("info", "Generating locales for #{class_name}", :blue)
 
     if class_name == 'All'
-      @models = DogBiscuits.config.selected_models
+      @models = DogBiscuits.config.selected_models.collect {|m| m.underscore}
     else
       if DogBiscuits.config.selected_models.include? class_name.underscore
         @models = [class_name.underscore]
       else
-        say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect {|m| m.camelize}.join(', ') }", :red)
+        say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect {|m| m}.join(', ') }", :red)
         exit 0
       end
     end
@@ -60,7 +60,7 @@ class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
     unless locale.include? '      fields:'
       append_file locale, "\n      fields:"
     end
-    unless locale.include? '        facet:'
+    unless locale.include? '         facet:'
       append_file locale, "\n        facet:"
       append_file locale, "\n          human_readable_type_sim: Type"
     end
@@ -90,7 +90,7 @@ class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
             # Facets
             inject_into_file locale, before: '        index:' do
               "#{facet_string}\n"
-            end if DogBiscuits.config.facet_properties.include? prop.to_s and !locale.include? facet_string
+            end if DogBiscuits.config.facet_properties.include? prop and !locale.include? facet_string
             # Index
             inject_into_file locale, before: '        show:' do
               "#{append_string}\n"
@@ -106,7 +106,7 @@ class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
   # These are special because they are only needed for the facets and are not listed in the properties for the model.
   def contributor_combined_facets
     locale = "config/locales/blacklight.en.yml"
-    properties = [:contributor_combined, :contributor_type, :date]
+    properties = [:contributor_combined, :contributor_type, :date, :human_readable_type]
     properties.each do |prop|
       if DogBiscuits.config.property_mappings[prop]
         if DogBiscuits.config.property_mappings[prop][:label]
@@ -116,7 +116,7 @@ class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
           # Facets
           inject_into_file locale, before: '        index:' do
             "#{facet_string}\n"
-          end if DogBiscuits.config.facet_properties.include? prop.to_s and !locale.include? facet_string
+          end if DogBiscuits.config.facet_properties.include? prop and !locale.include? facet_string
         end
       end
     end
