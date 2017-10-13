@@ -14,11 +14,20 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
-    config.search_builder_class = Hyrax::CatalogSearchBuilder
-
-    # Show gallery view
     config.view.gallery.partials = [:index_header, :index]
+    config.view.masonry.partials = [:index]
     config.view.slideshow.partials = [:index]
+
+    config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
+    config.show.partials.insert(1, :openseadragon)
+    # default advanced config values
+    config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
+    # config.advanced_search[:qt] ||= 'advanced'
+    config.advanced_search[:url_key] ||= 'advanced'
+    config.advanced_search[:query_parser] ||= 'dismax'
+    config.advanced_search[:form_solr_parameters] ||= {}
+
+    config.search_builder_class = Hyrax::CatalogSearchBuilder
 
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
@@ -26,6 +35,10 @@ class CatalogController < ApplicationController
         rows: 10,
         qf: "title_tesim description_tesim creator_tesim keyword_tesim"
     }
+
+    # Specify which field to use in the tag cloud on the homepage.
+    # To disable the tag cloud, comment out this line.
+    config.tag_cloud_field_name = Solrizer.solr_name("keyword", :facetable)
 
     # solr field configuration for document/show views
     config.index.title_field = solr_name("title", :stored_searchable)
@@ -95,7 +108,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("creator", :stored_searchable)
     config.add_show_field solr_name("contributor", :stored_searchable)
     config.add_show_field solr_name("publisher", :stored_searchable)
-    config.add_show_field solr_name("based_near_label", :stored_searchable)
+    config.add_show_field solr_name("based_near", :stored_searchable)
     config.add_show_field solr_name("language", :stored_searchable)
     config.add_show_field solr_name("date_uploaded", :stored_searchable)
     config.add_show_field solr_name("date_modified", :stored_searchable)
@@ -232,7 +245,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field('based_near') do |field|
       field.label = "Location"
-      solr_name = solr_name("based_near_label", :stored_searchable)
+      solr_name = solr_name("based_near", :stored_searchable)
       field.solr_local_parameters = {
           qf: solr_name,
           pf: solr_name

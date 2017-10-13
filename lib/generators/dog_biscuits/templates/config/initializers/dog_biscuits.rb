@@ -7,6 +7,19 @@ DOGBISCUITS = YAML.safe_load(File.read(Rails.root.join('config', 'dog_biscuits.y
 # Configuration
 DogBiscuits.config do |config|
 
+  # Models used in the application.
+  #   available models are:
+  config.selected_models = config.available_models
+
+  # All solr fields that will be treated as facets by the blacklight application
+  #   The ordering of the field names is the order of the display
+  #   The properties must have been indexed as facetable
+  # config.facet_properties = []
+
+  # *All* solr fields to be displayed in the index (search results) view
+  #   The ordering of the field names is the order of the display
+  # config.index_properties = []
+
   # For each model, there are two configurations available, for example:
   #   config.conference_item_properties = []
   #   config.conference_item_properties_required = []

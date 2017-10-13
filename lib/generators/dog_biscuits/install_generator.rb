@@ -20,6 +20,10 @@ class DogBiscuits::InstallGenerator < Rails::Generators::Base
     end
   end
 
+  def setup_config
+    gsub_file 'config/initializers/dog_biscuits.rb', /#   available models are:/, "#   available models are: #{DogBiscuits.config.available_models.join(", ")}"
+  end
+
   def solr_document
     solr_doc = 'app/models/solr_document.rb'
     unless solr_doc.include? 'DogBiscuits::ExtendedSolrDocument'
@@ -43,7 +47,7 @@ class DogBiscuits::InstallGenerator < Rails::Generators::Base
 
   # TODO remove when fixed
   def copy_views
-    directory 'views/hyrax/base/_work_description.erb', 'app/views/hyrax/base/_work_description.erb'
-    directory 'views/shared/_citations.html.erb', 'app/views/shared/_citations.html.erb'
+    copy_file 'views/hyrax/base/_work_description.erb', 'app/views/hyrax/base/_work_description.erb'
+    copy_file 'views/shared/_citations.html.erb', 'app/views/shared/_citations.html.erb'
   end
 end
