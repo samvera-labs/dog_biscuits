@@ -1,7 +1,56 @@
 Description:
-    Adds DogBiscuits installation and prepares your application to use dog_biscuits models
-      * adds the dog_biscuits authorities into config/authorities
-      * adds dog_biscuits initializer and yaml file
+    Install Generator
+        This generator makes the following changes to your application:
+         1. Adds a dog_biscuits initializer in config/initializers/dog_biscuits.rb.
+         2. Adds a dog_biscuits yml configuration file in config/dog_biscuits.yml.
+         3. Includes DogBiscuits::ExtendedSolrDocument in the SolrDocument
+         4. Runs the authorities, edit_fields_and_inputs and schema_org generators
+         5. Adds two view files as a temporary fix.
 
-Example:
+    Authority Generator:
+        This generator makes the following changes to your application:
+         1. Copies authorities into config/authorities.
+         2. Registers all subauthorities in config/intitializers/dog_biscuits.rb
+         3. Sets up references to the authority concept_schemes in config/dog_biscuits.yml
+         4. Copies the authority services into app/services/
+
+    Edit Fields and Inputs Generator
+        This generator makes the following changes to your application:
+         1. Creates files needed for the forms.
+
+    Catalog Controller Generator
+        This generator makes the following changes to your application:
+         1. Creates a new app/controllers/catalog_controller.rb.
+         2. Injects facet, show and index fields using confingured properties
+
+    Schema Org Generator
+        This generator makes the following changes to your application:
+        1. Creates a schema_org.yml file in ./config
+        2. Injects schema_org metadata for all properties
+            where this information is configured in property_mappings
+
+    Locales Generator
+        This generator can be run for an existing Model, or for All models (with All).
+        This generator makes the following changes to your application
+            where information is available in property_mappings:
+             1. Injects labels and help_text into the en locale for the given model.
+             2. Injects new labels into the en blacklight locale.
+
+    Attribute Rows Generator
+        This generator can be run for an existing Model, or for All models (with All).
+        This generator makes the following changes to your application:
+            1. Creates an _attribute_rows.html.erb file for the given Work
+            2. Injects a row for each attribute where information is available in property_mappings
+
+Examples:
     rails generate dog_biscuits:install
+    rails generate dog_biscuits:authority
+    rails generate dog_biscuits:edit_fields_and_inputs
+    rails generate dog_biscuits:catalog_controller
+    rails generate dog_biscuits:schema_org
+
+    rails generate dog_biscuits:locales All
+    rails generate dog_biscuits:locales ConferenceItem
+    rails generate dog_biscuits:attribute_rows All
+    rails generate dog_biscuits:attribute_rows ConferenceItem
+

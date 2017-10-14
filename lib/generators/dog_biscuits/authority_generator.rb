@@ -3,6 +3,14 @@
 class DogBiscuits::AuthorityGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 
+  desc '
+This generator makes the following changes to your application:
+  1. Copies authorities into config/authorities.
+  2. Registers all subauthorities in config/intitializers/dog_biscuits.rb
+  3. Sets up references to the authority concept_schemes in config/dog_biscuits.yml
+  4. Copies the authority services into app/services/
+       '
+
   def copy_authorities
     directory 'config/authorities', 'config/authorities'
   end
@@ -51,7 +59,7 @@ class DogBiscuits::AuthorityGenerator < Rails::Generators::Base
     end
   end
 
-  def copy_local_quthority_concern
+  def copy_local_authority_concern
     copy_file 'local_authority_concern.rb', 'app/services/concerns/local_authority_concern.rb'
   end
 

@@ -2,43 +2,29 @@
 
 After creating your work you may wish to:
 
-  1. Customize the show page:
-
-      In /app/views/hyrax/your_works
-      edit _attribute_rows.html.erb
-      eg. to add render_as:
+  1. Customize the show page
 
   2. Customize facets and search results
 
-      With DogBiscuits:
-        by configuring properties and required properties
-            in config/initializers/dog_biscuits.rb:
-        by changing the index display
-            in config/dog_biscuits.yml
-        and re-running rails g dog_biscuits:catalog_controller
-        (this will overwrite any changes to catalog_controller)
+  3. Further modify the model, actor, form or presenter
 
-      Or, directly in app/controllers/catalog_controller.rb
-          edit the config.add_facet_field
-          edit the config.add_index_field
-          eg. to change order and add new local properties
+Customizing a Work the 'dog_biscuits way':
 
-  3. Further modify the model, actor, form or presenter,
+  in config/initializers/dog_biscuits.rb change the defaults:
 
-      eg. with locally defined properties.
+    fields to display in search results:
+      config.index_properties
 
-  To add a local property the dog_biscuits way:
+    fields to display as facets:
+      config.facet_properties
 
-      add to the model, form, presenter and solr_document
-      add labels and help text to config/locales/
+    properties and order in the form and show page:
+      config.your_work_properties
 
-      add to config/initializers/dog_biscuits.rb
+    required fields in the form
+      config.your_work_properties_required
 
-      re_generate schema_org with:
-        rails g dog_biscuits:schema_org -f
-      re_generate catalog_controller.rb with:
-        rails g dog_biscuits:catalog_controller -f
-      re_generate _attribute_rows.html.erb with:
-        rails g dog_biscuits:attribute_rows -f
+  Re-run the Work generators (these will overwrite any local changes):
+    rails g dog_biscuits:work Work
 
 ===============================================================================

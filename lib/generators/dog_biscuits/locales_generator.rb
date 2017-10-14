@@ -3,15 +3,21 @@
 class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('../templates', __FILE__)
 
-  # Generate the en locales file for the given Model, or for All models. Add to the blacklight locale.
+  desc '
+This generator can be run for an existing Model, or for All models (with All).
+This generator makes the following changes to your application
+  where information is available in property_mappings:
+    1. Injects labels and help_text into the en locale for the given model.
+    2. Injects new labels into the en blacklight locale.
+       '
 
   def banner
     say_status("info", "Generating locales for #{class_name}", :blue)
 
     if class_name == 'All'
-      @models = DogBiscuits.config.selected_models.collect {|m| m.underscore}
+      @models = DogBiscuits.config.selected_models.map {|m| m.underscore}
     else
-      if DogBiscuits.config.selected_models.include? class_name.underscore
+      if DogBiscuits.config.selected_models.include? class_name
         @models = [class_name.underscore]
       else
         say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect {|m| m}.join(', ') }", :red)
@@ -21,7 +27,7 @@ class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
   end
 
   # Add labels and help_text for the properties for the given model
-  def locales
+  def update_locales
     @models.each do |model|
       properties = DogBiscuits.config.send("#{model}_properties")
       append_simple_form_block = "\n  simple_form:\n    hints:"
@@ -51,7 +57,7 @@ class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
   end
 
   # Set-up the blacklight file. Ensure it has the right structure to add labels.
-  def setup_for_blacklight_locales
+  def setup_blacklight_locale
     locale = "config/locales/blacklight.en.yml"
 
     unless locale.include? '    search:'
@@ -74,7 +80,7 @@ class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
   end
 
   # Add facet, show and index labels for the properties for the given model
-  def blacklight_locales
+  def update_blacklight_locale
     locale = "config/locales/blacklight.en.yml"
 
     @models.each do |model|
@@ -103,10 +109,9 @@ class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
     end
   end
 
-  # These are special because they are only needed for the facets and are not listed in the properties for the model.
-  def contributor_combined_facets
+  def update_facets
     locale = "config/locales/blacklight.en.yml"
-    properties = [:contributor_combined, :contributor_type, :date, :human_readable_type]
+    properties = DogBiscuits.config.facet_only_properties
     properties.each do |prop|
       if DogBiscuits.config.property_mappings[prop]
         if DogBiscuits.config.property_mappings[prop][:label]

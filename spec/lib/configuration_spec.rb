@@ -5,6 +5,8 @@ RSpec.describe DogBiscuits::Configuration do
 
   # it { is_expected.to respond_to(:creator_class) }
   # it { is_expected.to respond_to(:creator_class=) }
+
+  # frozen, no writers
   it { is_expected.to respond_to(:available_models) }
   it { is_expected.to respond_to(:base_properties) }
   it { is_expected.to respond_to(:common_properties) }
@@ -12,6 +14,7 @@ RSpec.describe DogBiscuits::Configuration do
 
   # readers
   it { is_expected.to respond_to(:facet_properties) }
+  it { is_expected.to respond_to(:facet_only_properties) }
   it { is_expected.to respond_to(:index_properties) }
   it { is_expected.to respond_to(:property_mappings) }
   it { is_expected.to respond_to(:conference_item_properties) }
@@ -31,6 +34,7 @@ RSpec.describe DogBiscuits::Configuration do
 
   # writers
   it { is_expected.to respond_to(:facet_properties=) }
+  it { is_expected.to respond_to(:facet_only_properties=) }
   it { is_expected.to respond_to(:index_properties=) }
   it { is_expected.to respond_to(:property_mappings=) }
   it { is_expected.to respond_to(:conference_item_properties=) }
