@@ -8,14 +8,15 @@ module DogBiscuits
   module PropertyMappings
     attr_writer :property_mappings
 
-    # Add all properties to the hash.
+    # Add all properties to the property_mappings hash.
     # Allowed values:
     #   index: text fragment for inclusion in the catalog_controller index section;
     #     omit label and helper_method as these will be added by the generator using info below
-    #   schema_org: has containing property; can also include type and value
+    #   schema_org: hash containing property; can also include type and value
     #   label: a human-readable label for the property (omit if the property name should be used)
     #   help_text: help text to include in the form
     #   render_as: a custom renderer for the field (omit facetable as this will be added by the generator)
+    #   helper_method: a helper method used to render this property in the catalog
     def property_mappings
       @property_mappings ||=
         {

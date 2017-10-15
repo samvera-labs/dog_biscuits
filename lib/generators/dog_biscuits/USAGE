@@ -7,6 +7,13 @@ Description:
          4. Runs the authorities, edit_fields_and_inputs and schema_org generators
          5. Adds two view files as a temporary fix.
 
+    Regenerate All Generator
+        This generator makes the following changes to your application:
+         1. Runs the catalog_controller generator
+         2. Runs the attribute_rows generator
+         3. Runs the locales generator
+         4. Runs the schema_org generator
+
     Authority Generator:
         This generator makes the following changes to your application:
          1. Copies authorities into config/authorities.
