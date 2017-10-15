@@ -27,30 +27,43 @@ DogBiscuits.config do |config|
   #   config.conference_item_properties_required = []
   # Both are set to defaults:
   #    _required fields defaults to the Hyrax default (title, creator, keyword, rights_statment)
-  #    _properties defaults to all properties, in the following order:
-  #    1) basic_metadata (same order as in Hyrax),
-  #    2) alphebetized model specific properties
-  #    3) alphebetized remaining common fields
+  #    _properties defaults to all properties available to that model, alphabetized
 
-  # All properties must appear in property_mappings
+  # All properties must be included in property_mappings. This is used by generators for building
+  #   schema_org, locales, catalog_controller and attribute_rows. Adding info here and using
+  #   generators saves on a lot of manual editing.
+  #
   # To add a new local property (new_property below), do:
   #   DogBiscuits.config.property_mappings[:new_property] = {}
+  #
   # To change an existing property (existing_property), do:
   #   DogBiscuits.config.property_mappings[:existing_property] = {}
   #
-  # The hash must contain an index for use in the catalog_controller.rb, eg.
+  # The hash must contain index for use in the catalog_controller.rb, eg.
   #   DogBiscuits.config.property_mappings[:new_property] =
   #     {
   #       index: "('new_property', :stored_sortable)"
   #     }
-  #    It may also contain schema_org information, a label and help_text:
+  #
+  #  The hash may contain schema_org information, a label and help_text:
   #     index: "('new_property', :stored_sortable)",
   #     schema_org: {
-  #          property: "identifier"
+  #          property: 'identifier'
   #        },
-  #     label: "New property",
-  #     help_text "Some help text."
+  #     label: 'New property',
+  #     help_text 'Some help text.',
   #     }
+  #  The hash may contain references to custom renderers and helper methods:
+  #     index: "('new_property', :stored_sortable)",
+  #     schema_org: {
+  #          property: 'identifier'
+  #        },
+  #     label: 'New property',
+  #     help_text 'Some help text.',
+  #     render_as: 'new_property' # assuming app/renderers/new_property_attribute_renderer.rb exists
+  #     helper_method: 'new_property_helper' # assuming new_property_helper method exists in app/helpers/hyrax_helper.rb
+  #     }
+
 
 
 end

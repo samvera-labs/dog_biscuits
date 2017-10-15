@@ -131,6 +131,7 @@ module DogBiscuits
                       proceeding
                       refereed]
       @conference_item_properties ||= base_properties + properties + common_properties
+      @conference_item_properties.sort!
     end
 
     attr_writer :conference_item_properties_required
@@ -161,6 +162,7 @@ module DogBiscuits
                       series
                       volume_number]
       @published_work_properties ||= base_properties + properties + common_properties
+      @published_work_properties.sort!
     end
 
     attr_writer :published_work_properties_required
@@ -186,6 +188,7 @@ module DogBiscuits
                       refereed
                       volume_number]
       @journal_article_properties ||= base_properties + properties + common_properties
+      @journal_article_properties.sort!
     end
 
     attr_writer :journal_article_properties_required
@@ -203,6 +206,7 @@ module DogBiscuits
                       qualification_level
                       qualification_name]
       @thesis_properties ||= base_properties + properties + common_properties
+      @thesis_properties.sort!
     end
 
     attr_writer :thesis_properties_required
@@ -219,6 +223,7 @@ module DogBiscuits
                       qualification_name
                       date_available]
       @exam_paper_properties ||= base_properties + properties + common_properties
+      @exam_paper_properties.sort!
     end
 
     attr_writer :exam_paper_properties_required
@@ -237,6 +242,7 @@ module DogBiscuits
                       last_access
                       number_of_downloads]
       @dataset_properties ||= base_properties + properties + common_properties
+      @dataset_properties.sort!
     end
 
     attr_writer :dataset_properties_required
@@ -251,6 +257,7 @@ module DogBiscuits
     def package_properties
       properties = %i[]
       @package_properties ||= base_properties + properties + common_properties
+      @package_properties.sort!
     end
 
     attr_writer :package_properties_required

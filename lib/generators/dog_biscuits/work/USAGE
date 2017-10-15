@@ -20,44 +20,27 @@ Making changes post-generation:
 Adding local properties
     Add the local property into the model (in app/models/)
     Add an attribute into the solr_document (app/models/solr_document.rb)
-    Add the property to the config (config/initializers/dog_biscuits.rb)
-
-      eg.
-      # property_mappings
-      config.property_mappings[:my_new_property] = {
-        label: 'Great New Property'
-        help_text: 'Use this for information about great new things.',
-        schema_org: {
-            # map the new property to http://schema.org/contributor
-            property: contributor
-            },
-        }
-
+    Add the property to the config (config/initializers/dog_biscuits.rb), eg:
+      # property mappings
+      config.property_mappings[:my_new_property] = {}
       # properties list
       config.work_properties += [:my_new_property]
-
       # required properties list
       config.work_properties_required += [:my_new_property]
-
       # make it a facet
       config.facet_properties += [:my_new_property]
-
       # show in search results
       config.index_properties += [:my_new_property]
 
-    Add custom helper methods or renderers (in app/helpers/ and app/renderers)
-      and add them to the property_mappings config:
-
       eg.
-        config.property_mappings[:my_new_property] = {
-          label: 'Great New Property'
-          help_text: 'Use this for information about great new things.',
-          schema_org: {
-            property: contributor # this maps the new property to http://schema.org/contributor
-            },
-          render_as: my_new_renderer,
-          helper_method: my_new_helper_method
+      # property_mappings
+      config.property_mappings[:my_new_property] =
+        {
+            index: "('new_property', :stored_sortable)"
         }
+
+    Add custom helper methods or renderers (in app/helpers/ and app/renderers)
+      and add them to the property_mappings.
 
     The generator can be re-run without overwriting the model file using the --skip_model option
 
