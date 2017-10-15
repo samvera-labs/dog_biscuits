@@ -54,7 +54,7 @@ DogBiscuits.config do |config|
   #    {
   #      index: "('new_property', :stored_sortable)",
   #      schema_org: {
-  #      property: 'identifier'
+  #      property: 'identifier' # the closest property match in schema.org is identifier
   #      }
   #    }
   #
@@ -76,8 +76,8 @@ DogBiscuits.config do |config|
   #      },
   #      label: 'New property',
   #      help_text 'Some help text.',
-  #      render_as: 'new_property' # assuming app/renderers/new_property_attribute_renderer.rb exists
-  #      helper_method: 'new_property_helper' # assuming new_property_helper method exists in app/helpers/hyrax_helper.rb
+  #      render_as: 'new_property' # app/renderers/new_property_attribute_renderer.rb must exist
+  #      helper_method: 'new_property_helper' # new_property_helper method must exist in app/helpers, eg. in hyrax_helper.rb
   #    }
 
 end

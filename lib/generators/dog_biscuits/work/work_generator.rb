@@ -12,6 +12,7 @@ This generator makes the following changes to your application:
     1. Checks that the requested Work is supported by DogBiscuits
     2. Runs the Hyrax generator for the given model
     3. Creates a new model, form and indexer to replace the Hyrax one
+    3a. When --skip_model is specified the model and indexer steps in 3. are skipped to allow for custom local properties
     4. Injects properties into the Hyrax-generated presenter
     5. Creates an attribute_rows view file using the configured properties for the work
     6. Updates the schema_org config, blacklight (en) locale and work (en) locale using the configured properties for the work
@@ -65,7 +66,11 @@ This generator makes the following changes to your application:
   end
 
   def create_indexer
-    template('indexer.rb.erb', File.join('app/indexers', class_path, "#{file_name}_indexer.rb"))
+    if options[:skip_model]
+      say_status("info", "SKIPPING INDEXER GENERATION", :blue)
+    else
+      template('indexer.rb.erb', File.join('app/indexers', class_path, "#{file_name}_indexer.rb"))
+    end
   end
 
   def create_form

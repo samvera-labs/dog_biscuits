@@ -20,29 +20,12 @@ Making changes post-generation:
 Adding local properties
     Add the local property into the model (in app/models/)
     Add an attribute into the solr_document (app/models/solr_document.rb)
-    Add the property to the config (config/initializers/dog_biscuits.rb), eg:
-      # property mappings
-      config.property_mappings[:my_new_property] = {}
-      # properties list
-      config.work_properties += [:my_new_property]
-      # required properties list
-      config.work_properties_required += [:my_new_property]
-      # make it a facet
-      config.facet_properties += [:my_new_property]
-      # show in search results
-      config.index_properties += [:my_new_property]
-
-      eg.
-      # property_mappings
-      config.property_mappings[:my_new_property] =
-        {
-            index: "('new_property', :stored_sortable)"
-        }
+    Add the property to the config (config/initializers/dog_biscuits.rb)
 
     Add custom helper methods or renderers (in app/helpers/ and app/renderers)
       and add them to the property_mappings.
 
-    The generator can be re-run without overwriting the model file using the --skip_model option
+    The generator can be re-run without overwriting the model and indexer files using the --skip_model option
 
     This will update the form, presenter, catalog_controller, attribute_rows and locales with
     the new property.
