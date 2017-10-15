@@ -7,24 +7,36 @@ DOGBISCUITS = YAML.safe_load(File.read(Rails.root.join('config', 'dog_biscuits.y
 # Configuration
 DogBiscuits.config do |config|
 
-  # Models used in the application.
-  #   available models are:
-  config.selected_models = config.available_models
+  # GLOBAL PROPERTIES
 
-  # All solr fields that will be used as facets in the search page.
+  # Models to be used in the current application.
+  #   Available models are:
+  #   Add values in constantized form, eg. 'ConferenceItem'
+  # config.selected_models = []
+
+  # Solr fields that will be used as facets in the search page.
   #   The ordering of the field names is the order of the display
   #   The properties must have been indexed as facetable
   #   Add values as symbols (eg. :creator)
   # config.facet_properties += [] # add to the end of the current list
+  # config.facet_properties -= [] # remove from the current list
   # config.facet_properties = [] # replace the current list
 
-  # *All* solr fields to be displayed in the index (search results) view
+  # Solr fields to be displayed in the index (search results) view
   #   The ordering of the field names is the order of the display
   #   Add values as symbols (eg. :creator)
   # config.index_properties += [] # add to the end of the current list
+  # config.index_properties -= [] # remove from the current list
   # config.index_properties = [] # replace the current list
 
+  # Fields in the form that should only accept a single value, ie. disable the 'add another' button.
+  #   Add values as symbols (eg. :creator)
+  # config.singular_properties += [] # add to the list
+  # config.singular_properties -= [] # remove from the list
+  # config.singular_properties += [] # replace the current list
+
   # WORK PROPERTIES
+
   # For each model, there are two configurations available.
   # Both are set to defaults:
   #    _required fields defaults to the Hyrax default (title, creator, keyword, rights_statment)
@@ -34,7 +46,7 @@ DogBiscuits.config do |config|
   #    config.conference_item_properties_required = []
 
   # PROPERTY MAPPINGS
-  # All properties must be included in property_mappings. This is used by generators for building
+  # All properties should be included in property_mappings. This is used by generators for building
   #   schema_org, locales, catalog_controller and attribute_rows. Adding info here and using
   #   generators saves on a lot of manual editing.
   #
@@ -44,40 +56,33 @@ DogBiscuits.config do |config|
   # To change an existing property (existing_property), do:
   #   config.property_mappings[:existing_property] = {}
   #
-  # The hash may contain index for use in the catalog_controller.rb, eg.
-  #   config.property_mappings[:new_property] =
+  # The contents of a property_mappings key:
+  #
+  #   config.property_mappings[:existing_property] =
   #     {
-  #       index: "('new_property', :stored_sortable)"
+  #       # REQUIRED (if the property will appear in search results): a string formatted as per the example shown
+  #       index: "('existing_property', :stored_searchable)",
+  #
+  #       # OPTIONAL: label for use in the form, show page, search results and facet
+  #       label: 'My Property Label',
+  #
+  #       # OPTIONAL: help_text for use in the form
+  #       help_text: 'Use this to describe something or other',
+  #
+  #       # OPTIONAL: reference to a renderer used to format the display of the text in the show page
+  #       # in this eg. `app/renderers/existing_property_attribute_renderer.rb` must exist
+  #       render_as: 'existing_property',
+  #
+  #       # OPTIONAL reference to a helper method used to format the display of the text in the search results
+  #       # in this eg. the `existing_property_helper` method must exist in app/helpers, eg. in hyrax_helper.rb
+  #       helper_method: 'existing_property_helper',
+  #
+  #       # OPTIONAL mapping to a schema.org property to be used in embedded metadata
+  #       schema_org: {
+  #         # in this eg. we have decided that the closest property match in schema.org is contributor
+  #         property: 'contributor'
   #     }
-  #
-  #  The hash may contain schema_org mappings for addition to config/schema_org.yml:
-  #    {
-  #      index: "('new_property', :stored_sortable)",
-  #      schema_org: {
-  #      property: 'identifier' # the closest property match in schema.org is identifier
-  #      }
-  #    }
-  #
-  # The hash may contain label and help_text for use in the locales, and views:
-  #    {
-  #      index: "('new_property', :stored_sortable)",
-  #      schema_org: {
-  #      property: 'identifier'
-  #      },
-  #      label: 'New property',
-  #      help_text 'Some help text.',
-  #    }
-  #
-  # The hash may contain references to custom renderers and helper methods:
-  #    {
-  #      index: "('new_property', :stored_sortable)",
-  #      schema_org: {
-  #      property: 'identifier'
-  #      },
-  #      label: 'New property',
-  #      help_text 'Some help text.',
-  #      render_as: 'new_property' # app/renderers/new_property_attribute_renderer.rb must exist
-  #      helper_method: 'new_property_helper' # new_property_helper method must exist in app/helpers, eg. in hyrax_helper.rb
-  #    }
+  # }
+
 
 end

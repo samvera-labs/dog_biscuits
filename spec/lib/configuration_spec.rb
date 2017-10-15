@@ -16,6 +16,7 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:facet_properties) }
   it { is_expected.to respond_to(:facet_only_properties) }
   it { is_expected.to respond_to(:index_properties) }
+  it { is_expected.to respond_to(:singular_properties) }
   it { is_expected.to respond_to(:property_mappings) }
   it { is_expected.to respond_to(:conference_item_properties) }
   it { is_expected.to respond_to(:conference_item_properties_required) }
@@ -36,6 +37,7 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:facet_properties=) }
   it { is_expected.to respond_to(:facet_only_properties=) }
   it { is_expected.to respond_to(:index_properties=) }
+  it { is_expected.to respond_to(:singular_properties=) }
   it { is_expected.to respond_to(:property_mappings=) }
   it { is_expected.to respond_to(:conference_item_properties=) }
   it { is_expected.to respond_to(:conference_item_properties_required=) }

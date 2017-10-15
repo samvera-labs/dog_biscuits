@@ -9,7 +9,8 @@ This generator makes the following changes to your application:
   2. Adds a dog_biscuits config in config/dog_biscuits.yml.
   3. Includes DogBiscuits::ExtendedSolrDocument in the SolrDocument
   4. Runs the authorities, edit_fields_and_inputs and schema_org generators
-  5. Adds two view files as a temporary fix.
+  5. Adds the LocalFormMetadataService
+  6. Adds two view files as a temporary fix.
        '
 
   def banner
@@ -30,7 +31,7 @@ This generator makes the following changes to your application:
   end
 
   def update_initializer
-    gsub_file 'config/initializers/dog_biscuits.rb', /#   available models are:/, "#   available models are: #{DogBiscuits.config.available_models.join(", ")}"
+    gsub_file 'config/initializers/dog_biscuits.rb', /#   Available models are:/, "#   Available models are: #{DogBiscuits.config.available_models.join(", ")}"
   end
 
   def update_solr_document
@@ -46,8 +47,8 @@ This generator makes the following changes to your application:
     generate 'dog_biscuits:authority', '-f'
   end
 
-  def create_edit_fields_and_inputs
-    generate 'dog_biscuits:edit_fields_and_inputs', '-f'
+  def create_local_form_metadata_service
+    copy_file 'local_form_metadata_service.rb', 'app/services/local_form_metadata_service.rb'
   end
 
   def create_schema_org

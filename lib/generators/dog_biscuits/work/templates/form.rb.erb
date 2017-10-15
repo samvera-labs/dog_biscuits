@@ -11,5 +11,8 @@ module Hyrax
     self.terms += []
 
     self.required_fields = DogBiscuits.config.<%= class_name.underscore %>_properties_required
+
+    # The service that determines the cardinality of each field
+    self.field_metadata_service = LocalFormMetadataService
   end
 end

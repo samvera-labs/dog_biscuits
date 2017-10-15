@@ -107,6 +107,24 @@ module DogBiscuits
       ]
     end
 
+    # Render these properties as singular in the form
+    attr_writer :singular_properties
+    def singular_properties
+      @singular_properties ||= %i[
+        date_accepted
+        date_available
+        date_created
+        date_published
+        date_submitted
+        date_of_award
+        issue_number
+        pagination
+        publication_status
+        refereed
+        volume_number
+      ]
+    end
+
     # ConferenceItem
 
     # Properties in order:

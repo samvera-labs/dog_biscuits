@@ -4,8 +4,9 @@ Description:
          1. Adds a dog_biscuits initializer in config/initializers/dog_biscuits.rb.
          2. Adds a dog_biscuits yml configuration file in config/dog_biscuits.yml.
          3. Includes DogBiscuits::ExtendedSolrDocument in the SolrDocument
-         4. Runs the authorities, edit_fields_and_inputs and schema_org generators
-         5. Adds two view files as a temporary fix.
+         4. Runs the authorities and schema_org generators
+         5. Adds the LocalFormMetadataService
+         6. Adds two view files as a temporary fix.
 
     Generate All Generator
         This generator makes the following changes to your application:
@@ -21,10 +22,6 @@ Description:
          2. Registers all subauthorities in config/intitializers/dog_biscuits.rb
          3. Sets up references to the authority concept_schemes in config/dog_biscuits.yml
          4. Copies the authority services into app/services/
-
-    Edit Fields and Inputs Generator
-        This generator makes the following changes to your application:
-         1. Creates files needed for the forms.
 
     Catalog Controller Generator
         This generator makes the following changes to your application:
