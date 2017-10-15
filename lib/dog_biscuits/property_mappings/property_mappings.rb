@@ -105,35 +105,35 @@ module DogBiscuits
             }
           },
           date: {
-            index: "('date', :stored_searchable)",
+            index: "('date', :stored_sortable)",
             help_text: 'A date for the work.'
           },
           date_accepted: {
-            index: "('date_accepted', :stored_searchable)"
+            index: "('date_accepted', :stored_sortable, type: :date)"
           },
           date_available: {
-            index: "('date_available', :stored_searchable)",
+            index: "('date_available', :stored_sortable, type: :date)",
             schema_org: {
               property: "datePublished"
             }
           },
           date_created: {
-            index: "('date_created', :stored_searchable)",
+            index: "('date_created', :stored_sortable, type: :date)",
             schema_org: {
               property: "dateCreated"
             }
           },
-          date_of_award: {
-            index: "('date_of_award', :stored_searchable)"
-          },
           date_published: {
-            index: "('date_published', :stored_searchable)",
+            index: "('date_published', :stored_sortable, type: :date)",
             schema_org: {
               property: "datePublished"
             }
           },
           date_submitted: {
-            index: "('date_submitted', :stored_searchable)"
+            index: "('date_submitted', :stored_sortable, type: :date)"
+          },
+          date_of_award: {
+              index: "('date_of_award', :stored_sortable, type: :date)"
           },
           dc_access_rights: {
             index: "('dc_access_rights', :stored_searchable)",
