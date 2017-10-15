@@ -5,7 +5,7 @@ class DogBiscuits::GenerateAllGenerator < Rails::Generators::Base
 
   desc '
 This generator makes the following changes to your application:
-  1. Runs the work generator for all selected models
+  1. Runs the work generator for selected models configured in `onfig/initializers/dog_biscuits.rb`
   2. Runs the catalog_controller generator
   3. Runs the attribute_rows generator
   4. Runs the locales generator
