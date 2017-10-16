@@ -133,7 +133,7 @@ module DogBiscuits
             index: "('date_submitted', :stored_sortable, type: :date)"
           },
           date_of_award: {
-              index: "('date_of_award', :stored_sortable, type: :date)"
+            index: "('date_of_award', :stored_sortable, type: :date)"
           },
           dc_access_rights: {
             index: "('dc_access_rights', :stored_searchable)",

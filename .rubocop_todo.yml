@@ -23,6 +23,7 @@ Metrics/BlockLength:
     - 'lib/dog_biscuits/models/concerns/metadata_properties/property_sets/person_properties.rb'
     - 'lib/dog_biscuits/models/concerns/metadata_properties/property_sets/place_properties.rb'
     - 'lib/dog_biscuits/models/concerns/extended_solr_document.rb'
+    - 'lib/tasks/authorities.rake'
 Metrics/ClassLength:
   Exclude:
     - 'lib/dog_biscuits/vocab/**/*'

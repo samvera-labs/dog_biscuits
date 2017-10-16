@@ -2,6 +2,7 @@
 
 module DogBiscuits
   extend ActiveSupport::Autoload
+  require 'dog_biscuits/railtie' if defined?(Rails)
 
   eager_autoload do
     autoload :Configuration
