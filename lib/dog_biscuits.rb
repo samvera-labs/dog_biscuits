@@ -21,6 +21,13 @@ module DogBiscuits
     end
   end
 
+  module Importer
+    extend ActiveSupport::Autoload
+    eager_autoload do
+      autoload :Authorities
+    end
+  end
+
   autoload_under 'property_mappings' do
     autoload :PropertyMappings
   end
