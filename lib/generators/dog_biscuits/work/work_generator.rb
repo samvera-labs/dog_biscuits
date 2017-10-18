@@ -82,43 +82,9 @@ This generator makes the following changes to your application:
     template('presenter.rb.erb', File.join('app/presenters/hyrax', class_path, "#{file_name}_presenter.rb"))
   end
 
-  # def biscuitify_form
-  #   form = File.join('app/forms/hyrax', class_path, "#{file_name}_form.rb")
-  #
-  #   gsub_file form, /:resource_type/, ''
-  #
-  #   injection = "\n\n    self.terms -= DogBiscuits.config.base_properties" +
-  #       "\n    self.terms += DogBiscuits.config.#{file_name}_properties" +
-  #       "\n    self.required_fields = DogBiscuits.config.#{file_name}_properties_required\n"
-  #
-  #   inject_into_file form, after: "self.model_class = ::#{class_name}" do
-  #     injection unless form.include? injection
-  #   end
-  # end
-
-  # def biscuitify_model
-  #   model = File.join('app/models/', class_path, "#{file_name}.rb")
-  #
-  #   gsub_file model, /< ActiveFedora::Base/, "< ::DogBiscuits::#{class_name}"
-  #
-  #   comment_lines model, /include ::Hyrax::BasicMetadata/
-  #   inject_into_file model, after: 'Hyrax::BasicMetadata' do
-  #     "\n  include DogBiscuits::#{class_name}Metadata"
-  #   end
-  #   inject_into_file model, before: "\nend" do
-  #     "\n  before_save :combine_dates"
-  #   end
-  # end
-  #
-  # def biscuitify_indexer
-  #   model = File.join('app/indexers/', class_path, "#{file_name}_indexer.rb")
-  #
-  #   gsub_file model, /< Hyrax::WorkIndexer/, "< ::DogBiscuits::#{class_name}Indexer"
-  #
-  #   comment_lines model, /include Hyrax::IndexesBasicMetadata/
-  #   # TODO leave this in place once this is decoupled from IndexsBasicMetadata
-  #   comment_lines model, /include Hyrax::IndexesLinkedMetadata/
-  # end
+  def create_actor
+    template('actor.rb.erb', File.join('app/actors/hyrax/actors', class_path, "#{file_name}_actor.rb"))
+  end
 
   def update_presenter
     presenter = File.join('app/presenters/hyrax', class_path, "#{file_name}_presenter.rb")

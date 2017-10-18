@@ -9,6 +9,12 @@ DogBiscuits.config do |config|
 
   # GLOBAL PROPERTIES
 
+  # Add values that aren't found in the following table-based authorities to be added on save.
+  #   This only works in cases where the name of the authority is a pluralized form of
+  #   the name of the property which uses it, eg. subjects/subject and languages/language
+  # Default is :subjects; add authority name as symbol, eg. :subjects
+  # config.authorities_add_new = []
+
   # Models to be used in the current application.
   #   Available models are:
   #   Add values in constantized form, eg. 'ConferenceItem'

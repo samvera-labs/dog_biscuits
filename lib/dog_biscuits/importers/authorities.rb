@@ -1,14 +1,21 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module Importer
+  module Importers
     class Authorities
       attr_reader :authority
       attr_reader :authority_name
 
       def initialize(authority_name)
         @authority_name = authority_name
-        @authority = Qa::LocalAuthority.find_or_create_by(name: authority_name)
+        @authority = Qa::LocalAuthority.find_or_create_by(name: authority_name) if valid_authority?
+      end
+
+      def valid_authority?
+        true if Qa::Authorities::Local.subauthority_for(@authority_name)
+      rescue Qa::InvalidSubAuthority
+        Rails.logger.error("This sub-authority is not registered: #{@authority_name}")
+        false
       end
 
       # Create an authority record in the given local authority

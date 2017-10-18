@@ -11,7 +11,7 @@ namespace :dog_biscuits do
         puts 'Supply the path to a file containing a list of subjects, with each subject on a separate line.'
         puts "rake dog_biscuits:authorities['/tmp/my_file.txt']"
       else
-        subjects = DogBiscuits::Importer::Authorities.new('subjects')
+        subjects = DogBiscuits::Importers::Authorities.new('subjects')
         File.readlines(args[:path]).each do |line|
           subjects.create_record(line.delete("\n"))
         end

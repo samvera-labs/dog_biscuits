@@ -8,6 +8,20 @@ module DogBiscuits
     autoload :Configuration
   end
 
+  module Actors
+    extend ActiveSupport::Autoload
+    eager_autoload do
+      autoload :ApplyAuthorities
+    end
+  end
+
+  module Importers
+    extend ActiveSupport::Autoload
+    eager_autoload do
+      autoload :Authorities
+    end
+  end
+
   module Vocab
     extend ActiveSupport::Autoload
     eager_autoload do
@@ -18,13 +32,6 @@ module DogBiscuits
       autoload :Uketd
       autoload :LocalResourceTerms
       autoload :UlccTerms
-    end
-  end
-
-  module Importer
-    extend ActiveSupport::Autoload
-    eager_autoload do
-      autoload :Authorities
     end
   end
 

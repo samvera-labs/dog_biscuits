@@ -8,7 +8,6 @@ module DogBiscuits
     include PropertyMappings
 
     # TODO: valid_child_concerns
-    # TODO mix of string and symbol could be confusing
 
     def available_models
       ['ConferenceItem', 'ExamPaper', 'JournalArticle', 'PublishedWork', 'Thesis', 'Dataset', 'Package'].freeze
@@ -31,6 +30,15 @@ module DogBiscuits
     # omitting date as this is purely for faceting
     def common_properties
       %i[doi former_identifier note].freeze
+    end
+
+    # Add values that aren't found in the following table-based authorities to be added on save.
+    #   This only works in cases where the name of the authority is a pluralized form of
+    #   the name of the property which uses it, eg. subjects/subject and languages/language
+
+    attr_writer :authorities_add_new
+    def authorities_add_new
+      @authorities_add_new ||= []
     end
 
     attr_writer :selected_models
