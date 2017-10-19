@@ -26,10 +26,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'hyrax', '2.0.0.rc1'
 
   spec.add_development_dependency 'engine_cart', '~> 1.2'
+  spec.add_development_dependency "factory_girl_rails", '~> 4.4'
+  spec.add_development_dependency 'fcrepo_wrapper'
   spec.add_development_dependency 'rspec', '~> 3.1'
   spec.add_development_dependency 'rspec-rails', '~> 3.1'
-  spec.add_development_dependency "factory_girl_rails", '~> 4.4'
-  spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'solr_wrapper'
-  spec.add_development_dependency 'fcrepo_wrapper'
+  spec.add_development_dependency 'webmock'
 end

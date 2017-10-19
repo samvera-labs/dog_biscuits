@@ -44,3 +44,8 @@ Metrics/PerceivedComplexity:
 Style/GuardClause:
   Exclude:
     - 'lib/dog_biscuits/models/authority.rb'
+    - 'spec/test_app_templates/lib/generators/test_app_generator.rb'
+
+Style/CommentedKeyword:
+  Exclude:
+    - 'lib/dog_biscuits/vocab/**/*'
