@@ -24,7 +24,7 @@ module DogBiscuits
         # @param label [String] the label to add
         def add_new(authority_name, label)
           if Qa::Authorities::Local.subauthority_for(authority_name).search(label).empty?
-            DogBiscuits::Importer::Authorities.new(authority_name).create_record(label)
+            DogBiscuits::Importers::Authorities.new(authority_name).create_record(label)
           end
         rescue Qa::InvalidSubAuthority
           Rails.logger.error("Invalid sub-authority: #{auth}")

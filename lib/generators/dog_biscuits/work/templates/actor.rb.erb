@@ -4,6 +4,7 @@ module Hyrax
   module Actors
     class <%= class_name %>Actor < Hyrax::Actors::BaseActor
       include DogBiscuits::Actors::ApplyAuthorities
+      include DogBiscuits::Actors::SingularAttributes
 
       # @param [Hyrax::Actors::Environment] env
       # @return [Boolean] true if create was successful

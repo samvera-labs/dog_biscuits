@@ -12,6 +12,7 @@ module DogBiscuits
     extend ActiveSupport::Autoload
     eager_autoload do
       autoload :ApplyAuthorities
+      autoload :SingularAttributes
     end
   end
 
