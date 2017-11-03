@@ -7,8 +7,7 @@ class DogBiscuits::LocalesGenerator < Rails::Generators::NamedBase
 This generator can be run for an existing Model, or for All models (with All).
 This generator makes the following changes to your application
   where information is available in property_mappings:
-    1. Injects labels and help_text into the en locale for the given model.
-    2. Injects new labels into the en hyrax locale.
+    1. Injects labels and help_text into the en en hyrax locale.
        '
 
   def banner
@@ -27,63 +26,63 @@ This generator makes the following changes to your application
   end
 
   # Add labels and help_text for the properties for the given model
-  def update_locales
+  # Add everything into the hyrax locale as defaults
+  # Then locally people can override in the model files
+  def update_hyrax_locale
+    locale = "config/locales/hyrax.en.yml"
+    locale_text = File.read("config/locales/hyrax.en.yml")
+    append_simple_form_block = "\n  simple_form:\n    hints:\n      defaults:\n"
+    append_simple_form_block += "\n    labels:\n      defaults:\n"
+
+    unless locale_text.include? 'simple_form'
+      append_file locale, append_simple_form_block
+    end
+
     @models.each do |model|
       properties = DogBiscuits.config.send("#{model}_properties")
-      append_simple_form_block = "\n  simple_form:\n    hints:"
-      append_simple_form_block += "\n    defaults:"
 
       properties.each do |prop|
-        if DogBiscuits.config.property_mappings[prop]
-          if DogBiscuits.config.property_mappings[prop][:help_text]
-            append_simple_form_block += "\n      #{prop}: '#{DogBiscuits.config.property_mappings[prop][:help_text]}'"
+        if DogBiscuits.config.property_mappings[prop].present?
+          if DogBiscuits.config.property_mappings[prop][:help_text].present?
+            prop_key = "#{prop.to_s}: "
+            hint = DogBiscuits.config.property_mappings[prop][:help_text]
+            if locale_text =~ /#{Regexp.escape(prop_key)} "[^"]+/
+              gsub_file locale, /#{Regexp.escape(prop_key)} "[^"]+/, "#{prop_key}\"#{hint}\""
+            else
+              inject_into_file locale, before: '    labels:' do
+                "        #{prop_key}\"#{hint}\"\n"
+              end
+            end
           end
+          if DogBiscuits.config.property_mappings[prop][:label].present?
+            prop_key = "#{prop.to_s}: "
+            label = DogBiscuits.config.property_mappings[prop][:label]
+            if locale_text =~ /#{Regexp.escape(prop_key)} [^"]+/
+              gsub_file locale, /#{Regexp.escape(prop_key)} [^"]+/, "#{prop_key}#{label}"
+            else
+              append_file locale, "\n        #{prop_key}#{label}"
+            end
+          end
+
         end
       end
-      append_simple_form_block += "\n    labels:"
+
 
       properties.each do |prop|
-        if DogBiscuits.config.property_mappings[prop]
-          if DogBiscuits.config.property_mappings[prop][:label]
+        if DogBiscuits.config.property_mappings[prop].present?
+          if DogBiscuits.config.property_mappings[prop][:label].present?
             label = DogBiscuits.config.property_mappings[prop][:label]
             append_simple_form_block += "\n      #{prop}: '#{label}'"
           end
         end
       end
 
-      locale = "config/locales/#{model.underscore}.en.yml"
-      append_file locale, append_simple_form_block
+
     end
   end
 
-  # # Set-up the hyrax file. Ensure it has the right structure to add labels.
-  # # This should not actually be needed
-  # def setup_blacklight_locale
-  #   locale = "config/locales/hyrax.en.yml"
-  #   unless locale.include? '  blacklight:'
-  #     append_file locale, "\n  blacklight:"
-  #   end
-  #   unless locale.include? '    search:'
-  #     append_file locale, "\n    search:"
-  #   end
-  #   unless locale.include? '      fields:'
-  #     append_file locale, "\n      fields:"
-  #   end
-  #   unless locale.include? '         facet:'
-  #     append_file locale, "\n        facet:"
-  #     append_file locale, "\n          human_readable_type_sim: 'Type'"
-  #   end
-  #   unless locale.include? '        index:'
-  #     append_file locale, "\n        index:"
-  #     append_file locale, "\n          human_readable_type_sim: 'Type'"
-  #   end
-  #   unless locale.include? '        show:'
-  #     append_file locale, "\n        show:"
-  #   end
-  # end
-
   # Add facet, show and index labels for the properties for the given model
-  def update_hyrax_locale
+  def update_hyrax_locale_blacklight
     locale = "config/locales/hyrax.en.yml"
     locale_text = File.read("config/locales/hyrax.en.yml")
 
