@@ -10,10 +10,14 @@ Models, vocabularies and behaviours for Hyrax applications :dog: :cookie:
 
 ## Installation
 
+For use within [Hyrax 2](https://github.com/samvera/hyrax) applications. 
+
+This branch will become master once Hyrax 2 is released.
+
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'dog_biscuits', :git => 'git://github.com/geekscruff/dog_biscuits.git'
+gem 'dog_biscuits', :git => 'git://github.com/geekscruff/dog_biscuits.git', branch: 'hyrax2'
 ```
 
 And then execute:
@@ -30,9 +34,21 @@ Run the generator
 
 Add the -f flag to overwrite any existing files with new ones.
 
-## Usage
+## Generate Works
 
-TODO: Write usage instructions here
+Run the work generator
+
+    $ rails generate dog_biscuits:work WorkName
+    
+If the work is not supported, the generator will give you a list of supported models.
+
+Add the -f flag to overwrite any existing files with new ones.
+
+Add the --skip_model flag to overwrite any existing files but leave the model and indexer unchanged.
+
+## Documentation
+
+Further documentation is available in the [wiki](https://github.com/ULCC/dog_biscuits/wiki).
 
 ## Development
 
