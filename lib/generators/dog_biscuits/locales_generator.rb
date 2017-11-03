@@ -8,7 +8,7 @@ This generator can be run for an existing Model, or for All models (with All).
 This generator makes the following changes to your application
   where information is available in property_mappings:
     1. Injects labels and help_text into the en locale for the given model.
-    2. Injects new labels into the en blacklight locale.
+    2. Injects new labels into the en hyrax locale.
        '
 
   def banner
@@ -56,32 +56,35 @@ This generator makes the following changes to your application
     end
   end
 
-  # Set-up the blacklight file. Ensure it has the right structure to add labels.
-  def setup_blacklight_locale
-    locale = "config/locales/blacklight.en.yml"
-
-    unless locale.include? '    search:'
-      append_file locale, "\n    search:"
-    end
-    unless locale.include? '      fields:'
-      append_file locale, "\n      fields:"
-    end
-    unless locale.include? '         facet:'
-      append_file locale, "\n        facet:"
-      append_file locale, "\n          human_readable_type_sim: Type"
-    end
-    unless locale.include? '        index:'
-      append_file locale, "\n        index:"
-      append_file locale, "\n          human_readable_type_sim: Type"
-    end
-    unless locale.include? '        show:'
-      append_file locale, "\n        show:"
-    end
-  end
+  # # Set-up the hyrax file. Ensure it has the right structure to add labels.
+  # # This should not actually be needed
+  # def setup_blacklight_locale
+  #   locale = "config/locales/hyrax.en.yml"
+  #   unless locale.include? '  blacklight:'
+  #     append_file locale, "\n  blacklight:"
+  #   end
+  #   unless locale.include? '    search:'
+  #     append_file locale, "\n    search:"
+  #   end
+  #   unless locale.include? '      fields:'
+  #     append_file locale, "\n      fields:"
+  #   end
+  #   unless locale.include? '         facet:'
+  #     append_file locale, "\n        facet:"
+  #     append_file locale, "\n          human_readable_type_sim: 'Type'"
+  #   end
+  #   unless locale.include? '        index:'
+  #     append_file locale, "\n        index:"
+  #     append_file locale, "\n          human_readable_type_sim: 'Type'"
+  #   end
+  #   unless locale.include? '        show:'
+  #     append_file locale, "\n        show:"
+  #   end
+  # end
 
   # Add facet, show and index labels for the properties for the given model
-  def update_blacklight_locale
-    locale = "config/locales/blacklight.en.yml"
+  def update_hyrax_locale
+    locale = "config/locales/hyrax.en.yml"
 
     @models.each do |model|
       properties = DogBiscuits.config.send("#{model}_properties")
@@ -90,19 +93,39 @@ This generator makes the following changes to your application
         if DogBiscuits.config.property_mappings[prop]
           if DogBiscuits.config.property_mappings[prop][:label]
             label = DogBiscuits.config.property_mappings[prop][:label]
-            append_string = "          #{prop.to_s}_tesim: #{label}"
-            facet_string = "          #{prop.to_s}_sim: #{label}"
+            append_key = "          #{prop.to_s}_tesim: "
+            append_value = "#{label}"
+            facet_key = "          #{prop.to_s}_sim: "
+            facet_value = "#{label}"
 
             # Facets
-            inject_into_file locale, before: '        index:' do
-              "#{facet_string}\n"
-            end if DogBiscuits.config.facet_properties.include? prop and !locale.include? facet_string
+            if DogBiscuits.config.facet_properties.include? prop
+              if locale.include? facet_key
+                gsub_file locale, /#{facet_key}(.*)/, "#{facet_key}#{facet_value}\n"
+              else
+                inject_into_file locale, before: '        index:' do
+                  "#{facet_key}#{facet_value}\n"
+                end
+              end
+            end
             # Index
-            inject_into_file locale, before: '        show:' do
-              "#{append_string}\n"
-            end if DogBiscuits.config.index_properties.include? prop and !locale.include? append_string
+            if DogBiscuits.config.index_properties.include? prop
+              if locale.include? append_key
+                gsub_file locale, /#{append_key}(.*)/, "#{append_key}#{append_value}\n"
+              else
+                inject_into_file locale, before: '        show:' do
+                  "#{append_key}#{append_value}\n"
+                end
+              end
+            end
             # Show
-            append_file locale, "\n#{append_string}" unless locale.include? append_string
+            if locale.include? append_key
+              gsub_file locale, /#{append_key}(.*)/, "#{append_key}#{append_value}\n"
+            else
+              inject_into_file locale, before: '  hyrax:' do
+                "#{append_key}#{append_value}\n"
+              end
+            end
           end
         end
       end
@@ -110,18 +133,21 @@ This generator makes the following changes to your application
   end
 
   def update_facets
-    locale = "config/locales/blacklight.en.yml"
+    locale = "config/locales/hyrax.en.yml"
     properties = DogBiscuits.config.facet_only_properties
     properties.each do |prop|
       if DogBiscuits.config.property_mappings[prop]
         if DogBiscuits.config.property_mappings[prop][:label]
-          label = DogBiscuits.config.property_mappings[prop][:label]
-          facet_string = "          #{prop.to_s}_sim: #{label}"
+          facet_value = DogBiscuits.config.property_mappings[prop][:label]
+          facet_key = "          #{prop.to_s}_sim: "
 
-          # Facets
-          inject_into_file locale, before: '        index:' do
-            "#{facet_string}\n"
-          end if DogBiscuits.config.facet_properties.include? prop and !locale.include? facet_string
+          if locale.include? facet_key
+            gsub_file locale, /#{facet_key}(.*)/, "#{facet_key}#{facet_value}\n"
+          else
+            inject_into_file locale, before: '        index:' do
+              "#{facet_key}#{facet_value}\n"
+            end
+          end
         end
       end
     end

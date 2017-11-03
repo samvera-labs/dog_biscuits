@@ -105,6 +105,7 @@ module DogBiscuits
             }
           },
           date: {
+            label: 'Date',
             index: "('date', :stored_sortable)",
             help_text: 'A date for the work.'
           },

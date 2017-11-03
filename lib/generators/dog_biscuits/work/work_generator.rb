@@ -33,8 +33,8 @@ This generator makes the following changes to your application:
   def ask_about_property_configuration
     unless options[:force]
       question = 'The work will be configured with default properties. To customize properties before running the generator, edit config/initiazliers/dog_biscuits.rb. Continue?'
-      answer = ask question, default: 'yes'
-      unless answer == 'yes'
+      answer = ask question, default: 'Y'
+      unless answer == 'Y'
         say_status("info", "CANCELLING", :red)
         exit 0
       end
@@ -45,8 +45,8 @@ This generator makes the following changes to your application:
     unless options[:force]
       if File.exist? File.join('app/models/', class_path, "#{file_name}.rb")
         question = 'It looks like you ran the Hyrax work generator. Changes to the generated files will be overwritten. Continue?)'
-        answer = ask question, default: 'yes'
-        unless answer == 'yes'
+        answer = ask question, default: 'Y'
+        unless answer == 'Y'
           say_status("info", "CANCELLING", :red)
           exit 0
         end
