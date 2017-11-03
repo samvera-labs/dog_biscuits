@@ -8,6 +8,10 @@ SimpleCov.start do
   add_filter '/.internal_test_app'
 end
 
+# coveralls
+require 'coveralls'
+Coveralls.wear!
+
 # $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 # as of webmock v2 this has to go here, after load path and before other requires
