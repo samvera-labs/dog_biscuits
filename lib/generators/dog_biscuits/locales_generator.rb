@@ -85,45 +85,44 @@ This generator makes the following changes to your application
   # Add facet, show and index labels for the properties for the given model
   def update_hyrax_locale
     locale = "config/locales/hyrax.en.yml"
+    locale_text = File.read("config/locales/hyrax.en.yml")
 
     @models.each do |model|
       properties = DogBiscuits.config.send("#{model}_properties")
 
       properties.each do |prop|
-        if DogBiscuits.config.property_mappings[prop]
-          if DogBiscuits.config.property_mappings[prop][:label]
+        if DogBiscuits.config.property_mappings[prop].present?
+          if DogBiscuits.config.property_mappings[prop][:label].present?
             label = DogBiscuits.config.property_mappings[prop][:label]
             append_key = "          #{prop.to_s}_tesim: "
-            append_value = "#{label}"
             facet_key = "          #{prop.to_s}_sim: "
-            facet_value = "#{label}"
 
             # Facets
             if DogBiscuits.config.facet_properties.include? prop
-              if locale.include? facet_key
-                gsub_file locale, /#{facet_key}(.*)/, "#{facet_key}#{facet_value}\n"
+              if locale_text.include? facet_key
+                gsub_file locale, /#{Regexp.escape(facet_key)}(.*)/, "#{facet_key}#{label}"
               else
                 inject_into_file locale, before: '        index:' do
-                  "#{facet_key}#{facet_value}\n"
+                  "#{facet_key}#{label}\n"
                 end
               end
             end
             # Index
             if DogBiscuits.config.index_properties.include? prop
-              if locale.include? append_key
-                gsub_file locale, /#{append_key}(.*)/, "#{append_key}#{append_value}\n"
+              if locale_text.include? append_key
+                gsub_file locale, /#{Regexp.escape(append_key)}(.*)/, "#{append_key}#{label}"
               else
                 inject_into_file locale, before: '        show:' do
-                  "#{append_key}#{append_value}\n"
+                  "#{append_key}#{label}\n"
                 end
               end
             end
             # Show
-            if locale.include? append_key
-              gsub_file locale, /#{append_key}(.*)/, "#{append_key}#{append_value}\n"
+            if locale_text.include? append_key
+              gsub_file locale, /#{Regexp.escape(append_key)}(.*)/, "#{append_key}#{label}"
             else
               inject_into_file locale, before: '  hyrax:' do
-                "#{append_key}#{append_value}\n"
+                "#{append_key}#{label}\n"
               end
             end
           end
@@ -134,18 +133,19 @@ This generator makes the following changes to your application
 
   def update_facets
     locale = "config/locales/hyrax.en.yml"
+    locale_text = File.read("config/locales/hyrax.en.yml")
     properties = DogBiscuits.config.facet_only_properties
     properties.each do |prop|
-      if DogBiscuits.config.property_mappings[prop]
-        if DogBiscuits.config.property_mappings[prop][:label]
-          facet_value = DogBiscuits.config.property_mappings[prop][:label]
+      if DogBiscuits.config.property_mappings[prop].present?
+        if DogBiscuits.config.property_mappings[prop][:label].present?
+          label = DogBiscuits.config.property_mappings[prop][:label]
           facet_key = "          #{prop.to_s}_sim: "
 
-          if locale.include? facet_key
-            gsub_file locale, /#{facet_key}(.*)/, "#{facet_key}#{facet_value}\n"
+          if locale_text.include? facet_key
+            gsub_file locale, /#{Regexp.escape(facet_key)}(.*)/, "#{facet_key}#{label}"
           else
             inject_into_file locale, before: '        index:' do
-              "#{facet_key}#{facet_value}\n"
+              "#{facet_key}#{label}\n"
             end
           end
         end
