@@ -28,11 +28,11 @@ This generator makes the following changes to your application
   # Add labels and help_text for the properties for the given model
   # Add everything into the hyrax locale as defaults
   # Then locally people can override in the model files
-  def update_hyrax_locale
+  def update_hyrax_locale_hints
     locale = "config/locales/hyrax.en.yml"
     locale_text = File.read("config/locales/hyrax.en.yml")
-    append_simple_form_block = "\n  simple_form:\n    hints:\n      defaults:\n"
-    append_simple_form_block += "\n    labels:\n      defaults:\n"
+    append_simple_form_block = "\n  simple_form:\n    hints:\n      defaults:"
+    append_simple_form_block += "\n    labels:\n      defaults:"
 
     unless locale_text.include? 'simple_form'
       append_file locale, append_simple_form_block
@@ -43,41 +43,44 @@ This generator makes the following changes to your application
 
       properties.each do |prop|
         if DogBiscuits.config.property_mappings[prop].present?
+
           if DogBiscuits.config.property_mappings[prop][:help_text].present?
             prop_key = "#{prop.to_s}: "
             hint = DogBiscuits.config.property_mappings[prop][:help_text]
-            if locale_text =~ /#{Regexp.escape(prop_key)} "[^"]+/
-              gsub_file locale, /#{Regexp.escape(prop_key)} "[^"]+/, "#{prop_key}\"#{hint}\""
+            if locale_text =~ /#{Regexp.escape(prop_key)}"[^"]+"/
+              gsub_file locale, /#{Regexp.escape(prop_key)}"[^"]+"/, "#{prop_key}\"#{hint}\""
             else
-              inject_into_file locale, before: '    labels:' do
-                "        #{prop_key}\"#{hint}\"\n"
+              inject_into_file locale, before: "\n    labels:" do
+                "\n        #{prop_key}\"#{hint}\""
               end
             end
           end
-          if DogBiscuits.config.property_mappings[prop][:label].present?
-            prop_key = "#{prop.to_s}: "
-            label = DogBiscuits.config.property_mappings[prop][:label]
-            if locale_text =~ /#{Regexp.escape(prop_key)} [^"]+/
-              gsub_file locale, /#{Regexp.escape(prop_key)} [^"]+/, "#{prop_key}#{label}"
-            else
-              append_file locale, "\n        #{prop_key}#{label}"
-            end
-          end
-
         end
       end
+    end
+  end
 
+  def update_hyrax_locale_labels
+    locale = "config/locales/hyrax.en.yml"
+    locale_text = File.read("config/locales/hyrax.en.yml")
+
+    @models.each do |model|
+      properties = DogBiscuits.config.send("#{model}_properties")
 
       properties.each do |prop|
         if DogBiscuits.config.property_mappings[prop].present?
+
+          # remove existing and append new ones to end
           if DogBiscuits.config.property_mappings[prop][:label].present?
+            prop_key = "#{prop.to_s}: "
             label = DogBiscuits.config.property_mappings[prop][:label]
-            append_simple_form_block += "\n      #{prop}: '#{label}'"
+            if locale_text =~ /#{Regexp.escape(prop_key)}[^"]+$/
+              gsub_file locale, /#{Regexp.escape(prop_key)}[^"]+$/, ""
+            end
+            append_file locale, "\n        #{prop_key}#{label}\n"
           end
         end
       end
-
-
     end
   end
 
@@ -150,5 +153,11 @@ This generator makes the following changes to your application
         end
       end
     end
+  end
+
+  def remove_double_line_breaks
+    locale = "config/locales/hyrax.en.yml"
+    gsub_file locale, /\n\n/, "\n"
+    gsub_file locale, /\n(\s*)\n/, "\n"
   end
 end

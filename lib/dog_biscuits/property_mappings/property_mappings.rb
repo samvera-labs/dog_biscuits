@@ -248,8 +248,7 @@ module DogBiscuits
             schema_org: {
               property: "note"
             },
-            help_text: 'A general note about the work.',
-            label: 'Note'
+            help_text: 'A general note about the work.'
           },
           number_of_downloads: {
             index: "('number_of_downloads', :stored_searchable)"
