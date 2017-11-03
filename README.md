@@ -1,7 +1,6 @@
 # DogBiscuits
 
-[![Code Climate](https://codeclimate.com/github/ULCC/dog_biscuits/badges/gpa.svg)](https://codeclimate.com/github/ULCC/dog_biscuits)
-[![Issue Count](https://codeclimate.com/github/ULCC/dog_biscuits/badges/issue_count.svg)](https://codeclimate.com/github/ULCC/dog_biscuits)
+[![Coverage Status](https://coveralls.io/repos/github/ULCC/dog_biscuits/badge.svg?branch=master)](https://coveralls.io/github/ULCC/dog_biscuits?branch=master)
 [![Build Status](https://travis-ci.org/ULCC/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/ULCC/dog_biscuits)
 [![Dependency Status](https://gemnasium.com/badges/github.com/ULCC/dog_biscuits.svg)](https://gemnasium.com/github.com/ULCC/dog_biscuits)
 [![Inline docs](http://inch-ci.org/github/ULCC/dog_biscuits.svg?branch=master)](http://inch-ci.org/github/ULCC/dog_biscuits)
