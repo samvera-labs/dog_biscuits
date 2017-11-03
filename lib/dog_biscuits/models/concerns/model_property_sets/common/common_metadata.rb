@@ -44,7 +44,10 @@ module DogBiscuits
     include DogBiscuits::BasedNear # BasicMetadata
 
     included do
-      # From BasicMetadata, error on package TODO: fix this properly
+      # From BasicMetadata
+      property :label, predicate: ActiveFedora::RDF::Fcrepo::Model.downloadFilename, multiple: false
+      property :relative_path, predicate: ::RDF::URI.new('http://scholarsphere.psu.edu/ns#relativePath'), multiple: false
+      # plus indexing from BasucMetadataIndexer
       property :import_url, predicate: ::RDF::URI.new('http://scholarsphere.psu.edu/ns#importUrl'),
                             multiple: false do |index|
         index.as :symbol

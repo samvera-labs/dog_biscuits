@@ -56,19 +56,19 @@ This generator makes the following changes to your application:
     generate "hyrax:work #{class_name}", '-f'
   end
 
-  def create_indexer
-    if options[:skip_model]
-      say_status("info", "SKIPPING INDEXER GENERATION", :blue)
-    else
-      template('indexer.rb.erb', File.join('app/indexers', class_path, "#{file_name}_indexer.rb"))
-    end
-  end
-
   def create_model
     if options[:skip_model]
       say_status("info", "SKIPPING MODEL GENERATION", :blue)
     else
       template('model.rb.erb', File.join('app/models/', class_path, "#{file_name}.rb"))
+    end
+  end
+
+  def create_indexer
+    if options[:skip_model]
+      say_status("info", "SKIPPING INDEXER GENERATION", :blue)
+    else
+      template('indexer.rb.erb', File.join('app/indexers', class_path, "#{file_name}_indexer.rb"))
     end
   end
 

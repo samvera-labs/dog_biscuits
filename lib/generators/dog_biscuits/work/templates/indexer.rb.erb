@@ -16,4 +16,9 @@ class <%= class_name %>Indexer < DogBiscuits::<%= class_name %>Indexer
   #    solr_doc['my_custom_field_ssim'] = object.my_custom_property
   #  end
   # end
+
+  # Fetch remote labels for based_near. Copied from Hyrax::IndexesLinkedMetadata
+  def rdf_service
+    Hyrax::DeepIndexingService
+  end
 end
