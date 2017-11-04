@@ -10,7 +10,7 @@ module DogBiscuits
     #  2) indexer
     #  3) included metadata
 
-    type << ::RDF::URI.new('http://purl.org/spar/fabio/JournalArticle')
+    type << ::RDF::Vocab::SCHEMA.ScholarlyArticle
 
     # Indexer
     # self.indexer = DogBiscuits::JournalArticleIndexer

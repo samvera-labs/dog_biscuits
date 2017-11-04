@@ -35,7 +35,8 @@ describe DogBiscuits::PublishedWork do
 
   describe '#rdftypes' do
     specify { stubby.type.should include('http://london.ac.uk/ontologies/terms#PublishedWork') }
-    specify { stubby.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
+    specify { stubby.type.should include('http://schema.org/Book') }
+    specify { stubby.type.should_not include('https://bib.schema.org/Thesis') }
   end
 
   describe 'combine dates' do

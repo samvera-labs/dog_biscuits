@@ -5,7 +5,7 @@ shared_examples_for 'place_of_publication' do
     expect(stubby.place_of_publication).to eq(['Salford'])
   end
   it 'has place_of_publication predicate' do
-    expect(rdf.should(include('http://bibframe.org/vocab/providerPlace')))
+    expect(rdf.should(include('http://id.loc.gov/vocabulary/relators/pup')))
   end
 
   it 'is in the solr_document' do

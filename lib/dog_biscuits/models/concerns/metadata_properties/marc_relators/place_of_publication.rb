@@ -5,7 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :place_of_publication, predicate: ::RDF::Vocab::Bibframe.providerPlace do |index|
+      property :place_of_publication, predicate: ::RDF::Vocab::MARCRelators.pup do |index|
         index.as :stored_searchable
       end
     end

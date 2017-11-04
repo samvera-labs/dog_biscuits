@@ -33,11 +33,8 @@ describe DogBiscuits::JournalArticle do
   it_behaves_like 'volume_number'
 
   describe '#rdftypes' do
-    specify { stubby.type.should_not include('http://www.w3.org/ns/dcat#Dataset') }
-    specify { stubby.type.should_not include('http://dlib.york.ac.uk/ontologies/generic#Package') }
-    specify { stubby.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
-    specify { stubby.type.should_not include('http://purl.org/spar/fabio/ExaminationPaper') }
-    specify { stubby.type.should include('http://purl.org/spar/fabio/JournalArticle') }
+    specify { stubby.type.should_not include('http://purl.org/bib.schema.org/Thesis') }
+    specify { stubby.type.should include('http://schema.org/ScholarlyArticle') }
   end
 
   describe 'combine dates' do

@@ -11,6 +11,7 @@ module DogBiscuits
     #  3) included metadata
 
     type << DogBiscuits::Vocab::UlccTerms.PublishedWork
+    type << ::RDF::Vocab::SCHEMA.Book
 
     # Indexer
     # self.indexer = DogBiscuits::PublishedWorkIndexer

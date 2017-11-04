@@ -25,7 +25,7 @@ describe DogBiscuits::ExamPaper do
 
   describe '#rdftypes' do
     specify { stubby.type.should include('http://purl.org/spar/fabio/ExaminationPaper') }
-    specify { stubby.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
+    specify { stubby.type.should_not include('https://bib.schema.org/Thesis') }
   end
 
   describe '#related objects' do

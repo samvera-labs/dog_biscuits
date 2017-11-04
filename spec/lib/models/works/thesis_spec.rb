@@ -37,7 +37,7 @@ describe DogBiscuits::Thesis do
   it_behaves_like 'subject'
 
   describe '#rdftypes' do
-    specify { stubby.type.should include('http://purl.org/ontology/bibo/Thesis') }
+    specify { stubby.type.should include('https://bib.schema.org/Thesis') }
     specify { stubby.type.should_not include('http://purl.org/spar/fabio/JournalArticle') }
   end
 

@@ -27,7 +27,7 @@ describe Package do
 
   describe '#rdftypes' do
     specify { stubby.type.should include('http://dlib.york.ac.uk/ontologies/generic#Package') } ##
-    specify { stubby.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
+    specify { stubby.type.should_not include('https://bib.schema.org/Thesis') }
   end
 
   it_behaves_like 'archivematica'

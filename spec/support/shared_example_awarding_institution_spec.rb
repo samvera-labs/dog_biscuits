@@ -13,7 +13,7 @@ shared_examples_for 'awarding_institution' do
   end
 
   it 'has will have an awarding institution predicate' do
-    expect(rdf.should(include('http://bibframe.org/vocab/dissertationInstitution')))
+    expect(rdf.should(include('http://id.loc.gov/ontologies/bibframe/grantingInstitution')))
   end
 
   it 'has _label in solr' do

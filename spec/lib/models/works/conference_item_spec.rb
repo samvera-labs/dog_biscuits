@@ -31,7 +31,7 @@ describe DogBiscuits::ConferenceItem do
 
   describe '#rdftypes' do
     specify { stubby.type.should include('http://london.ac.uk/ontologies/terms#ConferenceItem') }
-    specify { stubby.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
+    specify { stubby.type.should_not include('https://bib.schema.org/Thesis') }
   end
 
   describe 'combine dates' do

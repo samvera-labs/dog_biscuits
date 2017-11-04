@@ -5,7 +5,7 @@ shared_examples_for 'official_url' do
     expect(stubby.official_url).to eq(['http://www.london.ac.uk'])
   end
   it 'has official_url predicate' do
-    expect(rdf.should(include('http://london.ac.uk/ontologies/terms#officialUrl')))
+    expect(rdf.should(include('http://id.loc.gov/vocabulary/identifiers/uri')))
   end
 
   it 'is in the solr_document' do

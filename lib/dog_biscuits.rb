@@ -119,7 +119,6 @@ module DogBiscuits
     autoload :OriginDate
     autoload :Part
     autoload :PartOf
-    autoload :PlaceOfPublication
     autoload :Series
   end
 
@@ -179,6 +178,7 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata_properties/lc_identifiers' do
     autoload :Doi
     autoload :Isbn
+    autoload :OfficialUrl
     autoload :Orcid
   end
 
@@ -189,6 +189,7 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata_properties/marc_relators' do
     autoload :Funder
     autoload :Editor
+    autoload :PlaceOfPublication
   end
 
   autoload_under 'models/concerns/metadata_properties/owl' do
@@ -247,7 +248,6 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata_properties/ulcc' do
     autoload :DateSubmitted
     autoload :ProjectOutput
-    autoload :OfficialUrl
     autoload :Refereed
   end
 

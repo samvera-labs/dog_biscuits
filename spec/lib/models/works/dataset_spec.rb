@@ -42,7 +42,7 @@ describe Dataset do
 
   describe '#rdftypes' do
     specify { stubby.type.should include('http://www.w3.org/ns/dcat#Dataset') }
-    specify { stubby.type.should_not include('http://purl.org/ontology/bibo/Thesis') }
+    specify { stubby.type.should_not include('https://bib.schema.org/Thesis') }
   end
 
   describe '#related objects' do

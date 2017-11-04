@@ -10,7 +10,7 @@ module DogBiscuits
     #  2) indexer
     #  3) included metadata
 
-    type << ::RDF::Vocab::BIBO.Thesis
+    type << ::RDF::URI.intern('https://bib.schema.org/Thesis')
 
     ## Indexer
     # self.indexer = DogBiscuits::ThesisIndexer
