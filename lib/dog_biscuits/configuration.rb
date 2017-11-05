@@ -66,8 +66,7 @@ module DogBiscuits
         subject
         language
         based_near_label
-        journal
-        proceeding
+        part_of
         qualification_level
         qualification_name
         refereed
@@ -154,7 +153,7 @@ module DogBiscuits
                       place_of_publication
                       publication_status
                       presented_at
-                      proceeding
+                      part_of
                       refereed]
       @conference_item_properties ||= base_properties + properties + common_properties
       @conference_item_properties.sort!
@@ -207,7 +206,7 @@ module DogBiscuits
                       date_accepted
                       date_submitted
                       issue_number
-                      journal
+                      part_of
                       official_url
                       pagination
                       publication_status

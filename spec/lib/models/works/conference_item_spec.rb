@@ -25,7 +25,7 @@ describe DogBiscuits::ConferenceItem do
   it_behaves_like 'pagination'
   it_behaves_like 'place_of_publication'
   it_behaves_like 'presented_at'
-  it_behaves_like 'proceeding'
+  it_behaves_like 'part_of'
   it_behaves_like 'publication_status'
   it_behaves_like 'refereed'
 

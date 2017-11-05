@@ -84,7 +84,6 @@ module DogBiscuits
       # identifier
       attribute :isbn, Solr::Array, solr_name('isbn')
       attribute :issue_number, Solr::Array, solr_name('issue_number')
-      attribute :journal, Solr::Array, solr_name('journal')
       # keyword
       # language
       attribute :last_access, Solr::Array, solr_name('last_access')
@@ -98,7 +97,7 @@ module DogBiscuits
       attribute :part, Solr::Array, solr_name('part')
       attribute :place_of_publication, Solr::Array, solr_name('place_of_publication')
       attribute :presented_at, Solr::Array, solr_name('presented_at')
-      attribute :proceeding, Solr::Array, solr_name('proceeding')
+      attribute :part_of, Solr::Array, solr_name('part_of')
       attribute :project, Solr::Array, solr_name('project_label')
       attribute :publication_status, Solr::Array, solr_name('publication_status')
       # publisher

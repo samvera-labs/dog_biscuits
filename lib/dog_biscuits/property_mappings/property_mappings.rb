@@ -290,8 +290,10 @@ module DogBiscuits
               value: "name"
             }
           },
-          proceeding: {
+          part_of: {
             index: "('proceeding', :stored_searchable)",
+            label: "Part Of",
+            help_text: "A Work that this this physically or logically contained in, such as a conference proceeding, or series.",
             schema_org: {
               property: "isPartOf",
               type: "http://schema.org/CreativeWork",

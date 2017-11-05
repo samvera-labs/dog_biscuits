@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module InProceeding
+  module PartOf
     extend ActiveSupport::Concern
 
     included do
-      property :proceeding,
+      property :part_of,
                predicate: ::RDF::Vocab::BF2.partOf do |index|
         index.as :stored_searchable, :facetable
       end

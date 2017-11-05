@@ -12,10 +12,10 @@ module DogBiscuits
     include DogBiscuits::Isbn
     include DogBiscuits::OfficialUrl
     include DogBiscuits::Pagination
+    include DogBiscuits::PartOf
     include DogBiscuits::PlaceOfPublication
     include DogBiscuits::PublicationStatus
     include DogBiscuits::Refereed
-    include DogBiscuits::InProceeding
     include DogBiscuits::PresentedAt
     # Controlled Properties must go last
     include DogBiscuits::CommonMetadata

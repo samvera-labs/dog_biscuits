@@ -115,7 +115,6 @@ module DogBiscuits
     autoload :Edition
     autoload :IdentifiedBy
     autoload :InJournal
-    autoload :InProceeding
     autoload :OriginDate
     autoload :Part
     autoload :PartOf

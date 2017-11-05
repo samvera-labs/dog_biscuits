@@ -17,7 +17,7 @@ FactoryGirl.define do
     publication_status ['Published']
     place_of_publication ['Salford']
     editor ['Street, Stephen']
-    proceeding ['Proceedings of the Conference of Misery']
+    part_of ['Proceedings of the Conference of Misery']
     presented_at ['The International Conference of Misery']
   end
 
@@ -128,6 +128,6 @@ FactoryGirl.define do
     refereed [true]
     official_url ['http://www.london.ac.uk']
     publication_status ['Published']
-    journal ['The Journal of Woe']
+    part_of ['The Journal of Woe']
   end
 end
