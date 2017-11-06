@@ -56,14 +56,6 @@ This generator makes the following changes to your application:
     generate "hyrax:work #{class_name}", '-f'
   end
 
-  def create_model
-    if options[:skip_model]
-      say_status("info", "SKIPPING MODEL GENERATION", :blue)
-    else
-      template('model.rb.erb', File.join('app/models/', class_path, "#{file_name}.rb"))
-    end
-  end
-
   def create_indexer
     if options[:skip_model]
       say_status("info", "SKIPPING INDEXER GENERATION", :blue)
@@ -83,6 +75,14 @@ This generator makes the following changes to your application:
 
   def create_actor
     template('actor.rb.erb', File.join('app/actors/hyrax/actors', class_path, "#{file_name}_actor.rb"))
+  end
+
+  def create_model
+    if options[:skip_model]
+      say_status("info", "SKIPPING MODEL GENERATION", :blue)
+    else
+      template('model.rb.erb', File.join('app/models/', class_path, "#{file_name}.rb"))
+    end
   end
 
   def update_presenter
