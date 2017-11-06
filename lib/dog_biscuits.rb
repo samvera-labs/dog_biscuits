@@ -19,7 +19,7 @@ module DogBiscuits
   module Importers
     extend ActiveSupport::Autoload
     eager_autoload do
-      autoload :Authorities
+      autoload :Authority
     end
   end
 

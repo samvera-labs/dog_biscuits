@@ -2,7 +2,7 @@
 
 module DogBiscuits
   module Importers
-    class Authorities
+    class Authority
       attr_reader :authority
       attr_reader :authority_name
 

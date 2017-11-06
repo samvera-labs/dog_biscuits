@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe DogBiscuits::Importers::Authorities do
+describe DogBiscuits::Importers::Authority do
   let(:instance) { described_class.new(authority_name) }
   let(:label) { 'label' }
   if `hostname`.include? 'localhost'
