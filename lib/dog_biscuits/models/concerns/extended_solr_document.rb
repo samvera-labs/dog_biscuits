@@ -56,7 +56,7 @@ module DogBiscuits
       attribute :abstract, Solr::Array, solr_name('abstract')
       attribute :advisor, Solr::Array, solr_name('advisor')
       attribute :awarding_institution, Solr::Array, solr_name('awarding_institution_label')
-      # based_near
+      # based_near and based_near_label
       attribute :content_version, Solr::Array, solr_name('content_version')
       # contributor
       # creator

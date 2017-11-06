@@ -15,7 +15,7 @@ This generator makes the following changes to your application:
     3a. When --skip_model is specified the model and indexer steps in 3. are skipped to allow for custom local properties
     4. Injects properties into the Hyrax-generated presenter
     5. Creates an attribute_rows view file using the configured properties for the work
-    6. Updates the schema_org config, blacklight (en) locale and work (en) locale using the configured properties for the work
+    6. Updates the schema_org config, hyrax (en) locale using the configured properties for the work
     7. Updates the catalog controller with the configured properties for the work
        '
 
@@ -64,6 +64,14 @@ This generator makes the following changes to your application:
     end
   end
 
+  def create_model
+    if options[:skip_model]
+      say_status("info", "SKIPPING MODEL GENERATION", :blue)
+    else
+      template('model.rb.erb', File.join('app/models/', class_path, "#{file_name}.rb"))
+    end
+  end
+
   def create_form
     template('form.rb.erb', File.join('app/forms/hyrax', class_path, "#{file_name}_form.rb"))
   end
@@ -75,36 +83,6 @@ This generator makes the following changes to your application:
 
   def create_actor
     template('actor.rb.erb', File.join('app/actors/hyrax/actors', class_path, "#{file_name}_actor.rb"))
-  end
-
-  def create_model
-    if options[:skip_model]
-      say_status("info", "SKIPPING MODEL GENERATION", :blue)
-    else
-      template('model.rb.erb', File.join('app/models/', class_path, "#{file_name}.rb"))
-    end
-  end
-
-  def update_presenter
-    presenter = File.join('app/presenters/hyrax', class_path, "#{file_name}_presenter.rb")
-    prepend_file presenter, "# Updated by \n#  `rails generate dog_biscuits:work <%= class_name %>`"
-
-    # Remove basic_metadata so we don't duplicate what's in the WorkShowPresenter
-    delegates = DogBiscuits.config.send("#{file_name}_properties") - DogBiscuits.config.base_properties
-    injection = "\n    delegate :#{delegates.join(', :')}, to: :solr_document"
-    model = "#{class_name}".constantize
-
-    # Append _label onto any controlled properties
-    delegates.each do |d|
-      if model.controlled_properties.include? d
-        injection.gsub!(d, "#{d}_label".to_sym)
-      end
-    end
-
-    inject_into_file presenter, after: 'Hyrax::WorkShowPresenter' do
-      injection
-    end unless presenter.include? injection
-
   end
 
   def create_attribute_rows
@@ -123,11 +101,9 @@ This generator makes the following changes to your application:
     generate 'dog_biscuits:catalog_controller', '-f'
   end
 
-  def update_catalog_controller_for_controlled_properties
-    catalog_file = File.join('app/controllers', class_path, 'catalog_controller.rb')
-    "#{class_name}".constantize.controlled_properties.each do |prop|
-      gsub_file catalog_file, /#{prop}/, "#{prop}_label"
-    end
+  # moved out due to NameError (caused by controlled_properties call)
+  def presenter_and_controlled_properties
+    generate "dog_biscuits:controlled_properties #{class_name}", '-f'
   end
 
   def display_readme

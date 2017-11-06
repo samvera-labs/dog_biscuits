@@ -17,12 +17,10 @@ class TestAppGenerator < Rails::Generators::Base
     rails_command 'db:migrate'
   end
 
-  # These methods should only run on local boxes (localhost)
-  #  they relate to vagrant performance
+  # Fix for running on vagrant on windows with nfs
   def configure_tmp_directory
     # Don't do this on travis
-    if `hostname`.include? 'localhost'
-
+    if ENV['USER'] == 'vagrant'
       injection = "\n  # Relocate RAILS_TMP"
       injection += "\n  config.assets.configure do |env|"
       injection += "\n    env.cache = Sprockets::Cache::FileStore.new("
@@ -37,30 +35,10 @@ class TestAppGenerator < Rails::Generators::Base
   end
 
   def configure_rails_tmp_env
-    # Don't do this on travis
-    if `hostname`.include? 'localhost'
-      run 'mkdir ~/tmp'
+    if ENV['USER'] == 'vagrant'
       run 'touch .rbenv-vars'
-      run 'echo "RAILS_TMP=~/tmp/dog_biscuits" >> .rbenv-vars'
+      run 'echo "RAILS_TMP=/tmp" >> .rbenv-vars'
       run 'rbenv vars'
-    end
-  end
-
-  def configure_log_path
-    # Don't do this on travis
-    if `hostname`.include? 'localhost'
-
-      run 'mkdir ~/log/dog_biscuits'
-
-      injection = "\n  # Relocate log to ~/log/dog_biscuits"
-      injection += "\n  config.log_path = '~/tmp/dog_biscuits'"
-
-      inject_into_file 'config/environments/test.rb', after: '# Settings specified here will take precedence over those in config/application.rb.' do
-        injection
-      end
-      inject_into_file 'config/environments/development.rb', after: '# Settings specified here will take precedence over those in config/application.rb.' do
-        injection
-      end
     end
   end
   # end of methods running only on localhost
@@ -70,7 +48,5 @@ class TestAppGenerator < Rails::Generators::Base
     DogBiscuits.config.available_models.each do |model|
       generate "dog_biscuits:work #{model}", '-f'
     end
-    # For some reason unknown to me, ConferenceItem errors consistently the first time it's run
-    generate "dog_biscuits:work ConferenceItem", '-f'
   end
 end
