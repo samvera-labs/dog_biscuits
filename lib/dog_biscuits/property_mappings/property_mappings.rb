@@ -62,7 +62,7 @@ module DogBiscuits
               type: "http://schema.org/Person",
               value: "name"
             },
-            help_text: 'A summary or abstract for the work.'
+            help_text: 'Thesis advisor or supervisor.'
           },
           based_near_label: {
             index: "('based_near_label', :stored_searchable), link_to_search: solr_name('based_near_label', :facetable)",

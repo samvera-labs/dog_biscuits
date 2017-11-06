@@ -48,11 +48,15 @@ This generator makes the following changes to your application:
   end
 
   def create_local_form_metadata_service
-    copy_file 'local_form_metadata_service.rb', 'app/services/local_form_metadata_service.rb'
+    copy_file 'services/local_form_metadata_service.rb', 'app/services/local_form_metadata_service.rb'
   end
 
   def create_schema_org
     generate 'dog_biscuits:schema_org', '-f'
+  end
+
+  def create_edit_fields_and_inputs
+    directory 'views/records', 'app/views/records'
   end
 
   # TODO: remove when fixed

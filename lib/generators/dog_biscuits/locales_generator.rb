@@ -47,6 +47,7 @@ This generator makes the following changes to your application
           if DogBiscuits.config.property_mappings[prop][:help_text].present?
             prop_key = "#{prop.to_s}: "
             hint = DogBiscuits.config.property_mappings[prop][:help_text]
+            # match up until the final quote mark
             if locale_text =~ /#{Regexp.escape(prop_key)}"[^"]+"/
               gsub_file locale, /#{Regexp.escape(prop_key)}"[^"]+"/, "#{prop_key}\"#{hint}\""
             else
@@ -70,14 +71,13 @@ This generator makes the following changes to your application
       properties.each do |prop|
         if DogBiscuits.config.property_mappings[prop].present?
 
-          # remove existing and append new ones to end
           if DogBiscuits.config.property_mappings[prop][:label].present?
             prop_key = "#{prop.to_s}: "
             label = DogBiscuits.config.property_mappings[prop][:label]
-            if locale_text =~ /#{Regexp.escape(prop_key)}[^"]+$/
-              gsub_file locale, /#{Regexp.escape(prop_key)}[^"]+$/, ""
+            # do not match line ends otherwise it will replace to the end of the file
+            if locale_text =~ /#{Regexp.escape(prop_key)}[^"\n]+/
+              gsub_file locale, /#{Regexp.escape(prop_key)}[^"\n]+/, "#{prop_key}#{label}\n"
             end
-            append_file locale, "\n        #{prop_key}#{label}\n"
           end
         end
       end

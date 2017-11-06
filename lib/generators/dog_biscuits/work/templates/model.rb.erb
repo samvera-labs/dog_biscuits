@@ -3,7 +3,7 @@
 class <%= class_name %> < DogBiscuits::<%= class_name %>
   include ::Hyrax::WorkBehavior
 
-  self.indexer = ::<%= class_name %>Indexer
+  self.indexer = <%= class_name %>Indexer
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
