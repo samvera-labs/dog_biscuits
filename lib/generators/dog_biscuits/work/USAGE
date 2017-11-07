@@ -25,10 +25,10 @@ Adding local properties
     Add custom helper methods or renderers (in app/helpers/ and app/renderers)
       and add them to the property_mappings.
 
-    The generator can be re-run without overwriting the model and indexer files using the --skip_model option
+    The generator can be re-run without overwriting the model and indexer files using the --skipmodel option
 
     This will update the form, presenter, catalog_controller, attribute_rows and locales with
     the new property.
 
 Example:
-    rails generate dog_biscuits:work ConferenceItem --skip_model
+    rails generate dog_biscuits:work ConferenceItem --skipmodel

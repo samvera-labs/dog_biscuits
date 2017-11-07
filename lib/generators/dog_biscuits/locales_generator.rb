@@ -77,6 +77,8 @@ This generator makes the following changes to your application
             # do not match line ends otherwise it will replace to the end of the file
             if locale_text =~ /#{Regexp.escape(prop_key)}[^"\n]+/
               gsub_file locale, /#{Regexp.escape(prop_key)}[^"\n]+/, "#{prop_key}#{label}\n"
+            else
+              append_file locale, "\n        #{prop_key}#{label}\n"
             end
           end
         end

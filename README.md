@@ -44,7 +44,7 @@ If the work is not supported, the generator will give you a list of supported mo
 
 Add the -f flag to overwrite any existing files with new ones.
 
-Add the --skip_model flag to overwrite any existing files but leave the model and indexer unchanged.
+Add the --skipmodel flag to overwrite any existing files but leave the model and indexer unchanged.
 
 ## Documentation
 

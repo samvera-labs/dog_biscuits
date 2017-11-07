@@ -19,7 +19,6 @@ class TestAppGenerator < Rails::Generators::Base
 
   # Fix for running on vagrant on windows with nfs
   def configure_tmp_directory
-    # Don't do this on travis
     if ENV['USER'] == 'vagrant'
       injection = "\n  # Relocate RAILS_TMP"
       injection += "\n  config.assets.configure do |env|"
@@ -31,11 +30,7 @@ class TestAppGenerator < Rails::Generators::Base
       inject_into_file 'config/application.rb', after: '# -- all .rb files in that directory are automatically loaded.' do
         injection
       end
-    end
-  end
-
-  def configure_rails_tmp_env
-    if ENV['USER'] == 'vagrant'
+      # assumes use of rbenv
       run 'touch .rbenv-vars'
       run 'echo "RAILS_TMP=/tmp" >> .rbenv-vars'
       run 'rbenv vars'

@@ -12,7 +12,7 @@ This generator makes the following changes to your application:
   5. Runs the schema_org generator
        '
 
-  class_option :skip_model, type: :boolean, default: false
+  class_option :skipmodel, type: :boolean, default: false
 
   def banner
     say_status("info", "Re-generating catalog_controller, locales, attribute_rows and schema_org", :blue)
@@ -36,8 +36,8 @@ This generator makes the following changes to your application:
 
   def generate_works
     DogBiscuits.config.selected_models.each do | model |
-      if options[:skip_model]
-        generate 'dog_biscuits:work', "#{model} --skip_model -f"
+      if options[:skipmodel]
+        generate 'dog_biscuits:work', "#{model} --skipmodel -f"
       else
         generate 'dog_biscuits:work', "#{model} -f"
       end
