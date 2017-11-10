@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'presented_at' do
-  let(:conference) { FactoryGirl.build_stubbed(:event) }
+  let(:conference) { FactoryBot.build_stubbed(:event) }
 
   before do
     conference.add_label

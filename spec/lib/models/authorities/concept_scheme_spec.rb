@@ -3,12 +3,12 @@
 require 'spec_helper'
 
 describe DogBiscuits::ConceptScheme do
-  let(:concept) { FactoryGirl.build(:concept) }
-  let(:concept1) { FactoryGirl.build(:concept) }
-  let(:concept2) { FactoryGirl.build_stubbed(:concept) }
-  let(:stubby) { FactoryGirl.build(:concept_scheme) }
-  let(:scheme1) { FactoryGirl.build_stubbed(:concept_scheme) }
-  let(:work) { FactoryGirl.build_stubbed(:thesis) }
+  let(:concept) { FactoryBot.build(:concept) }
+  let(:concept1) { FactoryBot.build(:concept) }
+  let(:concept2) { FactoryBot.build_stubbed(:concept) }
+  let(:stubby) { FactoryBot.build(:concept_scheme) }
+  let(:scheme1) { FactoryBot.build_stubbed(:concept_scheme) }
+  let(:work) { FactoryBot.build_stubbed(:thesis) }
   let(:rdf) { stubby.resource.dump(:ttl) }
 
   it_behaves_like 'skos_labels'

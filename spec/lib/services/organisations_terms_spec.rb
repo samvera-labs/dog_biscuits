@@ -9,8 +9,8 @@ describe DogBiscuits::Terms::OrganisationsTerms do
     terms.all.should eq([])
   end
 
-  let(:organisation) { FactoryGirl.create(:organisation) }
-  let(:organisations) { FactoryGirl.create(:organisations) }
+  let(:organisation) { FactoryBot.create(:organisation) }
+  let(:organisations) { FactoryBot.create(:organisations) }
 
   it 'has one term' do
     organisations.organisations << organisation

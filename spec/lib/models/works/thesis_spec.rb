@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 describe DogBiscuits::Thesis do
-  let(:stubby) { FactoryGirl.build(:thesis) }
-  let(:main_file) { FactoryGirl.build_stubbed(:file_set) }
-  let(:other_file) { FactoryGirl.build_stubbed(:file_set) }
+  let(:stubby) { FactoryBot.build(:thesis) }
+  let(:main_file) { FactoryBot.build_stubbed(:file_set) }
+  let(:other_file) { FactoryBot.build_stubbed(:file_set) }
   let(:rdf) { stubby.resource.dump(:ttl) }
   let(:solr_doc) { SolrDocument.new(stubby.to_solr) }
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'main_file' do
-  let(:main) { FactoryGirl.build_stubbed(:file_set) }
+  let(:main) { FactoryBot.build_stubbed(:file_set) }
 
   before do
     stubby.mainfile << main

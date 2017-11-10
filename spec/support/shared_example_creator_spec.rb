@@ -4,10 +4,10 @@ shared_examples_for 'creator' do
   model_str = described_class.to_s.split('::')[1]
 
   if model_str == 'ExamPaper'
-    let(:creator) { FactoryGirl.build_stubbed(:organisation) }
+    let(:creator) { FactoryBot.build_stubbed(:organisation) }
 
   else
-    let(:creator) { FactoryGirl.build_stubbed(:person) }
+    let(:creator) { FactoryBot.build_stubbed(:person) }
   end
 
   before do

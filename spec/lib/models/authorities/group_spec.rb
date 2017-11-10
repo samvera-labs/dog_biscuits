@@ -3,8 +3,8 @@
 require 'spec_helper'
 
 describe DogBiscuits::Group do
-  let(:stubby) { FactoryGirl.build(:group) }
-  let(:scheme) { FactoryGirl.build_stubbed(:concept_scheme) }
+  let(:stubby) { FactoryBot.build(:group) }
+  let(:scheme) { FactoryBot.build_stubbed(:concept_scheme) }
   let(:rdf) { stubby.resource.dump(:ttl) }
 
   it_behaves_like 'foaf_name'

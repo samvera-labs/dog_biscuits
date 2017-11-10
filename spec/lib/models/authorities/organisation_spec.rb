@@ -3,8 +3,8 @@
 require 'spec_helper'
 
 describe DogBiscuits::Organisation do
-  let(:stubby) { FactoryGirl.build(:organisation) }
-  let(:concept_scheme) { FactoryGirl.build(:concept_scheme) }
+  let(:stubby) { FactoryBot.build(:organisation) }
+  let(:concept_scheme) { FactoryBot.build(:concept_scheme) }
   let(:rdf) { stubby.resource.dump(:ttl) }
 
   it_behaves_like 'foaf_name'

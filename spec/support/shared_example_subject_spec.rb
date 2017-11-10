@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'subject' do
-  # let(:sub) { FactoryGirl.build_stubbed(:simple_concept) }
+  # let(:sub) { FactoryBot.build_stubbed(:simple_concept) }
 
   # before do
   #   stubby.subject_resource << sub

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :generic_work, class: ActiveFedora::Base do
     title ['Generic Work']
   end

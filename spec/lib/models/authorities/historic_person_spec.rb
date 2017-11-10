@@ -3,8 +3,8 @@
 require 'spec_helper'
 
 describe DogBiscuits::HistoricPerson do
-  let(:stubby) { FactoryGirl.build(:historic_person) }
-  let(:scheme) { FactoryGirl.build_stubbed(:concept_scheme) }
+  let(:stubby) { FactoryBot.build(:historic_person) }
+  let(:scheme) { FactoryBot.build_stubbed(:concept_scheme) }
   let(:rdf) { stubby.resource.dump(:ttl) }
 
   it_behaves_like 'hub_dates'

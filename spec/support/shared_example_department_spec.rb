@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'department' do
-  let(:org) { FactoryGirl.build_stubbed(:organisation) }
+  let(:org) { FactoryBot.build_stubbed(:organisation) }
 
   before do
     stubby.department_resource << org

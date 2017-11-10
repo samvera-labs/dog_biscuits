@@ -3,11 +3,11 @@
 require 'spec_helper'
 
 describe DogBiscuits::Concept do
-  let(:concept_scheme) { FactoryGirl.build(:concept_scheme) }
-  let(:scheme1) { FactoryGirl.build_stubbed(:concept_scheme) }
-  let(:stubby) { FactoryGirl.build(:concept) }
-  let(:concept2) { FactoryGirl.build_stubbed(:broader_concept) }
-  let(:concept3) { FactoryGirl.build(:concept) }
+  let(:concept_scheme) { FactoryBot.build(:concept_scheme) }
+  let(:scheme1) { FactoryBot.build_stubbed(:concept_scheme) }
+  let(:stubby) { FactoryBot.build(:concept) }
+  let(:concept2) { FactoryBot.build_stubbed(:broader_concept) }
+  let(:concept3) { FactoryBot.build(:concept) }
   let(:rdf) { stubby.resource.dump(:ttl) }
 
   it 'is a concept' do

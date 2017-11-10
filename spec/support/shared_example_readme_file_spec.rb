@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'readme_file' do
-  let(:readme) { FactoryGirl.build_stubbed(:file_set) }
+  let(:readme) { FactoryBot.build_stubbed(:file_set) }
 
   before do
     stubby.readmefile << readme

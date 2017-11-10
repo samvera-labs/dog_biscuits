@@ -9,8 +9,8 @@ describe DogBiscuits::Terms::ProjectsTerms do
     terms.all.should eq([])
   end
 
-  let(:project) { FactoryGirl.create(:project) }
-  let(:projects) { FactoryGirl.create(:projects) }
+  let(:project) { FactoryBot.create(:project) }
+  let(:projects) { FactoryBot.create(:projects) }
 
   it 'has one term' do
     projects.projects << project

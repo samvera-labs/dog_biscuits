@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'funder' do
-  let(:funder) { FactoryGirl.build_stubbed(:organisation) }
+  let(:funder) { FactoryBot.build_stubbed(:organisation) }
 
   before do
     stubby.funder_resource << funder

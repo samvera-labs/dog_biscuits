@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'contributor' do
-  let(:contributor) { FactoryGirl.build_stubbed(:person) }
+  let(:contributor) { FactoryBot.build_stubbed(:person) }
 
   before do
     stubby.contributor_resource << contributor

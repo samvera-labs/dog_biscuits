@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Package do
-  let(:stubby) { FactoryGirl.build(:package) }
+  let(:stubby) { FactoryBot.build(:package) }
   let(:rdf) { stubby.resource.dump(:ttl) }
   let(:solr_doc) { SolrDocument.new(stubby.to_solr) }
 

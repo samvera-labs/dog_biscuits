@@ -9,8 +9,8 @@ describe DogBiscuits::Terms::PlacesTerms do
     terms.all.should eq([])
   end
 
-  let(:place) { FactoryGirl.create(:place) }
-  let(:places) { FactoryGirl.create(:places) }
+  let(:place) { FactoryBot.create(:place) }
+  let(:places) { FactoryBot.create(:places) }
 
   it 'has one term' do
     places.places << place

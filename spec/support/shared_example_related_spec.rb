@@ -2,9 +2,9 @@
 
 shared_examples_for 'related' do
   model_str = described_class.to_s.to_s.split('::')[1]
-  let(:stubby) { FactoryGirl.build(model_str.underscore.to_sym) }
+  let(:stubby) { FactoryBot.build(model_str.underscore.to_sym) }
   model_u = 'related_' + model_str.underscore
-  let(:stubbier) { FactoryGirl.build_stubbed(model_u.underscore.to_sym) }
+  let(:stubbier) { FactoryBot.build_stubbed(model_u.underscore.to_sym) }
 
   before do
     stubby.related << stubbier

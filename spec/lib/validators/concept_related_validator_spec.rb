@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 describe DogBiscuits::ConceptRelatedValidator do
-  let(:concept1) { FactoryGirl.build(:concept) }
-  let(:concept2) { FactoryGirl.build_stubbed(:broader_concept) }
-  let(:concept3) { FactoryGirl.build(:simple_concept) }
+  let(:concept1) { FactoryBot.build(:concept) }
+  let(:concept2) { FactoryBot.build_stubbed(:broader_concept) }
+  let(:concept3) { FactoryBot.build(:simple_concept) }
 
   before do
     concept1.broader << concept2

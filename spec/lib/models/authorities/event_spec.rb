@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe DogBiscuits::Event do
-  let(:stubby) { FactoryGirl.build(:event) }
+  let(:stubby) { FactoryBot.build(:event) }
   let(:rdf) { stubby.resource.dump(:ttl) }
 
   it_behaves_like 'end_date'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :concept_scheme, class: DogBiscuits::ConceptScheme do
     preflabel 'label'
     altlabel  ['alternative label']

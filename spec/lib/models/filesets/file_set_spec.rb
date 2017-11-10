@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe DogBiscuits::FileSet do
-  let(:stubby) { FactoryGirl.build(:file_set) }
+  let(:stubby) { FactoryBot.build(:file_set) }
   let(:rdf) { stubby.resource.dump(:ttl) }
 
   it 'is a fileset' do

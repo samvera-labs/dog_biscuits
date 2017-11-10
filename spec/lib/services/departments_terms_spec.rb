@@ -9,8 +9,8 @@ describe DogBiscuits::Terms::DepartmentsTerms do
     terms.all.should eq([])
   end
 
-  let(:department) { FactoryGirl.create(:department) }
-  let(:departments) { FactoryGirl.create(:departments) }
+  let(:department) { FactoryBot.create(:department) }
+  let(:departments) { FactoryBot.create(:departments) }
 
   it 'has one term' do
     departments.departments << department

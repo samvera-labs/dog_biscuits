@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe DogBiscuits::ConferenceItem do
-  let(:stubby) { FactoryGirl.build(:conference_item) }
+  let(:stubby) { FactoryBot.build(:conference_item) }
   let(:rdf) { stubby.resource.dump(:ttl) }
   let(:solr_doc) { SolrDocument.new(stubby.to_solr) }
 

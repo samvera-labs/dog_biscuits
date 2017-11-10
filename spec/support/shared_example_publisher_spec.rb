@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'publisher' do
-  let(:publisher) { FactoryGirl.build(:organisation) }
+  let(:publisher) { FactoryBot.build(:organisation) }
 
   before do
     stubby.publisher_resource << publisher

@@ -3,10 +3,10 @@
 require 'spec_helper'
 
 describe DogBiscuits::ConceptSchemeMemberValidator do
-  let(:concept) { FactoryGirl.build(:concept) }
-  let(:person) { FactoryGirl.build(:historic_person) }
-  let(:scheme) { FactoryGirl.build(:concept_scheme) }
-  let(:work) { FactoryGirl.build(:thesis) }
+  let(:concept) { FactoryBot.build(:concept) }
+  let(:person) { FactoryBot.build(:historic_person) }
+  let(:scheme) { FactoryBot.build(:concept_scheme) }
+  let(:work) { FactoryBot.build(:thesis) }
 
   it 'cannot have a work as a concept' do
     expect { scheme.concepts << work }.to raise_error(ActiveFedora::AssociationTypeMismatch)

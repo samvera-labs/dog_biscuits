@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'managing_organisation' do
-  let(:org) { FactoryGirl.build(:organisation) }
+  let(:org) { FactoryBot.build(:organisation) }
 
   before do
     stubby.managing_organisation_resource << org

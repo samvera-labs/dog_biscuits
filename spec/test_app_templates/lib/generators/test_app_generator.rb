@@ -11,7 +11,7 @@ class TestAppGenerator < Rails::Generators::Base
 
   # FROM template.rb
   def install_hyrax
-    gem 'hyrax', '2.0.0.rc2'
+    gem 'hyrax', '~> 2.0.0'
     run 'bundle install'
     generate 'hyrax:install', '-f'
     rails_command 'db:migrate'

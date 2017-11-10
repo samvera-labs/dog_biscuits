@@ -9,8 +9,8 @@ describe DogBiscuits::Terms::PeopleTerms do
     terms.all.should eq([])
   end
 
-  let(:person) { FactoryGirl.create(:person) }
-  let(:people) { FactoryGirl.create(:people) }
+  let(:person) { FactoryBot.create(:person) }
+  let(:people) { FactoryBot.create(:people) }
 
   it 'has one term' do
     people.people << person

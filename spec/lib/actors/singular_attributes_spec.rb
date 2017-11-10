@@ -3,8 +3,8 @@
 require 'spec_helper'
 
 describe DogBiscuits::Actors::SingularAttributes do
-  let(:work) { FactoryGirl.build(:conference_item) }
-  let(:user) { FactoryGirl.create(:depositor) }
+  let(:work) { FactoryBot.build(:conference_item) }
+  let(:user) { FactoryBot.create(:depositor) }
   let(:ability) { ::Ability.new(user) }
   let(:env) { Hyrax::Actors::Environment.new(work, ability, attributes) }
   let(:attributes) { { date_created: '2012' } }

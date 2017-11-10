@@ -23,10 +23,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'hyrax', '~> 2.0.0.rc2'
+  spec.add_dependency 'hyrax', '~> 2.0.0'
 
   spec.add_development_dependency 'engine_cart', '~> 1.2'
-  spec.add_development_dependency "factory_girl_rails", '~> 4.4'
+  spec.add_development_dependency 'factory_bot_rails', '~> 4.0'
   spec.add_development_dependency 'fcrepo_wrapper'
   spec.add_development_dependency 'rspec', '~> 3.1'
   spec.add_development_dependency 'rspec-rails', '~> 3.1'

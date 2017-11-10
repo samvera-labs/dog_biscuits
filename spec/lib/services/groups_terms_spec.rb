@@ -9,8 +9,8 @@ describe DogBiscuits::Terms::GroupsTerms do
     terms.all.should eq([])
   end
 
-  let(:group) { FactoryGirl.create(:group) }
-  let(:groups) { FactoryGirl.create(:groups) }
+  let(:group) { FactoryBot.create(:group) }
+  let(:groups) { FactoryBot.create(:groups) }
 
   it 'has one term' do
     groups.groups << group

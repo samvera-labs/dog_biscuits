@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'advisor' do
-  let(:person) { FactoryGirl.build_stubbed(:person) }
+  let(:person) { FactoryBot.build_stubbed(:person) }
 
   before do
     person.add_label

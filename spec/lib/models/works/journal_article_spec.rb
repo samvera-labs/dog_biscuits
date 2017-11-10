@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe DogBiscuits::JournalArticle do
-  let(:stubby) { FactoryGirl.build(:journal_article) }
+  let(:stubby) { FactoryBot.build(:journal_article) }
   let(:rdf) { stubby.resource.dump(:ttl) }
   let(:solr_doc) { SolrDocument.new(stubby.to_solr) }
 

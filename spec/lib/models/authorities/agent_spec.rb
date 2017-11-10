@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe DogBiscuits::Agent do
-  let(:stubby) { FactoryGirl.create(:agent) } # described class?
+  let(:stubby) { FactoryBot.create(:agent) } # described class?
   let(:rdf) { stubby.resource.dump(:ttl) }
 
   it_behaves_like 'foaf_name'

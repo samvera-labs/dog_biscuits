@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'project_output' do
-  let(:project) { FactoryGirl.build_stubbed(:project) }
+  let(:project) { FactoryBot.build_stubbed(:project) }
 
   before do
     stubby.project_resource << project

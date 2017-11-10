@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe DogBiscuits::Project do
-  let(:stubby) { FactoryGirl.build(:project) }
+  let(:stubby) { FactoryBot.build(:project) }
   let(:rdf) { stubby.resource.dump(:ttl) }
 
   it_behaves_like 'identifier'

@@ -12,12 +12,10 @@ Models, vocabularies and behaviours for Hyrax applications :dog: :cookie:
 
 For use within [Hyrax 2](https://github.com/samvera/hyrax) applications. 
 
-This branch will become master once Hyrax 2 is released.
-
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'dog_biscuits', :git => 'git://github.com/geekscruff/dog_biscuits.git', branch: 'hyrax2'
+gem 'dog_biscuits', :git => 'git://github.com/geekscruff/dog_biscuits.git'
 ```
 
 And then execute:

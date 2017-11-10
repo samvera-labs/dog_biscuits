@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe DogBiscuits::Work do
-  let(:stubby) { FactoryGirl.build(:thesis) }
+  let(:stubby) { FactoryBot.build(:thesis) }
 
   after do
     stubby.destroy

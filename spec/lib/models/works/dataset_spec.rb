@@ -3,12 +3,12 @@
 require 'spec_helper'
 
 describe Dataset do
-  let(:stubby) { FactoryGirl.build(:dataset) }
-  let(:package) { FactoryGirl.build_stubbed(:package) }
-  let(:generic_work) { FactoryGirl.build(:generic_work) }
-  let(:fs) { FactoryGirl.build_stubbed(:file_set) }
-  let(:readme) { FactoryGirl.build_stubbed(:file_set) }
-  let(:org) { FactoryGirl.build_stubbed(:organisation) }
+  let(:stubby) { FactoryBot.build(:dataset) }
+  let(:package) { FactoryBot.build_stubbed(:package) }
+  let(:generic_work) { FactoryBot.build(:generic_work) }
+  let(:fs) { FactoryBot.build_stubbed(:file_set) }
+  let(:readme) { FactoryBot.build_stubbed(:file_set) }
+  let(:org) { FactoryBot.build_stubbed(:organisation) }
   let(:rdf) { stubby.resource.dump(:ttl) }
   let(:solr_doc) { SolrDocument.new(stubby.to_solr) }
 
