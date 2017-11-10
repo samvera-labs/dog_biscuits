@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'archivematica' do
-  # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
-
   # metadata
   it 'has aip_uuid' do
     expect(stubby.aip_uuid).to eq('aip-uuid')
@@ -52,21 +49,21 @@ shared_examples_for 'archivematica' do
   end
 
   describe '#predicates' do
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipUuid'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipUuid'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#sipUuid'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#transferUuid'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipCurrentPath'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipCurrentPath'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipCurrentLocation'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipCurrentLocation'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#originPipeline'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipSize'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipSize'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipResourceUri'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipResourceUri'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipStatus'))) }
-    specify { expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipStatus'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipUuid'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipUuid'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#sipUuid'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#transferUuid'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipCurrentPath'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipCurrentPath'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipCurrentLocation'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipCurrentLocation'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#originPipeline'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipSize'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipSize'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipResourceUri'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipResourceUri'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#aipStatus'))) }
+    specify { expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/oais-archivematica#dipStatus'))) }
   end
 
   it 'has an aip package type' do

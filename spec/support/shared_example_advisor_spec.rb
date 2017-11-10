@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 shared_examples_for 'advisor' do
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
-  let(:person) { FactoryGirl.build_stubbed(:person) }
+  let(:person) { FactoryBot.build_stubbed(:person) }
 
   before do
+    person.add_label
     stubby.advisor_resource << person
   end
 
-  it 'has advisor string and resource' do
+  it 'has advisor string' do
     expect(stubby.advisor).to eq(['Rourke, Andy'])
   end
 
@@ -17,17 +17,31 @@ shared_examples_for 'advisor' do
   end
 
   it 'has advisor resource predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://id.loc.gov/vocabulary/relators/ths')))
+    expect(rdf.should(include('http://id.loc.gov/vocabulary/relators/ths')))
   end
   it 'has advisor predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/uketd#advisor')))
+    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/uketd#advisor')))
   end
 
-  it 'has _value in solr' do
-    expect(stubby.to_solr.should(include('advisor_value_tesim')))
+  it 'has _label in solr' do
+    expect(stubby.to_solr['advisor_label_tesim'].should(include('Rourke, Andy', person.preflabel)))
   end
 
   it 'has contributor in solr' do
-    expect(stubby.to_solr.should(include('contributor_value_tesim')))
+    expect(stubby.to_solr['contributor_combined_tesim'].should(include('Rourke, Andy', person.preflabel)))
+    expect(stubby.to_solr['contributor_type_sim'].should(include('advisor')))
+  end
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:advisor)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:advisor].should(be_truthy))
+  end
+
+  # TODO: label
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:advisor)))
   end
 end

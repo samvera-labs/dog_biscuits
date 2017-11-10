@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :date, predicate: ::RDF::Vocab::DC.date,
-                      multiple: true do |index|
+      property :date, predicate: ::RDF::Vocab::DC.date do |index|
         index.as :stored_searchable, :facetable, :dateable
       end
     end

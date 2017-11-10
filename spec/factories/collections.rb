@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :collection, class: DogBiscuits::Collection do
     description ['description']
     creator ['Marr, Johnny']

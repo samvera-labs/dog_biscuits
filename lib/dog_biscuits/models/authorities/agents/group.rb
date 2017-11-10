@@ -9,13 +9,11 @@ module DogBiscuits
     type [::RDF::Vocab::FOAF.Agent,
           ::RDF::Vocab::FOAF.Group]
 
-    property :group_type, predicate: DogBiscuits::Vocab::Generic.groupType,
-                          multiple: true do |index|
+    property :group_type, predicate: DogBiscuits::Vocab::Generic.groupType do |index|
       index.as :stored_searchable
     end
 
-    property :foaf_member, predicate: ::RDF::Vocab::FOAF.member,
-                           multiple: true do |index|
+    property :foaf_member, predicate: ::RDF::Vocab::FOAF.member do |index|
       index.as :stored_searchable
     end
 

@@ -1,0 +1,18 @@
+# Generated via
+#  `rails generate dog_biscuits:work <%= class_name %>`
+class <%= class_name %> < DogBiscuits::<%= class_name %>
+  include ::Hyrax::WorkBehavior
+
+  self.indexer = ::<%= class_name %>Indexer
+  # Change this to restrict which works can be added as a child.
+  # self.valid_child_concerns = []
+  validates :title, presence: { message: 'Your work must have a title.' }
+
+  self.human_readable_type = '<%= name.underscore.titleize %>'
+
+  # This must be included at the end, because it finalizes the metadata
+  # schema (by adding accepts_nested_attributes)
+  # include ::Hyrax::BasicMetadata
+  include DogBiscuits::<%= class_name %>Metadata
+  before_save :combine_dates
+end

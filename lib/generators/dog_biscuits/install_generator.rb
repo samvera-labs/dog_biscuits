@@ -3,11 +3,21 @@
 class DogBiscuits::InstallGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 
-  def copy_authorities
-    directory 'config/authorities', 'config/authorities'
+  desc '
+This generator makes the following changes to your application:
+  1. Adds a dog_biscuits initializer in config/initializers/dog_biscuits.rb.
+  2. Adds a dog_biscuits config in config/dog_biscuits.yml.
+  3. Includes DogBiscuits::ExtendedSolrDocument in the SolrDocument
+  4. Runs the authorities, edit_fields_and_inputs and schema_org generators
+  5. Adds the LocalFormMetadataService
+  6. Adds two view files as a temporary fix.
+       '
+
+  def banner
+    say_status("info", "Generating DogBiscuits installation", :blue)
   end
 
-  def inject_into_dog_biscuits
+  def create_dog_biscuits
     init_path = 'config/initializers/dog_biscuits.rb'
     yml_path = 'config/dog_biscuits.yml'
 
@@ -18,52 +28,40 @@ class DogBiscuits::InstallGenerator < Rails::Generators::Base
     unless File.exist?(init_path)
       copy_file 'config/initializers/dog_biscuits.rb', init_path
     end
+  end
 
-    init_content = File.read(init_path)
-    yml_content = File.read(yml_path)
+  def update_initializer
+    gsub_file 'config/initializers/dog_biscuits.rb', /#   Available models are:/, "#   Available models are: #{DogBiscuits.config.available_models.join(", ")}"
+  end
 
-    ::DogBiscuits::Terms.constants.each do |term|
-      t = term.to_s
-      term_string = "Qa::Authorities::Local.register_subauthority('#{t.gsub('Terms', '').underscore.downcase}', 'DogBiscuits::Terms::#{t}')"
-      unless init_content.include? term_string
-        inject_into_file init_path, after: '# include Terms' do
-          "\n#{term_string}"
-        end
-      end
-      unless yml_content.include? t
-        inject_into_file yml_path, after: '# authorities' do
-          "\n#{t.gsub('Terms', '').underscore.pluralize}: \"\""
-        end
+  def update_solr_document
+    solr_doc = 'app/models/solr_document.rb'
+    unless solr_doc.include? 'DogBiscuits::ExtendedSolrDocument'
+      inject_into_file solr_doc, after: 'include Hyrax::SolrDocumentBehavior' do
+        "\n  include DogBiscuits::ExtendedSolrDocument"
       end
     end
   end
 
-  def inject_into_authority_service
-    file_path = 'app/services/authority_service.rb'
-    copy_file 'authority_service.rb', file_path
-
-    ::DogBiscuits::Terms.constants.each do |term|
-      t = term.to_s
-      term_string = "\n\tclass #{t.gsub('Terms', '')}Service < DogBiscuits::Terms::#{t}\n\t\tinclude ::LocalAuthorityConcern\n\tend"
-      inject_into_file file_path, after: '# Object based' do
-        term_string
-      end
-    end
-
-    Dir.entries('config/authorities').each do |file|
-      next unless file.end_with?('.yml')
-      term_string = "\n\tclass #{file.gsub('.yml', '').camelize}Service < Hyrax::QaSelectService\n\tinclude ::FileAuthorityConcern\n\t\tdef initialize\n\t\t\tsuper('#{file.gsub('.yml', '')}')\n\t\tend\n\tend"
-      inject_into_file file_path, after: '# File based' do
-        term_string
-      end
-    end
+  def create_authorities
+    generate 'dog_biscuits:authority', '-f'
   end
 
-  def copy_local_quthority_concern
-    copy_file 'local_authority_concern.rb', 'app/services/concerns/local_authority_concern.rb'
+  def create_local_form_metadata_service
+    copy_file 'services/local_form_metadata_service.rb', 'app/services/local_form_metadata_service.rb'
   end
 
-  def copy_file_authority_concern
-    copy_file 'file_authority_concern.rb', 'app/services/concerns/file_authority_concern.rb'
+  def create_schema_org
+    generate 'dog_biscuits:schema_org', '-f'
+  end
+
+  def create_edit_fields_and_inputs
+    directory 'views/records', 'app/views/records'
+  end
+
+  # TODO: remove when fixed
+  def create_views
+    copy_file 'views/hyrax/base/_work_description.erb', 'app/views/hyrax/base/_work_description.erb'
+    copy_file 'views/shared/_citations.html.erb', 'app/views/shared/_citations.html.erb'
   end
 end

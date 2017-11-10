@@ -2,6 +2,26 @@
 
 module DogBiscuits
   extend ActiveSupport::Autoload
+  require 'dog_biscuits/railtie' if defined?(Rails)
+
+  eager_autoload do
+    autoload :Configuration
+  end
+
+  module Actors
+    extend ActiveSupport::Autoload
+    eager_autoload do
+      autoload :ApplyAuthorities
+      autoload :SingularAttributes
+    end
+  end
+
+  module Importers
+    extend ActiveSupport::Autoload
+    eager_autoload do
+      autoload :Authority
+    end
+  end
 
   module Vocab
     extend ActiveSupport::Autoload
@@ -16,10 +36,13 @@ module DogBiscuits
     end
   end
 
+  autoload_under 'property_mappings' do
+    autoload :PropertyMappings
+  end
+
   autoload_under 'services' do
     autoload :Terms
     autoload :TermsService
-    autoload :SolrQuery
   end
 
   autoload_under 'models' do
@@ -30,6 +53,7 @@ module DogBiscuits
   autoload_under 'models/authorities' do
     autoload :Concept
     autoload :ConceptScheme
+    autoload :Event
     autoload :Place
     autoload :Agent
     autoload :Project
@@ -48,25 +72,31 @@ module DogBiscuits
     autoload :FileSet
   end
   autoload_under 'models/works' do
-    autoload :Package
+    autoload :ConferenceItem
     autoload :Dataset
     autoload :ExamPaper
-    autoload :Thesis
     autoload :JournalArticle
+    autoload :Package
+    autoload :PublishedWork
+    autoload :Thesis
   end
 
-  autoload_under 'models/concerns/metadata_groups' do
-    autoload :AddAgentMetadata
-    autoload :AddDatasetMetadata
-    autoload :AddPackageMetadata
-    autoload :AddExamPaperMetadata
-    autoload :AddThesisMetadata
-    autoload :AddJournalArticleMetadata
-    autoload :AddPersonProperties
-    autoload :AddPlaceProperties
+  autoload_under 'models/concerns' do
+    autoload :ExtendedSolrDocument
   end
 
-  autoload_under 'models/concerns/metadata_groups/common' do
+  autoload_under 'models/concerns/model_property_sets' do
+    autoload :AgentMetadata
+    autoload :ConferenceItemMetadata
+    autoload :DatasetMetadata
+    autoload :ExamPaperMetadata
+    autoload :JournalArticleMetadata
+    autoload :PackageMetadata
+    autoload :PublishedWorkMetadata
+    autoload :ThesisMetadata
+  end
+
+  autoload_under 'models/concerns/model_property_sets/common' do
     autoload :CommonLabels
     autoload :CommonMetadata
     autoload :CommonRights
@@ -82,10 +112,17 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/bibframe' do
     autoload :AwardingInstitution
+    autoload :Edition
     autoload :IdentifiedBy
+    autoload :InJournal
+    autoload :OriginDate
+    autoload :Part
+    autoload :PartOf
+    autoload :Series
   end
 
   autoload_under 'models/concerns/metadata_properties/bibo' do
+    autoload :PresentedAt
     autoload :PublicationStatus
   end
 
@@ -93,28 +130,30 @@ module DogBiscuits
     autoload :Abstract
     autoload :AccessRights
     autoload :Available
+    autoload :BibliographicCitation
     autoload :Creator
     autoload :Contributor
     autoload :Date
     autoload :DateAccepted
+    autoload :DateCreated
     autoload :Description
     autoload :Identifier
-    autoload :KeywordSubject
     autoload :Language
     autoload :Publisher
     autoload :ResourceType
     autoload :Rights
     autoload :RightsHolder
+    autoload :Source
+    autoload :Subject
     # autoload :Title # part of CoreMetadata
     autoload :SimpleVersions
   end
 
   autoload_under 'models/concerns/metadata_properties/dlib' do
-    autoload :CollectionsCategory
     autoload :ForIndexing
     autoload :FormerIdentifier
     autoload :GenericAuthorityTerms
-    autoload :GenericModuleCode
+    autoload :ModuleCode
     autoload :GenericQualifier
     autoload :LastAccess
     autoload :MainFile
@@ -131,24 +170,25 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/foaf' do
+    autoload :BasedNear
     autoload :FoafName
-  end
-
-  autoload_under 'models/concerns/metadata_properties/frbr' do
-    autoload :InJournal
   end
 
   autoload_under 'models/concerns/metadata_properties/lc_identifiers' do
     autoload :Doi
+    autoload :Isbn
+    autoload :OfficialUrl
     autoload :Orcid
   end
 
   autoload_under 'models/concerns/metadata_properties/mads' do
-    autoload :MadsRelatedAuthority
+    autoload :RelatedAuthority
   end
 
   autoload_under 'models/concerns/metadata_properties/marc_relators' do
     autoload :Funder
+    autoload :Editor
+    autoload :PlaceOfPublication
   end
 
   autoload_under 'models/concerns/metadata_properties/owl' do
@@ -159,14 +199,17 @@ module DogBiscuits
     autoload :HasRestriction
   end
 
+  autoload_under 'models/concerns/metadata_properties/property_sets' do
+    autoload :PersonProperties
+    autoload :PlaceProperties
+  end
+
   autoload_under 'models/concerns/metadata_properties/pure' do
     autoload :Pure
     autoload :ManagingOrganisation
   end
 
   autoload_under 'models/concerns/metadata_properties/rdf' do
-    # RDF and RDFS
-    autoload :RdfsSeeAlso
     autoload :RdfType
     autoload :RelatedUrl
     autoload :RdfsLabel
@@ -175,8 +218,12 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata_properties/schema' do
     autoload :ContentVersion
     autoload :DatePublished
+    autoload :EndDate
     autoload :IssueNumber
+    autoload :Location
+    autoload :Keyword
     autoload :Pagination
+    autoload :StartDate
     autoload :VolumeNumber
     autoload :AlternateName
   end
@@ -184,6 +231,7 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata_properties/skos' do
     autoload :SkosLabels
     autoload :SkosNote
+    autoload :SkosRelated
   end
 
   autoload_under 'models/concerns/metadata_properties/vivo' do
@@ -199,35 +247,54 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata_properties/ulcc' do
     autoload :DateSubmitted
     autoload :ProjectOutput
-    autoload :OfficialUrl
     autoload :Refereed
   end
 
   autoload_under 'models/concerns/behaviours' do
     # Behaviour
-    autoload :AddWorkBehaviour
-    autoload :PureSpecific
+    autoload :WorkBehaviour
+    autoload :PureSpecificBehaviour
     # Validations
     autoload :ValidateConceptScheme
-    autoload :ValidateConceptSeeAlso
+    autoload :ValidateConceptRelated
     autoload :ValidateLabel
     autoload :ValidatePlace
   end
 
-  autoload_under 'models/concerns/indexers' do
-    # Indexers
+  autoload_under 'indexers' do
+    # Indexer classes
+    autoload :ConferenceItemIndexer
+    autoload :DatasetIndexer
+    autoload :ExamPaperIndexer
+    autoload :JournalArticleIndexer
+    autoload :PackageIndexer
+    autoload :PublishedWorkIndexer
+    autoload :ThesisIndexer
+  end
+  autoload_under 'indexers/concerns' do
+    # Indexer modules
     autoload :IndexesCommon
-    autoload :IndexesDataset
-    autoload :IndexesCollection
-    autoload :IndexesExamPaper
-    autoload :IndexesThesis
-    autoload :IndexesJournalArticle
   end
 
   autoload_under 'validators' do
     autoload :LabelValidator
     autoload :PlaceValidator
     autoload :ConceptSchemeMemberValidator
-    autoload :ConceptSeeAlsoValidator
+    autoload :ConceptRelatedValidator
+  end
+
+  # @api public
+  #
+  # Exposes the DogBiscuits configuration
+  #
+  # @yield [DogBiscuits::Configuration] if a block is passed
+  # @return [DogBiscuits::Configuration]
+  # @see DogBiscuits::Configuration for configuration options
+  def self.config(&block)
+    @config ||= DogBiscuits::Configuration.new
+
+    yield @config if block
+
+    @config
   end
 end

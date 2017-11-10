@@ -6,8 +6,7 @@ module DogBiscuits
 
     included do
       # There is an access_rights property in Hyrax, hence the dc_
-      property :dc_access_rights, predicate: ::RDF::Vocab::DC.accessRights,
-                                  multiple: true do |index|
+      property :dc_access_rights, predicate: ::RDF::Vocab::DC.accessRights do |index|
         index.as :stored_searchable
       end
     end

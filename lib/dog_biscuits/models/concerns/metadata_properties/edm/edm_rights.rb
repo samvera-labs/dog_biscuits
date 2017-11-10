@@ -5,9 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      # Align with https://wiki.duraspace.org/display/hydra/Rights+Metadata+Recommendation
-      property :rights_statement, predicate: ::RDF::Vocab::EDM.rights,
-                                  multiple: true do |index|
+      property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
         index.as :stored_searchable, :facetable
       end
     end

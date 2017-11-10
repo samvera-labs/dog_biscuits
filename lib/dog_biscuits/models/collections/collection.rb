@@ -25,14 +25,6 @@ module DogBiscuits
       true
     end
 
-    def edit_groups
-      ['admin']
-    end
-
-    class CollectionIndexer < Hyrax::CollectionIndexer
-      include DogBiscuits::IndexesCollection
-    end
-
     def self.indexer
       CollectionIndexer
     end

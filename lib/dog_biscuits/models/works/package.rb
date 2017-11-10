@@ -2,21 +2,32 @@
 
 module DogBiscuits
   class Package < Work
-    include DogBiscuits::AddWorkBehaviour
-    include DogBiscuits::AddPackageMetadata
+    # Needed to set the type
+    include ::Hydra::Works::WorkBehavior
 
-    before_save :add_types
+    # Order matters because included metadata finalises things:
+    #  1) type and local metadata
+    #  2) indexer
+    #  3) included metadata
 
+    type << DogBiscuits::Vocab::Generic.Package
+
+    # Local metadata
     has_and_belongs_to_many :packages,
                             class_name: 'DogBiscuits::Work',
                             predicate: DogBiscuits::Vocab::Generic.packages,
                             inverse_of: :packaged_by
 
-    type << DogBiscuits::Vocab::Generic.Package
-
     property :requestor_email, predicate: DogBiscuits::Vocab::Generic.requestorEmail, multiple: true do |index|
       index.as :stored_searchable
     end
+
+    # Indexer
+    # Metadata
+    # include DogBiscuits::PackageMetadata
+
+    # TODO: test this callback; it may have to move up to the application
+    before_save :add_types
 
     def package?
       true

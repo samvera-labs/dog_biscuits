@@ -4,7 +4,6 @@ module DogBiscuits
   class Work < ActiveFedora::Base
     # DO NOT include AddWorkBehaviour here otherwise individual works will get the wrong 'type'
     include DogBiscuits::ValidateLabel
-    include DogBiscuits::CommonMetadata
 
     has_and_belongs_to_many :packaged_by,
                             class_name: 'DogBiscuits::Package',
@@ -31,8 +30,8 @@ module DogBiscuits
       false
     end
 
-    def edit_groups
-      ['admin']
+    def combine_dates
+      self.date = []
     end
   end
 end

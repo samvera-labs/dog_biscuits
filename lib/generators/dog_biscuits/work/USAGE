@@ -1,0 +1,34 @@
+Description:
+    The DogBiscuits Work generator makes the following changes to your application:
+    1. Checks that the requested Work is supported by DogBiscuits
+    2. Runs the Hyrax generator for the given model
+    3. Creates a new model, form and indexer to replace the Hyrax one
+    4. Injects properties into the Hyrax-generated presenter
+    5. Creates an attribute_rows view file using the configured properties for the work
+    6. Updates the schema_org config, hyrax (en) locale using the configured properties for the work
+    7. Updates the catalog controller with the configured properties for the work
+
+Example:
+    rails generate dog_biscuits:work ConferenceItem
+
+Making changes post-generation:
+    You can re-run the generator with the --force or -f flag to update the existing files.
+    This may be useful, for example:
+        where you wish to locally remove, or configure the order of properties in the form
+        where you wish to add a local renderer or change a label in the property_mappings config
+
+Adding local properties
+    Add the local property into the model (in app/models/)
+    Add an attribute into the solr_document (app/models/solr_document.rb)
+    Add the property to the config (config/initializers/dog_biscuits.rb)
+
+    Add custom helper methods or renderers (in app/helpers/ and app/renderers)
+      and add them to the property_mappings.
+
+    The generator can be re-run without overwriting the model and indexer files using the --skipmodel option
+
+    This will update the form, presenter, catalog_controller, attribute_rows and locales with
+    the new property.
+
+Example:
+    rails generate dog_biscuits:work ConferenceItem --skipmodel

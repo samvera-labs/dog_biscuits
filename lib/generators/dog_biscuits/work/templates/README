@@ -1,0 +1,30 @@
+===============================================================================
+
+After creating your work you may wish to:
+
+  1. Customize the show page
+
+  2. Customize facets and search results
+
+  3. Further modify the model, actor, form or presenter
+
+Customizing a Work the 'dog_biscuits way':
+
+  in config/initializers/dog_biscuits.rb change the defaults:
+
+    fields to display in search results:
+      config.index_properties
+
+    fields to display as facets:
+      config.facet_properties
+
+    properties and order in the form and show page:
+      config.your_work_properties
+
+    required fields in the form
+      config.your_work_properties_required
+
+  Re-run the Work generators (these will overwrite any local changes):
+    rails g dog_biscuits:work Work
+
+===============================================================================

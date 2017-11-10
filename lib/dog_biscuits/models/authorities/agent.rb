@@ -10,27 +10,21 @@ module DogBiscuits
     include DogBiscuits::IdentifiedBy
     # Additional
     include DogBiscuits::GenericAuthorityTerms
-    include DogBiscuits::MadsRelatedAuthority
+    include DogBiscuits::RelatedAuthority
     include DogBiscuits::OwlSameAs
-    include Hyrax::Noid
-
-    before_save :add_label
 
     type [::RDF::Vocab::FOAF.Agent]
 
-    property :email, predicate: ::RDF::Vocab::FOAF.mbox,
-                     multiple: true do |index|
+    property :email, predicate: ::RDF::Vocab::FOAF.mbox do |index|
       index.as :stored_searchable
     end
 
     # value should be foaf:OnlineAccount
-    property :account, predicate: ::RDF::Vocab::FOAF.account,
-                       multiple: true do |index|
+    property :account, predicate: ::RDF::Vocab::FOAF.account do |index|
       index.as :stored_searchable
     end
 
-    property :homepage, predicate: ::RDF::Vocab::FOAF.homepage,
-                        multiple: true do |index|
+    property :homepage, predicate: ::RDF::Vocab::FOAF.homepage do |index|
       index.as :stored_searchable
     end
 
@@ -43,6 +37,10 @@ module DogBiscuits
     end
 
     def concept_scheme?
+      false
+    end
+
+    def event?
       false
     end
 

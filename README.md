@@ -1,15 +1,16 @@
 # DogBiscuits
 
-[![Code Climate](https://codeclimate.com/github/geekscruff/dog_biscuits/badges/gpa.svg)](https://codeclimate.com/github/geekscruff/dog_biscuits)
-[![Issue Count](https://codeclimate.com/github/geekscruff/dog_biscuits/badges/issue_count.svg)](https://codeclimate.com/github/geekscruff/dog_biscuits)
-[![Build Status](https://travis-ci.org/geekscruff/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/geekscruff/dog_biscuits)
-[![Dependency Status](https://gemnasium.com/badges/github.com/geekscruff/dog_biscuits.svg)](https://gemnasium.com/github.com/geekscruff/dog_biscuits)
-[![Inline docs](http://inch-ci.org/github/geekscruff/dog_biscuits.svg?branch=master)](http://inch-ci.org/github/geekscruff/dog_biscuits)
+[![Coverage Status](https://coveralls.io/repos/github/ULCC/dog_biscuits/badge.svg?branch=master)](https://coveralls.io/github/ULCC/dog_biscuits?branch=master)
+[![Build Status](https://travis-ci.org/ULCC/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/ULCC/dog_biscuits)
+[![Dependency Status](https://gemnasium.com/badges/github.com/ULCC/dog_biscuits.svg)](https://gemnasium.com/github.com/ULCC/dog_biscuits)
+[![Inline docs](http://inch-ci.org/github/ULCC/dog_biscuits.svg?branch=master)](http://inch-ci.org/github/ULCC/dog_biscuits)
 
 Models, vocabularies and behaviours for Hyrax applications :dog: :cookie:
 
 
 ## Installation
+
+For use within [Hyrax 2](https://github.com/samvera/hyrax) applications. 
 
 Add this line to your application's Gemfile:
 
@@ -31,9 +32,21 @@ Run the generator
 
 Add the -f flag to overwrite any existing files with new ones.
 
-## Usage
+## Generate Works
 
-TODO: Write usage instructions here
+Run the work generator
+
+    $ rails generate dog_biscuits:work WorkName
+    
+If the work is not supported, the generator will give you a list of supported models.
+
+Add the -f flag to overwrite any existing files with new ones.
+
+Add the --skipmodel flag to overwrite any existing files but leave the model and indexer unchanged.
+
+## Documentation
+
+Further documentation is available in the [wiki](https://github.com/ULCC/dog_biscuits/wiki).
 
 ## Development
 

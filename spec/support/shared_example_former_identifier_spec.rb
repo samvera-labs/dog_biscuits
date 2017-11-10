@@ -1,13 +1,22 @@
 # frozen_string_literal: true
 
 shared_examples_for 'former_identifier' do
-  # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
-
   it 'has former identifier' do
-    expect(stubby.former_id).to eq(['york:1234'])
+    expect(stubby.former_identifier).to eq(['york:1234'])
   end
   it 'has former identifier predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://dlib.york.ac.uk/ontologies/generic#formerIdentifier')))
+    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/generic#formerIdentifier')))
+  end
+
+  it 'is in the solr_document' do
+    expect(solr_doc.should(respond_to(:former_identifier)))
+  end
+
+  it 'is in the configuration property_mappings' do
+    expect(DogBiscuits.config.property_mappings[:former_identifier].should(be_truthy))
+  end
+
+  it 'is in the properties' do
+    expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should(include(:former_identifier)))
   end
 end

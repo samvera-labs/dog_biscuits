@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Entry < ActiveFedora::Base
-  include Hyrax::Noid, Generic, RdfType, AssignRdfTypes
+  include Generic, RdfType, AssignRdfTypes
 
   belongs_to :folio, predicate: ::RDF::URI.new('http://dlib.york.ac.uk/ontologies/borthwick-registers#folio')
 

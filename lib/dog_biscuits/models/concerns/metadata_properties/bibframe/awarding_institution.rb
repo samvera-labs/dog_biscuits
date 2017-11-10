@@ -7,7 +7,7 @@ module DogBiscuits
     included do
       has_and_belongs_to_many :awarding_institution_resource,
                               class_name: 'DogBiscuits::Organisation',
-                              predicate: ::RDF::Vocab::Bibframe.dissertationInstitution
+                              predicate: ::RDF::Vocab::BF2.grantingInstitution
     end
   end
 end

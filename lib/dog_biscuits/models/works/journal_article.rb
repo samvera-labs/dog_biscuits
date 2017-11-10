@@ -2,23 +2,25 @@
 
 module DogBiscuits
   class JournalArticle < Work
-    include DogBiscuits::AddWorkBehaviour
-    include DogBiscuits::AddJournalArticleMetadata
+    # Needed to set the type
+    include ::Hydra::Works::WorkBehavior
 
-    before_save :combine_dates
+    # Order matters because included metadata finalises things:
+    #  1) type and local metadata
+    #  2) indexer
+    #  3) included metadata
 
-    type << ::RDF::URI.new('http://purl.org/spar/fabio/JournalArticle')
+    type << ::RDF::Vocab::SCHEMA.ScholarlyArticle
+
+    # Indexer
+    # self.indexer = DogBiscuits::JournalArticleIndexer
+    # Metadata
+    # include DogBiscuits::JournalArticleMetadata
+
+    # before_save :combine_dates
 
     def journal_article?
       true
-    end
-
-    class JournalArticleIndexer < Hyrax::WorkIndexer
-      include DogBiscuits::IndexesJournalArticle
-    end
-
-    def self.indexer
-      JournalArticleIndexer
     end
 
     # Create single date field from all dates.
@@ -28,6 +30,7 @@ module DogBiscuits
       date << date_available
       date << date_accepted
       date << date_submitted
+      date << date_created
     end
   end
 end

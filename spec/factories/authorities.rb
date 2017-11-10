@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :concept_scheme, class: DogBiscuits::ConceptScheme do
     preflabel 'label'
     altlabel  ['alternative label']
@@ -59,12 +59,20 @@ FactoryGirl.define do
     preflabel 'miserabilism'
   end
 
+  factory :event, class: DogBiscuits::Event do
+    preflabel 'International Conference of Misery'
+    name 'International Conference of Misery'
+    start_date ['1-1-2016']
+    end_date ['10-1-2016']
+    # TODO: location
+  end
+
   factory :broader_concept, class: DogBiscuits::Concept do
     preflabel 'broader object'
   end
 
-  factory :seealso_concept, class: DogBiscuits::Concept do
-    preflabel 'seealso object'
+  factory :related_concept, class: DogBiscuits::Concept do
+    preflabel 'related object'
   end
 
   factory :top_concept, class: DogBiscuits::Concept do

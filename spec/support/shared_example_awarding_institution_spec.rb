@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 shared_examples_for 'awarding_institution' do
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
-  let(:org) { FactoryGirl.build_stubbed(:organisation) }
+  let(:org) { FactoryBot.build_stubbed(:organisation) }
 
   before do
+    org.add_label
     stubby.awarding_institution_resource << org
   end
 
@@ -13,10 +13,23 @@ shared_examples_for 'awarding_institution' do
   end
 
   it 'has will have an awarding institution predicate' do
-    expect(stubby.resource.dump(:ttl).should(include('http://bibframe.org/vocab/dissertationInstitution')))
+    expect(rdf.should(include('http://id.loc.gov/ontologies/bibframe/grantingInstitution')))
   end
 
-  it 'has _value in solr' do
-    expect(stubby.to_solr.should(include('awarding_institution_value_tesim')))
+  it 'has _label in solr' do
+    expect(stubby.to_solr['awarding_institution_label_tesim'].should(eq([org.preflabel])))
   end
+
+  # TODO: awarding_institution
+  # it 'is in the solr_document' do
+  #   expect(solr_doc.should respond_to(:awarding_institution))
+  # end
+  #
+  # it 'is in the configuration property_mappings' do
+  #   expect(DogBiscuits.config.property_mappings[:awarding_institution].should be_truthy)
+  # end
+  #
+  # it 'is in the properties' do
+  #   expect(DogBiscuits.config.send("#{stubby.class.to_s.underscore}_properties").should include(:awarding_institution))
+  # end
 end

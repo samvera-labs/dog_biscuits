@@ -14,22 +14,23 @@ AllCops:
 Metrics/MethodLength:
   Exclude:
     - 'lib/dog_biscuits/validators/has_label_validator.rb'
-    - 'lib/dog_biscuits/models/concerns/indexers/indexes_common.rb'
+    - 'lib/dog_biscuits/indexers/concerns/indexes_common.rb'
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'lib/dog_biscuits/vocab/**/*'
     - 'lib/dog_biscuits/models/concerns/metadata_properties/archivematica/archivematica.rb'
-    - 'lib/dog_biscuits/models/concerns/metadata_groups/add_person_properties.rb'
-    - 'lib/dog_biscuits/models/concerns/metadata_groups/add_place_properties.rb'
-
+    - 'lib/dog_biscuits/models/concerns/metadata_properties/property_sets/person_properties.rb'
+    - 'lib/dog_biscuits/models/concerns/metadata_properties/property_sets/place_properties.rb'
+    - 'lib/dog_biscuits/models/concerns/extended_solr_document.rb'
+    - 'lib/tasks/authorities.rake'
 Metrics/ClassLength:
   Exclude:
     - 'lib/dog_biscuits/vocab/**/*'
-
 Metrics/ModuleLength:
   Exclude:
     - 'lib/dog_biscuits.rb'
+    - 'lib/dog_biscuits/models/concerns/extended_solr_document.rb'
 
 Metrics/CyclomaticComplexity:
   Exclude:
@@ -40,10 +41,11 @@ Metrics/PerceivedComplexity:
   Exclude:
     - 'lib/dog_biscuits/models/authorities/agents/historic_person.rb'
 
-RSpec/MultipleExpectations:
-  Exclude:
-    - 'spec/support/shared_example_common_labels_spec.rb'
-
 Style/GuardClause:
   Exclude:
     - 'lib/dog_biscuits/models/authority.rb'
+    - 'spec/test_app_templates/lib/generators/test_app_generator.rb'
+
+Style/CommentedKeyword:
+  Exclude:
+    - 'lib/dog_biscuits/vocab/**/*'

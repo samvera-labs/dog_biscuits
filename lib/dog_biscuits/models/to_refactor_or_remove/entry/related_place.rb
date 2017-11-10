@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RelatedPlace < ActiveFedora::Base
-  include Hyrax::Noid, RdfType, AssignRdfTypes
+  include RdfType, AssignRdfTypes
 
   belongs_to :entry, predicate: ::RDF::URI.new('http://dlib.york.ac.uk/ontologies/borthwick-registers#relatedPlaceFor')
   has_and_belongs_to_many :related_agent, predicate: ::RDF::URI.new('http://dlib.york.ac.uk/ontologies/borthwick-registers#relatedPlaceFor')

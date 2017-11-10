@@ -4,11 +4,8 @@ module DogBiscuits
   class Concept < Authority
     include DogBiscuits::GenericAuthorityTerms
     include DogBiscuits::OwlSameAs
-    include DogBiscuits::RdfsSeeAlso # use for external see also links
-    include DogBiscuits::ValidateConceptSeeAlso
-    include Hyrax::Noid
-
-    before_save :add_label
+    include DogBiscuits::SkosRelated
+    include DogBiscuits::ValidateConceptRelated
 
     # Use for nested schemes.
     has_and_belongs_to_many :top_concept_of,
@@ -27,25 +24,23 @@ module DogBiscuits
                             inverse_of: :broader
 
     # MUST NOT be the same as broader/narrower; validator in place
-    has_and_belongs_to_many :see_also,
+    has_and_belongs_to_many :related,
                             class_name: 'DogBiscuits::Concept',
                             predicate: ::RDF::Vocab::SKOS.related,
-                            inverse_of: :see_also
+                            inverse_of: :related
 
-    type [::RDF::URI.new('http://www.w3.org/2004/02/skos/core#Concept')]
+    type [::RDF::URI.intern('http://www.w3.org/2004/02/skos/core#Concept')]
 
     property :definition, predicate: ::RDF::Vocab::SKOS.definition,
                           multiple: false do |index|
       index.as :stored_searchable
     end
 
-    property :exact_match, predicate: ::RDF::Vocab::SKOS.exactMatch,
-                           multiple: true do |index|
+    property :exact_match, predicate: ::RDF::Vocab::SKOS.exactMatch do |index|
       index.as :stored_searchable
     end
 
-    property :close_match, predicate: ::RDF::Vocab::SKOS.closeMatch,
-                           multiple: true do |index|
+    property :close_match, predicate: ::RDF::Vocab::SKOS.closeMatch do |index|
       index.as :stored_searchable
     end
 
@@ -58,6 +53,10 @@ module DogBiscuits
     end
 
     def concept_scheme?
+      false
+    end
+
+    def event?
       false
     end
 
@@ -87,12 +86,6 @@ module DogBiscuits
       else
         false
       end
-    end
-
-    # Ensure rdfs label and pref label and the same. Prefer preflabel for Concept.
-    def add_label
-      self.rdfs_label = preflabel if preflabel.present?
-      self.preflabel = rdfs_label if rdfs_label.present?
     end
   end
 end

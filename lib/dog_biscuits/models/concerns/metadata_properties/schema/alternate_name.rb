@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :alternate_name, predicate: RDF::Vocab::SCHEMA.alternateName,
-                                multiple: true do |index|
+      property :alternate_name, predicate: RDF::Vocab::SCHEMA.alternateName do |index|
         index.as :stored_searchable
       end
     end

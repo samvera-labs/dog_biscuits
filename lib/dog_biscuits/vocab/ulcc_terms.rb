@@ -5,19 +5,25 @@ module DogBiscuits
   module Vocab
     class UlccTerms < RDF::Vocabulary('http://london.ac.uk/ontologies/terms#')
       # Class definitions
+      property :ConferenceItem,
+               comment:
+                   'A document created for delivery or presentation at a conference, for example a paper, presentation, workshop or poster.',
+               label: 'Conference Item',
+               'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
+               type: 'rdf:Class'
+      property :PublishedWork,
+               comment:
+                   'A single published work, eg. a book, report, monograph etc.',
+               label: 'Published Work',
+               'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
+               type: 'rdf:Class'
+      # TODO: add subclass of and subclasses
 
       # Property definitions
       property :refereed,
                comment:
                    'This property is used to indicate that a a resource has undergone peer review.',
                label: 'Refereed',
-               'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
-               type: 'rdf:Property'
-      property :officialUrl,
-               comment:
-                   'This property is used for an official or canonical url,
-                such as the publisher url for a journal article.',
-               label: 'Official URL',
                'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
                type: 'rdf:Property'
       property :outputOf,

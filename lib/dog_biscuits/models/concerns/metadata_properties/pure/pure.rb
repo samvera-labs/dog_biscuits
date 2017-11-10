@@ -16,13 +16,11 @@ module DogBiscuits
         index.as :stored_searchable, :stored_sortable
       end
       property :pure_type,
-               predicate: DogBiscuits::Vocab::PureTerms.pureType,
-               multiple: true do |index|
+               predicate: DogBiscuits::Vocab::PureTerms.pureType do |index|
         index.as :stored_searchable
       end
       property :pure_link,
-               predicate: DogBiscuits::Vocab::PureTerms.pureLink,
-               multiple: true do |index|
+               predicate: DogBiscuits::Vocab::PureTerms.pureLink do |index|
         index.as :stored_searchable
       end
     end

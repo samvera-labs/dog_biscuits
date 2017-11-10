@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :content_version, predicate: RDF::Vocab::SCHEMA.version,
-                                 multiple: true do |index|
+      property :content_version, predicate: RDF::Vocab::SCHEMA.version do |index|
         index.as :stored_searchable, :facetable
       end
     end

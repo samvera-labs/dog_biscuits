@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 shared_examples_for 'simple_versions' do
-  # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
-  let(:replaces) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
-  let(:replaced_by) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
+  let(:replaces) { FactoryBot.build(described_class.to_s.underscore.to_sym) }
+  let(:replaced_by) { FactoryBot.build(described_class.to_s.underscore.to_sym) }
 
   before do
     stubby.replaces << replaces

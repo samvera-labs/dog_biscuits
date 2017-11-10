@@ -3,9 +3,6 @@
 module DogBiscuits
   class ConceptScheme < Authority
     include DogBiscuits::Description
-    include Hyrax::Noid
-
-    before_save :add_label
 
     has_many :concepts, class_name: 'DogBiscuits::Concept', inverse_of: :concept_scheme
     has_many :organisations, class_name: 'DogBiscuits::Organisation', inverse_of: :concept_scheme
@@ -34,6 +31,10 @@ module DogBiscuits
 
     def concept_scheme?
       true
+    end
+
+    def event?
+      false
     end
 
     def group?

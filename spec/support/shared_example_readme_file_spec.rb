@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 shared_examples_for 'readme_file' do
-  # the class that includes the concern
-  let(:stubby) { FactoryGirl.build(described_class.to_s.split('::')[1].underscore.to_sym) }
-  let(:readme) { FactoryGirl.build_stubbed(:file_set) }
+  let(:readme) { FactoryBot.build_stubbed(:file_set) }
 
   before do
     stubby.readmefile << readme

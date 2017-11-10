@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :volume_number, predicate: RDF::Vocab::SCHEMA.volumeNumber,
-                               multiple: false do |index|
+      property :volume_number, predicate: RDF::Vocab::SCHEMA.volumeNumber do |index|
         index.as :stored_searchable
       end
     end

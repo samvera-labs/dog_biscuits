@@ -10,8 +10,7 @@ module DogBiscuits
         index.as :stored_searchable, :sortable
       end
 
-      property :altlabel, predicate: ::RDF::Vocab::SKOS.altLabel,
-                          multiple: true do |index|
+      property :altlabel, predicate: ::RDF::Vocab::SKOS.altLabel do |index|
         index.as :stored_searchable
       end
     end

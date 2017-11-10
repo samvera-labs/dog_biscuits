@@ -96,7 +96,7 @@ module DogBiscuits
     #
     # @param id [String] for the requested authority term
     # @return [String] the preflabel
-    def find_value_string(id)
+    def find_label_string(id)
       parse_string(
 
         ActiveFedora::SolrService.get(
@@ -131,7 +131,7 @@ module DogBiscuits
           # Assumes only one broader
           if result['broader_ssim']
             hash[:broader_id] = result['broader_ssim'].join
-            hash[:broader_label] = find_value_string(result['broader_ssim'].join).join
+            hash[:broader_label] = find_label_string(result['broader_ssim'].join).join
           end
           hash
         end

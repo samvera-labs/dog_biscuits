@@ -5,8 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :publication_status, predicate: ::RDF::Vocab::BIBO.status,
-                                    multiple: false do |index|
+      property :publication_status, predicate: ::RDF::Vocab::BIBO.status do |index|
         index.as :stored_searchable, :facetable
       end
     end
