@@ -6,7 +6,8 @@ Description:
     4. Injects properties into the Hyrax-generated presenter
     5. Creates an attribute_rows view file using the configured properties for the work
     6. Updates the schema_org config, hyrax (en) locale using the configured properties for the work
-    7. Updates the catalog controller with the configured properties for the work
+    7. Updates the catalog controller with the configured properties for the
+    8. If this is a Hyku application, enables UV / IIIF
 
 Example:
     rails generate dog_biscuits:work ConferenceItem

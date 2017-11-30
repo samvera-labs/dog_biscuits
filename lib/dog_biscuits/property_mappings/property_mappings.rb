@@ -292,7 +292,7 @@ module DogBiscuits
           },
           part_of: {
             index: "('proceeding', :stored_searchable)",
-            label: "Part Of",
+            label: 'Part Of',
             help_text: "A Work that this this physically or logically contained in, such as a conference proceeding, or series.",
             schema_org: {
               property: "isPartOf",
@@ -348,7 +348,7 @@ module DogBiscuits
           rights_statement: {
             index: "('rights_statement', :stored_searchable)",
             helper_method: :rights_statement_links,
-            # render_as: :rights_statement
+            render_as: :rights_statement
           },
           series: {
             index: "('series', :stored_searchable)",
