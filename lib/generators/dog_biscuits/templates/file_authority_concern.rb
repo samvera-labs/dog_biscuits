@@ -3,7 +3,7 @@
 module FileAuthorityConcern
   extend ActiveSupport::Concern
   included do
-    def include_current_label(value, _index, render_options, html_options)
+    def include_current_value(value, _index, render_options, html_options)
       unless value.blank? || active?(value)
         html_options[:class] << ' force-select'
         render_options += [[label(value), value]]
