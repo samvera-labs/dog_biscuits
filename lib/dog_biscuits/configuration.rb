@@ -9,6 +9,11 @@ module DogBiscuits
 
     # TODO: valid_child_concerns
 
+    attr_writer :all_properties
+    def all_properties
+      selected_models.map { |m| send("#{m.underscore}_properties") }.flatten.uniq
+    end
+
     def available_models
       ['ConferenceItem', 'ExamPaper', 'JournalArticle', 'PublishedWork', 'Thesis', 'Dataset', 'Package'].freeze
     end
@@ -21,7 +26,22 @@ module DogBiscuits
     # Basic Metadata properties from Hyrax
     # Omitting bibliographic_citation
     def base_properties
-      %i[title creator contributor description keyword license rights_statement publisher date_created subject language identifier based_near related_url resource_type source].freeze
+      %i[title
+         creator
+         contributor
+         description
+         keyword
+         license
+         rights_statement
+         publisher
+         date_created
+         subject
+         language
+         identifier
+         based_near
+         related_url
+         resource_type
+         source].freeze
     end
 
     # Common properties from DogBiscuits atop those in BasicMetadata
@@ -155,8 +175,9 @@ module DogBiscuits
                       presented_at
                       part_of
                       refereed]
-      @conference_item_properties ||= base_properties + properties + common_properties
-      @conference_item_properties.sort!
+      properties = base_properties + properties + common_properties
+      properties.sort!
+      @conference_item_properties ||= properties
     end
 
     attr_writer :conference_item_properties_required
@@ -186,8 +207,9 @@ module DogBiscuits
                       refereed
                       series
                       volume_number]
-      @published_work_properties ||= base_properties + properties + common_properties
-      @published_work_properties.sort!
+      properties = base_properties + properties + common_properties
+      properties.sort!
+      @published_work_properties ||= properties
     end
 
     attr_writer :published_work_properties_required
@@ -212,8 +234,9 @@ module DogBiscuits
                       publication_status
                       refereed
                       volume_number]
-      @journal_article_properties ||= base_properties + properties + common_properties
-      @journal_article_properties.sort!
+      properties = base_properties + properties + common_properties
+      properties.sort!
+      @journal_article_properties ||= properties
     end
 
     attr_writer :journal_article_properties_required
@@ -230,8 +253,9 @@ module DogBiscuits
                       date_of_award
                       qualification_level
                       qualification_name]
-      @thesis_properties ||= base_properties + properties + common_properties
-      @thesis_properties.sort!
+      properties = base_properties + properties + common_properties
+      properties.sort!
+      @thesis_properties ||= properties
     end
 
     attr_writer :thesis_properties_required
@@ -247,8 +271,9 @@ module DogBiscuits
                       qualification_level
                       qualification_name
                       date_available]
-      @exam_paper_properties ||= base_properties + properties + common_properties
-      @exam_paper_properties.sort!
+      properties = base_properties + properties + common_properties
+      properties.sort!
+      @exam_paper_properties ||= properties
     end
 
     attr_writer :exam_paper_properties_required
@@ -266,8 +291,9 @@ module DogBiscuits
                       has_restriction
                       last_access
                       number_of_downloads]
-      @dataset_properties ||= base_properties + properties + common_properties
-      @dataset_properties.sort!
+      properties = base_properties + properties + common_properties
+      properties.sort!
+      @dataset_properties ||= properties
     end
 
     attr_writer :dataset_properties_required
@@ -281,8 +307,9 @@ module DogBiscuits
     # omitting properties
     def package_properties
       properties = %i[]
-      @package_properties ||= base_properties + properties + common_properties
-      @package_properties.sort!
+      properties = base_properties + properties + common_properties
+      properties.sort!
+      @package_properties ||= properties
     end
 
     attr_writer :package_properties_required

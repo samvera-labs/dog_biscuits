@@ -47,7 +47,7 @@ module DogBiscuits
       # From BasicMetadata
       property :label, predicate: ActiveFedora::RDF::Fcrepo::Model.downloadFilename, multiple: false
       property :relative_path, predicate: ::RDF::URI.new('http://scholarsphere.psu.edu/ns#relativePath'), multiple: false
-      # plus indexing from BasucMetadataIndexer
+      # plus indexing from BasicMetadataIndexer
       property :import_url, predicate: ::RDF::URI.new('http://scholarsphere.psu.edu/ns#importUrl'),
                             multiple: false do |index|
         index.as :symbol
