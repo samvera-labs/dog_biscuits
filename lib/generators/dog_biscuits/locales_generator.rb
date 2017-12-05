@@ -51,7 +51,7 @@ This generator makes the following changes to your application
             if locale_text =~ /#{Regexp.escape(prop_key)}"[^"]+"/
               gsub_file locale, /#{Regexp.escape(prop_key)}"[^"]+"/, "#{prop_key}\"#{hint}\""
             else
-              inject_into_file locale, before: "\n    labels:" do
+              inject_into_file locale, before: "\n      labels:" do
                 "\n        #{prop_key}\"#{hint}\""
               end
             end
@@ -91,6 +91,15 @@ This generator makes the following changes to your application
     locale = "config/locales/hyrax.en.yml"
     locale_text = File.read("config/locales/hyrax.en.yml")
 
+    inject_blacklight_block = "\n  blacklight:\n    search:\n      fields:"
+    inject_blacklight_block += "\n        facet:\n        index:\n        show:\n"
+
+    unless locale_text.include? 'blacklight'
+      inject_into_file locale, after:"en:\n" do
+        inject_blacklight_block
+      end
+    end
+
     @models.each do |model|
       properties = DogBiscuits.config.send("#{model}_properties")
 
@@ -101,7 +110,7 @@ This generator makes the following changes to your application
             append_key = "          #{prop.to_s}_tesim: "
             facet_key = "          #{prop.to_s}_sim: "
 
-            # Facets
+            # Facets before index
             if DogBiscuits.config.facet_properties.include? prop
               if locale_text.include? facet_key
                 gsub_file locale, /#{Regexp.escape(facet_key)}(.*)/, "#{facet_key}#{label}"
@@ -111,7 +120,7 @@ This generator makes the following changes to your application
                 end
               end
             end
-            # Index
+            # Index before show
             if DogBiscuits.config.index_properties.include? prop
               if locale_text.include? append_key
                 gsub_file locale, /#{Regexp.escape(append_key)}(.*)/, "#{append_key}#{label}"
@@ -121,7 +130,7 @@ This generator makes the following changes to your application
                 end
               end
             end
-            # Show
+            # Show before hyrax
             if locale_text.include? append_key
               gsub_file locale, /#{Regexp.escape(append_key)}(.*)/, "#{append_key}#{label}"
             else

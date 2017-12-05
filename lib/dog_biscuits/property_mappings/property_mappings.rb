@@ -142,6 +142,7 @@ module DogBiscuits
           },
           description: {
             index: "('description', :stored_searchable)",
+            label: "Description or Summary",
             helper_method: :iconify_auto_link,
             schema_org: {
               property: "description"
