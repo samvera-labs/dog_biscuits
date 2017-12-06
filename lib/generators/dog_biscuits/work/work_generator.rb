@@ -107,35 +107,8 @@ This generator makes the following changes to your application:
     generate "dog_biscuits:controlled_properties #{class_name}", '-f'
   end
 
-  # If this is a Hyku app, support IIIF / UV rendering
-  def image_ify
-    if File.exist?('config/initializers/version.rb') and File.read('config/initializers/version.rb').include? 'Hyku'
-      model_injection = "  include HasRendering"
-      inject_into_file "app/models/#{file_name}.rb", after: 'WorkBehavior' do
-        "\n#{model_injection}"
-      end unless File.read("app/models/#{file_name}.rb").include? model_injection
-
-      # add 'rendering_ids' to the form
-      form_injection = "self.terms += [:rendering_ids]"
-      form_injection += "\n\n    def secondary_terms"
-      form_injection += "\n       super - [:rendering_ids]"
-      form_injection += "\n    end"
-      gsub_file "app/forms/hyrax/#{class_name.underscore}_form.rb", /self\.terms \+\= \[\]/, form_injection
-
-      # change from WorkShowPresenter to ManifestEnabledWorkShowPresente
-      presenter_injection = "Hyku::ManifestEnabledWorkShowPresenter"
-      gsub_file "app/presenters/hyrax/#{class_name.underscore}_presenter.rb", /Hyrax::WorkShowPresenter/, presenter_injection
-
-      # add Hyku::IIIFManifest to the controllers
-      controller_injection = "\n\n    include Hyku::IIIFManifest"
-      inject_into_file "app/controllers/hyrax/#{class_name.underscore.pluralize}_controller.rb", after: "::#{class_name}\n" do
-        controller_injection
-      end unless File.read("app/controllers/hyrax/#{class_name.underscore.pluralize}_controller.rb").include? controller_injection
-
-      # add all properties to the delegates block of Hyku::ManifestEnabledWorkShowPresenter
-      delegates = DogBiscuits.config.all_properties - DogBiscuits.config.base_properties
-      gsub_file 'app/presenters/hyku/manifest_enabled_work_show_presenter.rb', /delegate :extent/, "delegate :#{delegates.join(', :')}, :extent"
-    end
+  def imagify
+    generate "dog_biscuits:imagify #{class_name}", '-f'
   end
 
   def display_readme

@@ -18,22 +18,6 @@ This generator makes the following changes to your application:
     say_status("info", "Re-generating catalog_controller, locales, attribute_rows and schema_org", :blue)
   end
 
-  def generate_catalog_controller
-    generate 'dog_biscuits:catalog_controller', '-f'
-  end
-
-  def generate_locales
-    generate 'dog_biscuits:locales', 'All -f'
-  end
-
-  def generate_attribute_rows
-    generate 'dog_biscuits:attribute_rows', 'All -f'
-  end
-
-  def generate_schema_org
-    generate 'dog_biscuits:schema_org', '-f'
-  end
-
   def generate_works
     DogBiscuits.config.selected_models.each do | model |
       if options[:skipmodel]

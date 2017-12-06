@@ -15,6 +15,7 @@ namespace :dog_biscuits do
         File.readlines(args[:path]).each do |line|
           subjects.create_record(line.delete("\n"))
         end
+        puts 'Import complete'
       end
     end
   end
