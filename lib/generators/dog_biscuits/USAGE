@@ -46,6 +46,11 @@ Description:
             1. Creates an _attribute_rows.html.erb file for the given Work
             2. Injects a row for each attribute where information is available in property_mappings
 
+    Imagify Generator
+        This generator can be run for an existing Model, or for All models (with All).
+        This generator makes the following changes to your application:
+          1. If this is a Hyku application, enables UV / IIIF
+
 Examples:
     rails generate dog_biscuits:install
     rails generate dog_biscuits:authority
@@ -57,4 +62,3 @@ Examples:
     rails generate dog_biscuits:locales ConferenceItem
     rails generate dog_biscuits:attribute_rows All
     rails generate dog_biscuits:attribute_rows ConferenceItem
-
