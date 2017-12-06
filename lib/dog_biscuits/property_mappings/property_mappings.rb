@@ -1,8 +1,7 @@
 # frozen_string_literal: true
-# frozen_string_literal: true
 
-# rubocop:disable Metrics/MethodLength
 # rubocop:disable Metrics/ModuleLength
+# rubocop:disable Metrics/MethodLength
 
 module DogBiscuits
   module PropertyMappings
@@ -62,6 +61,7 @@ module DogBiscuits
               type: "http://schema.org/Person",
               value: "name"
             },
+            label: 'Advisor / supervisor',
             help_text: 'Thesis advisor or supervisor.'
           },
           based_near_label: {
@@ -70,7 +70,8 @@ module DogBiscuits
               property: "contentLocation",
               type: "http://schema.org/Place",
               value: "name"
-            }
+            },
+            label: 'Location'
           },
           content_version: {
             index: "('content_version', :stored_searchable)",
@@ -94,7 +95,7 @@ module DogBiscuits
             label: 'Contributor'
           },
           contributor_type: {
-            label: 'Contributor Type'
+            label: 'Contributor type'
           },
           creator: {
             index: "('creator', :stored_searchable), link_to_search: solr_name('creator', :facetable)",
@@ -128,7 +129,8 @@ module DogBiscuits
             index: "('date_published', :stored_sortable, type: :date)",
             schema_org: {
               property: "datePublished"
-            }
+            },
+            label: 'Publication date'
           },
           date_submitted: {
             index: "('date_submitted', :stored_sortable, type: :date)"
@@ -138,11 +140,11 @@ module DogBiscuits
           },
           dc_access_rights: {
             index: "('dc_access_rights', :stored_searchable)",
-            label: "Access Rights"
+            label: "Access rights"
           },
           description: {
             index: "('description', :stored_searchable)",
-            label: "Description or Summary",
+            label: "Description or summary",
             helper_method: :iconify_auto_link,
             schema_org: {
               property: "description"
@@ -208,7 +210,8 @@ module DogBiscuits
             index: "('issue_number', :stored_searchable)",
             schema_org: {
               property: "issueNumber"
-            }
+            },
+            label: "Issue"
           },
           journal: {
             index: "('journal', :stored_searchable)",
@@ -265,7 +268,8 @@ module DogBiscuits
             index: "('pagination', :stored_searchable)",
             schema_org: {
               property: "pagination"
-            }
+            },
+            label: "Pages"
           },
           part: {
             index: "('part', :stored_searchable)",
@@ -293,7 +297,7 @@ module DogBiscuits
           },
           part_of: {
             index: "('proceeding', :stored_searchable)",
-            label: 'Part Of',
+            label: 'Part of',
             help_text: "A Work that this this physically or logically contained in, such as a conference proceeding, or series.",
             schema_org: {
               property: "isPartOf",
@@ -344,7 +348,8 @@ module DogBiscuits
               'Research Paper' => "http://schema.org/ScholarlyArticle",
               'Software or Program Code' => "http://schema.org/Code",
               'Video' => "http://schema.org/VideoObject"
-            }
+            },
+            label: "Resource type"
           },
           rights_statement: {
             index: "('rights_statement', :stored_searchable)",
@@ -357,7 +362,8 @@ module DogBiscuits
               property: "isPartOf",
               type: "http://schema.org/CreativeWork",
               value: "name"
-            }
+            },
+            label: "Series"
           },
           subject: {
             index: "('subject', :stored_searchable), link_to_search: solr_name('subject', :facetable)",
@@ -371,13 +377,15 @@ module DogBiscuits
             index: "('title', :stored_searchable), if: false",
             schema_org: {
               property: "name"
-            }
+            },
+            label: "Title"
           },
           volume_number: {
             index: "('volume_number', :stored_searchable)",
             schema_org: {
               property: "volumeNumber"
-            }
+            },
+            label: "Volume"
           }
         }
     end
