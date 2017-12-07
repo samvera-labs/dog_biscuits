@@ -43,13 +43,13 @@ module DogBiscuits
         end
 
         # Create a version of the label for use as a uri:
-        #   remove all non-alphanumeric characters
+        #   replace all non-alphanumeric characters with whitespace
         #   trim to 50 characters and replace whitespace with a dash
         #
         # @param label [String] the label for uri-ification
         # @return [String] uri-ified label
         def uri_ifiy_label(label)
-          cleanup_label(label).gsub(/[^\w\s\d]/, '')[0..50].parameterize
+          cleanup_label(label).gsub(/[^\w\s\d]/, ' ')[0..50].parameterize
         end
 
         # Create a default URI for the term
