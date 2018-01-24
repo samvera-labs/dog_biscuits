@@ -262,6 +262,7 @@ module DogBiscuits
             schema_org: {
               property: "significantLink"
             },
+            label: "Official URL",
             render_as: :external_link
           },
           pagination: {
