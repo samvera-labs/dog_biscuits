@@ -27,7 +27,6 @@ module DogBiscuits
           fl: 'id,preflabel_tesim,definition_tesim,broader_ssim',
           rows: 1000,
           sort: sort_order
-
         )
       )
     end
@@ -42,7 +41,6 @@ module DogBiscuits
           "inScheme_ssim:\"#{terms_id}\" AND id:\"#{id}\"",
           fl: 'id,preflabel_tesim,definition_tesim,broader_ssim',
           rows: 1
-
         )
       )
     end
@@ -57,7 +55,6 @@ module DogBiscuits
           "inScheme_ssim:\"#{terms_id}\" AND preflabel_tesim:\"#{q}\"",
           fl: 'id,preflabel_tesim,definition_tesim,broader_ssim',
           rows: 1000
-
         )
       )
     end
@@ -72,7 +69,6 @@ module DogBiscuits
           "inScheme_ssim:\"#{terms_id}\" AND preflabel_si:\"#{term}\"",
           fl: 'id',
           rows: 1
-
         )
       )
     end
@@ -87,7 +83,6 @@ module DogBiscuits
           "inScheme_ssim:\"#{terms_id}\" AND (preflabel_si:\"#{term}\" OR altlabel_tesim:\"#{term}\")",
           fl: 'id',
           rows: 1
-
         )
       )
     end
@@ -98,12 +93,10 @@ module DogBiscuits
     # @return [String] the preflabel
     def find_label_string(id)
       parse_string(
-
         ActiveFedora::SolrService.get(
           "inScheme_ssim:\"#{terms_id}\" AND id:\"#{id}\"",
           fl: 'preflabel_tesim',
           rows: 1
-
         )
       )
     end

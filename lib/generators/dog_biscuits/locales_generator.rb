@@ -14,12 +14,12 @@ This generator makes the following changes to your application
     say_status("info", "Generating locales for #{class_name}", :blue)
 
     if class_name == 'All'
-      @models = DogBiscuits.config.selected_models.map {|m| m.underscore}
+      @models = DogBiscuits.config.selected_models.map(&:underscore)
     else
       if DogBiscuits.config.selected_models.include? class_name
         @models = [class_name.underscore]
       else
-        say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect {|m| m}.join(', ') }", :red)
+        say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect { |m| m }.join(', ')}", :red)
         exit 0
       end
     end
@@ -34,27 +34,23 @@ This generator makes the following changes to your application
     append_simple_form_block = "\n  simple_form:\n    hints:\n      defaults:"
     append_simple_form_block += "\n    labels:\n      defaults:"
 
-    unless locale_text.include? 'simple_form'
-      append_file locale, append_simple_form_block
-    end
+    append_file locale, append_simple_form_block unless locale_text.include? 'simple_form'
 
     @models.each do |model|
       properties = DogBiscuits.config.send("#{model}_properties")
 
       properties.each do |prop|
-        if DogBiscuits.config.property_mappings[prop].present?
+        next if DogBiscuits.config.property_mappings[prop].blank?
 
-          if DogBiscuits.config.property_mappings[prop][:help_text].present?
-            prop_key = "#{prop.to_s}: "
-            hint = DogBiscuits.config.property_mappings[prop][:help_text]
-            # match up until the final quote mark
-            if locale_text =~ /#{Regexp.escape(prop_key)}"[^"]+"/
-              gsub_file locale, /#{Regexp.escape(prop_key)}"[^"]+"/, "#{prop_key}\"#{hint}\""
-            else
-              inject_into_file locale, before: "\n      labels:" do
-                "\n        #{prop_key}\"#{hint}\""
-              end
-            end
+        next if DogBiscuits.config.property_mappings[prop][:help_text].blank?
+        prop_key = "#{prop}: "
+        hint = DogBiscuits.config.property_mappings[prop][:help_text]
+        # match up until the final quote mark
+        if locale_text =~ /#{Regexp.escape(prop_key)}"[^"]+"/
+          gsub_file locale, /#{Regexp.escape(prop_key)}"[^"]+"/, "#{prop_key}\"#{hint}\""
+        else
+          inject_into_file locale, before: "\n      labels:" do
+            "\n        #{prop_key}\"#{hint}\""
           end
         end
       end
@@ -69,18 +65,16 @@ This generator makes the following changes to your application
       properties = DogBiscuits.config.send("#{model}_properties")
 
       properties.each do |prop|
-        if DogBiscuits.config.property_mappings[prop].present?
+        next if DogBiscuits.config.property_mappings[prop].blank?
 
-          if DogBiscuits.config.property_mappings[prop][:label].present?
-            prop_key = "#{prop.to_s}: "
-            label = DogBiscuits.config.property_mappings[prop][:label]
-            # do not match line ends otherwise it will replace to the end of the file
-            if locale_text =~ /#{Regexp.escape(prop_key)}[^"\n]+/
-              gsub_file locale, /#{Regexp.escape(prop_key)}[^"\n]+/, "#{prop_key}#{label}\n"
-            else
-              append_file locale, "\n        #{prop_key}#{label}\n"
-            end
-          end
+        next if DogBiscuits.config.property_mappings[prop][:label].blank?
+        prop_key = "#{prop}: "
+        label = DogBiscuits.config.property_mappings[prop][:label]
+        # do not match line ends otherwise it will replace to the end of the file
+        if locale_text =~ /#{Regexp.escape(prop_key)}[^"\n]+/
+          gsub_file locale, /#{Regexp.escape(prop_key)}[^"\n]+/, "#{prop_key}#{label}\n"
+        else
+          append_file locale, "\n        #{prop_key}#{label}\n"
         end
       end
     end
@@ -95,7 +89,7 @@ This generator makes the following changes to your application
     inject_blacklight_block += "\n        facet:\n        index:\n        show:\n"
 
     unless locale_text.include? 'blacklight'
-      inject_into_file locale, after:"en:\n" do
+      inject_into_file locale, after: "en:\n" do
         inject_blacklight_block
       end
     end
@@ -104,42 +98,38 @@ This generator makes the following changes to your application
       properties = DogBiscuits.config.send("#{model}_properties")
 
       properties.each do |prop|
-        if DogBiscuits.config.property_mappings[prop].present?
-          if DogBiscuits.config.property_mappings[prop][:label].present?
-            label = DogBiscuits.config.property_mappings[prop][:label]
-            append_key = "          #{prop.to_s}_tesim: "
-            facet_key = "          #{prop.to_s}_sim: "
+        next if DogBiscuits.config.property_mappings[prop].blank?
+        next if DogBiscuits.config.property_mappings[prop][:label].blank?
+        label = DogBiscuits.config.property_mappings[prop][:label]
+        append_key = "          #{prop}_tesim: "
+        facet_key = "          #{prop}_sim: "
 
-            # Facets before index
-            if DogBiscuits.config.facet_properties.include? prop
-              if locale_text.include? facet_key
-                gsub_file locale, /#{Regexp.escape(facet_key)}(.*)/, "#{facet_key}#{label}"
-              else
-                inject_into_file locale, before: '        index:' do
-                  "#{facet_key}#{label}\n"
-                end
-              end
-            end
-            # Index before show
-            if DogBiscuits.config.index_properties.include? prop
-              if locale_text.include? append_key
-                gsub_file locale, /#{Regexp.escape(append_key)}(.*)/, "#{append_key}#{label}"
-              else
-                inject_into_file locale, before: '        show:' do
-                  "#{append_key}#{label}\n"
-                end
-              end
-            end
-            # Show before hyrax
-            if locale_text.include? append_key
-              gsub_file locale, /#{Regexp.escape(append_key)}(.*)/, "#{append_key}#{label}"
-            else
-              inject_into_file locale, before: '  hyrax:' do
-                "#{append_key}#{label}\n"
-              end
+        # Facets before index
+        if DogBiscuits.config.facet_properties.include? prop
+          if locale_text.include? facet_key
+            gsub_file locale, /#{Regexp.escape(facet_key)}(.*)/, "#{facet_key}#{label}"
+          else
+            inject_into_file locale, before: '        index:' do
+              "#{facet_key}#{label}\n"
             end
           end
         end
+        # Index before show
+        if DogBiscuits.config.index_properties.include? prop
+          if locale_text.include? append_key
+            gsub_file locale, /#{Regexp.escape(append_key)}(.*)/, "#{append_key}#{label}"
+          else
+            inject_into_file locale, before: '        show:' do
+              "#{append_key}#{label}\n"
+            end
+          end
+        end
+        # Show before hyrax
+        inject_into_file locale, before: '  hyrax:' do
+          "#{append_key}#{label}\n"
+        end
+        # replace double entries
+        gsub_file locale, "#{append_key}#{label}\n#{append_key}#{label}\n", "#{append_key}#{label}" if locale_text.include? "#{append_key}#{label}\n#{append_key}#{label}\n"
       end
     end
   end
@@ -149,18 +139,16 @@ This generator makes the following changes to your application
     locale_text = File.read("config/locales/hyrax.en.yml")
     properties = DogBiscuits.config.facet_only_properties
     properties.each do |prop|
-      if DogBiscuits.config.property_mappings[prop].present?
-        if DogBiscuits.config.property_mappings[prop][:label].present?
-          label = DogBiscuits.config.property_mappings[prop][:label]
-          facet_key = "          #{prop.to_s}_sim: "
+      next if DogBiscuits.config.property_mappings[prop].blank?
+      next if DogBiscuits.config.property_mappings[prop][:label].blank?
+      label = DogBiscuits.config.property_mappings[prop][:label]
+      facet_key = "          #{prop}_sim: "
 
-          if locale_text.include? facet_key
-            gsub_file locale, /#{Regexp.escape(facet_key)}(.*)/, "#{facet_key}#{label}"
-          else
-            inject_into_file locale, before: '        index:' do
-              "#{facet_key}#{label}\n"
-            end
-          end
+      if locale_text.include? facet_key
+        gsub_file locale, /#{Regexp.escape(facet_key)}(.*)/, "#{facet_key}#{label}"
+      else
+        inject_into_file locale, before: '        index:' do
+          "#{facet_key}#{label}\n"
         end
       end
     end
