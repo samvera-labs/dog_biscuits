@@ -104,6 +104,19 @@ This generator makes the following changes to your application
         append_key = "          #{prop}_tesim: "
         facet_key = "          #{prop}_sim: "
 
+        # Show before hyrax
+        # Index before show
+        if locale_text.include? append_key
+          gsub_file locale, /#{Regexp.escape(append_key)}(.*)/, "#{append_key}#{label}"
+        else
+          inject_into_file locale, before: '        show:' do
+            "#{append_key}#{label}\n"
+          end if DogBiscuits.config.index_properties.include? prop
+          inject_into_file locale, before: '  hyrax:' do
+            "#{append_key}#{label}\n"
+          end
+        end
+        
         # Facets before index
         if DogBiscuits.config.facet_properties.include? prop
           if locale_text.include? facet_key
@@ -114,22 +127,6 @@ This generator makes the following changes to your application
             end
           end
         end
-        # Index before show
-        if DogBiscuits.config.index_properties.include? prop
-          if locale_text.include? append_key
-            gsub_file locale, /#{Regexp.escape(append_key)}(.*)/, "#{append_key}#{label}"
-          else
-            inject_into_file locale, before: '        show:' do
-              "#{append_key}#{label}\n"
-            end
-          end
-        end
-        # Show before hyrax
-        inject_into_file locale, before: '  hyrax:' do
-          "#{append_key}#{label}\n"
-        end
-        # replace double entries
-        gsub_file locale, "#{append_key}#{label}\n#{append_key}#{label}\n", "#{append_key}#{label}" if locale_text.include? "#{append_key}#{label}\n#{append_key}#{label}\n"
       end
     end
   end
