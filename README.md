@@ -1,7 +1,8 @@
 # DogBiscuits
 
-[![Coverage Status](https://coveralls.io/repos/github/samvera-labs/dog_biscuits/badge.svg?branch=master)](https://coveralls.io/github/samvera-labs/dog_biscuits?branch=master)
 [![Build Status](https://travis-ci.org/samvera-labs/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/samvera-labs/dog_biscuits)
+[![Coverage Status](https://coveralls.io/repos/github/samvera-labs/dog_biscuits/badge.svg?branch=master)](https://coveralls.io/github/samvera-labs/dog_biscuits?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/10912dcb2451a6c4490c/maintainability)](https://codeclimate.com/github/samvera-labs/dog_biscuits/maintainability)
 [![Dependency Status](https://gemnasium.com/badges/github.com/samvera-labs/dog_biscuits.svg)](https://gemnasium.com/github.com/samvera-labs/dog_biscuits)
 [![Inline docs](http://inch-ci.org/github/samvera-labs/dog_biscuits.svg?branch=master)](http://inch-ci.org/github/samvera-labs/dog_biscuits)
 
