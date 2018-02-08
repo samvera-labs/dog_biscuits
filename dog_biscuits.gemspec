@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'DogBiscuits provides re-usable models, vocabularies and other services for Hyrax applications.'
   spec.description   = 'DogBiscuits provides re-usable models, vocabularies and other services for Hyrax applications.'
-  spec.homepage      = 'https://github.com/ULCC/dog_biscuits'
+  spec.homepage      = 'https://github.com/samvera-labs/dog_biscuits'
   spec.license       = 'APACHE2'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

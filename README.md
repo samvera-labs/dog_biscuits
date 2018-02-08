@@ -1,9 +1,9 @@
 # DogBiscuits
 
-[![Coverage Status](https://coveralls.io/repos/github/ULCC/dog_biscuits/badge.svg?branch=master)](https://coveralls.io/github/ULCC/dog_biscuits?branch=master)
-[![Build Status](https://travis-ci.org/ULCC/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/ULCC/dog_biscuits)
-[![Dependency Status](https://gemnasium.com/badges/github.com/ULCC/dog_biscuits.svg)](https://gemnasium.com/github.com/ULCC/dog_biscuits)
-[![Inline docs](http://inch-ci.org/github/ULCC/dog_biscuits.svg?branch=master)](http://inch-ci.org/github/ULCC/dog_biscuits)
+[![Coverage Status](https://coveralls.io/repos/github/samvera-labs/dog_biscuits/badge.svg?branch=master)](https://coveralls.io/github/samvera-labs/dog_biscuits?branch=master)
+[![Build Status](https://travis-ci.org/samvera-labs/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/samvera-labs/dog_biscuits)
+[![Dependency Status](https://gemnasium.com/badges/github.com/samvera-labs/dog_biscuits.svg)](https://gemnasium.com/github.com/samvera-labs/dog_biscuits)
+[![Inline docs](http://inch-ci.org/github/samvera-labs/dog_biscuits.svg?branch=master)](http://inch-ci.org/github/samvera-labs/dog_biscuits)
 
 Models, vocabularies and behaviours for Hyrax applications :dog: :cookie:
 
@@ -46,7 +46,7 @@ Add the --skipmodel flag to overwrite any existing files but leave the model and
 
 ## Documentation
 
-Further documentation is available in the [wiki](https://github.com/ULCC/dog_biscuits/wiki).
+Further documentation is available in the [wiki](https://github.com/samvera-labs/dog_biscuits/wiki).
 
 ## Development
 
