@@ -1,56 +1,23 @@
+inherit_gem:
+  bixby: bixby_default.yml
+
 inherit_from:
-- .rubocop_todo.yml
+- .rubocop_fixme.yml
 
-AllCops:
-  TargetRubyVersion: 2.3
-  DisplayCopNames: true
-  Include:
-    - '**/Rakefile'
-
-Metrics/LineLength:
-  Max: 200
+Metrics/BlockLength:
   Exclude:
+    - '*.gemspec'
+    - 'spec/**/*'
+    - 'lib/dog_biscuits/models/concerns/metadata_properties/property_sets/*'
+    - 'lib/dog_biscuits/models/concerns/metadata_properties/archivematica/archivematica.rb'
+    - 'lib/dog_biscuits/models/concerns/extended_solr_document.rb'
 
-Metrics/AbcSize:
-  Max: 28
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/**/*'
 
-Metrics/MethodLength:
-  Max: 14
-
-Layout/IndentationConsistency:
-  EnforcedStyle: rails
-
-Style/CollectionMethods:
-  PreferredMethods:
-    collect: 'map'
-    collect!: 'map!'
-    inject: 'reduce'
-    detect: 'find'
-    find_all: 'select'
-
-Style/WordArray:
-  Enabled: false
-
-Style/RegexpLiteral:
-  Enabled: false
-
-Style/StringLiterals:
-  Enabled: false
-
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
-
-Style/SingleLineBlockParams:
-  Enabled: false
-
-Rails:
-  Enabled: true
-
-Rails/DynamicFindBy:
-  Enabled: false
-
-Rails/FilePath:
+# By default RSpec/MessageSpies has the following:
+# Prefer have_received for setting message expectations. Setup form as a spy using allow or instance_spy.
+# The default assumes EnforcedStyle is 'have_received'. Most of our specs are 'receive'
+RSpec/MessageSpies:
   Enabled: false

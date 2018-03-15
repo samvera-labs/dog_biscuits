@@ -3,19 +3,18 @@
 require 'spec_helper'
 
 describe DogBiscuits::Actors::ApplyAuthorities do
-  let(:work) { FactoryBot.build(:conference_item) }
-  let(:user) { FactoryBot.create(:depositor) }
-  let(:ability) { ::Ability.new(user) }
-  let(:env) { Hyrax::Actors::Environment.new(work, ability, attributes) }
-  let(:attributes) { { subject: ['subject-thing'] } }
-  let(:terminator) { Hyrax::Actors::Terminator.new }
-
   subject(:middleware) do
     stack = ActionDispatch::MiddlewareStack.new.tap do |middleware|
       middleware.use Hyrax::Actors::ConferenceItemActor
     end
     stack.build(terminator)
   end
+  let(:work) { FactoryBot.build(:conference_item) }
+  let(:user) { FactoryBot.create(:depositor) }
+  let(:ability) { ::Ability.new(user) }
+  let(:env) { Hyrax::Actors::Environment.new(work, ability, attributes) }
+  let(:attributes) { { subject: ['subject-thing'] } }
+  let(:terminator) { Hyrax::Actors::Terminator.new }
 
   before do
     allow(terminator).to receive(:create).and_return(true)

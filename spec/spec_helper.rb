@@ -45,7 +45,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     # nothing to do here
   end
-  config.before(:each) do
+  config.before do
     # nothing to do here
   end
   config.after(:suite) do

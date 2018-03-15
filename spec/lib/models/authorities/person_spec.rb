@@ -74,7 +74,7 @@ describe DogBiscuits::Person do
     it 'thesis does not have the creator after person is destroyed' do
       stubby.destroy
       thesis.reload
-      expect(thesis.to_solr['creator_label_tesim']).to_not include(stubby.preflabel)
+      expect(thesis.to_solr['creator_label_tesim']).not_to include(stubby.preflabel)
     end
   end
 end
