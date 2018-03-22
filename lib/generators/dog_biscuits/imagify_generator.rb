@@ -30,7 +30,7 @@ This generator makes the following changes to your application:
   end
 
   # If this is a Hyku app, enable IIIF / UV rendering
-  def image_ify
+  def image_ify_hyku
     @models.each do |model|
       next unless File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
       model_injection = "  include HasRendering"

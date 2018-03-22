@@ -22,20 +22,18 @@ This generator makes the following changes to your application:
     catalog_file = 'app/controllers/catalog_controller.rb'
 
     DogBiscuits.config.facet_properties.each do |prop|
-
-      injection = "    config.add_facet_field solr_name('#{prop.to_s}', :facetable), limit: 5"
+      injection = "    config.add_facet_field solr_name('#{prop}', :facetable), limit: 5"
 
       if DogBiscuits.config.property_mappings[prop]
-        if DogBiscuits.config.property_mappings[prop][:label]
-          injection += ", label: '#{DogBiscuits.config.property_mappings[prop][:label]}'"
-        end
+        injection += ", label: '#{DogBiscuits.config.property_mappings[prop][:label]}'" if DogBiscuits.config.property_mappings[prop][:label]
       end
 
       injection += "\n"
 
+      next if catalog_file.include? injection
       inject_into_file catalog_file, before: "    # replace facets end" do
         injection
-      end unless catalog_file.include? injection
+      end
     end
   end
 
@@ -43,35 +41,29 @@ This generator makes the following changes to your application:
     catalog_file = 'app/controllers/catalog_controller.rb'
 
     DogBiscuits.config.index_properties.each do |prop|
+      next unless DogBiscuits.config.property_mappings[prop]
+      injection = "    config.add_index_field solr_name"
+      injection += DogBiscuits.config.property_mappings[prop][:index]
 
-      if DogBiscuits.config.property_mappings[prop]
-        injection = "    config.add_index_field solr_name"
-        injection += DogBiscuits.config.property_mappings[prop][:index]
+      injection += ", itemprop:  '#{DogBiscuits.config.property_mappings[prop][:schema_org][:property]}'" if DogBiscuits.config.property_mappings[prop][:schema_org]
 
-        if DogBiscuits.config.property_mappings[prop][:schema_org]
-          injection += ", itemprop:  '#{DogBiscuits.config.property_mappings[prop][:schema_org][:property]}'"
-        end
+      injection += ", label:  '#{DogBiscuits.config.property_mappings[prop][:label]}'" if DogBiscuits.config.property_mappings[prop][:label]
 
-        if DogBiscuits.config.property_mappings[prop][:label]
-          injection += ", label:  '#{DogBiscuits.config.property_mappings[prop][:label]}'"
-        end
+      injection += ", helper_method:  '#{DogBiscuits.config.property_mappings[prop][:helper_method]}'" if DogBiscuits.config.property_mappings[prop][:helper_method]
 
-        if DogBiscuits.config.property_mappings[prop][:helper_method]
-          injection += ", helper_method:  '#{DogBiscuits.config.property_mappings[prop][:helper_method]}'"
-        end
+      injection += "\n"
 
-        injection += "\n"
-
-        inject_into_file catalog_file, before: '    # insert indexes end' do
-          injection
-        end
+      inject_into_file catalog_file, before: '    # insert indexes end' do
+        injection
       end
     end
 
     # This is a local property in Hyku
     extent = "    # For Hyku\n    config.add_index_field solr_name('extent', :stored_searchable)"
-    inject_into_file catalog_file, before: '    # insert indexes end' do
-      extent
+    if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
+      inject_into_file catalog_file, before: '    # insert indexes end' do
+        extent
+      end
     end
   end
 
@@ -80,7 +72,7 @@ This generator makes the following changes to your application:
     catalog_file = 'app/controllers/catalog_controller.rb'
     all_properties = []
     # Add fields for selected models only
-    models = DogBiscuits.config.selected_models.collect {|m| m.underscore}
+    models = DogBiscuits.config.selected_models.collect(&:underscore)
     models.each do |model|
       all_properties += DogBiscuits.config.send("#{model.underscore}_properties")
     end
@@ -91,28 +83,30 @@ This generator makes the following changes to your application:
     all_properties << :contributor_combined
 
     # This is a local property in Hyku
-    all_properties << :extent
+    all_properties << :extent if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
 
     all_properties.uniq.sort.each do |prop|
       injection = "    config.add_show_field solr_name('#{prop}', :stored_searchable)\n"
+      next if catalog_file.include? injection
       inject_into_file catalog_file, before: '    # "fielded" search configuration' do
         injection
-      end unless catalog_file.include? injection
+      end
     end
 
     all_properties.uniq.sort.each do |prop|
-      injection = "      config.add_search_field('#{prop}') do |field|\n" +
-          "        solr_name = solr_name('#{prop}', :stored_searchable)\n" +
-          "        field.solr_local_parameters = {\n" +
-          "          qf: solr_name,\n" +
-          "          pf: solr_name\n" +
-          "        }\n" +
-          "      end\n" +
-          "\n"
+      injection = "      config.add_search_field('#{prop}') do |field|\n" \
+                  "        solr_name = solr_name('#{prop}', :stored_searchable)\n" \
+                  "        field.solr_local_parameters = {\n" \
+                  "          qf: solr_name,\n" \
+                  "          pf: solr_name\n" \
+                  "        }\n" \
+                  "      end\n" \
+                  "\n"
 
+      next if catalog_file.include? injection
       inject_into_file catalog_file, before: '    # "sort results by" select (pulldown)' do
         injection
-      end unless catalog_file.include? injection
+      end
     end
   end
 end
