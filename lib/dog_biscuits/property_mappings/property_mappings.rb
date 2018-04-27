@@ -64,6 +64,16 @@ module DogBiscuits
             label: 'Advisor / supervisor',
             help_text: 'Thesis advisor or supervisor.'
           },
+          access_provided_by: {
+            index: "('access_provided_by', :stored_searchable)",
+            schema_org: {
+              property: "provider",
+              type: "http://schema.org/Organization",
+              value: "name"
+            },
+            label: 'Access Provided By',
+            help_text: 'Repository'
+          },
           based_near_label: {
             index: "('based_near_label', :stored_searchable), link_to_search: solr_name('based_near_label', :facetable)",
             schema_org: {

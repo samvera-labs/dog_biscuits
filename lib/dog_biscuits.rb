@@ -74,6 +74,7 @@ module DogBiscuits
   autoload_under 'models/works' do
     autoload :ConferenceItem
     autoload :Dataset
+    autoload :DigitalArchivalObject
     autoload :ExamPaper
     autoload :JournalArticle
     autoload :Package
@@ -89,6 +90,7 @@ module DogBiscuits
     autoload :AgentMetadata
     autoload :ConferenceItemMetadata
     autoload :DatasetMetadata
+    autoload :DigitalArchivalObjectMetadata
     autoload :ExamPaperMetadata
     autoload :JournalArticleMetadata
     autoload :PackageMetadata
@@ -107,6 +109,9 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/archives_hub' do
+    autoload :AccessProvidedBy
+    autoload :CountryCode
+    autoload :MaintenanceAgencyCode
     autoload :HubDates
   end
 
@@ -265,6 +270,7 @@ module DogBiscuits
     # Indexer classes
     autoload :ConferenceItemIndexer
     autoload :DatasetIndexer
+    autoload :DigitalArchivalObjectIndexer
     autoload :ExamPaperIndexer
     autoload :JournalArticleIndexer
     autoload :PackageIndexer

@@ -54,6 +54,7 @@ module DogBiscuits
     #   see https://github.com/samvera/hyrax/blob/master/app/models/concerns/hyrax/solr_document/metadata.rb
     included do
       attribute :abstract, Solr::Array, solr_name('abstract')
+      attribute :access_provided_by, Solr::Array, solr_name('access_provided_by')
       attribute :advisor, Solr::Array, solr_name('advisor')
       attribute :awarding_institution, Solr::Array, solr_name('awarding_institution_label')
       # based_near and based_near_label

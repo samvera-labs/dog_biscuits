@@ -42,6 +42,12 @@ FactoryBot.define do
     editor ['Street, Stephen']
   end
 
+  factory :digital_archival_object, class: DigitalArchivalObject do
+    title ['Digital Archival Object']
+    access_provided_by ['Rough Trade Records Archive']
+    part_of ['The Journal of Woe']
+  end
+
   factory :dataset, class: Dataset do
     title ['Strangeways, Here We Come']
     creator ['Marr, Johnny']
