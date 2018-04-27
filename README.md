@@ -8,6 +8,10 @@
 
 Models, vocabularies and behaviours for Hyrax applications :dog: :cookie:
 
+## Product Owner
+
+Julie Allinson [geekscruff](https://github.com/geekscruff)
+
 
 ## Installation
 
