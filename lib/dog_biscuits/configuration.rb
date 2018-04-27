@@ -16,7 +16,7 @@ module DogBiscuits
 
     # All available models
     def available_models
-      ['ConferenceItem', 'DigitalArchivalObject', 'ExamPaper', 'JournalArticle', 'PublishedWork', 'Thesis', 'Dataset', 'Package'].freeze
+      ['ConferenceItem', 'Dataset', 'DigitalArchivalObject', 'ExamPaper', 'JournalArticle', 'Package', 'PublishedWork', 'Thesis'].freeze
     end
 
     # Models used in the app (used by the generate_all generator)
@@ -197,7 +197,11 @@ module DogBiscuits
 
     def digital_archival_object_properties
       properties = %i[access_provided_by
-                      extent]
+                      extent
+                      part_of
+                      lat
+                      long
+                      alt]
       properties = base_properties + properties + common_properties
       properties.sort!
       @digital_archival_object_properties ||= properties

@@ -5,6 +5,6 @@ shared_examples_for 'country_code' do
     expect(stubby.country_code).to eq(['GB'])
   end
   it 'has country_code predicate' do
-    expect(rdf.should(include('http://data.archiveshub.ac.uk/def/countryCode')))
+    expect(rdf.should(include('http://www.geonames.org/ontology#countryCode')))
   end
 end

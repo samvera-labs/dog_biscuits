@@ -5,12 +5,6 @@ module DogBiscuits
     # Needed to set the type
     include ::Hydra::Works::WorkBehavior
 
-    # metadata
-    # http://data.archiveshub.ac.uk/def/accessProvidedBy Organisation
-    # These probably should be an Agent record
-    #   http://data.archiveshub.ac.uk/def/countryCode
-    #   http://data.archiveshub.ac.uk/def/maintenanceAgencyCode
-
     # partOf Accession
     #   accessionNumber (subProperty of dcterms:identifier)
     # partOf Collection object
@@ -27,17 +21,8 @@ module DogBiscuits
     # Metadata
     # include DogBiscuits::DigitalArchivalObjectMetadata
 
-    # before_save :combine_dates
-
     def digital_archival_object?
       true
-    end
-
-    # Create single date field from all dates.
-    def combine_dates
-      self.date = []
-      date << date_available
-      date << date_created
     end
   end
 end

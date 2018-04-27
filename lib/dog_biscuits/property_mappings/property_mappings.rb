@@ -75,7 +75,11 @@ module DogBiscuits
               value: "name"
             },
             label: 'Access Provided By',
-            help_text: 'Repository name'
+            help_text: 'Repository'
+          },
+          alt: {
+            index: "('alt', :stored_searchable)",
+            label: 'Altitude'
           },
           based_near_label: {
             index: "('based_near_label', :stored_searchable), link_to_search: solr_name('based_near_label', :facetable)",
@@ -302,12 +306,20 @@ module DogBiscuits
           last_access: {
             index: "('last_access', :stored_searchable)"
           },
+          lat: {
+            index: "('lat', :stored_searchable)",
+            label: 'Latitude'
+          },
           license: {
             index: "('license', :stored_searchable)",
             label: 'License',
             helper_method: :license_links,
             render_as: :license,
             help_text: "Licensing and distribution information governing access to the work. Select from the provided drop-down list."
+          },
+          long: {
+            index: "('long', :stored_searchable)",
+            label: 'Longitude'
           },
           module_code: {
             index: "('module_code', :stored_searchable)",

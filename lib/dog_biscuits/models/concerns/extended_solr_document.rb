@@ -56,6 +56,7 @@ module DogBiscuits
       attribute :abstract, Solr::Array, solr_name('abstract')
       attribute :access_provided_by, Solr::Array, solr_name('access_provided_by')
       attribute :advisor, Solr::Array, solr_name('advisor')
+      attribute :alt, Solr::Array, solr_name('alt')
       attribute :awarding_institution, Solr::Array, solr_name('awarding_institution_label')
       # based_near and based_near_label
       attribute :content_version, Solr::Array, solr_name('content_version')
@@ -96,7 +97,9 @@ module DogBiscuits
       # keyword
       # language
       attribute :last_access, Solr::Array, solr_name('last_access')
+      attribute :lat, Solr::Array, solr_name('lat')
       # license
+      attribute :long, Solr::Array, solr_name('long')
       attribute :managing_organisation, Solr::Array, solr_name('managing_organisation_label')
       attribute :module_code, Solr::Array, solr_name('module_code')
       attribute :note, Solr::Array, solr_name('note')

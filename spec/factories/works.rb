@@ -46,6 +46,10 @@ FactoryBot.define do
     title ['Digital Archival Object']
     access_provided_by ['Rough Trade Records Archive']
     extent ['500 files']
+    part_of ['Accession 51']
+    lat ['latitude']
+    long ['longitude']
+    alt ['altitude']
   end
 
   factory :dataset, class: Dataset do

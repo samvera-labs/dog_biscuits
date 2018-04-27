@@ -5,7 +5,9 @@ module DogBiscuits
     extend ActiveSupport::Concern
     include DogBiscuits::AccessProvidedBy
     include DogBiscuits::Extent
+    include DogBiscuits::Geo
     include DogBiscuits::PackagedBy
+    include DogBiscuits::PartOf
     # Controlled Properties must go last
     include DogBiscuits::CommonMetadata
   end

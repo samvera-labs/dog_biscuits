@@ -110,7 +110,6 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/archives_hub' do
     autoload :AccessProvidedBy
-    autoload :CountryCode
     autoload :MaintenanceAgencyCode
     autoload :HubDates
   end
@@ -195,6 +194,15 @@ module DogBiscuits
     autoload :OutputOf
   end
 
+  autoload_under 'models/concerns/metadata_properties/geo' do
+    autoload :Geo
+  end
+
+  autoload_under 'models/concerns/metadata_properties/geonames' do
+    autoload :CountryCode
+    autoload :PlaceProperties
+  end
+
   autoload_under 'models/concerns/metadata_properties/lc_identifiers' do
     autoload :Doi
     autoload :Isbn
@@ -226,7 +234,6 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/property_sets' do
     autoload :PersonProperties
-    autoload :PlaceProperties
   end
 
   autoload_under 'models/concerns/metadata_properties/pure' do
