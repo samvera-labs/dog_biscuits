@@ -15,7 +15,7 @@ module DogBiscuits
     end
 
     def available_models
-      ['ConferenceItem', 'ExamPaper', 'JournalArticle', 'PublishedWork', 'Thesis', 'Dataset', 'Package'].freeze
+      ['ConferenceItem', 'DigitalArchivalObject', 'ExamPaper', 'JournalArticle', 'PublishedWork', 'Thesis', 'Dataset', 'Package'].freeze
     end
 
     # Default required properties.
@@ -156,7 +156,7 @@ module DogBiscuits
 
     # Properties in order:
     #   basic metadata (as per Hyrax),
-    #   conference item (alphebetized),
+    #   this model (alphebetized),
     #   remaining common properties and resource_type (alphebeized)
     attr_writer :conference_item_properties
 
@@ -184,6 +184,24 @@ module DogBiscuits
 
     def conference_item_properties_required
       @conference_item_properties_required ||= required_properties
+    end
+
+    # DigitalArchivalObject
+
+    attr_writer :digital_archival_object_properties
+
+    def digital_archival_object_properties
+      properties = %i[access_provided_by
+                      part_of]
+      properties = base_properties + properties + common_properties
+      properties.sort!
+      @digital_archival_object_properties ||= properties
+    end
+
+    attr_writer :digital_archival_object_properties_required
+
+    def digital_archival_object_properties_required
+      @digital_archival_object_properties_required ||= required_properties
     end
 
     # PublishedWork

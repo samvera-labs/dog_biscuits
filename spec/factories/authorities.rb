@@ -167,6 +167,8 @@ FactoryBot.define do
     name 'The Smiths'
     dates '1500-1550'
     qualifier 'order of the phoenix'
+    maintenance_agency_code ['193']
+    country_code ['GB']
   end
 
   factory :department, class: DogBiscuits::Organisation do
