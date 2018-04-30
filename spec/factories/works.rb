@@ -45,7 +45,7 @@ FactoryBot.define do
   factory :digital_archival_object, class: DigitalArchivalObject do
     title ['Digital Archival Object']
     access_provided_by ['Rough Trade Records Archive']
-    part_of ['The Journal of Woe']
+    extent ['500 files']
   end
 
   factory :dataset, class: Dataset do
@@ -63,6 +63,7 @@ FactoryBot.define do
     last_access '2016-01-01'
     number_of_downloads '52'
     resource_type ['Software']
+    requestor_email ['me@example.com']
   end
 
   factory :exam_paper, class: ExamPaper do
@@ -90,7 +91,6 @@ FactoryBot.define do
     aip_resource_uri 'aip-uri'
     dip_resource_uri 'dip-uri'
     origin_pipeline 'origin-pipeline'
-    requestor_email ['me@example.com']
   end
 
   # validate all common metadata here

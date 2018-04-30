@@ -142,6 +142,7 @@ module DogBiscuits
     autoload :DateAccepted
     autoload :DateCreated
     autoload :Description
+    autoload :Extent
     autoload :Identifier
     autoload :Language
     autoload :Publisher
@@ -154,7 +155,7 @@ module DogBiscuits
     autoload :SimpleVersions
   end
 
-  autoload_under 'models/concerns/metadata_properties/dlib' do
+  autoload_under 'models/concerns/metadata_properties/local' do
     autoload :ForIndexing
     autoload :FormerIdentifier
     autoload :GenericAuthorityTerms
@@ -163,7 +164,9 @@ module DogBiscuits
     autoload :LastAccess
     autoload :MainFile
     autoload :NumberOfDownloads
+    autoload :PackagedBy
     autoload :ReadmeFile
+    autoload :RequestorEmail
   end
 
   autoload_under 'models/concerns/metadata_properties/edm' do

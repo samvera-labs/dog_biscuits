@@ -17,7 +17,7 @@ describe DogBiscuits::DigitalArchivalObject do
 
   # Concerns
   it_behaves_like 'access_provided_by'
-  it_behaves_like 'part_of'
+  it_behaves_like 'extent'
 
   describe '#rdftypes' do
     specify { stubby.type.should include('http://data.archiveshub.ac.uk/def/ArchivalResource') }

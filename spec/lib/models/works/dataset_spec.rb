@@ -30,6 +30,7 @@ describe Dataset do
   it_behaves_like 'number_of_downloads'
   it_behaves_like 'pure'
   it_behaves_like 'readme_file'
+  it_behaves_like 'requestor_email'
   it_behaves_like 'resource_type'
   it_behaves_like 'simple_versions'
 

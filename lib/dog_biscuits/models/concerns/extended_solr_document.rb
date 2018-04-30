@@ -77,6 +77,7 @@ module DogBiscuits
       attribute :edition, Solr::Array, solr_name('edition')
       attribute :editor, Solr::Array, solr_name('editor')
       attribute :end_date, Solr::Array, solr_name('end_date')
+      attribute :extent, Solr::Array, solr_name('extent')
       attribute :former_identifier, Solr::Array, solr_name('former_identifier')
       attribute :funder, Solr::Array, solr_name('funder')
       attribute :has_restriction, Solr::Array, solr_name('has_restriction')

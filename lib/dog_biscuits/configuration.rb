@@ -192,7 +192,7 @@ module DogBiscuits
 
     def digital_archival_object_properties
       properties = %i[access_provided_by
-                      part_of]
+                      extent]
       properties = base_properties + properties + common_properties
       properties.sort!
       @digital_archival_object_properties ||= properties

@@ -180,6 +180,9 @@ module DogBiscuits
               property: "editor"
             }
           },
+          extent: {
+            index: "('extend', :stored_searchable)",
+          },
           former_identifier: {
             index: "('former_identifier', :stored_searchable)",
             schema_org: {
