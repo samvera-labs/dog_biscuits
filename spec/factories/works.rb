@@ -56,14 +56,22 @@ FactoryBot.define do
     has_restriction ['10 years from last access']
     for_indexing ['lovely stuff for indexing']
     date_available ['2015']
-    pure_uuid 'xxxx-xxxx-xxxx-xxxx'
-    pure_creation '2002-05-30T09:00:00'
-    pure_type ['pure type']
-    pure_link ['pure link']
+    # pure_uuid 'xxxx-xxxx-xxxx-xxxx'
+    # pure_creation '2002-05-30T09:00:00'
+    # pure_type ['pure type']
+    # pure_link ['pure link']
     last_access '2016-01-01'
     number_of_downloads '52'
     resource_type ['Software']
     requestor_email ['me@example.com']
+    date_collected ['2012']
+    date_copyrighted ['2017']
+    date_issued ['2017']
+    date_updated ['2018']
+    date_valid ['2017-2020']
+    dc_format ['vinyl']
+    resource_type_general ['Sound']
+    subtitle ['Work is a four-letter word']
   end
 
   factory :exam_paper, class: ExamPaper do

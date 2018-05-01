@@ -6,8 +6,7 @@ module DogBiscuits
 
     included do
       property :access_provided_by,
-               predicate: ::RDF::URI.new('http://data.archiveshub.ac.uk/def/accessProvidedBy'),
-               multiple: true do |index|
+               predicate: ::RDF::URI.new('http://data.archiveshub.ac.uk/def/accessProvidedBy') do |index|
         index.as :stored_searchable
       end
     end

@@ -117,6 +117,7 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/bibframe' do
     autoload :AwardingInstitution
+    autoload :DateValid
     autoload :Edition
     autoload :IdentifiedBy
     autoload :InJournal
@@ -124,6 +125,7 @@ module DogBiscuits
     autoload :Part
     autoload :PartOf
     autoload :Series
+    autoload :Subtitle
   end
 
   autoload_under 'models/concerns/metadata_properties/bibo' do
@@ -131,18 +133,25 @@ module DogBiscuits
     autoload :PublicationStatus
   end
 
+  autoload_under 'models/concerns/metadata_properties/datacite' do
+    autoload :ResourceTypeGeneral
+  end
+
   autoload_under 'models/concerns/metadata_properties/dc' do
     autoload :Abstract
     autoload :AccessRights
-    autoload :Available
     autoload :BibliographicCitation
     autoload :Creator
     autoload :Contributor
     autoload :Date
     autoload :DateAccepted
+    autoload :DateAvailable
+    autoload :DateCopyrighted
     autoload :DateCreated
+    autoload :DateIssued
     autoload :Description
     autoload :Extent
+    autoload :Format
     autoload :Identifier
     autoload :Language
     autoload :Publisher
@@ -174,7 +183,7 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/fabio' do
-    autoload :EmbargoRelease
+    autoload :DateCollected
   end
 
   autoload_under 'models/concerns/metadata_properties/foaf' do
@@ -191,6 +200,10 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/mads' do
     autoload :RelatedAuthority
+  end
+
+  autoload_under 'models/concerns/metadata_properties/mods' do
+    autoload :DateValid
   end
 
   autoload_under 'models/concerns/metadata_properties/marc_relators' do
@@ -225,6 +238,7 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/schema' do
     autoload :ContentVersion
+    autoload :DateUpdated
     autoload :DatePublished
     autoload :EndDate
     autoload :IssueNumber

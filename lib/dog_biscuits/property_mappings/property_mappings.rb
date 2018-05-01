@@ -118,35 +118,62 @@ module DogBiscuits
           date: {
             label: 'Date',
             index: "('date', :stored_sortable)",
+            helper_method: :human_readable_date,
             help_text: 'A date for the work.'
           },
           date_accepted: {
-            index: "('date_accepted', :stored_sortable, type: :date)"
+            index: "('date_accepted', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
           },
           date_available: {
             index: "('date_available', :stored_sortable, type: :date)",
             schema_org: {
               property: "datePublished"
-            }
+            },
+            helper_method: :human_readable_date
           },
           date_created: {
             index: "('date_created', :stored_sortable, type: :date)",
             schema_org: {
               property: "dateCreated"
-            }
+            },
+            helper_method: :human_readable_date
           },
           date_published: {
             index: "('date_published', :stored_sortable, type: :date)",
             schema_org: {
               property: "datePublished"
             },
-            label: 'Publication date'
+            label: 'Publication date',
+            helper_method: :human_readable_date
           },
           date_submitted: {
-            index: "('date_submitted', :stored_sortable, type: :date)"
+            index: "('date_submitted', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
           },
           date_of_award: {
-            index: "('date_of_award', :stored_sortable, type: :date)"
+            index: "('date_of_award', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
+          },
+          date_collected: {
+            index: "('date_collected', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
+          },
+          date_copyrighted: {
+            index: "('date_copyrighted', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
+          },
+          date_issued: {
+            index: "('date_issued', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
+          },
+          date_updated: {
+            index: "('date_updated', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
+          },
+          date_valid: {
+            index: "('date_valid', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date
           },
           dc_access_rights: {
             index: "('dc_access_rights', :stored_searchable)",
@@ -181,7 +208,10 @@ module DogBiscuits
             }
           },
           extent: {
-            index: "('extend', :stored_searchable)",
+            index: "('extent', :stored_searchable)"
+          },
+          dc_format: {
+            index: "('dc_format', :stored_searchable)"
           },
           former_identifier: {
             index: "('former_identifier', :stored_searchable)",
@@ -365,6 +395,27 @@ module DogBiscuits
             },
             label: "Resource type"
           },
+          # datacite-specific
+          resource_type_general: {
+            index: "('resource_type_general', :stored_searchable)",
+            schema_org: {
+              'Audiovisual' => "http://schema.org/MediaObject",
+              'Collection' => "http://bib.schema.org/Collection",
+              'DataPaper' => "http://schema.org/CreativeWork",
+              'Dataset' => "http://schema.org/Dataset",
+              'Event' => "http://schema.org/Event",
+              'Image' => "http://schema.org/ImageObject",
+              'InteractiveResource' => "http://schema.org/CreativeWork",
+              'Model' => "http://schema.org/CreativeWork",
+              'PhysicalObject' => "http://schema.org/Thing",
+              'Service' => "http://schema.org/Service",
+              'Software' => "http://schema.org/Code",
+              'Sound' => "http://schema.org/AudioObject",
+              'Text' => "http://schema.org/CreativeWork",
+              'Workflow' => "http://schema.org/CreativeWork",
+              'Other' => "http://schema.org/Thing"
+            }
+          },
           rights_statement: {
             index: "('rights_statement', :stored_searchable)",
             helper_method: :rights_statement_links,
@@ -385,6 +436,12 @@ module DogBiscuits
               property: "about",
               type: "http://schema.org/Thing",
               value: "name"
+            }
+          },
+          subtitle: {
+            index: "('subtitle', :stored_searchable)",
+            schema_org: {
+              property: "name"
             }
           },
           title: {

@@ -48,7 +48,7 @@ This generator makes the following changes to your application:
   end
 
   def create_local_form_metadata_service
-    copy_file 'services/local_form_metadata_service.rb', 'app/services/local_form_metadata_service.rb'
+    copy_file 'app/services/local_form_metadata_service.rb', 'app/services/local_form_metadata_service.rb'
   end
 
   def create_schema_org
@@ -56,12 +56,12 @@ This generator makes the following changes to your application:
   end
 
   def create_edit_fields_and_inputs
-    directory 'views/records', 'app/views/records'
+    directory 'app/views/records', 'app/views/records'
   end
 
   # TODO: remove when fixed
   def create_views
-    copy_file 'views/hyrax/base/_work_description.erb', 'app/views/hyrax/base/_work_description.erb'
-    copy_file 'views/shared/_citations.html.erb', 'app/views/shared/_citations.html.erb'
+    copy_file 'app/views/hyrax/base/_work_description.erb', 'app/views/hyrax/base/_work_description.erb'
+    copy_file 'app/views/shared/_citations.html.erb', 'app/views/shared/_citations.html.erb'
   end
 end
