@@ -305,10 +305,26 @@ module DogBiscuits
     # omitting pure (_uuid, _creation, _type and _link)
     def dataset_properties
       properties = %i[date_available
+                      abstract
+                      content_version
+                      date_accepted
+                      date_collected
+                      date_copyrighted
+                      date_issued
+                      date_published
+                      date_submitted
+                      date_updated
+                      date_valid
                       dc_access_rights
+                      dc_format
+                      extent
+                      funder
                       has_restriction
                       last_access
-                      number_of_downloads]
+                      number_of_downloads
+                      resource_type_general
+                      requestor_email
+                      subtitle]
       properties = base_properties + properties + common_properties
       properties.sort!
       @dataset_properties ||= properties
@@ -316,8 +332,16 @@ module DogBiscuits
 
     attr_writer :dataset_properties_required
 
+    # use datacite (excluding doi)
     def dataset_properties_required
-      @dataset_properties_required ||= required_properties
+      @dataset_properties_required = %i[
+        creator
+        title
+        publisher
+        date_published
+        resource_type
+        resource_type_general
+      ]
     end
 
     attr_writer :package_properties

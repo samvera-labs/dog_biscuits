@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module RequestorEmail
+  module Format
     extend ActiveSupport::Concern
 
     included do
-      property :requestor_email, predicate: DogBiscuits::Vocab::Generic.requestorEmail do |index|
+      property :dc_format, predicate: ::RDF::Vocab::DC11.format do |index|
         index.as :stored_searchable
       end
     end

@@ -66,10 +66,15 @@ module DogBiscuits
       attribute :date, Solr::Array, solr_name('date')
       attribute :date_accepted, Solr::Array, solr_name('date_accepted')
       attribute :date_available, Solr::Array, solr_name('date_available')
+      attribute :date_collected, Solr::Array, solr_name('date_collected')
+      attribute :date_copyrighted, Solr::Array, solr_name('date_copyrighted')
+      attribute :date_issued, Solr::Array, solr_name('date_issued')
       # date_created
       attribute :date_of_award, Solr::Array, solr_name('date_of_award')
       attribute :date_published, Solr::Array, solr_name('date_published')
       attribute :date_submitted, Solr::Array, solr_name('date_submitted')
+      attribute :date_updated, Solr::Array, solr_name('date_updated')
+      attribute :date_valid, Solr::Array, solr_name('date_valid')
       attribute :dc_access_rights, Solr::Array, solr_name('dc_access_rights')
       attribute :department, Solr::Array, solr_name('department')
       # description
@@ -78,8 +83,10 @@ module DogBiscuits
       attribute :editor, Solr::Array, solr_name('editor')
       attribute :end_date, Solr::Array, solr_name('end_date')
       attribute :extent, Solr::Array, solr_name('extent')
+      attribute :dc_format, Solr::Array, solr_name('dc_format')
       attribute :former_identifier, Solr::Array, solr_name('former_identifier')
       attribute :funder, Solr::Array, solr_name('funder')
+      attribute :resource_type_general, Solr::Array, solr_name('resource_type_general')
       attribute :has_restriction, Solr::Array, solr_name('has_restriction')
       # rubocop:enable Naming/PredicateName
 
@@ -113,6 +120,7 @@ module DogBiscuits
       # source
       attribute :start_date, Solr::Array, solr_name('start_date')
       # subject
+      attribute :subtitle, Solr::Array, solr_name('subtitle')
       attribute :volume_number, Solr::Array, solr_name('volume_number')
     end
   end

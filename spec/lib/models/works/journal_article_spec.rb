@@ -16,7 +16,7 @@ describe DogBiscuits::JournalArticle do
   end
 
   # Concerns
-  it_behaves_like 'available'
+  it_behaves_like 'date_available'
   it_behaves_like 'date_accepted'
   it_behaves_like 'date_submitted'
   it_behaves_like 'date_published'

@@ -210,6 +210,9 @@ module DogBiscuits
             index: "('extent', :stored_searchable)",
             label: 'Extent'
           },
+          dc_format: {
+            index: "('dc_format', :stored_searchable)"
+          },
           former_identifier: {
             index: "('former_identifier', :stored_searchable)",
             label: 'Former identifier',
@@ -430,6 +433,27 @@ module DogBiscuits
             label: 'Resource type',
             help_text: "Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."
           },
+          # datacite-specific
+          resource_type_general: {
+            index: "('resource_type_general', :stored_searchable)",
+            schema_org: {
+              'Audiovisual' => "http://schema.org/MediaObject",
+              'Collection' => "http://bib.schema.org/Collection",
+              'DataPaper' => "http://schema.org/CreativeWork",
+              'Dataset' => "http://schema.org/Dataset",
+              'Event' => "http://schema.org/Event",
+              'Image' => "http://schema.org/ImageObject",
+              'InteractiveResource' => "http://schema.org/CreativeWork",
+              'Model' => "http://schema.org/CreativeWork",
+              'PhysicalObject' => "http://schema.org/Thing",
+              'Service' => "http://schema.org/Service",
+              'Software' => "http://schema.org/Code",
+              'Sound' => "http://schema.org/AudioObject",
+              'Text' => "http://schema.org/CreativeWork",
+              'Workflow' => "http://schema.org/CreativeWork",
+              'Other' => "http://schema.org/Thing"
+            }
+          },
           rights_statement: {
             index: "('rights_statement', :stored_searchable)",
             helper_method: :rights_statement_links,
@@ -454,6 +478,12 @@ module DogBiscuits
             },
             help_text: "Headings or index terms describing what the work is about; these do need to conform to an existing vocabulary.",
             label: 'Subject'
+          },
+          subtitle: {
+            index: "('subtitle', :stored_searchable)",
+            schema_org: {
+              property: "name"
+            }
           },
           title: {
             index: "('title', :stored_searchable), if: false",

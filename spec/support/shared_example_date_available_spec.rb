@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples_for 'available' do
+shared_examples_for 'date_available' do
   it 'has date available' do
     expect(stubby.date_available).to eq(['2015'])
   end
