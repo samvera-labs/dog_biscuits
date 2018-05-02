@@ -175,6 +175,9 @@ module DogBiscuits
             index: "('department', :stored_searchable)",
             label: 'Department, School or Faculty'
           },
+          department: {
+            index: "('department', :stored_searchable)"
+          },
           description: {
             index: "('description', :stored_searchable)",
             label: 'Description or summary',
