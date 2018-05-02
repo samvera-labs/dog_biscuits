@@ -32,6 +32,10 @@ module DogBiscuits
       self.date = []
       date << date_available
       date << date_created
+      date << date_updated
+      date << date_copyrights
+      date << date_collected
+      date << date_valid
     end
   end
 end

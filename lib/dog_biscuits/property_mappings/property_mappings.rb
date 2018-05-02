@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ModuleLength
-# rubocop:disable Metrics/MethodLength
-
 module DogBiscuits
   module PropertyMappings
     attr_writer :property_mappings
@@ -16,6 +13,8 @@ module DogBiscuits
     #   help_text: help text to include in the form
     #   render_as: a custom renderer for the field (omit facetable as this will be added by the generator)
     #   helper_method: a helper method used to render this property in the catalog
+
+    # NOTE: Labels MUST be wrapped in single quotes and help_text MUST be wrapped in double quotes
     def property_mappings
       @property_mappings ||=
         {
@@ -72,7 +71,7 @@ module DogBiscuits
               value: "name"
             },
             label: 'Access Provided By',
-            help_text: 'Repository'
+            help_text: 'Repository name'
           },
           based_near_label: {
             index: "('based_near_label', :stored_searchable), link_to_search: solr_name('based_near_label', :facetable)",
@@ -81,7 +80,8 @@ module DogBiscuits
               type: "http://schema.org/Place",
               value: "name"
             },
-            label: 'Location'
+            label: 'Location',
+            help_text: "A place name related to the work, such as its site of publication, or the city, state, or country the work contents are about. Calls upon the <a href='http://www.geonames.org'>GeoNames web service</a>."
           },
           content_version: {
             index: "('content_version', :stored_searchable)",
@@ -93,7 +93,8 @@ module DogBiscuits
               property: "contributor",
               type: "http://schema.org/Person",
               value: "name"
-            }
+            },
+            help_text: "A person or group you want to recognize for playing a role in the creation of the work, but not the primary role."
           },
           contributor_combined: {
             index: "('contributor_combined', :stored_searchable), link_to_search: solr_name('contributor_combined', :facetable)",
@@ -109,11 +110,13 @@ module DogBiscuits
           },
           creator: {
             index: "('creator', :stored_searchable), link_to_search: solr_name('creator', :facetable)",
+            label: 'Creator',
             schema_org: {
               property: "creator",
               type: "http://schema.org/Person",
               value: "name"
-            }
+            },
+            help_text: "The person or group responsible for the work. Usually this is the author of the content. Personal names should be entered with the last name first, e.g. &quot;Smith, John.&quot;."
           },
           date: {
             label: 'Date',
@@ -137,7 +140,8 @@ module DogBiscuits
             schema_org: {
               property: "dateCreated"
             },
-            helper_method: :human_readable_date
+            helper_method: :human_readable_date,
+            help_text: "The date on which the work was created."
           },
           date_published: {
             index: "('date_published', :stored_sortable, type: :date)",
@@ -177,18 +181,20 @@ module DogBiscuits
           },
           dc_access_rights: {
             index: "('dc_access_rights', :stored_searchable)",
-            label: "Access rights"
+            label: 'Access rights'
           },
           department: {
-            index: "('department', :stored_searchable)"
+            index: "('department', :stored_searchable)",
+            label: 'Department, School or Faculty'
           },
           description: {
             index: "('description', :stored_searchable)",
-            label: "Description or summary",
+            label: 'Description or summary',
             helper_method: :iconify_auto_link,
             schema_org: {
               property: "description"
-            }
+            },
+            help_text: "Free-text notes about the work. Examples include abstracts of a paper or citation information for a journal article."
           },
           doi: {
             index: "('doi', :stored_searchable)",
@@ -200,31 +206,37 @@ module DogBiscuits
           },
           edition: {
             index: "('edition', :stored_searchable)",
+            label: 'Edition',
             schema_org: {
               property: "version"
             }
           },
           editor: {
             index: "('editor', :stored_searchable)",
+            label: 'Editor',
             schema_org: {
               property: "editor"
             }
           },
           extent: {
-            index: "('extent', :stored_searchable)"
+            index: "('extent', :stored_searchable)",
+            label: 'Extent'
           },
           dc_format: {
-            index: "('dc_format', :stored_searchable)"
+            index: "('dc_format', :stored_searchable)",
+            label: 'Format'
           },
           former_identifier: {
             index: "('former_identifier', :stored_searchable)",
+            label: 'Former identifier',
             schema_org: {
               property: "identifier"
             },
             help_text: 'A former identifier, URL or other reference for the work.'
           },
           has_restriction: {
-            index: "('has_restriction', :stored_searchable)"
+            index: "('has_restriction', :stored_searchable)",
+            label: 'Restriction note'
           },
           human_readable_type: {
             index: "('human_readable_type', :stored_searchable)",
@@ -240,9 +252,12 @@ module DogBiscuits
           },
           identifier: {
             index: "('identifier', :stored_searchable), field_name: 'identifier'",
+            label: 'Identifier',
             helper_method: :index_field_link,
-            schema_org: nil,
-            property: "identifier"
+            schema_org: {
+              property: "identifier"
+            },
+            help_text: "A unique handle identifying the work. An example would be a DOI for a journal article, or an ISBN or OCLC number for a book."
           },
           isbn: {
             index: "('isbn', :stored_searchable)",
@@ -257,7 +272,7 @@ module DogBiscuits
             schema_org: {
               property: "issueNumber"
             },
-            label: "Issue"
+            label: 'Issue'
           },
           journal: {
             index: "('journal', :stored_searchable)",
@@ -265,40 +280,49 @@ module DogBiscuits
               property: "isPartOf",
               type: "http://schema.org/CreativeWork",
               value: "name"
-            }
+            },
+            label: 'Journal name'
           },
           keyword: {
             index: "('keyword', :stored_searchable), link_to_search: solr_name('keyword', :facetable)",
+            label: 'Keywords',
             schema_org: {
               property: "keywords"
-            }
+            },
+            help_text: "Words or phrases you select to describe what the work is about. These are used to search for content."
           },
           language: {
             index: "('language', :stored_searchable), link_to_search: solr_name('language', :facetable)",
+            label: 'Language',
             schema_org: {
               property: "language"
-            }
+            },
+            help_text: "The language of the work's content."
           },
           last_access: {
             index: "('last_access', :stored_searchable)"
           },
           license: {
             index: "('license', :stored_searchable)",
+            label: 'License',
             helper_method: :license_links,
-            render_as: :license
+            render_as: :license,
+            help_text: "Licensing and distribution information governing access to the work. Select from the provided drop-down list."
           },
           module_code: {
             index: "('module_code', :stored_searchable)",
             schema_org: {
               property: "identifier"
-            }
+            },
+            label: 'Module code'
           },
           note: {
             index: "('note', :stored_searchable)",
+            label: 'Note',
             schema_org: {
               property: "note"
             },
-            help_text: 'A general note about the work.'
+            help_text: "A general note about the work."
           },
           number_of_downloads: {
             index: "('number_of_downloads', :stored_searchable)"
@@ -308,7 +332,7 @@ module DogBiscuits
             schema_org: {
               property: "significantLink"
             },
-            label: "Official URL",
+            label: 'Official URL',
             render_as: :external_link
           },
           pagination: {
@@ -316,10 +340,11 @@ module DogBiscuits
             schema_org: {
               property: "pagination"
             },
-            label: "Pages"
+            label: 'Pages'
           },
           part: {
             index: "('part', :stored_searchable)",
+            label: 'Part name',
             schema_org: {
               property: "isPartOf",
               type: "http://schema.org/CreativeWork",
@@ -328,6 +353,7 @@ module DogBiscuits
           },
           place_of_publication: {
             index: "('place_of_publication', :stored_searchable)",
+            label: 'Place of publication',
             schema_org: {
               property: "location",
               type: "http://schema.org/Place",
@@ -336,6 +362,7 @@ module DogBiscuits
           },
           presented_at: {
             index: "('presented_at', :stored_searchable)",
+            label: 'Presented at',
             schema_org: {
               property: "workPerformed",
               type: "http://schema.org/Event",
@@ -353,7 +380,8 @@ module DogBiscuits
             }
           },
           publication_status: {
-            index: "('publication_status', :stored_searchable)"
+            index: "('publication_status', :stored_searchable)",
+            label: 'Publication status'
           },
           publisher: {
             index: "('publisher', :stored_searchable), link_to_search: solr_name('publisher', :facetable)",
@@ -361,23 +389,30 @@ module DogBiscuits
               property: "publisher",
               type: "http://schema.org/Organization",
               value: "name"
-            }
+            },
+            help_text: "The person or group making the work available. Generally this is the institution.",
+            label: 'Publisher'
           },
           qualification_level: {
-            index: "('qualification_level', :stored_searchable)"
+            index: "('qualification_level', :stored_searchable)",
+            label: 'Qualification level'
           },
           qualification_name: {
-            index: "('qualification_name', :stored_searchable)"
+            index: "('qualification_name', :stored_searchable)",
+            label: 'Qualification name'
           },
           refereed: {
-            index: "('refereed', :stored_searchable)"
+            index: "('refereed', :stored_searchable)",
+            label: 'Peer reviewed?'
           },
           related_url: {
             index: "('related_url', :stored_searchable)",
             schema_org: {
               property: "relatedLink"
             },
-            render_as: :external_link
+            render_as: :external_link,
+            help_text: "A link to a website or other specific content (audio, video, PDF document) related to the work. An example is the URL of a research project from which the work was derived.",
+            label: 'Related items'
           },
           resource_type: {
             index: "('resource_type', :stored_searchable), link_to_search: solr_name('resource_type', :facetable)",
@@ -396,7 +431,8 @@ module DogBiscuits
               'Software or Program Code' => "http://schema.org/Code",
               'Video' => "http://schema.org/VideoObject"
             },
-            label: "Resource type"
+            label: 'Resource type',
+            help_text: "Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."
           },
           # datacite-specific
           resource_type_general: {
@@ -417,12 +453,14 @@ module DogBiscuits
               'Text' => "http://schema.org/CreativeWork",
               'Workflow' => "http://schema.org/CreativeWork",
               'Other' => "http://schema.org/Thing"
-            }
+            },
+            label: 'General resource type'
           },
           rights_statement: {
             index: "('rights_statement', :stored_searchable)",
             helper_method: :rights_statement_links,
-            render_as: :rights_statement
+            render_as: :rights_statement,
+            label: 'Rights statement'
           },
           series: {
             index: "('series', :stored_searchable)",
@@ -431,7 +469,7 @@ module DogBiscuits
               type: "http://schema.org/CreativeWork",
               value: "name"
             },
-            label: "Series"
+            label: 'Series'
           },
           subject: {
             index: "('subject', :stored_searchable), link_to_search: solr_name('subject', :facetable)",
@@ -439,27 +477,31 @@ module DogBiscuits
               property: "about",
               type: "http://schema.org/Thing",
               value: "name"
-            }
+            },
+            help_text: "Headings or index terms describing what the work is about; these do need to conform to an existing vocabulary.",
+            label: 'Subject'
           },
           subtitle: {
             index: "('subtitle', :stored_searchable)",
             schema_org: {
               property: "name"
-            }
+            },
+            label: 'Subtitle'
           },
           title: {
             index: "('title', :stored_searchable), if: false",
             schema_org: {
               property: "name"
             },
-            label: "Title"
+            label: 'Title',
+            help_text: "A name to aid in identifying a work."
           },
           volume_number: {
             index: "('volume_number', :stored_searchable)",
             schema_org: {
               property: "volumeNumber"
             },
-            label: "Volume"
+            label: 'Volume'
           }
         }
     end
