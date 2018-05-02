@@ -179,6 +179,9 @@ module DogBiscuits
             index: "('dc_access_rights', :stored_searchable)",
             label: "Access rights"
           },
+          department: {
+            index: "('department', :stored_searchable)"
+          },
           description: {
             index: "('description', :stored_searchable)",
             label: "Description or summary",
