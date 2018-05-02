@@ -75,7 +75,7 @@ module DogBiscuits
               value: "name"
             },
             label: 'Access Provided By',
-            help_text: 'Repository'
+            help_text: 'Repository name'
           },
           based_near_label: {
             index: "('based_near_label', :stored_searchable), link_to_search: solr_name('based_near_label', :facetable)",
@@ -176,7 +176,8 @@ module DogBiscuits
             label: 'Department, School or Faculty'
           },
           department: {
-            index: "('department', :stored_searchable)"
+            index: "('department', :stored_searchable)",
+            label: 'Department, School or Faculty'
           },
           description: {
             index: "('description', :stored_searchable)",
@@ -214,7 +215,8 @@ module DogBiscuits
             label: 'Extent'
           },
           dc_format: {
-            index: "('dc_format', :stored_searchable)"
+            index: "('dc_format', :stored_searchable)",
+            label: 'Format'
           },
           former_identifier: {
             index: "('former_identifier', :stored_searchable)",
@@ -414,7 +416,7 @@ module DogBiscuits
             },
             render_as: :external_link,
             help_text: "A link to a website or other specific content (audio, video, PDF document) related to the work. An example is the URL of a research project from which the work was derived.",
-            label: 'Related URL'
+            label: 'Related items'
           },
           resource_type: {
             index: "('resource_type', :stored_searchable), link_to_search: solr_name('resource_type', :facetable)",
@@ -455,7 +457,8 @@ module DogBiscuits
               'Text' => "http://schema.org/CreativeWork",
               'Workflow' => "http://schema.org/CreativeWork",
               'Other' => "http://schema.org/Thing"
-            }
+            },
+            label: 'General resource type'
           },
           rights_statement: {
             index: "('rights_statement', :stored_searchable)",
@@ -486,7 +489,8 @@ module DogBiscuits
             index: "('subtitle', :stored_searchable)",
             schema_org: {
               property: "name"
-            }
+            },
+            label: 'Subtitle'
           },
           title: {
             index: "('title', :stored_searchable), if: false",
