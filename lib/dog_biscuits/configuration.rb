@@ -344,7 +344,7 @@ module DogBiscuits
     # use datacite mandatory
     #   exclude doi as this may be generated later in workflow
     def dataset_properties_required
-      @dataset_properties_required = %i[
+      @dataset_properties_required ||= %i[
         creator
         title
         publisher
