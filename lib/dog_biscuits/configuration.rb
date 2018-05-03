@@ -349,8 +349,8 @@ module DogBiscuits
         title
         publisher
         date_published
-        resource_type
         resource_type_general
+        resource_type
       ]
     end
 
