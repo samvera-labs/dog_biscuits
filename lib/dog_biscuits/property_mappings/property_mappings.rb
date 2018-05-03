@@ -416,7 +416,7 @@ module DogBiscuits
             },
             render_as: :external_link,
             help_text: "A link to a website or other specific content (audio, video, PDF document) related to the work. An example is the URL of a research project from which the work was derived.",
-            label: 'Related items'
+            label: 'Related URL'
           },
           resource_type: {
             index: "('resource_type', :stored_searchable), link_to_search: solr_name('resource_type', :facetable)",
