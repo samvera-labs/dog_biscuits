@@ -243,7 +243,7 @@ module DogBiscuits
 
     attr_writer :journal_article_properties
 
-    # omitting project_resource
+    # omitting output_of_resource
     def journal_article_properties
       properties = %i[abstract
                       date_published
@@ -253,6 +253,7 @@ module DogBiscuits
                       issue_number
                       part_of
                       official_url
+                      output_of
                       pagination
                       publication_status
                       refereed
@@ -307,7 +308,7 @@ module DogBiscuits
 
     attr_writer :dataset_properties
 
-    # omitting pure (_uuid, _creation, _type and _link), 
+    # omitting pure (_uuid, _creation, _type and _link),
     #   requestor_email, last_access, no_downloads
     #   these are admin info, not for standard form/view
     def dataset_properties
@@ -328,6 +329,9 @@ module DogBiscuits
                       extent
                       funder
                       has_restriction
+                      last_access
+                      number_of_downloads
+                      output_of
                       resource_type_general
                       subtitle]
       properties = base_properties + properties + common_properties

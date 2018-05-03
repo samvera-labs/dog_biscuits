@@ -11,7 +11,7 @@ shared_examples_for 'department' do
     expect(stubby.department_resource.first).to eq(org)
   end
 
-  # TODO fix this
+  # TODO: fix this
   it 'has department predicate' do
     expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/uketd#departmentResource')))
   end

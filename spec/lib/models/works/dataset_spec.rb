@@ -35,6 +35,7 @@ describe Dataset do
   it_behaves_like 'has_restriction'
   it_behaves_like 'last_access'
   it_behaves_like 'number_of_downloads'
+  it_behaves_like 'output_of'
   # it_behaves_like 'pure'
   it_behaves_like 'readme_file'
   it_behaves_like 'requestor_email'

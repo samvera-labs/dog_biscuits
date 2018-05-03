@@ -25,6 +25,7 @@ module DogBiscuits
     include DogBiscuits::LastAccess
     include DogBiscuits::NumberOfDownloads
     include DogBiscuits::PackagedBy
+    include DogBiscuits::OutputOf
     # include DogBiscuits::Pure  # removed
     include DogBiscuits::ReadmeFile
     include DogBiscuits::RequestorEmail
