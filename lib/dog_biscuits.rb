@@ -191,6 +191,10 @@ module DogBiscuits
     autoload :FoafName
   end
 
+  autoload_under 'models/concerns/metadata_properties/frapo' do
+    autoload :OutputOf
+  end
+
   autoload_under 'models/concerns/metadata_properties/lc_identifiers' do
     autoload :Doi
     autoload :Isbn
@@ -268,7 +272,6 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/ulcc' do
     autoload :DateSubmitted
-    autoload :ProjectOutput
     autoload :Refereed
   end
 

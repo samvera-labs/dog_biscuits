@@ -62,6 +62,7 @@ FactoryBot.define do
     # pure_link ['pure link']
     last_access '2016-01-01'
     number_of_downloads '52'
+    output_of ['some project']
     resource_type ['Software']
     requestor_email ['me@example.com']
     date_collected ['2012']
@@ -141,6 +142,7 @@ FactoryBot.define do
     date_available ['2015']
     refereed [true]
     official_url ['http://www.london.ac.uk']
+    output_of ['some project']
     publication_status ['Published']
     part_of ['The Journal of Woe']
   end

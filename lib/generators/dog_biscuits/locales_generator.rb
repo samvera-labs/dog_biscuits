@@ -45,7 +45,7 @@ This generator makes the following changes to your application
 
         prop_key = "#{prop}: "
         
-        # remove the line
+        # remove existing lines
         if locale_text =~ /        #{Regexp.escape(prop_key)}[.*]+\n/
           gsub_file locale, /        #{Regexp.escape(prop_key)}[.*]+\n/, ''
         end
@@ -66,7 +66,6 @@ This generator makes the following changes to your application
     end
   end
 
-  # Add facet, show and index labels for the properties for the given model
   def update_hyrax_locale_blacklight
     locale = 'config/locales/hyrax.en.yml'
     locale_text = File.read('config/locales/hyrax.en.yml')
@@ -83,7 +82,7 @@ This generator makes the following changes to your application
 
   # Remove all the values we are going to add
   # Do the 'show'
-  def update_hyrax_locale_blacklight_clean_and_show
+  def update_hyrax_locale_blacklight_clean_and_update_show
     locale = 'config/locales/hyrax.en.yml'
     
     # clear facets and index
@@ -132,7 +131,7 @@ This generator makes the following changes to your application
     end
   end
 
-  def update_facets
+  def update_hyrax_locale_blacklight_facet_only
     locale = 'config/locales/hyrax.en.yml'
     properties = DogBiscuits.config.facet_only_properties
     properties.each do |prop|

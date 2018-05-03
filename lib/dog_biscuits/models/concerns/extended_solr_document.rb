@@ -102,6 +102,7 @@ module DogBiscuits
       attribute :note, Solr::Array, solr_name('note')
       attribute :number_of_downloads, Solr::Array, solr_name('last_access')
       attribute :official_url, Solr::Array, solr_name('official_url')
+      attribute :output_of, Solr::Array, solr_name('output_of')
       attribute :pagination, Solr::Array, solr_name('pagination')
       attribute :part, Solr::Array, solr_name('part')
       attribute :place_of_publication, Solr::Array, solr_name('place_of_publication')

@@ -15,7 +15,7 @@ module DogBiscuits
     include DogBiscuits::Orcid
     include DogBiscuits::Pagination
     include DogBiscuits::PartOf
-    include DogBiscuits::ProjectOutput
+    include DogBiscuits::OutputOf
     include DogBiscuits::PublicationStatus
     include DogBiscuits::Refereed
     include DogBiscuits::VolumeNumber

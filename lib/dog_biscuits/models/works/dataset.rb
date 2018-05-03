@@ -33,7 +33,7 @@ module DogBiscuits
       date << date_available
       date << date_created
       date << date_updated
-      date << date_copyrights
+      date << date_copyrighted
       date << date_collected
       date << date_valid
     end

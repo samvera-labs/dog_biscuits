@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/LineLength
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/ModuleLength
+
 module DogBiscuits
   module PropertyMappings
     attr_writer :property_mappings
@@ -335,6 +339,10 @@ module DogBiscuits
             label: 'Official URL',
             render_as: :external_link
           },
+          output_of: {
+            index: "('output_of', :stored_searchable)",
+            label: 'Output of project or grant'
+          },
           pagination: {
             index: "('pagination', :stored_searchable)",
             schema_org: {
@@ -508,5 +516,6 @@ module DogBiscuits
   end
 end
 
+# rubocop:enable Metrics/LineLength
 # rubocop:enable Metrics/MethodLength
 # rubocop:enable Metrics/ModuleLength

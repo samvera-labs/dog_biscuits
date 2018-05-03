@@ -27,7 +27,7 @@ describe DogBiscuits::JournalArticle do
   it_behaves_like 'official_url'
   it_behaves_like 'pagination'
   it_behaves_like 'part_of'
-  it_behaves_like 'project_output'
+  it_behaves_like 'output_of'
   it_behaves_like 'publication_status'
   it_behaves_like 'refereed'
   it_behaves_like 'volume_number'
