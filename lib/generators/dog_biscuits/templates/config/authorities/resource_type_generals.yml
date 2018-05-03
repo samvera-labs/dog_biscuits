@@ -7,7 +7,7 @@ terms:
     term: Collection
     active: true
   - id: https://schema.datacite.org/resource_type_general/DataPaper
-    term: DataPaper
+    term: Data Paper
     active: true
   - id: http://www.w3.org/ns/dcat#Dataset
     term: Dataset
@@ -19,13 +19,13 @@ terms:
     term: Image
     active: true
   - id: http://www.w3.org/ns/dcat#InteractiveResource
-    term: InteractiveResource
+    term: Interactive Resource
     active: true
   - id: http://purl.org/spar/fabio/Model
     term: Model
     active: true
   - id: http://www.w3.org/ns/dcat#PhysicalObject
-    term: PhysicalObject
+    term: Physical Object
     active: true
   - id: http://www.w3.org/ns/dcat#Service
     term: Service

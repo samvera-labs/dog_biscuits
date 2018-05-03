@@ -238,6 +238,14 @@ module DogBiscuits
             },
             help_text: 'A former identifier, URL or other reference for the work.'
           },
+          funder: {
+            index: "('funder', :stored_searchable)",
+            label: 'Funder',
+            schema_org: {
+              property: "funder"
+            },
+            help_text: 'Funding body or oraganisation funding the work.'
+          },
           has_restriction: {
             index: "('has_restriction', :stored_searchable)",
             label: 'Restriction note'
@@ -420,7 +428,7 @@ module DogBiscuits
             },
             render_as: :external_link,
             help_text: "A link to a website or other specific content (audio, video, PDF document) related to the work. An example is the URL of a research project from which the work was derived.",
-            label: 'Related items'
+            label: 'Related URL'
           },
           resource_type: {
             index: "('resource_type', :stored_searchable), link_to_search: solr_name('resource_type', :facetable)",

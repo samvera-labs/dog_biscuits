@@ -312,28 +312,29 @@ module DogBiscuits
     #   requestor_email, last_access, no_downloads
     #   these are admin info, not for standard form/view
     def dataset_properties
-      properties = %i[date_available
-                      abstract
-                      content_version
-                      date_accepted
-                      date_available
-                      date_collected
-                      date_copyrighted
-                      date_issued
-                      date_published
-                      date_submitted
-                      date_updated
-                      date_valid
-                      dc_access_rights
-                      dc_format
-                      extent
-                      funder
-                      has_restriction
-                      last_access
-                      number_of_downloads
-                      output_of
-                      resource_type_general
-                      subtitle]
+      properties = %i[
+        abstract
+        content_version
+        date_accepted
+        date_available
+        date_collected
+        date_copyrighted
+        date_issued
+        date_published
+        date_submitted
+        date_updated
+        date_valid
+        dc_access_rights
+        dc_format
+        extent
+        funder
+        has_restriction
+        last_access
+        number_of_downloads
+        output_of
+        resource_type_general
+        subtitle
+      ]
       properties = base_properties + properties + common_properties
       properties.sort!
       @dataset_properties ||= properties
@@ -349,8 +350,8 @@ module DogBiscuits
         title
         publisher
         date_published
-        resource_type
         resource_type_general
+        resource_type
       ]
     end
 

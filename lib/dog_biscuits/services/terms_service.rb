@@ -38,7 +38,8 @@ module DogBiscuits
     def find(id)
       parse_authority_response(
         ActiveFedora::SolrService.get(
-          "inScheme_ssim:\"#{terms_id}\" AND id:\"#{id}\"",
+          "id:\"#{id}\"",
+          fq: "inScheme_ssim:\"#{terms_id}\"",
           fl: 'id,preflabel_tesim,definition_tesim,broader_ssim',
           rows: 1
         )
@@ -52,7 +53,8 @@ module DogBiscuits
     def search(q)
       parse_authority_response(
         ActiveFedora::SolrService.get(
-          "inScheme_ssim:\"#{terms_id}\" AND preflabel_tesim:\"#{q}\"",
+          "preflabel_tesim:*#{CGI.escape(q)}*",
+          fq: "inScheme_ssim:\"#{terms_id}\"",
           fl: 'id,preflabel_tesim,definition_tesim,broader_ssim',
           rows: 1000
         )
@@ -66,7 +68,8 @@ module DogBiscuits
     def find_id(term)
       parse_terms_id_response(
         ActiveFedora::SolrService.get(
-          "inScheme_ssim:\"#{terms_id}\" AND preflabel_si:\"#{term}\"",
+          "preflabel_si:\"#{term}\"",
+          fq: "inScheme_ssim:\"#{terms_id}\"",
           fl: 'id',
           rows: 1
         )
@@ -80,7 +83,8 @@ module DogBiscuits
     def find_id_with_alts(term)
       parse_terms_id_response(
         ActiveFedora::SolrService.get(
-          "inScheme_ssim:\"#{terms_id}\" AND (preflabel_si:\"#{term}\" OR altlabel_tesim:\"#{term}\")",
+          "preflabel_si:\"#{term}\" OR altlabel_tesim:\"#{term}\")",
+          fq: "inScheme_ssim:\"#{terms_id}\"",
           fl: 'id',
           rows: 1
         )
@@ -94,7 +98,8 @@ module DogBiscuits
     def find_label_string(id)
       parse_string(
         ActiveFedora::SolrService.get(
-          "inScheme_ssim:\"#{terms_id}\" AND id:\"#{id}\"",
+          "id:\"#{id}\"",
+          fq: "inScheme_ssim:\"#{terms_id}\"",
           fl: 'preflabel_tesim',
           rows: 1
         )
