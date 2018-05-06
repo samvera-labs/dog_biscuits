@@ -45,7 +45,7 @@ module DogBiscuits
           "#{fileset.mime_type.split('/').last} (#{fileset.format_label.join(', ')})"
         elsif fileset.mime_type.present?
           fileset.mime_type.split('/').last
-        elsif object.format_label.present?
+        elsif fileset.format_label.present?
           fileset.format_label
         end
       end
