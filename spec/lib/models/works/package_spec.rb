@@ -33,14 +33,6 @@ describe Package do
   it_behaves_like 'archivematica'
   it_behaves_like 'simple_versions'
 
-  it 'has requestor_email' do
-    expect(stubby.requestor_email).to eq(['me@example.com'])
-  end
-
-  it 'has requestor_email predicate' do
-    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/generic#requestorEmail')))
-  end
-
   it 'is an aip' do
     expect(stubby).to be_aip
   end

@@ -18,10 +18,6 @@ module DogBiscuits
                             predicate: DogBiscuits::Vocab::Generic.packages,
                             inverse_of: :packaged_by
 
-    property :requestor_email, predicate: DogBiscuits::Vocab::Generic.requestorEmail, multiple: true do |index|
-      index.as :stored_searchable
-    end
-
     # Indexer
     # Metadata
     # include DogBiscuits::PackageMetadata

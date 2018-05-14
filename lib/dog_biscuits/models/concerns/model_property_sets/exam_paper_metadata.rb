@@ -7,7 +7,7 @@ module DogBiscuits
     include DogBiscuits::ModuleCode
     include DogBiscuits::MainFile
     include DogBiscuits::Qualification
-    include DogBiscuits::Available
+    include DogBiscuits::DateAvailable
     # Controlled Properties must go last
     include DogBiscuits::CommonMetadata
   end

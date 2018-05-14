@@ -42,6 +42,12 @@ FactoryBot.define do
     editor ['Street, Stephen']
   end
 
+  factory :digital_archival_object, class: DigitalArchivalObject do
+    title ['Digital Archival Object']
+    access_provided_by ['Rough Trade Records Archive']
+    extent ['500 files']
+  end
+
   factory :dataset, class: Dataset do
     title ['Strangeways, Here We Come']
     creator ['Marr, Johnny']
@@ -50,13 +56,23 @@ FactoryBot.define do
     has_restriction ['10 years from last access']
     for_indexing ['lovely stuff for indexing']
     date_available ['2015']
-    pure_uuid 'xxxx-xxxx-xxxx-xxxx'
-    pure_creation '2002-05-30T09:00:00'
-    pure_type ['pure type']
-    pure_link ['pure link']
+    # pure_uuid 'xxxx-xxxx-xxxx-xxxx'
+    # pure_creation '2002-05-30T09:00:00'
+    # pure_type ['pure type']
+    # pure_link ['pure link']
     last_access '2016-01-01'
     number_of_downloads '52'
+    output_of ['some project']
     resource_type ['Software']
+    requestor_email ['me@example.com']
+    date_collected ['2012']
+    date_copyrighted ['2017']
+    date_issued ['2017']
+    date_updated ['2018']
+    date_valid ['2017-2020']
+    dc_format ['vinyl']
+    resource_type_general ['Sound']
+    subtitle ['Work is a four-letter word']
   end
 
   factory :exam_paper, class: ExamPaper do
@@ -84,7 +100,6 @@ FactoryBot.define do
     aip_resource_uri 'aip-uri'
     dip_resource_uri 'dip-uri'
     origin_pipeline 'origin-pipeline'
-    requestor_email ['me@example.com']
   end
 
   # validate all common metadata here
@@ -127,6 +142,7 @@ FactoryBot.define do
     date_available ['2015']
     refereed [true]
     official_url ['http://www.london.ac.uk']
+    output_of ['some project']
     publication_status ['Published']
     part_of ['The Journal of Woe']
   end

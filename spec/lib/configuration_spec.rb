@@ -34,6 +34,8 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:dataset_properties_required) }
   it { is_expected.to respond_to(:package_properties) }
   it { is_expected.to respond_to(:package_properties_required) }
+  it { is_expected.to respond_to(:digital_archival_object_properties) }
+  it { is_expected.to respond_to(:digital_archival_object_properties_required) }
 
   # writers
   it { is_expected.to respond_to(:all_properties=) }
@@ -57,4 +59,6 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:dataset_properties_required=) }
   it { is_expected.to respond_to(:package_properties=) }
   it { is_expected.to respond_to(:package_properties_required=) }
+  it { is_expected.to respond_to(:digital_archival_object_properties=) }
+  it { is_expected.to respond_to(:digital_archival_object_properties_required=) }
 end

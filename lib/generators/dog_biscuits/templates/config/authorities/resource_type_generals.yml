@@ -1,0 +1,47 @@
+# DataCite Resource Type General
+terms:
+  - id: http://www.w3.org/ns/dcat#MovingImage
+    term: Audiovisual
+    active: true
+  - id: http://www.w3.org/ns/dcat#Collection
+    term: Collection
+    active: true
+  - id: https://schema.datacite.org/resource_type_general/DataPaper
+    term: Data Paper
+    active: true
+  - id: http://www.w3.org/ns/dcat#Dataset
+    term: Dataset
+    active: true
+  - id: http://www.w3.org/ns/dcat#Event
+    term: Event
+    active: true
+  - id: http://www.w3.org/ns/dcat#StillImage
+    term: Image
+    active: true
+  - id: http://www.w3.org/ns/dcat#InteractiveResource
+    term: Interactive Resource
+    active: true
+  - id: http://purl.org/spar/fabio/Model
+    term: Model
+    active: true
+  - id: http://www.w3.org/ns/dcat#PhysicalObject
+    term: Physical Object
+    active: true
+  - id: http://www.w3.org/ns/dcat#Service
+    term: Service
+    active: true
+  - id: http://www.w3.org/ns/dcat#Software
+    term: Software
+    active: true
+  - id: http://www.w3.org/ns/dcat#Sound
+    term: Sound
+    active: true
+  - id: http://www.w3.org/ns/dcat#Text
+    term: Text
+    active: true
+  - id: http://purl.org/spar/fabio/Workflow
+    term: Workflow
+    active: true
+  - id: http://purl.org/vocab/frbr/core#Endeavour
+    term: Other
+    active: true

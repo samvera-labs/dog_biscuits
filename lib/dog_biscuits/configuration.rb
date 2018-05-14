@@ -14,8 +14,15 @@ module DogBiscuits
       selected_models.map { |m| send("#{m.underscore}_properties") }.flatten.uniq
     end
 
+    # All available models
     def available_models
-      ['ConferenceItem', 'ExamPaper', 'JournalArticle', 'PublishedWork', 'Thesis', 'Dataset', 'Package'].freeze
+      ['ConferenceItem', 'DigitalArchivalObject', 'ExamPaper', 'JournalArticle', 'PublishedWork', 'Thesis', 'Dataset', 'Package'].freeze
+    end
+
+    # Models used in the app (used by the generate_all generator)
+    attr_writer :selected_models
+    def selected_models
+      @selected_models ||= available_models
     end
 
     # Default required properties.
@@ -46,8 +53,8 @@ module DogBiscuits
 
     # Common properties from DogBiscuits atop those in BasicMetadata
     # Also include resource_type which is part of BasicMetadata but not part of the Hyrax WorkForm
-    # omitting managing_organisation_resource, department_resource, funder_resource
-    # omitting date as this is purely for faceting
+    # omitting _resource properties (managing_organisation_, department_, funder_)
+    # omitting date as this is used for faceting only
     def common_properties
       %i[doi former_identifier note].freeze
     end
@@ -55,15 +62,9 @@ module DogBiscuits
     # Add values that aren't found in the following table-based authorities to be added on save.
     #   This only works in cases where the name of the authority is a pluralized form of
     #   the name of the property which uses it, eg. subjects/subject and languages/language
-
     attr_writer :authorities_add_new
     def authorities_add_new
       @authorities_add_new ||= []
-    end
-
-    attr_writer :selected_models
-    def selected_models
-      @selected_models ||= available_models
     end
 
     # All solr fields that will be treated as facets by the blacklight application
@@ -141,9 +142,13 @@ module DogBiscuits
         date_accepted
         date_available
         date_created
+        date_collected
+        date_copyrighted
+        date_issued
         date_published
         date_submitted
-        date_of_award
+        date_updated
+        date_valid
         issue_number
         pagination
         publication_status
@@ -156,7 +161,7 @@ module DogBiscuits
 
     # Properties in order:
     #   basic metadata (as per Hyrax),
-    #   conference item (alphebetized),
+    #   this model (alphebetized),
     #   remaining common properties and resource_type (alphebeized)
     attr_writer :conference_item_properties
 
@@ -184,6 +189,24 @@ module DogBiscuits
 
     def conference_item_properties_required
       @conference_item_properties_required ||= required_properties
+    end
+
+    # DigitalArchivalObject
+
+    attr_writer :digital_archival_object_properties
+
+    def digital_archival_object_properties
+      properties = %i[access_provided_by
+                      extent]
+      properties = base_properties + properties + common_properties
+      properties.sort!
+      @digital_archival_object_properties ||= properties
+    end
+
+    attr_writer :digital_archival_object_properties_required
+
+    def digital_archival_object_properties_required
+      @digital_archival_object_properties_required ||= required_properties
     end
 
     # PublishedWork
@@ -220,7 +243,7 @@ module DogBiscuits
 
     attr_writer :journal_article_properties
 
-    # omitting project_resource
+    # omitting output_of_resource
     def journal_article_properties
       properties = %i[abstract
                       date_published
@@ -230,6 +253,7 @@ module DogBiscuits
                       issue_number
                       part_of
                       official_url
+                      output_of
                       pagination
                       publication_status
                       refereed
@@ -284,13 +308,32 @@ module DogBiscuits
 
     attr_writer :dataset_properties
 
-    # omitting pure (_uuid, _creation, _type and _link)
+    # omitting pure (_uuid, _creation, _type and _link),
+    #   requestor_email, last_access, no_downloads
+    #   these are admin info, not for standard form/view
     def dataset_properties
       properties = %i[date_available
+                      abstract
+                      content_version
+                      date_accepted
+                      date_available
+                      date_collected
+                      date_copyrighted
+                      date_issued
+                      date_published
+                      date_submitted
+                      date_updated
+                      date_valid
                       dc_access_rights
+                      dc_format
+                      extent
+                      funder
                       has_restriction
                       last_access
-                      number_of_downloads]
+                      number_of_downloads
+                      output_of
+                      resource_type_general
+                      subtitle]
       properties = base_properties + properties + common_properties
       properties.sort!
       @dataset_properties ||= properties
@@ -298,8 +341,17 @@ module DogBiscuits
 
     attr_writer :dataset_properties_required
 
+    # use datacite mandatory
+    #   exclude doi as this may be generated later in workflow
     def dataset_properties_required
-      @dataset_properties_required ||= required_properties
+      @dataset_properties_required ||= %i[
+        creator
+        title
+        publisher
+        date_published
+        resource_type_general
+        resource_type
+      ]
     end
 
     attr_writer :package_properties

@@ -156,7 +156,7 @@ module DogBiscuits
                type: 'rdf:Property'
       property :moduleCode,
                comment:
-                   'This property should be used for a course modul code, eg. from SITS.',
+                   'This property should be used for a course module code, eg. from SITS.',
                label: 'Module Code',
                'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
                type: 'rdf:Property'

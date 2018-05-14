@@ -11,8 +11,9 @@ shared_examples_for 'department' do
     expect(stubby.department_resource.first).to eq(org)
   end
 
+  # TODO: fix this
   it 'has department predicate' do
-    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/uketd#department')))
+    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/uketd#departmentResource')))
   end
 
   it 'has _label in solr' do

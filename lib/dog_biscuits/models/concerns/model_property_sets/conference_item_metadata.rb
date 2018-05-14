@@ -4,7 +4,7 @@ module DogBiscuits
   module ConferenceItemMetadata
     extend ActiveSupport::Concern
     include DogBiscuits::Abstract
-    include DogBiscuits::Available
+    include DogBiscuits::DateAvailable
     include DogBiscuits::DatePublished
     include DogBiscuits::DateSubmitted
     include DogBiscuits::DateAccepted
