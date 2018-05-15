@@ -22,6 +22,7 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Exclude:
     - 'lib/dog_biscuits/vocab/**/*'
+    - 'lib/dog_biscuits/services/terms_service.rb'
 
 Metrics/ModuleLength:
   Exclude:

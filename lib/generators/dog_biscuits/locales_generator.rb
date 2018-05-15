@@ -31,8 +31,8 @@ This generator makes the following changes to your application
   def update_hyrax_locale_hints
     locale = 'config/locales/hyrax.en.yml'
     locale_text = File.read('config/locales/hyrax.en.yml')
-    append_simple_form_block = "\n  simple_form:\n    hints:\n      defaults:"
-    append_simple_form_block += "\n    labels:\n      defaults:"
+    append_simple_form_block = "\n  simple_form:\n    hints:\n      defaults:\n"
+    append_simple_form_block += "\n    labels:\n      defaults:\n"
 
     append_file locale, append_simple_form_block unless locale_text.include? 'simple_form'
 
@@ -41,46 +41,31 @@ This generator makes the following changes to your application
 
       properties.each do |prop|
         next if DogBiscuits.config.property_mappings[prop].blank?
+        next if DogBiscuits.config.property_mappings[prop][:help_text].blank? and DogBiscuits.config.property_mappings[prop][:label].blank?
 
-        next if DogBiscuits.config.property_mappings[prop][:help_text].blank?
         prop_key = "#{prop}: "
-        hint = DogBiscuits.config.property_mappings[prop][:help_text]
-        # match up until the final quote mark
-        if locale_text =~ /#{Regexp.escape(prop_key)}"[^"]+"/
-          gsub_file locale, /#{Regexp.escape(prop_key)}"[^"]+"/, "#{prop_key}\"#{hint}\""
-        else
-          inject_into_file locale, before: "\n      labels:" do
-            "\n        #{prop_key}\"#{hint}\""
+        
+        # remove existing lines
+        if locale_text =~ /        #{Regexp.escape(prop_key)}[.*]+\n/
+          gsub_file locale, /        #{Regexp.escape(prop_key)}[.*]+\n/, ''
+        end
+
+        unless DogBiscuits.config.property_mappings[prop][:help_text].blank?
+          hint = DogBiscuits.config.property_mappings[prop][:help_text]   
+          inject_into_file locale, after: "\n    hints:\n      defaults:\n" do
+            "        #{prop_key}\"#{hint}\"\n"
+          end
+        end
+        unless DogBiscuits.config.property_mappings[prop][:label].blank?     
+          label = DogBiscuits.config.property_mappings[prop][:label]
+          inject_into_file locale, after: "\n    labels:\n      defaults:\n" do
+            "        #{prop_key}#{label}\n"
           end
         end
       end
     end
   end
 
-  def update_hyrax_locale_labels
-    locale = 'config/locales/hyrax.en.yml'
-    locale_text = File.read('config/locales/hyrax.en.yml')
-
-    @models.each do |model|
-      properties = DogBiscuits.config.send("#{model}_properties")
-
-      properties.each do |prop|
-        next if DogBiscuits.config.property_mappings[prop].blank?
-
-        next if DogBiscuits.config.property_mappings[prop][:label].blank?
-        prop_key = "#{prop}: "
-        label = DogBiscuits.config.property_mappings[prop][:label]
-        # do not match line ends otherwise it will replace to the end of the file
-        if locale_text =~ /#{Regexp.escape(prop_key)}[^"\n]+/
-          gsub_file locale, /#{Regexp.escape(prop_key)}[^"\n]+/, "#{prop_key}#{label}\n"
-        else
-          append_file locale, "\n        #{prop_key}#{label}\n"
-        end
-      end
-    end
-  end
-
-  # Add facet, show and index labels for the properties for the given model
   def update_hyrax_locale_blacklight
     locale = 'config/locales/hyrax.en.yml'
     locale_text = File.read('config/locales/hyrax.en.yml')
@@ -97,21 +82,39 @@ This generator makes the following changes to your application
 
   # Remove all the values we are going to add
   # Do the 'show'
-  def update_hyrax_locale_blacklight_clean_and_show
+  def update_hyrax_locale_blacklight_clean_and_update_show
     locale = 'config/locales/hyrax.en.yml'
+    
+    # clear facets and index
+    gsub_file locale, /        index:(.*)        show:/m, "        index:\n        show:\n"
+    gsub_file locale, /        facet:(.*)        index:/m, "        facet:\n        index:\n"
+    
     @models.each do |model|
       properties = DogBiscuits.config.send("#{model}_properties")
       properties.each do |prop|
         next if DogBiscuits.config.property_mappings[prop].blank?
         next if DogBiscuits.config.property_mappings[prop][:label].blank?
+
+        # let's clear out existing property data from show
         index_show_key = "          #{prop}_tesim: "
-        gsub_file locale, /#{Regexp.escape(index_show_key)}(.*)/, ''
-        facet_key = "          #{prop}_sim: "
-        gsub_file locale, /#{Regexp.escape(facet_key)}(.*)/, ''
-        # Show is before index
-        inject_into_file locale, before: '  hyrax:' do
+        gsub_file locale, /#{Regexp.escape(index_show_key)}(.*)/, '' 
+
+        inject_into_file locale,after: "        show:\n" do
           "          #{prop}_tesim: #{DogBiscuits.config.property_mappings[prop][:label]}\n"
         end
+      end
+    end
+  end
+
+  def update_hyrax_locale_blacklight_index
+    properties = DogBiscuits.config.index_properties
+    locale = 'config/locales/hyrax.en.yml'
+    properties.each do |prop|
+      next if DogBiscuits.config.property_mappings[prop].blank?
+      next if DogBiscuits.config.property_mappings[prop][:label].blank?  
+
+      inject_into_file 'config/locales/hyrax.en.yml', after: "        index:\n" do 
+        "          #{prop}_tesim: #{DogBiscuits.config.property_mappings[prop][:label]}INDEX\n"
       end
     end
   end
@@ -121,45 +124,22 @@ This generator makes the following changes to your application
     properties.each do |prop|
       next if DogBiscuits.config.property_mappings[prop].blank?
       next if DogBiscuits.config.property_mappings[prop][:label].blank?  
-      # Facet is before index
-       inject_into_file 'config/locales/hyrax.en.yml', before: '        index:' do
+      
+       inject_into_file 'config/locales/hyrax.en.yml', after: "        facet:\n" do
          "          #{prop}_sim: #{DogBiscuits.config.property_mappings[prop][:label]}\n"
        end
     end
   end
 
-  def update_facets
+  def update_hyrax_locale_blacklight_facet_only
     locale = 'config/locales/hyrax.en.yml'
-    locale_text = File.read('config/locales/hyrax.en.yml')
     properties = DogBiscuits.config.facet_only_properties
     properties.each do |prop|
       next if DogBiscuits.config.property_mappings[prop].blank?
       next if DogBiscuits.config.property_mappings[prop][:label].blank?
       label = DogBiscuits.config.property_mappings[prop][:label]
-      facet_key = "          #{prop}_sim: "
-
-      if locale_text.include? facet_key
-        gsub_file locale, /#{Regexp.escape(facet_key)}(.*)/, "#{facet_key}#{label}"
-      else
-        inject_into_file locale, before: '        index:' do
-          "#{facet_key}#{label}\n"
-        end
-      end
-    end
-  end
-
-  # For reasons I don't understand, this doesn't get written if it is the same as the text
-  #  going into the 'show' block, hence adding INDEX at the end and then removing it in the
-  #  final method
-  def update_hyrax_locale_blacklight_index
-    properties = DogBiscuits.config.index_properties
-
-    properties.each do |prop|
-      next if DogBiscuits.config.property_mappings[prop].blank?
-      next if DogBiscuits.config.property_mappings[prop][:label].blank?
-      # Index is after index
-      inject_into_file 'config/locales/hyrax.en.yml', before: '        show:' do
-        "          #{prop}_tesim: #{DogBiscuits.config.property_mappings[prop][:label]}INDEX\n"
+      inject_into_file locale, after: "        facet:\n" do
+        "          #{prop}_sim: #{label}\n"
       end
     end
   end
@@ -168,6 +148,7 @@ This generator makes the following changes to your application
     locale = 'config/locales/hyrax.en.yml'
     gsub_file locale, /\n\n/, "\n"
     gsub_file locale, /\n(\s*)\n/, "\n"
-    gsub_file locale, /INDEX\n/, "\n" 
+    gsub_file locale, /INDEX\n/, "\n"
+    append_file locale, "\n\n"
   end
 end
