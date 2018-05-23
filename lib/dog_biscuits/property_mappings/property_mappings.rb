@@ -518,6 +518,66 @@ module DogBiscuits
               property: "volumeNumber"
             },
             label: 'Volume'
+          },
+          aip_uuid: {
+            index: "('aip_uuid', :stored_searchable)",
+            label: 'AIP UUID'
+          },
+          transfer_uuid: {
+            index: "('transfer_uuid', :stored_searchable)",
+            label: 'Transfer UUID'
+          },
+          sip_uuid: {
+            index: "('sip_uuid', :stored_searchable)",
+            label: 'SIP UUID'
+          },
+          dip_uuid: {
+            index: "('dip_uuid', :stored_searchable)",
+            label: 'DIP UUID'
+          },
+          aip_status: {
+            index: "('aip_status', :stored_searchable)",
+            label: 'AIP Status'
+          },
+          dip_status: {
+            index: "('dip_status', :stored_searchable)",
+            label: 'DIP Status'
+          },
+          aip_size: {
+            index: "('aip_size', :stored_searchable)",
+            label: 'AIP Size'
+          },
+          dip_size: {
+            index: "('dip_size', :stored_searchable)",
+            label: 'DIP Size'
+          },
+          aip_current_path: {
+            index: "('aip_current_path', :stored_searchable)",
+            label: 'AIP Current Path'
+          },
+          dip_current_path: {
+            index: "('dip_current_path', :stored_searchable)",
+            label: 'DIP Current Path'
+          },
+          aip_current_location: {
+            index: "('aip_current_location', :stored_searchable)",
+            label: 'AIP Current Location'
+          },
+          dip_current_location: {
+            index: "('dip_current_location', :stored_searchable)",
+            label: 'DIP Current Location'
+          },
+          aip_resource_uri: {
+            index: "('aip_resource_uri', :stored_searchable)",
+            label: 'AIP Resource URI'
+          },
+          dip_resource_uri: {
+            index: "('dip_resource_uri', :stored_searchable)",
+            label: 'DIP Resource URI'
+          },
+          origin_pipeline: {
+            index: "('origin_pipeline', :stored_searchable)",
+            label: 'Origin Pipeline'
           }
         }
     end

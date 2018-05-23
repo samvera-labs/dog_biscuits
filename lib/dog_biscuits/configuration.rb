@@ -361,9 +361,24 @@ module DogBiscuits
 
     attr_writer :package_properties
 
-    # omitting properties
     def package_properties
-      properties = %i[]
+      properties = %i[
+        aip_uuid
+        transfer_uuid
+        sip_uuid
+        dip_uuid
+        aip_status
+        dip_status
+        aip_size
+        dip_size
+        aip_current_path
+        dip_current_path
+        aip_current_location
+        dip_current_location
+        aip_resource_uri
+        dip_resource_uri
+        origin_pipeline
+      ]
       properties = base_properties + properties + common_properties
       properties.sort!
       @package_properties ||= properties

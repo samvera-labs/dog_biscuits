@@ -126,6 +126,22 @@ module DogBiscuits
       # subject
       attribute :subtitle, Solr::Array, solr_name('subtitle')
       attribute :volume_number, Solr::Array, solr_name('volume_number')
+      # archivematica
+      attribute :aip_uuid, Solr::Array, solr_name('aip_uuid')
+      attribute :transfer_uuid, Solr::Array, solr_name('transfer_uuid')
+      attribute :sip_uuid, Solr::Array, solr_name('sip_uuid')
+      attribute :dip_uuid, Solr::Array, solr_name('dip_uuid')
+      attribute :aip_status, Solr::Array, solr_name('aip_status')
+      attribute :dip_status, Solr::Array, solr_name('dip_status')
+      attribute :aip_size, Solr::Array, solr_name('aip_size')
+      attribute :dip_size, Solr::Array, solr_name('dip_size')
+      attribute :aip_current_path, Solr::Array, solr_name('aip_current_path')
+      attribute :dip_current_path, Solr::Array, solr_name('dip_current_path')
+      attribute :aip_current_location, Solr::Array, solr_name('aip_current_location')
+      attribute :dip_current_location, Solr::Array, solr_name('dip_current_location')
+      attribute :aip_resource_uri, Solr::Array, solr_name('aip_resource_uri')
+      attribute :dip_resource_uri, Solr::Array, solr_name('dip_resource_uri')
+      attribute :origin_pipeline, Solr::Array, solr_name('origin_pipeline')
     end
   end
 end
