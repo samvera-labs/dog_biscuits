@@ -154,6 +154,21 @@ module DogBiscuits
         publication_status
         refereed
         volume_number
+        aip_uuid
+        transfer_uuid
+        sip_uuid
+        dip_uuid
+        aip_status
+        dip_status
+        aip_size
+        dip_size
+        aip_current_path
+        dip_current_path
+        aip_current_location
+        dip_current_location
+        aip_resource_uri
+        dip_resource_uri
+        origin_pipeline
       ]
     end
 
