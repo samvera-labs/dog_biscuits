@@ -351,6 +351,16 @@ module DogBiscuits
             index: "('output_of', :stored_searchable)",
             label: 'Output of project or grant'
           },
+          packages_ids: {
+            index: "('packages_ids', :symbol)",
+            label: "Package (AIP/DIP) for",
+            help_test: 'Packages these works. Customarily, the package is a digital preservation AIP or DIP.'
+          },
+          packaged_by_ids: {
+            index: "('packaged_by_ids', :symbol)",
+            label: "Packaged by (AIP/DIP)",
+            help_test: 'Packaged by the following work. Customarily, the package is a digital preservation AIP or DIP.'
+          },
           pagination: {
             index: "('pagination', :stored_searchable)",
             schema_org: {

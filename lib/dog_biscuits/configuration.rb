@@ -216,7 +216,8 @@ module DogBiscuits
                       part_of
                       lat
                       long
-                      alt]
+                      alt
+                      packaged_by_ids]
       properties = base_properties + properties + common_properties
       properties.sort!
       @digital_archival_object_properties ||= properties
@@ -393,6 +394,7 @@ module DogBiscuits
         aip_resource_uri
         dip_resource_uri
         origin_pipeline
+        packages_ids
       ]
       properties = base_properties + properties + common_properties
       properties.sort!
