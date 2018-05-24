@@ -108,7 +108,7 @@ module DogBiscuits
       attribute :output_of, Solr::Array, solr_name('output_of')
       attribute :official_url, Solr::Array, solr_name('official_url')
       attribute :packaged_by_ids, Solr::Array, solr_name('packaged_by_ids', :symbol)
-      attribute :packages_ids, Solr::Array, solr_name('packages_ids', :symbol)
+      attribute :package_ids, Solr::Array, solr_name('package_ids', :symbol)
       attribute :pagination, Solr::Array, solr_name('pagination')
       attribute :part, Solr::Array, solr_name('part')
       attribute :place_of_publication, Solr::Array, solr_name('place_of_publication')

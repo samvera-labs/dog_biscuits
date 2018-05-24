@@ -394,7 +394,7 @@ module DogBiscuits
         aip_resource_uri
         dip_resource_uri
         origin_pipeline
-        packages_ids
+        package_ids
       ]
       properties = base_properties + properties + common_properties
       properties.sort!
