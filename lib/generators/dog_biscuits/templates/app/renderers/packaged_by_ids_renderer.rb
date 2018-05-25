@@ -6,7 +6,7 @@ class PackagedByIdsRenderer < Hyrax::Renderers::AttributeRenderer
   def attribute_value_to_html(value)
 
     link_to(
-      "<span class='glyphicon'></span>&nbsp;#{Package.find(value).first_title}".html_safe,
+      "<span class='glyphicon'></span>#{Package.find(value).first_title}".html_safe,
       "/concern/packages/#{value}"
     )
   end

@@ -51,6 +51,10 @@ This generator makes the following changes to your application:
     copy_file 'app/services/local_form_metadata_service.rb', 'app/services/local_form_metadata_service.rb'
   end
 
+  def create_renderers
+    copy_file 'app/renderers/', 'app/renderers/'
+  end
+
   def create_schema_org
     generate 'dog_biscuits:schema_org', '-f'
   end

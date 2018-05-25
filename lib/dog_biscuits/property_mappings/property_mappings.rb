@@ -74,7 +74,7 @@ module DogBiscuits
               type: "http://schema.org/Organization",
               value: "name"
             },
-            label: 'Access Provided By',
+            label: 'Access provided by',
             help_text: 'Repository'
           },
           alt: {
@@ -361,7 +361,7 @@ module DogBiscuits
             index: "('packaged_by_ids', :symbol)",
             label: "In package (AIP/DIP)",
             help_text: 'Packaged by the following work. Customarily, the package is a digital preservation AIP or DIP.',
-            render_as: :packagd_by_ids,
+            render_as: :packaged_by_ids
           },
           # facet only, not used for display, doesn't need index
           packaged_by_titles: {
