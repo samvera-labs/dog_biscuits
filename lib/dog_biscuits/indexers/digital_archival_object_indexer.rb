@@ -26,7 +26,6 @@ module DogBiscuits
     # @param [Hash] solr_doc
     def do_local_indexing(solr_doc)
       solr_doc['packaged_by_ids_ssim'] = object.packaged_by.map(&:id)
-      solr_doc['packaged_by_titles_tesim'] = object.packaged_by.map(&:first_title)
       solr_doc['packaged_by_titles_sim'] = object.packaged_by.map(&:first_title)
     end
   end

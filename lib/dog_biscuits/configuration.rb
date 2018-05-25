@@ -105,6 +105,7 @@ module DogBiscuits
         contributor_type
         date
         human_readable_type
+        packaged_by_titles
       ]
     end
 

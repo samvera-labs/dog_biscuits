@@ -353,13 +353,19 @@ module DogBiscuits
           },
           package_ids: {
             index: "('package_ids', :symbol)",
-            label: "Package (AIP/DIP) for",
-            help_test: 'Packages these works. Customarily, the package is a digital preservation AIP or DIP.'
+            label: "Package (AIP/DIP) contains",
+            help_text: 'Packages these works. Customarily, the package is a digital preservation AIP or DIP.',
+            render_as: :package_ids
           },
           packaged_by_ids: {
             index: "('packaged_by_ids', :symbol)",
-            label: "Packaged by (AIP/DIP)",
-            help_test: 'Packaged by the following work. Customarily, the package is a digital preservation AIP or DIP.'
+            label: "In package (AIP/DIP)",
+            help_text: 'Packaged by the following work. Customarily, the package is a digital preservation AIP or DIP.',
+            render_as: :packagd_by_ids,
+          },
+          # facet only, not used for display, doesn't need index
+          packaged_by_titles: {
+            label: "In package"
           },
           pagination: {
             index: "('pagination', :stored_searchable)",
