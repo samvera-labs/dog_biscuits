@@ -31,12 +31,12 @@ module DogBiscuits
 
     # It's an AIP if it has an AIP UUID
     def aip?
-      self.aip_uuid.blank? ? false : true
+      aip_uuid.blank? ? false : true
     end
 
     # It's a DIP if it has a DIP UUID
     def dip?
-      self.dip_uuid.blank? ? false : true
+      dip_uuid.blank? ? false : true
     end
 
     # If object is a DIP/AIP, add the rdf type
