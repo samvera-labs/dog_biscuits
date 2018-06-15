@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec-rails'
   # spec.add_development_dependency 'rubocop'
   # spec.add_development_dependency 'rubocop-rails'
-  # spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'solr_wrapper'
   spec.add_development_dependency 'webmock'
 end
