@@ -56,7 +56,7 @@ module DogBiscuits
     # omitting _resource properties (managing_organisation_, department_, funder_)
     # omitting date as this is used for faceting only
     def common_properties
-      %i[doi former_identifier note geo location].freeze
+      %i[doi former_identifier note lat long alt location].freeze
     end
 
     # Add values that aren't found in the following table-based authorities to be added on save.
