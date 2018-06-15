@@ -56,7 +56,7 @@ module DogBiscuits
     # omitting _resource properties (managing_organisation_, department_, funder_)
     # omitting date as this is used for faceting only
     def common_properties
-      %i[doi former_identifier note].freeze
+      %i[doi former_identifier note geo location].freeze
     end
 
     # Add values that aren't found in the following table-based authorities to be added on save.
@@ -188,6 +188,7 @@ module DogBiscuits
                       date_accepted
                       date_submitted
                       editor
+                      event_date
                       isbn
                       official_url
                       pagination

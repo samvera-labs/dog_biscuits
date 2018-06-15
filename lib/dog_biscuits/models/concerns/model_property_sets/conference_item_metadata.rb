@@ -9,6 +9,7 @@ module DogBiscuits
     include DogBiscuits::DateSubmitted
     include DogBiscuits::DateAccepted
     include DogBiscuits::Editor
+    include DogBiscuits::EventDate
     include DogBiscuits::Isbn
     include DogBiscuits::OfficialUrl
     include DogBiscuits::Pagination

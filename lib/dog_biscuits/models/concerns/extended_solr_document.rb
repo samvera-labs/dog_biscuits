@@ -83,6 +83,7 @@ module DogBiscuits
       attribute :edition, Solr::Array, solr_name('edition')
       attribute :editor, Solr::Array, solr_name('editor')
       attribute :end_date, Solr::Array, solr_name('end_date')
+      attribute :event_date, Solr::Array, solr_name('event_date')
       attribute :extent, Solr::Array, solr_name('extent')
       attribute :dc_format, Solr::Array, solr_name('dc_format')
       attribute :former_identifier, Solr::Array, solr_name('former_identifier')
@@ -99,6 +100,7 @@ module DogBiscuits
       attribute :last_access, Solr::Array, solr_name('last_access')
       attribute :lat, Solr::Array, solr_name('lat')
       # license
+      attribute :location, Solr::Array, solr_name('location')
       attribute :long, Solr::Array, solr_name('long')
       attribute :managing_organisation, Solr::Array, solr_name('managing_organisation_label')
       attribute :module_code, Solr::Array, solr_name('module_code')

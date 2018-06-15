@@ -32,6 +32,8 @@ module DogBiscuits
 
     # Common other properties
     include DogBiscuits::Doi
+    include DogBiscuits::Geo
+    include DogBiscuits::Location
     include DogBiscuits::ManagingOrganisation
     include DogBiscuits::RelatedUrl # BasicMetadata
     include DogBiscuits::SkosNote

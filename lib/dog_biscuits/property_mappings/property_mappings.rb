@@ -143,6 +143,16 @@ module DogBiscuits
             },
             helper_method: :human_readable_date
           },
+          date_collected: {
+            index: "('date_collected', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date collected'
+          },
+          date_copyrighted: {
+            index: "('date_copyrighted', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date copyrighted'
+          },
           date_created: {
             index: "('date_created', :stored_sortable, type: :date)",
             schema_org: {
@@ -150,6 +160,11 @@ module DogBiscuits
             },
             helper_method: :human_readable_date,
             help_text: "The date on which the work was created."
+          },
+          date_issued: {
+            index: "('date_issued', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date issued'
           },
           date_published: {
             index: "('date_published', :stored_sortable, type: :date)",
@@ -167,17 +182,19 @@ module DogBiscuits
             index: "('date_of_award', :stored_sortable, type: :date)",
             helper_method: :human_readable_date
           },
-          date_issued: {
-            index: "('date_issued', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date
+          date_updated: {
+            index: "('date_updated', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date updated'
+          },
+          date_valid: {
+            index: "('date_valid', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date valid'
           },
           dc_access_rights: {
             index: "('dc_access_rights', :stored_searchable)",
             label: 'Access rights'
-          },
-          department: {
-            index: "('department', :stored_searchable)",
-            label: 'Department, School or Faculty'
           },
           department: {
             index: "('department', :stored_searchable)",
@@ -217,6 +234,11 @@ module DogBiscuits
           extent: {
             index: "('extent', :stored_searchable)",
             label: 'Extent'
+          },
+          event_date: {
+            index: "('event_date', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date of event'
           },
           dc_format: {
             index: "('dc_format', :stored_searchable)",
@@ -316,6 +338,10 @@ module DogBiscuits
             helper_method: :license_links,
             render_as: :license,
             help_text: "Licensing and distribution information governing access to the work. Select from the provided drop-down list."
+          },
+          location: {
+            index: "('location', :stored_searchable)",
+            label: 'Location'
           },
           long: {
             index: "('long', :stored_searchable)",

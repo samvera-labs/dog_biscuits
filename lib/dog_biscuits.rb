@@ -163,6 +163,10 @@ module DogBiscuits
     autoload :SimpleVersions
   end
 
+  autoload_under 'models/concerns/metadata_properties/dwc' do
+    autoload :EventDate
+  end
+
   autoload_under 'models/concerns/metadata_properties/local' do
     autoload :ForIndexing
     autoload :FormerIdentifier
