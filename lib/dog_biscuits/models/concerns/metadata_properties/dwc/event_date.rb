@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module Available
+  module EventDate
     extend ActiveSupport::Concern
 
     included do
-      property :date_available, predicate: ::RDF::Vocab::DC.available do |index|
+      property :event_date, predicate: ::RDF::Vocab::DWC.eventDate do |index|
         index.type :date
         index.as :stored_searchable, :facetable, :dateable, :sortable
       end

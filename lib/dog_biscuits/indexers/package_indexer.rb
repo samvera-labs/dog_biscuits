@@ -23,6 +23,8 @@ module DogBiscuits
     # Add any custom indexing into here. Method must exist, but can be empty.
     #
     # @param [Hash] solr_doc
-    def do_local_indexing(solr_doc); end
+    def do_local_indexing(solr_doc)
+      solr_doc['package_ids_ssim'] = object.packages.map(&:id)
+    end
   end
 end

@@ -12,7 +12,9 @@ FactoryBot.define do
     date_submitted ['2013']
     date_published ['2016']
     date_available ['2015']
+    event_date ['2012']
     isbn ['xxx-xxx-xxx']
+    location ['The Hacienda, Manchester']
     refereed [true]
     publication_status ['Published']
     place_of_publication ['Salford']
@@ -42,6 +44,16 @@ FactoryBot.define do
     editor ['Street, Stephen']
   end
 
+  factory :digital_archival_object, class: DigitalArchivalObject do
+    title ['Digital Archival Object']
+    access_provided_by ['Rough Trade Records Archive']
+    extent ['500 files']
+    part_of ['Accession 51']
+    lat ['latitude']
+    long ['longitude']
+    alt ['altitude']
+  end
+
   factory :dataset, class: Dataset do
     title ['Strangeways, Here We Come']
     creator ['Marr, Johnny']
@@ -50,13 +62,23 @@ FactoryBot.define do
     has_restriction ['10 years from last access']
     for_indexing ['lovely stuff for indexing']
     date_available ['2015']
-    pure_uuid 'xxxx-xxxx-xxxx-xxxx'
-    pure_creation '2002-05-30T09:00:00'
-    pure_type ['pure type']
-    pure_link ['pure link']
+    # pure_uuid 'xxxx-xxxx-xxxx-xxxx'
+    # pure_creation '2002-05-30T09:00:00'
+    # pure_type ['pure type']
+    # pure_link ['pure link']
     last_access '2016-01-01'
     number_of_downloads '52'
+    output_of ['some project']
     resource_type ['Software']
+    requestor_email ['me@example.com']
+    date_collected ['2012']
+    date_copyrighted ['2017']
+    date_issued ['2017']
+    date_updated ['2018']
+    date_valid ['2017-2020']
+    dc_format ['vinyl']
+    resource_type_general ['Sound']
+    subtitle ['Work is a four-letter word']
   end
 
   factory :exam_paper, class: ExamPaper do
@@ -69,22 +91,21 @@ FactoryBot.define do
 
   factory :package, class: Package do
     title ['title']
-    transfer_uuid 'transfer-uuid'
-    sip_uuid 'sip-uuid'
-    aip_uuid 'aip-uuid'
-    dip_uuid 'dip-uuid'
-    aip_status 'aip-status'
-    dip_status 'dip-status'
-    aip_size 'aip-size'
-    dip_size 'dip-size'
-    aip_current_path 'aip-current-path'
-    dip_current_path 'dip-current-path'
-    aip_current_location 'aip-current-location'
-    dip_current_location 'dip-current-location'
-    aip_resource_uri 'aip-uri'
-    dip_resource_uri 'dip-uri'
-    origin_pipeline 'origin-pipeline'
-    requestor_email ['me@example.com']
+    transfer_uuid ['transfer-uuid']
+    sip_uuid ['sip-uuid']
+    aip_uuid ['aip-uuid']
+    dip_uuid ['dip-uuid']
+    aip_status ['aip-status']
+    dip_status ['dip-status']
+    aip_size ['aip-size']
+    dip_size ['dip-size']
+    aip_current_path ['aip-current-path']
+    dip_current_path ['dip-current-path']
+    aip_current_location ['aip-current-location']
+    dip_current_location ['dip-current-location']
+    aip_resource_uri ['aip-uri']
+    dip_resource_uri ['dip-uri']
+    origin_pipeline ['origin-pipeline']
   end
 
   # validate all common metadata here
@@ -127,6 +148,7 @@ FactoryBot.define do
     date_available ['2015']
     refereed [true]
     official_url ['http://www.london.ac.uk']
+    output_of ['some project']
     publication_status ['Published']
     part_of ['The Journal of Woe']
   end

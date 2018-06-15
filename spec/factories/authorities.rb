@@ -167,6 +167,8 @@ FactoryBot.define do
     name 'The Smiths'
     dates '1500-1550'
     qualifier 'order of the phoenix'
+    maintenance_agency_code ['193']
+    country_code ['GB']
   end
 
   factory :department, class: DogBiscuits::Organisation do
@@ -183,11 +185,11 @@ FactoryBot.define do
     parent_ADM2 'Greater Manchester'
     parent_ADM1 'England'
     parent_country 'United Kingdom'
-    lat 'latitude'
-    long 'longitude'
-    alt 'altitude'
+    lat ['latitude']
+    long ['longitude']
+    alt ['altitude']
     parent_feature 'Manchester'
-    country_code 'GBR'
+    country_code ['GB']
     note ['note']
     same_as %w[http://id.loc.gov/authorities/subjects/sh85061212 info:lc/authorities/sh85061212]
     related_authority ['related authority']

@@ -3,6 +3,8 @@
 module DogBiscuits
   class Place < Authority
     include DogBiscuits::PlaceProperties
+    include DogBiscuits::CountryCode
+    include DogBiscuits::Geo
     include DogBiscuits::OwlSameAs
     include DogBiscuits::RelatedAuthority
     include DogBiscuits::GenericAuthorityTerms

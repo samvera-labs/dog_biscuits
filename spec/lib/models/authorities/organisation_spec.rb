@@ -7,7 +7,9 @@ describe DogBiscuits::Organisation do
   let(:concept_scheme) { FactoryBot.build(:concept_scheme) }
   let(:rdf) { stubby.resource.dump(:ttl) }
 
+  it_behaves_like 'country_code'
   it_behaves_like 'foaf_name'
+  it_behaves_like 'maintenance_agency_code'
 
   it 'is an organisation' do
     expect(stubby).to be_organisation

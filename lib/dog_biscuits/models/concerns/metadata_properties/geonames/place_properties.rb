@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable Metrics/BlockLength
 
 module DogBiscuits
   module PlaceProperties
@@ -59,30 +60,8 @@ module DogBiscuits
                multiple: false do |index|
         index.as :stored_searchable
       end
-
-      property :country_code,
-               predicate: ::RDF::Vocab::GEONAMES.countryCode,
-               multiple: false do |index|
-        index.as :stored_searchable
-      end
-
-      property :lat,
-               predicate: RDF::Vocab::GEO.lat,
-               multiple: false do |index|
-        index.as :stored_searchable
-      end
-
-      property :long,
-               predicate: RDF::Vocab::GEO.long,
-               multiple: false do |index|
-        index.as :stored_searchable
-      end
-
-      property :alt,
-               predicate: RDF::Vocab::GEO.alt,
-               multiple: false do |index|
-        index.as :stored_searchable
-      end
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength

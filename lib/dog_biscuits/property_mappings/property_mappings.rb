@@ -67,6 +67,20 @@ module DogBiscuits
             label: 'Advisor / supervisor',
             help_text: 'Thesis advisor or supervisor.'
           },
+          access_provided_by: {
+            index: "('access_provided_by', :stored_searchable)",
+            schema_org: {
+              property: "provider",
+              type: "http://schema.org/Organization",
+              value: "name"
+            },
+            label: 'Access provided by',
+            help_text: 'Repository'
+          },
+          alt: {
+            index: "('alt', :stored_searchable)",
+            label: 'Altitude'
+          },
           based_near_label: {
             index: "('based_near_label', :stored_searchable), link_to_search: solr_name('based_near_label', :facetable)",
             schema_org: {
@@ -129,6 +143,16 @@ module DogBiscuits
             },
             helper_method: :human_readable_date
           },
+          date_collected: {
+            index: "('date_collected', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date collected'
+          },
+          date_copyrighted: {
+            index: "('date_copyrighted', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date copyrighted'
+          },
           date_created: {
             index: "('date_created', :stored_sortable, type: :date)",
             schema_org: {
@@ -136,6 +160,11 @@ module DogBiscuits
             },
             helper_method: :human_readable_date,
             help_text: "The date on which the work was created."
+          },
+          date_issued: {
+            index: "('date_issued', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date issued'
           },
           date_published: {
             index: "('date_published', :stored_sortable, type: :date)",
@@ -153,9 +182,15 @@ module DogBiscuits
             index: "('date_of_award', :stored_sortable, type: :date)",
             helper_method: :human_readable_date
           },
-          date_issued: {
-            index: "('date_issued', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date
+          date_updated: {
+            index: "('date_updated', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date updated'
+          },
+          date_valid: {
+            index: "('date_valid', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date valid'
           },
           dc_access_rights: {
             index: "('dc_access_rights', :stored_searchable)",
@@ -199,6 +234,15 @@ module DogBiscuits
           extent: {
             index: "('extent', :stored_searchable)",
             label: 'Extent'
+          },
+          event_date: {
+            index: "('event_date', :stored_sortable, type: :date)",
+            helper_method: :human_readable_date,
+            label: 'Date of event'
+          },
+          dc_format: {
+            index: "('dc_format', :stored_searchable)",
+            label: 'Format'
           },
           former_identifier: {
             index: "('former_identifier', :stored_searchable)",
@@ -284,12 +328,24 @@ module DogBiscuits
           last_access: {
             index: "('last_access', :stored_searchable)"
           },
+          lat: {
+            index: "('lat', :stored_searchable)",
+            label: 'Latitude'
+          },
           license: {
             index: "('license', :stored_searchable)",
             label: 'License',
             helper_method: :license_links,
             render_as: :license,
             help_text: "Licensing and distribution information governing access to the work. Select from the provided drop-down list."
+          },
+          location: {
+            index: "('location', :stored_searchable)",
+            label: 'Location'
+          },
+          long: {
+            index: "('long', :stored_searchable)",
+            label: 'Longitude'
           },
           module_code: {
             index: "('module_code', :stored_searchable)",
@@ -320,6 +376,22 @@ module DogBiscuits
           output_of: {
             index: "('output_of', :stored_searchable)",
             label: 'Output of project or grant'
+          },
+          package_ids: {
+            index: "('package_ids', :symbol)",
+            label: "Package (AIP/DIP) contains",
+            help_text: 'Packages these works. Customarily, the package is a digital preservation AIP or DIP.',
+            render_as: :package_ids
+          },
+          packaged_by_ids: {
+            index: "('packaged_by_ids', :symbol)",
+            label: "In package (AIP/DIP)",
+            help_text: 'Packaged by the following work. Customarily, the package is a digital preservation AIP or DIP.',
+            render_as: :packaged_by_ids
+          },
+          # facet only, not used for display, doesn't need index
+          packaged_by_titles: {
+            label: "In package"
           },
           pagination: {
             index: "('pagination', :stored_searchable)",
@@ -420,6 +492,28 @@ module DogBiscuits
             label: 'Resource type',
             help_text: "Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."
           },
+          # datacite-specific
+          resource_type_general: {
+            index: "('resource_type_general', :stored_searchable)",
+            schema_org: {
+              'Audiovisual' => "http://schema.org/MediaObject",
+              'Collection' => "http://bib.schema.org/Collection",
+              'DataPaper' => "http://schema.org/CreativeWork",
+              'Dataset' => "http://schema.org/Dataset",
+              'Event' => "http://schema.org/Event",
+              'Image' => "http://schema.org/ImageObject",
+              'InteractiveResource' => "http://schema.org/CreativeWork",
+              'Model' => "http://schema.org/CreativeWork",
+              'PhysicalObject' => "http://schema.org/Thing",
+              'Service' => "http://schema.org/Service",
+              'Software' => "http://schema.org/Code",
+              'Sound' => "http://schema.org/AudioObject",
+              'Text' => "http://schema.org/CreativeWork",
+              'Workflow' => "http://schema.org/CreativeWork",
+              'Other' => "http://schema.org/Thing"
+            },
+            label: 'General resource type'
+          },
           rights_statement: {
             index: "('rights_statement', :stored_searchable)",
             helper_method: :rights_statement_links,
@@ -445,6 +539,13 @@ module DogBiscuits
             help_text: "Headings or index terms describing what the work is about; these do need to conform to an existing vocabulary.",
             label: 'Subject'
           },
+          subtitle: {
+            index: "('subtitle', :stored_searchable)",
+            schema_org: {
+              property: "name"
+            },
+            label: 'Subtitle'
+          },
           title: {
             index: "('title', :stored_searchable), if: false",
             schema_org: {
@@ -459,6 +560,66 @@ module DogBiscuits
               property: "volumeNumber"
             },
             label: 'Volume'
+          },
+          aip_uuid: {
+            index: "('aip_uuid', :stored_searchable)",
+            label: 'AIP UUID'
+          },
+          transfer_uuid: {
+            index: "('transfer_uuid', :stored_searchable)",
+            label: 'Transfer UUID'
+          },
+          sip_uuid: {
+            index: "('sip_uuid', :stored_searchable)",
+            label: 'SIP UUID'
+          },
+          dip_uuid: {
+            index: "('dip_uuid', :stored_searchable)",
+            label: 'DIP UUID'
+          },
+          aip_status: {
+            index: "('aip_status', :stored_searchable)",
+            label: 'AIP Status'
+          },
+          dip_status: {
+            index: "('dip_status', :stored_searchable)",
+            label: 'DIP Status'
+          },
+          aip_size: {
+            index: "('aip_size', :stored_searchable)",
+            label: 'AIP Size'
+          },
+          dip_size: {
+            index: "('dip_size', :stored_searchable)",
+            label: 'DIP Size'
+          },
+          aip_current_path: {
+            index: "('aip_current_path', :stored_searchable)",
+            label: 'AIP Current Path'
+          },
+          dip_current_path: {
+            index: "('dip_current_path', :stored_searchable)",
+            label: 'DIP Current Path'
+          },
+          aip_current_location: {
+            index: "('aip_current_location', :stored_searchable)",
+            label: 'AIP Current Location'
+          },
+          dip_current_location: {
+            index: "('dip_current_location', :stored_searchable)",
+            label: 'DIP Current Location'
+          },
+          aip_resource_uri: {
+            index: "('aip_resource_uri', :stored_searchable)",
+            label: 'AIP Resource URI'
+          },
+          dip_resource_uri: {
+            index: "('dip_resource_uri', :stored_searchable)",
+            label: 'DIP Resource URI'
+          },
+          origin_pipeline: {
+            index: "('origin_pipeline', :stored_searchable)",
+            label: 'Origin Pipeline'
           }
         }
     end
