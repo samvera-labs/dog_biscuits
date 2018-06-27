@@ -82,6 +82,7 @@ module DogBiscuits
         contributor_combined
         contributor_type
         publisher
+        department
         date
         keyword
         subject
