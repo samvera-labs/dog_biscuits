@@ -9,7 +9,7 @@ module DogBiscuits
                               class_name: 'DogBiscuits::Organisation',
                               predicate: ::RDF::URI.new('http://dlib.york.ac.uk/ontologies/uketd#departmentResource')
 
-      property :department, predicate: DogBiscuits::Vocab::Uketd.department do |index|
+      property :department, predicate: ::RDF::Vocab::SCHEMA.department do |index|
         index.as :stored_searchable, :facetable
       end
     end

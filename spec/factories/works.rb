@@ -118,6 +118,7 @@ FactoryBot.define do
     contributor ['Joyce, Mike']
     date_created ['2015-01-01']
     date_of_award ['2016-01-01']
+    department ['Departmtent of Worry and Woe']
     description ['description']
     doi ['xxx-xxx-xxx']
     former_identifier ['york:1234']

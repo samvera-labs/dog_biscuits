@@ -255,6 +255,7 @@ module DogBiscuits
     autoload :ContentVersion
     autoload :DateUpdated
     autoload :DatePublished
+    autoload :Department
     autoload :EndDate
     autoload :IssueNumber
     autoload :Location
@@ -277,7 +278,6 @@ module DogBiscuits
   autoload_under 'models/concerns/metadata_properties/uketd' do
     autoload :Advisor
     autoload :DateOfAward
-    autoload :Department
     autoload :Qualification
   end
 
