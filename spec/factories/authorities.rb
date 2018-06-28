@@ -31,8 +31,8 @@ FactoryBot.define do
     preflabel 'projects'
   end
 
-  factory :subjects, class: DogBiscuits::ConceptScheme do
-    preflabel 'subjects'
+  factory :concepts, class: DogBiscuits::ConceptScheme do
+    preflabel 'concepts'
   end
 
   factory :concept, class: DogBiscuits::Concept do
