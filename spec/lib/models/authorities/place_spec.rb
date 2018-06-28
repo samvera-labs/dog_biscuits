@@ -9,6 +9,8 @@ describe DogBiscuits::Place do
   it_behaves_like 'generic_authority_terms'
   it_behaves_like 'related_authority'
   it_behaves_like 'owl_same_as'
+  it_behaves_like 'geo'
+  it_behaves_like 'country_code'
   it_behaves_like 'place_properties'
   it_behaves_like 'skos_note'
 

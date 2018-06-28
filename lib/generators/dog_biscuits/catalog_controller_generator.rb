@@ -42,6 +42,7 @@ This generator makes the following changes to your application:
 
     DogBiscuits.config.index_properties.each do |prop|
       next unless DogBiscuits.config.property_mappings[prop]
+      next unless DogBiscuits.config.property_mappings[prop][:index] # skip if there isn't an index mapping
       injection = "    config.add_index_field solr_name"
       injection += DogBiscuits.config.property_mappings[prop][:index]
 

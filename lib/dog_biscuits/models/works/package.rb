@@ -18,10 +18,6 @@ module DogBiscuits
                             predicate: DogBiscuits::Vocab::Generic.packages,
                             inverse_of: :packaged_by
 
-    property :requestor_email, predicate: DogBiscuits::Vocab::Generic.requestorEmail, multiple: true do |index|
-      index.as :stored_searchable
-    end
-
     # Indexer
     # Metadata
     # include DogBiscuits::PackageMetadata
@@ -35,12 +31,12 @@ module DogBiscuits
 
     # It's an AIP if it has an AIP UUID
     def aip?
-      aip_uuid ? true : false
+      aip_uuid.blank? ? false : true
     end
 
     # It's a DIP if it has a DIP UUID
     def dip?
-      dip_uuid ? true : false
+      dip_uuid.blank? ? false : true
     end
 
     # If object is a DIP/AIP, add the rdf type

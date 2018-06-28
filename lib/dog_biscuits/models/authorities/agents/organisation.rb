@@ -4,6 +4,8 @@ module DogBiscuits
   class Organisation < DogBiscuits::Agent
     # Local
     include DogBiscuits::GenericQualifier
+    include DogBiscuits::CountryCode
+    include DogBiscuits::MaintenanceAgencyCode
     include DogBiscuits::HubDates
     include DogBiscuits::Pure
     include DogBiscuits::PureSpecificBehaviour

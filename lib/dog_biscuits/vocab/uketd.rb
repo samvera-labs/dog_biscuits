@@ -10,6 +10,7 @@ module DogBiscuits
                label: 'Advisory',
                'rdf:isDefinedBy' => 'http://naca.central.cranfield.ac.uk/ethos-oai/2.0/',
                type: 'rdf:Property'
+      # use ::RDF::Vocab::SCHEMA.department
       property :department,
                comment: '',
                label: 'Department',

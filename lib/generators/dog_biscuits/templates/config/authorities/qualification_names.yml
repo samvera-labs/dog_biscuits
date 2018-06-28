@@ -1,31 +1,31 @@
 terms:
-  - id: http://london.ac.uk/qualification_names#ba
+  - id: ba
     term: Bachelor of Arts (BA)
     active: true
-  - id: http://london.ac.uk/qualification_names#bphil
+  - id: bphil
     term: Bachelor of Philosophy (BPhil)
     active: true
-  - id: http://london.ac.uk/qualification_names#bsc
+  - id: bsc
     term: Bachelor of Science (BSc)
     active: true
-  - id: http://london.ac.uk/qualification_names#ma
+  - id: ma
     term: Master of Arts (MA)
     active: true
-  - id: http://london.ac.uk/qualification_names#mres
+  - id: mres
     term: Master of Arts by Research (MRes)
     active: true
-  - id: http://london.ac.uk/qualification_names#mphil
+  - id: mphil
     term: Master of Philosophy (MPhil)
     active: true
-  - id: http://london.ac.uk/qualification_names#mres
+  - id: mres
     term: Master of Research (MRes)
     active: true
-  - id: http://london.ac.uk/qualification_names#msc
+  - id: msc
     term: Master of Science (MSc)
     active: true
-  - id: http://london.ac.uk/qualification_names#mres-s
+  - id: mres-s
     term: Master of Science by Research (MRes)
     active: true
-  - id: http://london.ac.uk/qualification_names#phdip
+  - id: phdip
     term: Postgraduate Diploma (PGDip)
     active: true

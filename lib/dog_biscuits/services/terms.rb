@@ -47,10 +47,11 @@ module DogBiscuits
     end
 
     # Conflicts with table-based auth registered by hyrax
-    # class SubjectsTerms < TermsService
-    #   def terms_list
-    #     'subjects'
-    #   end
-    # end
+    # Use concepts instead
+    class ConceptsTerms < TermsService
+      def terms_list
+        'concepts'
+      end
+    end
   end
 end

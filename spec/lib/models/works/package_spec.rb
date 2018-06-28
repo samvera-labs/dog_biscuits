@@ -15,14 +15,24 @@ describe Package do
     expect(stubby).to be_package
   end
 
-  it 'is not an aip' do
-    stubby.aip_uuid = nil
-    expect(stubby).not_to be_aip
-  end
+  context 'is an aip/dip' do
+    before do
+      stubby.aip_uuid = nil
+      stubby.dip_uuid = nil
+    end
 
-  it 'is not a dip' do
-    stubby.dip_uuid = nil
-    expect(stubby).not_to be_dip
+    it 'is not an aip' do
+      expect(stubby).not_to be_aip
+    end
+
+    it 'is not a dip' do
+      expect(stubby).not_to be_dip
+    end
+
+    after do
+      stubby.aip_uuid = ['aip-uuid']
+      stubby.dip_uuid = ['dip-uuid']
+    end
   end
 
   describe '#rdftypes' do
@@ -32,14 +42,6 @@ describe Package do
 
   it_behaves_like 'archivematica'
   it_behaves_like 'simple_versions'
-
-  it 'has requestor_email' do
-    expect(stubby.requestor_email).to eq(['me@example.com'])
-  end
-
-  it 'has requestor_email predicate' do
-    expect(rdf.should(include('http://dlib.york.ac.uk/ontologies/generic#requestorEmail')))
-  end
 
   it 'is an aip' do
     expect(stubby).to be_aip
