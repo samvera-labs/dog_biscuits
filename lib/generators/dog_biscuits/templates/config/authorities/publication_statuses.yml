@@ -2,11 +2,11 @@ terms:
   - id: published
     term: Published
     active: true
-  - id: earlyOnline
+  - id: earlyonline
     term: E-Pub ahead of publication
     active: true
   - id: accepted
-    term: In press / Accepted
+    term: Accepted
     active: true
   - id: submitted
     term: Submitted

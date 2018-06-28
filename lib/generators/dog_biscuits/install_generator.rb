@@ -51,8 +51,18 @@ This generator makes the following changes to your application:
     copy_file 'app/services/local_form_metadata_service.rb', 'app/services/local_form_metadata_service.rb'
   end
 
+  def create_helpers
+    db_injection = '  include ::DogBiscuitsHelper'
+    unless File.read('app/helpers/hyrax_helper.rb').include? db_injection
+      inject_into_file 'app/helpers/hyrax_helper.rb', after: "Hyrax::HyraxHelperBehavior\n" do
+        "#{db_injection}\n"
+      end
+    end
+    directory 'app/helpers/', 'app/helpers/'
+  end
+
   def create_renderers
-    copy_file 'app/renderers/', 'app/renderers/'
+    directory 'app/renderers/', 'app/renderers/'
   end
 
   def create_schema_org
