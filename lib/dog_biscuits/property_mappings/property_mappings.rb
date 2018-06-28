@@ -439,7 +439,9 @@ module DogBiscuits
           },
           publication_status: {
             index: "('publication_status', :stored_searchable)",
-            label: 'Publication status'
+            label: 'Publication status',
+            render_as: 'publication_status',
+            helper_method: 'publication_status'
           },
           publisher: {
             index: "('publisher', :stored_searchable), link_to_search: solr_name('publisher', :facetable)",

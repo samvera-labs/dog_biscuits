@@ -2,4 +2,4 @@
 <% val = ['Yes', true] if f.object.model[key].first == 'Yes' %>
 <% val = ['No', false] if f.object.model[key].first == 'No' %>
 
-<%= f.input key, as: :radio_buttons, collection: [ ['Yes', true], ['No', false] ], checked: val %>
+<%= f.input key, as: :radio_buttons, collection: [ ['Yes', 'Yes'], ['No', 'No'] ], checked: val %>
