@@ -32,7 +32,7 @@ module DogBiscuits
       tmpdate << date_accepted
       tmpdate << date_submitted
       tmpdate << date_created
-      date = tmpdate
+      self.date = tmpdate
     end
   end
 end

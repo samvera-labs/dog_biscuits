@@ -28,7 +28,7 @@ module DogBiscuits
       tmpdate = date
       tmpdate << date_of_award
       tmpdate << date_created
-      date = tmpdate
+      self.date = tmpdate
     end
   end
 end

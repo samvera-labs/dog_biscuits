@@ -23,7 +23,7 @@ module DogBiscuits
       tmpdate = date
       tmpdate << date_available
       tmpdate << date_created
-      date = tmpdate
+      self.date = tmpdate
     end
 
     def exam_paper?

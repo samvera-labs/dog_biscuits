@@ -36,7 +36,7 @@ module DogBiscuits
       tmpdate << date_copyrighted
       tmpdate << date_collected
       tmpdate << date_valid
-      date = tmpdate
+      self.date = tmpdate
     end
   end
 end
