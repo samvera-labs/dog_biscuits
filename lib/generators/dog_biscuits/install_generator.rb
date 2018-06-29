@@ -44,7 +44,7 @@ This generator makes the following changes to your application:
   end
 
   def create_authorities
-    generate 'dog_biscuits:authority', '-f'
+    generate 'dog_biscuits:authority'
   end
 
   def create_local_form_metadata_service
@@ -66,7 +66,7 @@ This generator makes the following changes to your application:
   end
 
   def create_schema_org
-    generate 'dog_biscuits:schema_org', '-f'
+    generate 'dog_biscuits:schema_org'
   end
 
   def create_edit_fields_and_inputs

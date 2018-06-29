@@ -26,6 +26,7 @@ This generator makes the following changes to your application:
 
       if DogBiscuits.config.property_mappings[prop]
         injection += ", label: '#{DogBiscuits.config.property_mappings[prop][:label]}'" if DogBiscuits.config.property_mappings[prop][:label]
+        injection += ", helper_method:  '#{DogBiscuits.config.property_mappings[prop][:helper_method]}'" if DogBiscuits.config.property_mappings[prop][:helper_method]
       end
 
       injection += "\n"

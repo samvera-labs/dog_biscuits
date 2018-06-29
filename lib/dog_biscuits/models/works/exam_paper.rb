@@ -20,9 +20,10 @@ module DogBiscuits
     # before_save :combine_dates
 
     def combine_dates
-      self.date = []
-      date << date_available
-      date << date_created
+      tmpdate = date
+      tmpdate << date_available
+      tmpdate << date_created
+      date = tmpdate
     end
 
     def exam_paper?
