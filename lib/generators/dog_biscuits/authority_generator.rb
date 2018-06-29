@@ -15,6 +15,19 @@ This generator makes the following changes to your application:
     directory 'config/authorities', 'config/authorities'
   end
 
+  def create_dog_biscuits
+    init_path = 'config/initializers/dog_biscuits.rb'
+    yml_path = 'config/dog_biscuits.yml'
+
+    unless File.exist?(yml_path)
+      copy_file 'config/dog_biscuits.yml', yml_path
+    end
+
+    unless File.exist?(init_path)
+      copy_file 'config/initializers/dog_biscuits.rb', init_path
+    end
+  end
+
   def inject_into_dog_biscuits
     init_path = 'config/initializers/dog_biscuits.rb'
     yml_path = 'config/dog_biscuits.yml'
