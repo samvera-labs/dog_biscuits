@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# rubocop:disable Metrics/BlockLength
 
 module DogBiscuits
   module PlaceProperties

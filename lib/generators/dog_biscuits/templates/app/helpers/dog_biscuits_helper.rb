@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 module DogBiscuitsHelper
-  # TODO better comments
+  # TODO: better comments
   # Return the label for publication status
   #
   # @param value [String]
@@ -9,15 +10,13 @@ module DogBiscuitsHelper
       publication_status_label(status)
     elsif value.is_a? Hash
       value[:value].map { |status| publication_status_label(status) }
-    else
-      nil
     end
   end
 
   def publication_status_label(value)
     service = AuthorityService::PublicationStatusesService.new
     service.label(value)
-    rescue KeyError
-      value
+  rescue KeyError
+    value
   end
 end

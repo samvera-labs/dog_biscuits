@@ -19,13 +19,9 @@ This generator makes the following changes to your application:
     init_path = 'config/initializers/dog_biscuits.rb'
     yml_path = 'config/dog_biscuits.yml'
 
-    unless File.exist?(yml_path)
-      copy_file 'config/dog_biscuits.yml', yml_path
-    end
+    copy_file 'config/dog_biscuits.yml', yml_path unless File.exist?(yml_path)
 
-    unless File.exist?(init_path)
-      copy_file 'config/initializers/dog_biscuits.rb', init_path
-    end
+    copy_file 'config/initializers/dog_biscuits.rb', init_path unless File.exist?(init_path)
   end
 
   def inject_into_dog_biscuits
@@ -43,10 +39,9 @@ This generator makes the following changes to your application:
           "\n#{term_string}"
         end
       end
-      unless yml_content.include? t
-        inject_into_file yml_path, after: '# authorities' do
-          "\n#{t.gsub('Terms', '').underscore.pluralize}: \"\""
-        end
+      next if yml_content.include? t
+      inject_into_file yml_path, after: '# authorities' do
+        "\n#{t.gsub('Terms', '').underscore.pluralize}: \"\""
       end
     end
   end
