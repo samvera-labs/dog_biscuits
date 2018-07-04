@@ -1,1 +1,26 @@
 <%#= display fields for show page %>
+<% 
+  DogBiscuits.config.send("#{presenter.model_name.singular}_properties").each do | prop |
+    # skip title, descrpition and license
+    next if [:title, :description, :license].include? prop
+
+    if DogBiscuits.config.property_mappings[prop]
+        # TODO create helper
+        if DogBiscuits.config.property_mappings[prop][:label] 
+            label = DogBiscuits.config.property_mappings[prop][:label] 
+        else 
+            label = prop.to_s.capitalize
+        end
+        # TODO create helper
+        if DogBiscuits.config.property_mappings[prop][:render_as]
+            render = DogBiscuits.config.property_mappings[prop][:render_as]
+        elsif DogBiscuits.config.facet_properties.include? prop
+            render = 'faceted'
+        else
+            render = nil
+        end
+    end
+%>
+    <%= presenter.attribute_to_html(prop, label: label, render_as: render) %>
+<% end %>
+

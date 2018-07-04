@@ -48,17 +48,25 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
-    # config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
-    # config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5
-    # config.add_facet_field solr_name("creator", :facetable), limit: 5
-    # config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
-    # config.add_facet_field solr_name("keyword", :facetable), limit: 5
-    # config.add_facet_field solr_name("subject", :facetable), limit: 5
-    # config.add_facet_field solr_name("language", :facetable), limit: 5
-    # config.add_facet_field solr_name("based_near_label", :facetable), limit: 5
-    # config.add_facet_field solr_name("publisher", :facetable), limit: 5
-
+    
     # replace facets start
+    DogBiscuits.config.facet_properties.each do |facet|
+      # TODO: create helper - get labels from locales?
+      if DogBiscuits.config.property_mappings[facet]
+        label = if DogBiscuits.config.property_mappings[facet][:label]
+                  DogBiscuits.config.property_mappings[facet][:label]
+                else
+                  facet.to_s.capitalize
+                end
+        # TODO: create helper
+        render = (DogBiscuits.config.property_mappings[facet][:render_as] if DogBiscuits.config.property_mappings[facet][:render_as])
+    end
+      config.add_facet_field solr_name(
+        facet.to_s, :facetable
+        ), helper_method: helper_method, 
+        label: label, 
+        limit: 5
+    end
     # replace facets end
 
     config.add_facet_field solr_name("file_format", :facetable), limit: 5, label: 'File format'
@@ -75,49 +83,40 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    # config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
-    # config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :iconify_auto_link
-    # config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
-    # config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable)
-    # config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
-    # config.add_index_field solr_name("contributor", :stored_searchable), itemprop: 'contributor', link_to_search: solr_name("contributor", :facetable)
-    # config.add_index_field solr_name("proxy_depositor", :symbol), label: "Depositor", helper_method: :link_to_profile
-    # config.add_index_field solr_name("depositor"), label: "Owner", helper_method: :link_to_profile
-    # config.add_index_field solr_name("publisher", :stored_searchable), itemprop: 'publisher', link_to_search: solr_name("publisher", :facetable)
-    # config.add_index_field solr_name("based_near_label", :stored_searchable), itemprop: 'contentLocation', link_to_search: solr_name("based_near_label", :facetable)
-    # config.add_index_field solr_name("language", :stored_searchable), itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
-    # config.add_index_field solr_name("date_uploaded", :stored_sortable, type: :date), itemprop: 'datePublished', helper_method: :human_readable_date
-    # config.add_index_field solr_name("date_modified", :stored_sortable, type: :date), itemprop: 'dateModified', helper_method: :human_readable_date
-    # config.add_index_field solr_name("date_created", :stored_searchable), itemprop: 'dateCreated'
-    # config.add_index_field solr_name("rights_statement", :stored_searchable), helper_method: :license_links
-    # config.add_index_field solr_name("license", :stored_searchable), helper_method: :license_links
-    # config.add_index_field solr_name("resource_type", :stored_searchable), label: "Resource Type", link_to_search: solr_name("resource_type", :facetable)
-    # config.add_index_field solr_name("file_format", :stored_searchable), link_to_search: solr_name("file_format", :facetable)
-    # config.add_index_field solr_name("identifier", :stored_searchable), helper_method: :index_field_link, field_name: 'identifier'
-    # config.add_index_field solr_name("embargo_release_date", :stored_sortable, type: :date), label: "Embargo release date", helper_method: :human_readable_date
-    # config.add_index_field solr_name("lease_expiration_date", :stored_sortable, type: :date), label: "Lease expiration date", helper_method: :human_readable_date
 
     # insert indexes start
+    DogBiscuits.config.index_properties.each do |index|
+      # TODO: create helper / use locale / shouldn't locale get used anyway?
+      if DogBiscuits.config.property_mappings[index]
+        label = if DogBiscuits.config.property_mappings[index][:label]
+                  DogBiscuits.config.property_mappings[index][:label]
+                else
+                  index.to_s.capitalize
+                end
+        # TODO: create helpers
+        # TODO: get itemprop from Schema.org
+        item_prop = DogBiscuits.config.property_mappings[prop][:schema_org][:property] if DogBiscuits.config.property_mappings[prop][:schema_org]
+        helper_method = (DogBiscuits.config.property_mappings[index][:helper_method] if DogBiscuits.config.property_mappings[index][:helper_method])
+    end
+
+      # TODO break up the index property into: index_as, type
+      config.add_index_field solr_name(index.to_s,
+          DogBiscuits.config.property_mappings[prop][:index][:as],
+          DogBiscuits.config.property_mappings[prop][:index][:type] 
+        ), 
+        itemprop: itemprop, 
+        label: label, 
+        helper_method: helper_method
+    end
     # insert indexes end
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field solr_name("title", :stored_searchable)
-    config.add_show_field solr_name("description", :stored_searchable)
-    config.add_show_field solr_name("keyword", :stored_searchable)
-    config.add_show_field solr_name("subject", :stored_searchable)
-    config.add_show_field solr_name("creator", :stored_searchable)
-    config.add_show_field solr_name("contributor", :stored_searchable)
-    config.add_show_field solr_name("publisher", :stored_searchable)
-    config.add_show_field solr_name("based_near", :stored_searchable)
-    config.add_show_field solr_name("language", :stored_searchable)
-    config.add_show_field solr_name("date_uploaded", :stored_searchable)
-    config.add_show_field solr_name("date_modified", :stored_searchable)
-    config.add_show_field solr_name("date_created", :stored_searchable)
-    config.add_show_field solr_name("rights_statement", :stored_searchable)
-    config.add_show_field solr_name("license", :stored_searchable)
-    config.add_show_field solr_name("resource_type", :stored_searchable)
-    config.add_show_field solr_name("identifier", :stored_searchable)
+    # TODO - replace this
+    # needs all properties method
+    DogBiscuits.all_properties.each do | prop |
+      config.add_show_field solr_name(prop.to_s, :stored_searchable)
+    end
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -145,136 +144,23 @@ class CatalogController < ApplicationController
       }
     end
 
-    # Now we see how to over-ride Solr request handler defaults, in this
-    # case for a BL "search field", which is really a dismax aggregate
-    # of Solr search fields.
-    # creator, title, description, publisher, date_created,
-    # subject, language, resource_type, format, identifier, based_near,
-    config.add_search_field('contributor') do |field|
-      # solr_parameters hash are sent to Solr as ordinary url query params.
-
-      # :solr_local_parameters will be sent using Solr LocalParams
-      # syntax, as eg {! qf=$title_qf }. This is neccesary to use
-      # Solr parameter de-referencing like $title_qf.
-      # See: http://wiki.apache.org/solr/LocalParams
-      solr_name = solr_name("contributor", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('creator') do |field|
-      solr_name = solr_name("creator", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('title') do |field|
-      solr_name = solr_name("title", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('description') do |field|
-      solr_name = solr_name("description", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('publisher') do |field|
-      solr_name = solr_name("publisher", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('date_created') do |field|
-      solr_name = solr_name("created", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('subject') do |field|
-      solr_name = solr_name("subject", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('language') do |field|
-      solr_name = solr_name("language", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('resource_type') do |field|
-      solr_name = solr_name("resource_type", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('format') do |field|
-      solr_name = solr_name("format", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('identifier') do |field|
-      solr_name = solr_name("id", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('based_near') do |field|
-      field.label = "Location"
-      solr_name = solr_name("based_near", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('keyword') do |field|
-      solr_name = solr_name("keyword", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('depositor') do |field|
-      solr_name = solr_name("depositor", :symbol)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('rights') do |field|
-      solr_name = solr_name("rights", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
+    # TODO all properties config
+    DogBiscuits.all_properties.each do | prop |
+      # Now we see how to over-ride Solr request handler defaults, in this
+      # case for a BL "search field", which is really a dismax aggregate
+      # of Solr search fields.
+      config.add_search_field(prop.to_s) do |field|
+        # solr_parameters hash are sent to Solr as ordinary url query params.
+        # :solr_local_parameters will be sent using Solr LocalParams
+        # syntax, as eg {! qf=$title_qf }. This is neccesary to use
+        # Solr parameter de-referencing like $title_qf.
+        # See: http://wiki.apache.org/solr/LocalParams
+        solr_name = solr_name(prop.to_s, :stored_searchable)
+        field.solr_local_parameters = {
+          qf: solr_name,
+          pf: solr_name
+        }
+      end
     end
 
     # "sort results by" select (pulldown)

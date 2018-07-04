@@ -88,7 +88,7 @@ This generator makes the following changes to your application:
   end
 
   def create_attribute_rows
-    generate "dog_biscuits:attribute_rows #{class_name}", '-f'
+    copy_file '_attribute_rows.html.erb', "app/views/hyrax/#{file_name}/_attribute_rows.html.erb"
   end
 
   def update_locales
