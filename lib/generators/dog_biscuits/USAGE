@@ -12,9 +12,8 @@ Description:
         This generator makes the following changes to your application:
          1. Runs the work generator for all selected models
          2. Runs the catalog_controller generator
-         3. Runs the attribute_rows generator
-         4. Runs the locales generator
-         5. Runs the schema_org generator
+         3. Runs the locales generator
+         4. Runs the schema_org generator
 
     Authority Generator:
         This generator makes the following changes to your application:
@@ -39,12 +38,6 @@ Description:
         This generator makes the following changes to your application
             where information is available in property_mappings:
              1. Injects labels and help_text into the en en hyrax locale.
-
-    Attribute Rows Generator
-        This generator can be run for an existing Model, or for All models (with All).
-        This generator makes the following changes to your application:
-            1. Creates an _attribute_rows.html.erb file for the given Work
-            2. Injects a row for each attribute where information is available in property_mappings
 
     Imagify Generator
         This generator can be run for an existing Model, or for All models (with All).
