@@ -19,4 +19,18 @@ module DogBiscuitsHelper
   rescue KeyError
     value
   end
+
+  # TODO: doc and test
+  def truncate_text_and_iconify_link(value)
+    if value.is_a? String
+      iconify_auto_link(truncate_text(value).to_s)
+    elsif value.is_a? Hash
+      value[:value] = value[:value].map { |text| truncate_text(text).to_s }
+      iconify_auto_link(value)
+    end
+  end
+
+  def truncate_text(text)
+    truncate(text, length: 300, separator: ' ')
+  end
 end

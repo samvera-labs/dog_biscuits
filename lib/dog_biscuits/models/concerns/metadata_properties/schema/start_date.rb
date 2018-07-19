@@ -6,7 +6,7 @@ module DogBiscuits
 
     included do
       property :start_date, predicate: ::RDF::Vocab::SCHEMA.startDate do |index|
-        index.as :stored_searchable
+        index.as :stored_searchable, :dateable
       end
     end
   end

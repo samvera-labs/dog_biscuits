@@ -25,6 +25,21 @@ module DogBiscuits
       @selected_models ||= available_models
     end
 
+    attr_writer :date_picker
+    def date_picker
+      @date_picker ||= false
+    end
+
+    attr_writer :date_picker_dates
+    def date_picker_dates
+      @date_picker_dates ||= date_properties
+    end
+
+    attr_writer :date_range
+    def date_range
+      @date_range ||= false
+    end
+
     # Default required properties.
     def required_properties
       %i[title creator keyword rights_statement].freeze
@@ -151,10 +166,13 @@ module DogBiscuits
         date_submitted
         date_updated
         date_valid
+        end_date
+        event_date
         issue_number
         pagination
         publication_status
         refereed
+        start_date
         volume_number
         aip_uuid
         transfer_uuid
@@ -171,6 +189,28 @@ module DogBiscuits
         aip_resource_uri
         dip_resource_uri
         origin_pipeline
+      ]
+    end
+
+    # All of these are date properties
+    # These will be indexed into the date_picker if present
+    attr_writer :date_properties
+    def date_properties
+      @date_properties ||= %i[
+        date_accepted
+        date_available
+        date_collected
+        date_copyrighted
+        date_created
+        date_issued
+        date_published
+        date_submitted
+        date_updated
+        date_valid
+        date_of_award
+        end_date
+        event_date
+        start_date
       ]
     end
 

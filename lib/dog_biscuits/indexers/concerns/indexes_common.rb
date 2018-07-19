@@ -9,6 +9,7 @@ module DogBiscuits
         solr_doc_for_labels(solr_doc)
         solr_doc_for_strings(solr_doc)
         solr_doc_for_contributors(solr_doc)
+        solr_doc_for_dates(solr_doc)
         do_local_indexing(solr_doc)
       end
     end
@@ -82,6 +83,22 @@ module DogBiscuits
               solr_doc[Solrizer.solr_name("contributor_type", :facetable)] << v
             else
               solr_doc[Solrizer.solr_name("contributor_type", :facetable)] = [v]
+            end
+          end
+        end
+      end
+    end
+
+    # Extract years from all date fields and index into 'date_range_sim'
+    def solr_doc_for_dates(solr_doc)
+      DogBiscuits.config.date_properties.each do |d|
+        next unless object.respond_to? d
+        object.send(d).each do |dd|
+          dd.to_s.scan(/\b\d{4}\b/).each do |year|
+            if solr_doc['date_range_sim']
+              solr_doc['date_range_sim'] << year.to_i
+            else
+              solr_doc['date_range_sim'] = [year.to_i]
             end
           end
         end

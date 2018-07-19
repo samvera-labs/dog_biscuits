@@ -52,7 +52,8 @@ module DogBiscuits
           },
           abstract: {
             index: "('abstract', :stored_searchable)",
-            helper_method: :iconify_auto_link,
+            # TODO: text_area
+            helper_method: :truncate_text_and_iconify_link,
             schema_org: {
               property: "description"
             }
@@ -166,6 +167,10 @@ module DogBiscuits
             helper_method: :human_readable_date,
             label: 'Date issued'
           },
+          # Only used for the date range facet
+          date_range: {
+            label: 'Date Range'
+          },
           date_published: {
             index: "('date_published', :stored_sortable, type: :date)",
             schema_org: {
@@ -203,7 +208,8 @@ module DogBiscuits
           description: {
             index: "('description', :stored_searchable)",
             label: 'Description or summary',
-            helper_method: :iconify_auto_link,
+            # TODO: text_area
+            helper_method: :truncate_text_and_iconify_link,
             schema_org: {
               property: "description"
             },
