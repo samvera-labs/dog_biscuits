@@ -7,7 +7,7 @@ module DogBiscuits
     included do
       property :date_issued, predicate: ::RDF::Vocab::DC.issued do |index|
         index.type :date
-        index.as :stored_searchable, :facetable, :dateable
+        index.as :stored_searchable, :facetable, :stored_sortable
       end
     end
   end

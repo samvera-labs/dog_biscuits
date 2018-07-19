@@ -6,7 +6,7 @@ module DogBiscuits
 
     included do
       property :date_updated, predicate: RDF::Vocab::SCHEMA.dateModified do |index|
-        index.as :stored_searchable, :facetable, :dateable
+        index.as :stored_searchable, :facetable, :stored_sortable
       end
     end
   end

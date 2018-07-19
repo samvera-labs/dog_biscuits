@@ -1,4 +1,4 @@
-<% # the hyrax version of this file will mess up singular field display %>
+<% # the hyrax version of this file will mess up singular field display TODO - why? %>
 <% if f.object.class.multiple? key %>
     <%= f.input key, as: :multi_value, input_html: { class: 'form-control' }, required: f.object.required?(key) %>
 <% else %>

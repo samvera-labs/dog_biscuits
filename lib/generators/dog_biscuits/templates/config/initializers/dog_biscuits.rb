@@ -8,16 +8,33 @@ DOGBISCUITS = YAML.safe_load(File.read(Rails.root.join('config', 'dog_biscuits.y
 DogBiscuits.config do |config|
   # GLOBAL PROPERTIES
 
-  # Add values that aren't found in the following table-based authorities to be added on save.
-  #   This only works in cases where the name of the authority is a pluralized form of
-  #   the name of the property which uses it, eg. subjects/subject and languages/language
-  # Default is :subjects; add authority name as symbol, eg. :subjects
-  # config.authorities_add_new = []
-
   # Models to be used in the current application.
   #   Available models are:
   #   Add values in constantized form, eg. 'ConferenceItem'
   # config.selected_models = []
+
+  # Use the blacklight date range gem to provide a single combined range filter
+  #   default = false
+  #   nb. run rails g dog_biscuits:dates_generator to install
+  # config.date_range = true
+
+  # Use the bootstrap date picker for date fields
+  #   default = false
+  #   nb. run rails g dog_biscuits:dates_generator to install
+  # config.date_picker = true
+
+  # Date fields on which to apply the date picker
+  #   default is everything in the date_properties config
+  #   Add values as symbols (eg. :date_created)
+  # config.date_picker_dates += [] # add to the list
+  # config.date_picker_dates -= [] # remove from the list
+  # config.date_picker_dates += [] # replace the current list
+
+  # Date fields to be indexed into the date_range facet:
+  #   Add values as symbols (eg. :date_created)
+  # config.date_properties += [] # add to the list
+  # config.date_properties -= [] # remove from the list
+  # config.date_properties += [] # replace the current list
 
   # Solr fields that will be used as facets in the search page.
   #   The ordering of the field names is the order of the display
@@ -39,6 +56,12 @@ DogBiscuits.config do |config|
   # config.singular_properties += [] # add to the list
   # config.singular_properties -= [] # remove from the list
   # config.singular_properties += [] # replace the current list
+
+  # Add values that aren't found in the following table-based authorities to be added on save.
+  #   This only works in cases where the name of the authority is a pluralized form of
+  #   the name of the property which uses it, eg. subjects/subject and languages/language
+  # Default is :subjects; add authority name as symbol, eg. :subjects
+  # config.authorities_add_new = []
 
   # WORK PROPERTIES
 

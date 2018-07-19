@@ -139,6 +139,11 @@ This generator makes the following changes to your application
         "          #{prop}_sim: #{label}\n"
       end
     end
+    if DogBiscuits.config.date_range && !DogBiscuits.config.property_mappings[:date_range][:label].blank?
+      inject_into_file locale, after: "        facet:\n" do
+        "          date_range_sim: #{DogBiscuits.config.property_mappings[:date_range][:label]}\n"
+      end
+    end
   end
 
   def remove_double_line_breaks

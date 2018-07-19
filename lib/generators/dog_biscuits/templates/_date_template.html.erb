@@ -1,0 +1,7 @@
+<% # use date picker %>
+
+<% if f.object.class.multiple? key %>
+    <%= f.input key, as: :multi_value, input_html: { data: { provide: 'datepicker', 'date-force-parse': 'false', 'date-autoclose': 'true' } }, required: f.object.required?(key) %>
+<% else %>
+  <%= f.input key, input_html: { value: f.object.model[key].first, data: { provide: 'datepicker', 'date-force-parse': 'false', 'date-autoclose': 'true' } }, required: f.object.required?(key) %>
+<% end %>

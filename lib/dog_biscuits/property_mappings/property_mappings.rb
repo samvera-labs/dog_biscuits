@@ -43,16 +43,17 @@ module DogBiscuits
             label: 'Depositor'
           },
           date_uploaded: {
-            index: "('date_uploaded', :stored_sortable, type: :date)",
+            index: "('date_uploaded', :stored_searchable)",
             helper_method: :human_readable_date
           },
           date_modified: {
-            index: "('date_modified', :stored_sortable, type: :date)",
+            index: "('date_modified', :stored_searchable)",
             helper_method: :human_readable_date
           },
           abstract: {
             index: "('abstract', :stored_searchable)",
-            helper_method: :iconify_auto_link,
+            label: 'Abstract',
+            helper_method: :truncate_text_and_iconify_link,
             schema_org: {
               property: "description"
             }
@@ -128,68 +129,60 @@ module DogBiscuits
           },
           date: {
             label: 'Date',
-            index: "('date', :stored_sortable)",
-            helper_method: :human_readable_date,
+            index: "('date', :stored_searchable)",
             help_text: 'A date for the work.'
           },
           date_accepted: {
-            index: "('date_accepted', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date
+            index: "('date_accepted', :stored_searchable)"
           },
           date_available: {
-            index: "('date_available', :stored_sortable, type: :date)",
+            index: "('date_available', :stored_searchable)",
             schema_org: {
               property: "datePublished"
-            },
-            helper_method: :human_readable_date
+            }
           },
           date_collected: {
-            index: "('date_collected', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date,
+            index: "('date_collected', :stored_searchable)",
             label: 'Date collected'
           },
           date_copyrighted: {
-            index: "('date_copyrighted', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date,
+            index: "('date_copyrighted', :stored_searchable)",
             label: 'Date copyrighted'
           },
           date_created: {
-            index: "('date_created', :stored_sortable, type: :date)",
+            index: "('date_created', :stored_searchable)",
             schema_org: {
               property: "dateCreated"
             },
-            helper_method: :human_readable_date,
             help_text: "The date on which the work was created."
           },
           date_issued: {
-            index: "('date_issued', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date,
+            index: "('date_issued', :stored_searchable)",
             label: 'Date issued'
           },
+          # Only used for the date range facet
+          date_range: {
+            label: 'Date range'
+          },
           date_published: {
-            index: "('date_published', :stored_sortable, type: :date)",
+            index: "('date_published', :stored_searchable)",
             schema_org: {
               property: "datePublished"
             },
-            label: 'Publication date',
-            helper_method: :human_readable_date
+            label: 'Publication date'
           },
           date_submitted: {
-            index: "('date_submitted', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date
+            index: "('date_submitted', :stored_searchable)"
           },
           date_of_award: {
-            index: "('date_of_award', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date
+            index: "('date_of_award', :stored_searchable)"
           },
           date_updated: {
-            index: "('date_updated', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date,
-            label: 'Date updated'
+            index: "('date_updated', :stored_searchable)",
+            helper_method: :human_readable_date
           },
           date_valid: {
-            index: "('date_valid', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date,
+            index: "('date_valid', :stored_searchable)",
             label: 'Date valid'
           },
           dc_access_rights: {
@@ -203,7 +196,7 @@ module DogBiscuits
           description: {
             index: "('description', :stored_searchable)",
             label: 'Description or summary',
-            helper_method: :iconify_auto_link,
+            helper_method: :truncate_text_and_iconify_link,
             schema_org: {
               property: "description"
             },
@@ -236,9 +229,16 @@ module DogBiscuits
             label: 'Extent'
           },
           event_date: {
-            index: "('event_date', :stored_sortable, type: :date)",
-            helper_method: :human_readable_date,
+            index: "('event_date', :stored_searchable)",
             label: 'Date of event'
+          },
+          start_date: {
+            index: "('start_date', :stored_searchable)",
+            label: 'Start date'
+          },
+          end_date: {
+            index: "('end_date', :stored_searchable)",
+            label: 'End date'
           },
           dc_format: {
             index: "('dc_format', :stored_searchable)",
