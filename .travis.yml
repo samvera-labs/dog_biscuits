@@ -8,6 +8,9 @@ env:
   matrix:
     - "RAILS_VERSION=5.1.4"
 
+cache:
+  bundler: true
+
 before_install:
   - gem update --system
 before_script:

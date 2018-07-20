@@ -21,17 +21,13 @@ This generator makes the following changes to your application:
     init_path = 'config/initializers/dog_biscuits.rb'
     yml_path = 'config/dog_biscuits.yml'
 
-    unless File.exist?(yml_path)
-      copy_file 'config/dog_biscuits.yml', yml_path
-    end
+    copy_file 'config/dog_biscuits.yml', yml_path unless File.exist?(yml_path)
 
-    unless File.exist?(init_path)
-      copy_file 'config/initializers/dog_biscuits.rb', init_path
-    end
+    copy_file 'config/initializers/dog_biscuits.rb', init_path unless File.exist?(init_path)
   end
 
   def update_initializer
-    gsub_file 'config/initializers/dog_biscuits.rb', /#   Available models are:/, "#   Available models are: #{DogBiscuits.config.available_models.join(", ")}"
+    gsub_file 'config/initializers/dog_biscuits.rb', /#   Available models are:/, "#   Available models are: #{DogBiscuits.config.available_models.join(', ')}"
   end
 
   def update_solr_document

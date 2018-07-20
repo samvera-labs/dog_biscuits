@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Answers queries about the cardinality of each field on the form.
 class LocalFormMetadataService < Hyrax::FormMetadataService
   # @param [Class] model_class the class of the object
