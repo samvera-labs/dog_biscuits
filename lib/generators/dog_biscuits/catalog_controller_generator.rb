@@ -14,13 +14,23 @@ This generator makes the following changes to your application:
   end
 
   def create_catalog_controller
-    catalog_file = 'app/controllers/catalog_controller.rb'
-    copy_file 'catalog_controller.rb', catalog_file
+    @catalog = 'app/controllers/catalog_controller.rb'
+    copy_file 'catalog_controller.rb', @catalog
+    @catalog_file = File.read(@catalog)
+  end
+
+  def update_range
+    if DogBiscuits.config.date_range
+      range = "  include BlacklightRangeLimit::ControllerOverride\n"
+      unless @catalog_file.include? range
+        inject_into_file @catalog, after: "ApplicationController\n" do
+          range
+        end
+      end
+    end
   end
 
   def update_catalog_controller_facets
-    catalog_file = 'app/controllers/catalog_controller.rb'
-
     DogBiscuits.config.facet_properties.each do |prop|
       injection = "    config.add_facet_field solr_name('#{prop}', :facetable), limit: 5"
 
@@ -31,16 +41,14 @@ This generator makes the following changes to your application:
 
       injection += "\n"
 
-      next if catalog_file.include? injection
-      inject_into_file catalog_file, before: "    # replace facets end" do
+      next if @catalog_file.include? injection
+      inject_into_file @catalog, before: "    # replace facets end" do
         injection
       end
     end
   end
 
   def update_catalog_controller_index
-    catalog_file = 'app/controllers/catalog_controller.rb'
-
     DogBiscuits.config.index_properties.each do |prop|
       next unless DogBiscuits.config.property_mappings[prop]
       next unless DogBiscuits.config.property_mappings[prop][:index] # skip if there isn't an index mapping
@@ -55,7 +63,7 @@ This generator makes the following changes to your application:
 
       injection += "\n"
 
-      inject_into_file catalog_file, before: '    # insert indexes end' do
+      inject_into_file @catalog, before: '    # insert indexes end' do
         injection
       end
     end
@@ -63,7 +71,7 @@ This generator makes the following changes to your application:
     # This is a local property in Hyku
     extent = "    # For Hyku\n    config.add_index_field solr_name('extent', :stored_searchable)"
     if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
-      inject_into_file catalog_file, before: '    # insert indexes end' do
+      inject_into_file @catalog, before: '    # insert indexes end' do
         extent
       end
     end
@@ -71,7 +79,7 @@ This generator makes the following changes to your application:
 
   # All fields need to be added to the show list as these are used decide what is searched
   def update_catalog_controller_show_fields
-    catalog_file = 'app/controllers/catalog_controller.rb'
+    @catalog_file = 'app/controllers/catalog_controller.rb'
     all_properties = []
     # Add fields for selected models only
     models = DogBiscuits.config.selected_models.collect(&:underscore)
@@ -89,8 +97,8 @@ This generator makes the following changes to your application:
 
     all_properties.uniq.sort.each do |prop|
       injection = "    config.add_show_field solr_name('#{prop}', :stored_searchable)\n"
-      next if catalog_file.include? injection
-      inject_into_file catalog_file, before: '    # "fielded" search configuration' do
+      next if @catalog_file.include? injection
+      inject_into_file @catalog, before: '    # "fielded" search configuration' do
         injection
       end
     end
@@ -105,8 +113,8 @@ This generator makes the following changes to your application:
                   "      end\n" \
                   "\n"
 
-      next if catalog_file.include? injection
-      inject_into_file catalog_file, before: '    # "sort results by" select (pulldown)' do
+      next if @catalog_file.include? injection
+      inject_into_file @catalog, before: '    # "sort results by" select (pulldown)' do
         injection
       end
     end
