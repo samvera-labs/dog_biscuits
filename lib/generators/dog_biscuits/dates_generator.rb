@@ -12,11 +12,13 @@ This generator .
 
   def banner
     say_status("info", "Configuring the date_picker and date_range", :blue)
+    say_status("info", "date_picker is disabled and will not be installed", :blue) unless DogBiscuits.config.date_picker
+    say_status("info", "date_range is disabled and will not be installed", :blue) unless DogBiscuits.config.date_range
   end
 
   # rubocop:disable Style/GuardClause
   def date_picker
-    if DogBiscuits.config.date_picker == true
+    if DogBiscuits.config.date_picker
 
       gem 'bootstrap-datepicker-rails'
 
@@ -47,7 +49,7 @@ This generator .
   end
 
   def date_range
-    if DogBiscuits.config.date_range == true
+    if DogBiscuits.config.date_range
 
       gem "blacklight_range_limit"
 
@@ -55,7 +57,7 @@ This generator .
         run "bundle install"
       end
 
-      generate 'blacklight_range_limit:install' unless File.read('config/routes.rb').include? 'range_searchable'
+      generate 'blacklight_range_limit:install'
 
       copy_file 'config/initializers/catalog_search_builder_overrides.rb', 'config/initializers/catalog_search_builder_overrides.rb'
 
@@ -75,6 +77,28 @@ This generator .
         end
       end
     end
-    # rubocop:enable Style/GuardClause
   end
+
+  # If this is a Hyku app, the javascript needs to come before the Hyku groups, otherwise the slide js won't fire
+  # This is ugly and fragile, it could easily break if Hyku or BRL change
+  def date_range_hyku
+      if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
+
+        unless File.read('app/assets/javascripts/application.js').include? "//= require 'blacklight_range_limit'\n// Moved the Hyku JS *above* the Hyrax JS"
+          rangejs = "// For blacklight_range_limit built-in JS, if you don't want it you don't need\n"
+          rangejs += "// this:\n"
+          rangejs += "//= require 'blacklight_range_limit'"
+
+          rangejs_altered = "// For blacklight_range_limit built-in JS, if you don't want it you don't need\n"
+          rangejs_altered += "// this:\n"
+          rangejs_altered += "// require 'blacklight_range_limit'"
+
+          gsub_file 'app/assets/javascripts/application.js', rangejs, rangejs_altered
+          inject_into_file 'app/assets/javascripts/application.js', before: "// Moved the Hyku JS *above* the Hyrax JS" do
+            "//= require 'blacklight_range_limit'\n"
+          end
+        end
+      end
+    end
+    # rubocop:enable Style/GuardClause
 end
