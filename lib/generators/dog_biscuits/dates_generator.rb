@@ -21,7 +21,7 @@ This generator .
       gem 'bootstrap-datepicker-rails'
 
       Bundler.with_clean_env do
-        run "bundle install --without development test"
+        run "bundle install"
       end
 
       # insert into application.css
@@ -52,7 +52,7 @@ This generator .
       gem "blacklight_range_limit"
 
       Bundler.with_clean_env do
-        run "bundle install --without development test"
+        run "bundle install"
       end
 
       generate 'blacklight_range_limit:install' unless File.read('config/routes.rb').include? 'range_searchable'
