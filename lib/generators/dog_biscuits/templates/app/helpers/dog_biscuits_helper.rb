@@ -31,6 +31,6 @@ module DogBiscuitsHelper
   end
 
   def truncate_text(text)
-    truncate(text, length: 300, separator: ' ').force_encoding 'utf-8'
+    text.truncate_words(50, omission: ' ...')
   end
 end
