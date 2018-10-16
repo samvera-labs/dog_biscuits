@@ -23,6 +23,8 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:date_picker) }
   it { is_expected.to respond_to(:date_picker_dates) }
   it { is_expected.to respond_to(:date_range) }
+  it { is_expected.to respond_to(:restricted_properties) }
+  it { is_expected.to respond_to(:restricted_role) }
   it { is_expected.to respond_to(:property_mappings) }
   it { is_expected.to respond_to(:conference_item_properties) }
   it { is_expected.to respond_to(:conference_item_properties_required) }
@@ -52,6 +54,8 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:date_picker=) }
   it { is_expected.to respond_to(:date_picker_dates=) }
   it { is_expected.to respond_to(:date_range=) }
+  it { is_expected.to respond_to(:restricted_properties=) }
+  it { is_expected.to respond_to(:restricted_role=) }
   it { is_expected.to respond_to(:property_mappings=) }
   it { is_expected.to respond_to(:conference_item_properties=) }
   it { is_expected.to respond_to(:conference_item_properties_required=) }

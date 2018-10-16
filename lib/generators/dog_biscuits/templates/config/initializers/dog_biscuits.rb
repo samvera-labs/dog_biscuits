@@ -57,6 +57,23 @@ DogBiscuits.config do |config|
   # config.singular_properties -= [] # remove from the list
   # config.singular_properties += [] # replace the current list
 
+  # Date properties
+  # These will be indexed into the date_picker if present
+  # config.date_properties += []
+
+  # Restrict the following properties in the form to the role specified in
+  #   restricted_role
+  # Restrictions apply to 'below the fold' properties only, they are not
+  #   applied to required properties
+  # Restrictions apply in the form only, properties are still visible in the 
+  #   show page
+  # Default is none
+  # config.restricted_properties = []
+
+  # Role to use when restricting properties
+  # Default is :admin
+  # config.restricted_role = :admin
+
   # Add values that aren't found in the following table-based authorities to be added on save.
   #   This only works in cases where the name of the authority is a pluralized form of
   #   the name of the property which uses it, eg. subjects/subject and languages/language

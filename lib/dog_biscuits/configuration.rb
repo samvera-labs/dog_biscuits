@@ -214,6 +214,25 @@ module DogBiscuits
       ]
     end
 
+    # Restrict the following properties in the form to the role specified in
+    #   restricted_role
+    # Restrictions apply to 'below the fold' properties only, they are not
+    #   applied to required properties
+    # Restrictions apply in the form only, properties are still visible in the 
+    #   show page
+    # Default is none
+    attr_writer :restricted_properties
+    def restricted_properties
+      @restricted_properties ||= %i[]
+    end
+
+    # Role to use when restricting properties
+    # Default is :admin
+    attr_writer :restricted_role
+    def restricted_role
+      @restricted_role ||= :admin
+    end
+
     # ConferenceItem
 
     # Properties in order:
