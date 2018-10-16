@@ -43,6 +43,7 @@ module DogBiscuits
   autoload_under 'services' do
     autoload :Terms
     autoload :TermsService
+    autoload :TableBasedAuthorityExtended
   end
 
   autoload_under 'models' do

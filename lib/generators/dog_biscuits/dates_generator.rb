@@ -79,11 +79,22 @@ This generator .
     end
   end
 
+<<<<<<< HEAD
   # If this is a Hyku app, the javascript needs to come before the Hyku groups, otherwise the slide js won't fire
   # This is ugly and fragile, it could easily break if Hyku or BRL change
   def date_range_hyku
     if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
 
+=======
+  # In Hyku, the blacklight_range_limit javascript inserts jquery, this causes other js to fail cos of multiple loads
+  #  (eg. add work modal doesn't work)
+  # To fix this, remove the standard insert from blacklight_range_limit to remove jquery
+  #   and add the require statements individually
+  #   do this earlier in the file because in production, the blacklight_range_limit js doesn't work if it's at the bottom
+  # This is a bit ugly and fragile.
+  def date_range_js
+    if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
+>>>>>>> 10157cfa62e3eaf23ecf1dd84ace720066155880
       unless File.read('app/assets/javascripts/application.js').include? "//= require 'blacklight_range_limit'\n// Moved the Hyku JS *above* the Hyrax JS"
         rangejs = "// For blacklight_range_limit built-in JS, if you don't want it you don't need\n"
         rangejs += "// this:\n"
@@ -91,11 +102,27 @@ This generator .
 
         rangejs_altered = "// For blacklight_range_limit built-in JS, if you don't want it you don't need\n"
         rangejs_altered += "// this:\n"
+<<<<<<< HEAD
         rangejs_altered += "// require 'blacklight_range_limit'"
 
         gsub_file 'app/assets/javascripts/application.js', rangejs, rangejs_altered
         inject_into_file 'app/assets/javascripts/application.js', before: "// Moved the Hyku JS *above* the Hyrax JS" do
           "//= require 'blacklight_range_limit'\n"
+=======
+        rangejs_altered += "// require 'blacklight_range_limit'\n"
+        
+        rangejs_new = "\n//= require 'flot/jquery.flot.js'\n"
+        rangejs_new += "//= require 'flot/jquery.flot.selection.js'\n"
+        rangejs_new += "//= require 'bootstrap-slider'\n"
+        rangejs_new += "//= require 'blacklight_range_limit/range_limit_distro_facets.js'\n"
+        rangejs_new += "//= require 'blacklight_range_limit/range_limit_shared.js'\n"
+        rangejs_new += "//= require 'blacklight_range_limit/range_limit_slider.js'\n\n"
+
+        gsub_file 'app/assets/javascripts/application.js', rangejs, rangejs_altered
+
+        inject_into_file 'app/assets/javascripts/application.js', before: "// Moved the Hyku JS *above* the Hyrax JS" do
+          rangejs_new
+>>>>>>> 10157cfa62e3eaf23ecf1dd84ace720066155880
         end
       end
     end

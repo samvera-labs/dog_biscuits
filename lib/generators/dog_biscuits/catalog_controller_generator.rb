@@ -19,8 +19,19 @@ This generator makes the following changes to your application:
     @catalog_file = File.read(@catalog)
   end
 
+<<<<<<< HEAD
   def update_range
     if DogBiscuits.config.date_range
+=======
+  # CC file gets overwritten so we'll make sure the Range controller is in place
+  def update_range
+    if DogBiscuits.config.date_range
+      gem "blacklight_range_limit"
+
+      Bundler.with_clean_env do
+        run "bundle install"
+      end
+>>>>>>> 10157cfa62e3eaf23ecf1dd84ace720066155880
       range = "  include BlacklightRangeLimit::ControllerOverride\n"
       unless @catalog_file.include? range
         inject_into_file @catalog, after: "ApplicationController\n" do
