@@ -68,10 +68,10 @@ module DogBiscuits
 
     # Common properties from DogBiscuits atop those in BasicMetadata
     # Also include resource_type which is part of BasicMetadata but not part of the Hyrax WorkForm
-    # omitting _resource properties (managing_organisation_, department_, funder_)
+    # omitting _resource properties (managing_organisation_, department_, funder_, _output_of)
     # omitting date as this is used for faceting only
     def common_properties
-      %i[department doi former_identifier note lat long alt location].freeze
+      %i[department doi former_identifier note output_of lat long alt location].freeze
     end
 
     # Add values that aren't found in the following table-based authorities to be added on save.
@@ -325,7 +325,6 @@ module DogBiscuits
 
     attr_writer :journal_article_properties
 
-    # omitting output_of_resource
     def journal_article_properties
       properties = %i[abstract
                       date_published
@@ -335,7 +334,6 @@ module DogBiscuits
                       issue_number
                       part_of
                       official_url
-                      output_of
                       pagination
                       publication_status
                       refereed
@@ -413,7 +411,6 @@ module DogBiscuits
         has_restriction
         last_access
         number_of_downloads
-        output_of
         resource_type_general
         subtitle
       ]
