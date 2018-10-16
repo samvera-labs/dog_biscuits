@@ -68,6 +68,10 @@ This generator makes the following changes to your application:
   def create_edit_fields_and_inputs
     directory 'app/views/records', 'app/views/records'
   end
+  
+  def add_custom_form
+    copy_file 'app/views/hyrax/base/_form_metadata.html.erb', 'app/views/hyrax/base/_form_metadata.html.erb'
+  end
 
   # TODO: remove when fixed
   def create_views
