@@ -23,7 +23,7 @@ This generator makes the following changes to your application:
 
     all_properties = []
 
-    @models = DogBiscuits.config.selected_models.collect {|m| m.underscore}
+    @models = DogBiscuits.config.selected_models.collect(&:underscore)
 
     @models.each do |model|
       all_properties += DogBiscuits.config.send("#{model.underscore}_properties")
@@ -38,13 +38,14 @@ This generator makes the following changes to your application:
       if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:schema_org]
         injection += "\n  #{string_prop}:"
         DogBiscuits.config.property_mappings[prop][:schema_org].each do |k, v|
-          injection += "\n    #{k.to_s}: '#{v}'"
+          injection += "\n    #{k}: '#{v}'"
         end
       end
 
+      next if injection.blank?
       inject_into_file schema_file, after: 'schema_org:' do
-        "#{injection}"
-      end unless injection.blank?
+        injection.to_s
+      end
     end
   end
 end

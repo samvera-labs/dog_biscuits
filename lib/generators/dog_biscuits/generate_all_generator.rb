@@ -19,7 +19,7 @@ This generator makes the following changes to your application:
   end
 
   def generate_works
-    DogBiscuits.config.selected_models.each do | model |
+    DogBiscuits.config.selected_models.each do |model|
       if options[:skipmodel]
         generate 'dog_biscuits:work', "#{model} --skipmodel -f"
       else
@@ -27,5 +27,4 @@ This generator makes the following changes to your application:
       end
     end
   end
-
 end

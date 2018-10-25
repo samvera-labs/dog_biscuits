@@ -30,10 +30,9 @@ This generator makes the following changes to your application:
           "\n#{term_string}"
         end
       end
-      unless yml_content.include? t
-        inject_into_file yml_path, after: '# authorities' do
-          "\n#{t.gsub('Terms', '').underscore.pluralize}: \"\""
-        end
+      next if yml_content.include? t
+      inject_into_file yml_path, after: '# authorities' do
+        "\n#{t.gsub('Terms', '').underscore.pluralize}: \"\""
       end
     end
   end

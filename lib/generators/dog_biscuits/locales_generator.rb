@@ -41,26 +41,23 @@ This generator makes the following changes to your application
 
       properties.each do |prop|
         next if DogBiscuits.config.property_mappings[prop].blank?
-        next if DogBiscuits.config.property_mappings[prop][:help_text].blank? and DogBiscuits.config.property_mappings[prop][:label].blank?
+        next if DogBiscuits.config.property_mappings[prop][:help_text].blank? && DogBiscuits.config.property_mappings[prop][:label].blank?
 
         prop_key = "#{prop}: "
-        
+
         # remove existing lines
-        if locale_text =~ /        #{Regexp.escape(prop_key)}[.*]+\n/
-          gsub_file locale, /        #{Regexp.escape(prop_key)}[.*]+\n/, ''
-        end
+        gsub_file locale, /        #{Regexp.escape(prop_key)}[.*]+\n/, '' if locale_text =~ /        #{Regexp.escape(prop_key)}[.*]+\n/
 
         unless DogBiscuits.config.property_mappings[prop][:help_text].blank?
-          hint = DogBiscuits.config.property_mappings[prop][:help_text]   
+          hint = DogBiscuits.config.property_mappings[prop][:help_text]
           inject_into_file locale, after: "\n    hints:\n      defaults:\n" do
             "        #{prop_key}\"#{hint}\"\n"
           end
         end
-        unless DogBiscuits.config.property_mappings[prop][:label].blank?     
-          label = DogBiscuits.config.property_mappings[prop][:label]
-          inject_into_file locale, after: "\n    labels:\n      defaults:\n" do
-            "        #{prop_key}#{label}\n"
-          end
+        next if DogBiscuits.config.property_mappings[prop][:label].blank?
+        label = DogBiscuits.config.property_mappings[prop][:label]
+        inject_into_file locale, after: "\n    labels:\n      defaults:\n" do
+          "        #{prop_key}#{label}\n"
         end
       end
     end
@@ -84,11 +81,11 @@ This generator makes the following changes to your application
   # Do the 'show'
   def update_hyrax_locale_blacklight_clean_and_update_show
     locale = 'config/locales/hyrax.en.yml'
-    
+
     # clear facets and index
     gsub_file locale, /        index:(.*)        show:/m, "        index:\n        show:\n"
     gsub_file locale, /        facet:(.*)        index:/m, "        facet:\n        index:\n"
-    
+
     @models.each do |model|
       properties = DogBiscuits.config.send("#{model}_properties")
       properties.each do |prop|
@@ -97,9 +94,9 @@ This generator makes the following changes to your application
 
         # let's clear out existing property data from show
         index_show_key = "          #{prop}_tesim: "
-        gsub_file locale, /#{Regexp.escape(index_show_key)}(.*)/, '' 
+        gsub_file locale, /#{Regexp.escape(index_show_key)}(.*)/, ''
 
-        inject_into_file locale,after: "        show:\n" do
+        inject_into_file locale, after: "        show:\n" do
           "          #{prop}_tesim: #{DogBiscuits.config.property_mappings[prop][:label]}\n"
         end
       end
@@ -111,9 +108,9 @@ This generator makes the following changes to your application
     locale = 'config/locales/hyrax.en.yml'
     properties.each do |prop|
       next if DogBiscuits.config.property_mappings[prop].blank?
-      next if DogBiscuits.config.property_mappings[prop][:label].blank?  
+      next if DogBiscuits.config.property_mappings[prop][:label].blank?
 
-      inject_into_file 'config/locales/hyrax.en.yml', after: "        index:\n" do 
+      inject_into_file 'config/locales/hyrax.en.yml', after: "        index:\n" do
         "          #{prop}_tesim: #{DogBiscuits.config.property_mappings[prop][:label]}INDEX\n"
       end
     end
@@ -123,11 +120,11 @@ This generator makes the following changes to your application
     properties = DogBiscuits.config.facet_properties
     properties.each do |prop|
       next if DogBiscuits.config.property_mappings[prop].blank?
-      next if DogBiscuits.config.property_mappings[prop][:label].blank?  
-      
-       inject_into_file 'config/locales/hyrax.en.yml', after: "        facet:\n" do
-         "          #{prop}_sim: #{DogBiscuits.config.property_mappings[prop][:label]}\n"
-       end
+      next if DogBiscuits.config.property_mappings[prop][:label].blank?
+
+      inject_into_file 'config/locales/hyrax.en.yml', after: "        facet:\n" do
+        "          #{prop}_sim: #{DogBiscuits.config.property_mappings[prop][:label]}\n"
+      end
     end
   end
 

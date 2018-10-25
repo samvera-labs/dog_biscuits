@@ -8,6 +8,7 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in dog_biscuits.gemspec
 gemspec
 
+# rubocop:disable Bundler/DuplicatedGem
 # BEGIN ENGINE_CART BLOCK
 # engine_cart: 1.1.0
 # engine_cart stanza: 0.10.0
@@ -34,11 +35,12 @@ else
 
   case ENV['RAILS_VERSION']
   when /^4.2/
+    gem 'coffee-rails', '~> 4.1.0'
     gem 'responders', '~> 2.0'
     gem 'sass-rails', '>= 5.0'
-    gem 'coffee-rails', '~> 4.1.0'
   when /^4.[01]/
     gem 'sass-rails', '< 5.0'
   end
 end
 # END ENGINE_CART BLOCK
+# rubocop:enable Bundler/DuplicatedGem

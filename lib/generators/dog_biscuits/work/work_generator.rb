@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails/generators'
 require 'rails/generators/model_helpers'
 
@@ -26,7 +27,7 @@ This generator makes the following changes to your application:
 
   def supported_model
     unless DogBiscuits.config.available_models.include? class_name
-      say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.map {|m| m}.join(', ') }", :red)
+      say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.map { |m| m }.join(', ')}", :red)
       exit 0
     end
   end
@@ -114,5 +115,4 @@ This generator makes the following changes to your application:
   def display_readme
     readme 'README'
   end
-
 end

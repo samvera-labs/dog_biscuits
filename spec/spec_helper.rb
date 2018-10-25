@@ -22,14 +22,6 @@ require 'engine_cart'
 EngineCart.load_application!
 
 require 'byebug' unless ENV['TRAVIS']
-require 'jquery-rails'
-require 'coffee-rails'
-require 'bootstrap-sass'
-require 'turbolinks'
-require 'sqlite3'
-require 'devise'
-require 'listen'
-require 'rake'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
