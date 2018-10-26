@@ -9,7 +9,6 @@ class DogBiscuits::LocalesIndexGenerator < Rails::Generators::Base
 
   def banner
     say_status("info", "Generating blacklight index locale", :blue)
-
   end
 
   def update_index
@@ -24,5 +23,4 @@ class DogBiscuits::LocalesIndexGenerator < Rails::Generators::Base
       end
     end
   end
-  
 end

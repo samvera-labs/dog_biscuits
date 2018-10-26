@@ -4,6 +4,14 @@ inherit_gem:
 inherit_from:
 - .rubocop_fixme.yml
 
+AllCops:
+  TargetRubyVersion: 2.3
+  DisplayCopNames: true
+  Exclude:
+    - 'spec/**/*'
+    - 'vendor/**/*'
+    - 'lib/generators/**/*'
+
 Metrics/BlockLength:
   Exclude:
     - '*.gemspec'

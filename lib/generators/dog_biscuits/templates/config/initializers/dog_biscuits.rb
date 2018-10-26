@@ -6,7 +6,6 @@ DOGBISCUITS = YAML.safe_load(File.read(Rails.root.join('config', 'dog_biscuits.y
 
 # Configuration
 DogBiscuits.config do |config|
-
   # GLOBAL PROPERTIES
 
   # Add values that aren't found in the following table-based authorities to be added on save.
@@ -89,6 +88,4 @@ DogBiscuits.config do |config|
   #         property: 'contributor'
   #     }
   # }
-
-
 end

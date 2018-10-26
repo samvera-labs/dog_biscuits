@@ -14,12 +14,12 @@ This generator makes the following changes to your application:
     say_status("info", "Generating _attribute_rows.html.erb for #{class_name}", :blue)
 
     if class_name == 'All'
-      @models = DogBiscuits.config.selected_models.map {|m| m.underscore}
+      @models = DogBiscuits.config.selected_models.map(&:underscore)
     else
       if DogBiscuits.config.selected_models.include? class_name
-        @models = [ class_name.underscore ]
+        @models = [class_name.underscore]
       else
-        say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect {|m| m}.join(', ') }", :red)
+        say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.collect { |m| m }.join(', ')}", :red)
         exit 0
       end
     end
@@ -35,33 +35,25 @@ This generator makes the following changes to your application:
       DogBiscuits.config.send("#{model.underscore}_properties").each do |term|
         # Some attributes are included outside of the _attribute_rows.html.erb
         #   add them in for completeness, but commented out
-        case term
-          when :title
-            injection = "\n<%#= presenter.attribute_to_html(:#{term}"
-          when :description
-            injection = "\n<%#= presenter.attribute_to_html(:#{term}"
-          when :license
-            injection = "\n<%#= presenter.attribute_to_html(:#{term}"
-          else
-            injection = "\n<%= presenter.attribute_to_html(:#{term}"
-        end
+        injection = case term
+                    when :title
+                      "\n<%#= presenter.attribute_to_html(:#{term}"
+                    when :description
+                      "\n<%#= presenter.attribute_to_html(:#{term}"
+                    when :license
+                      "\n<%#= presenter.attribute_to_html(:#{term}"
+                    else
+                      "\n<%= presenter.attribute_to_html(:#{term}"
+                    end
 
         # Append _label onto any controlled properties
-        if "#{model.camelize}".constantize.controlled_properties.include? term
-          injection += "_label"
-        end
+        injection += "_label" if model.camelize.to_s.constantize.controlled_properties.include? term
 
-        if DogBiscuits.config.facet_properties.include? term
-          injection += ", render_as: :faceted"
-        end
+        injection += ", render_as: :faceted" if DogBiscuits.config.facet_properties.include? term
 
         if DogBiscuits.config.property_mappings[term]
-          if DogBiscuits.config.property_mappings[term][:label]
-            injection += ", label: '#{DogBiscuits.config.property_mappings[term][:label]}'"
-          end
-          if DogBiscuits.config.property_mappings[term][:render_as]
-            injection += ", render_as: :#{DogBiscuits.config.property_mappings[term][:render_as]}"
-          end
+          injection += ", label: '#{DogBiscuits.config.property_mappings[term][:label]}'" if DogBiscuits.config.property_mappings[term][:label]
+          injection += ", render_as: :#{DogBiscuits.config.property_mappings[term][:render_as]}" if DogBiscuits.config.property_mappings[term][:render_as]
         end
         injection += ") %>"
 

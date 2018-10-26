@@ -1,0 +1,115 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+    # legacy needed for phantomjs
+    - image: circleci/ruby:2.5.1-node-browsers-legacy
+    - image: circleci/redis:4
+    - image: ualbertalib/docker-fcrepo4:4.7
+      environment:
+        CATALINA_OPTS: "-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms512m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=256m -XX:+DisableExplicitGC"
+    - image: solr:7
+      command: bin/solr -cloud -noprompt -f -p 8985
+
+    # Specify service dependencies here if necessary
+    # CircleCI maintains a library of pre-built images
+    # documented at https://circleci.com/docs/2.0/circleci-images/
+    # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo
+    parallelism: 2
+
+    environment:
+      RAILS_ENV: test
+      RACK_ENV: test
+      FCREPO_TEST_PORT: 8080/fcrepo
+      BUNDLE_JOBS: 4
+      BUNDLE_RETRY: 3
+      NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+      ENGINE_CART_RAILS_OPTIONS: --skip-git --skip-bundle --skip-listen --skip-spring --skip-yarn --skip-keeps --skip-coffee --skip-puma --skip-test
+      COVERALLS_PARALLEL: true
+
+    steps:
+    - restore_cache:
+        keys:
+        - source-v1-{{ .Branch }}-{{ .Revision }}
+
+    - checkout
+
+    - save_cache:
+        key: source-v1-{{ .Branch }}-{{ .Revision }}
+        paths:
+        - ".git"
+
+    # BUNDLE_PATH is unset to allow for `bundle config path` to take precedence.
+    - run:
+        name: Extra environment setup
+        command: |
+          echo 'unset BUNDLE_PATH' >> $BASH_ENV
+
+    - restore_cache:
+        keys:
+        - v1-internal-test-app-{{ checksum "dog_biscuits.gemspec" }}-{{ checksum "spec/test_app_templates/lib/generators/test_app_generator.rb" }}-{{ checksum "lib/generators/dog_biscuits/install_generator.rb" }}
+
+    # Download and cache dependencies
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ .Branch }}-{{ checksum "dog_biscuits.gemspec" }}-{{ checksum "spec/test_app_templates/lib/generators/test_app_generator.rb" }}-{{ checksum "lib/generators/dog_biscuits/install_generator.rb" }}
+        - v1-dependencies-{{ .Branch }}
+        - v1-dependencies-
+
+    - run:
+        name: Install dependencies
+        command: |
+          gem update --system
+          gem update bundler
+          bundle config path $CIRCLE_WORKING_DIRECTORY/vendor/bundle
+          bundle install
+
+    - run:
+        name: Call Rubocop
+        command: bundle exec rubocop
+
+    - run:
+        name: Generate test app, ensure top-level Gemfile.lock is valid
+        command: |
+          [ -e ./.internal_test_app ] || bundle exec rake engine_cart:generate
+
+    - save_cache:
+        paths:
+        - ./.internal_test_app
+        key: v1-internal-test-app-{{ checksum "dog_biscuits.gemspec" }}-{{ checksum "spec/test_app_templates/lib/generators/test_app_generator.rb" }}-{{ checksum "lib/generators/dog_biscuits/install_generator.rb" }}
+
+    - run:
+        name: Load config into SolrCloud
+        command: |
+          cd .internal_test_app/solr/config
+          zip -1 -r solr_hyrax_config.zip ./*
+          curl -H "Content-type:application/octet-stream" --data-binary @solr_hyrax_config.zip "http://localhost:8985/solr/admin/configs?action=UPLOAD&name=hyrax"
+          curl -H 'Content-type: application/json' http://localhost:8985/api/collections/ -d '{create: {name: hydra-test, config: hyrax, numShards: 1}}'
+
+    - run:
+        name: Run rspec
+        command: |
+          mkdir /tmp/test-results
+          bundle exec rake spec
+
+    - run:
+        name: Clean dependencies
+        command: bundle clean
+
+    - save_cache:
+        paths:
+        - ./vendor/bundle
+        key: v1-dependencies-{{ .Branch }}-{{ checksum "dog_biscuits.gemspec" }}-{{ checksum "spec/test_app_templates/lib/generators/test_app_generator.rb" }}-{{ checksum "lib/generators/dog_biscuits/install_generator.rb" }}
+
+    # collect reports
+    - store_test_results:
+        path: /tmp/test-results
+    - store_artifacts:
+        path: /tmp/test-results
+        destination: test-results
