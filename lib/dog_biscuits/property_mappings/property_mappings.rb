@@ -428,7 +428,7 @@ module DogBiscuits
             }
           },
           part_of: {
-            index: "('proceeding', :stored_searchable)",
+            index: "('part_of', :stored_searchable)",
             label: 'Part of',
             help_text: "A Work that this this physically or logically contained in, such as a conference proceeding, or series.",
             schema_org: {
