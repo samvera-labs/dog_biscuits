@@ -14,7 +14,7 @@ shared_examples_for 'common_rights' do
     expect(stubby.license).to eq(['https://creativecommons.org/publicdomain/mark/1.0/'])
   end
   it 'has rights description' do
-    expect(stubby.rights_description).to eq(['some additoinal stuff about rights'])
+    expect(stubby.rights_description).to eq(['some additional stuff about rights'])
   end
   it 'has rightsholder predicate' do
     expect(rdf.should(include('http://purl.org/dc/terms/rightsHolder')))

@@ -26,7 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'hyrax', '>= 2', '< 3'
 
   spec.add_development_dependency 'bixby'
-  spec.add_development_dependency 'byebug'
   spec.add_development_dependency 'coveralls'
   spec.add_development_dependency 'engine_cart'
   spec.add_development_dependency 'factory_bot_rails', '~> 4.11'
