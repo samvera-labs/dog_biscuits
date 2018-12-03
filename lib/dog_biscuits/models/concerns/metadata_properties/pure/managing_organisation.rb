@@ -5,10 +5,10 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      has_and_belongs_to_many :managing_organisation_resource,
-                              class_name: 'DogBiscuits::Organisation',
-                              predicate:
-                                  DogBiscuits::Vocab::PureTerms.pureManagingUnit
+      property :managing_organisation,
+          predicate: DogBiscuits::Vocab::PureTerms.pureManagingUnit do |index|
+            index.as :stored_searchable, :facetable
+      end
     end
   end
 end

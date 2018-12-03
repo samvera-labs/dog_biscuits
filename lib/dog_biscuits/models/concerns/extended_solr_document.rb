@@ -48,7 +48,6 @@ module DogBiscuits
     end
 
     # TODO: dates
-    # TODO sort out the _label ones ... those below are _resource only
 
     # Keep these alphebetized; comments indicate those in basic_metadata
     #   see https://github.com/samvera/hyrax/blob/master/app/models/concerns/hyrax/solr_document/metadata.rb
@@ -57,13 +56,11 @@ module DogBiscuits
       attribute :access_provided_by, Solr::Array, solr_name('access_provided_by')
       attribute :advisor, Solr::Array, solr_name('advisor')
       attribute :alt, Solr::Array, solr_name('alt')
-      attribute :awarding_institution, Solr::Array, solr_name('awarding_institution_label')
-      # based_near and based_near_label
+      attribute :awarding_institution, Solr::Array, solr_name('awarding_institution')
+      # based_near and based_near
       attribute :content_version, Solr::Array, solr_name('content_version')
       # contributor
       # creator
-      # creator is used by other models so we need to distinguish _label
-      # attribute :creator_label, Solr::Array, solr_name('creator_label')
       attribute :date, Solr::Array, solr_name('date')
       attribute :date_accepted, Solr::Array, solr_name('date_accepted')
       attribute :date_available, Solr::Array, solr_name('date_available')
@@ -102,7 +99,7 @@ module DogBiscuits
       # license
       attribute :location, Solr::Array, solr_name('location')
       attribute :long, Solr::Array, solr_name('long')
-      attribute :managing_organisation, Solr::Array, solr_name('managing_organisation_label')
+      attribute :managing_organisation, Solr::Array, solr_name('managing_organisation')
       attribute :module_code, Solr::Array, solr_name('module_code')
       attribute :note, Solr::Array, solr_name('note')
       attribute :number_of_downloads, Solr::Array, solr_name('last_access')
@@ -116,7 +113,7 @@ module DogBiscuits
       attribute :place_of_publication, Solr::Array, solr_name('place_of_publication')
       attribute :presented_at, Solr::Array, solr_name('presented_at')
       attribute :part_of, Solr::Array, solr_name('part_of')
-      attribute :project, Solr::Array, solr_name('project_label')
+      attribute :project, Solr::Array, solr_name('project')
       attribute :publication_status, Solr::Array, solr_name('publication_status')
       # publisher
       attribute :qualification_level, Solr::Array, solr_name('qualification_level')

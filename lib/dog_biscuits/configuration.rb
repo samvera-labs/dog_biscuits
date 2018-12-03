@@ -68,10 +68,9 @@ module DogBiscuits
 
     # Common properties from DogBiscuits atop those in BasicMetadata
     # Also include resource_type which is part of BasicMetadata but not part of the Hyrax WorkForm
-    # omitting _resource properties (managing_organisation_, department_, funder_, _output_of)
     # omitting date as this is used for faceting only
     def common_properties
-      %i[department doi former_identifier note output_of lat long alt location].freeze
+      %i[department doi former_identifier note output_of lat long alt location managing_organisation funder].freeze
     end
 
     # Add values that aren't found in the following table-based authorities to be added on save.
@@ -88,7 +87,6 @@ module DogBiscuits
     # The existing fields will be replaced:
     #   resource_type, creator, tag, subject, language, based_near_label, publisher, file_format
     attr_writer :facet_properties
-    # omitting funder
     def facet_properties
       @facet_properties ||= %i[
         human_readable_type
@@ -98,6 +96,7 @@ module DogBiscuits
         contributor_type
         publisher
         department
+        funder
         date
         keyword
         subject
@@ -350,11 +349,12 @@ module DogBiscuits
     end
 
     attr_writer :thesis_properties
-    # omitting awarding_institution_resource orcid
+    # omitting orcid
     def thesis_properties
       properties = %i[abstract
                       advisor
                       date_of_award
+                      awarding_institution
                       qualification_level
                       qualification_name]
       properties = base_properties + properties + common_properties
@@ -407,7 +407,6 @@ module DogBiscuits
         dc_access_rights
         dc_format
         extent
-        funder
         has_restriction
         last_access
         number_of_downloads
