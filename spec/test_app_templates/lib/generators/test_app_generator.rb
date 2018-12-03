@@ -15,20 +15,18 @@ class TestAppGenerator < Rails::Generators::Base
     end
   end
 
-  # FROM template.rb
   def install_hyrax
     gem 'hyrax', '>= 2', '< 3'
     run 'bundle install'
     generate 'hyrax:install', '-f'
-    rails_command 'db:migrate'
   end
   
-  def install_hydra_role_management
-    gem 'hydra-role-management'
-    run 'bundle install'
-    generate 'roles'
-    rails_command 'db:migrate'
-  end
+  # def install_hydra_role_management
+  #   gem 'hydra-role-management'
+  #   run 'bundle install'
+  #   generate 'roles'
+  #   rails_command 'db:migrate'
+  # end
 
   # Fix for running on vagrant on windows with nfs
   def configure_tmp_directory
