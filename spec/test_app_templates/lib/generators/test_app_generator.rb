@@ -20,6 +20,14 @@ class TestAppGenerator < Rails::Generators::Base
     run 'bundle install'
     generate 'hyrax:install', '-f'
   end
+  
+  # required for restricted properties
+  def install_hydra_role_management
+    gem 'hydra-role-management'
+    run 'bundle install'
+    generate('roles')
+    rake('db:migrate')
+  end
 
   # Fix for running on vagrant on windows with nfs
   def configure_tmp_directory
