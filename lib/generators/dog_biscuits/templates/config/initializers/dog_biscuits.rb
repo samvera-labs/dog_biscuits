@@ -65,7 +65,7 @@ DogBiscuits.config do |config|
   #   restricted_role
   # Restrictions apply to 'below the fold' properties only, they are not
   #   applied to required properties
-  # Restrictions apply in the form only, properties are still visible in the 
+  # Restrictions apply in the form only, properties are still visible in the
   #   show page
   # Default is none
   # config.restricted_properties = []

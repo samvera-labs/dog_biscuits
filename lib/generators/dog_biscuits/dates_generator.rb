@@ -95,7 +95,7 @@ This generator .
         rangejs_altered = "// For blacklight_range_limit built-in JS, if you don't want it you don't need\n"
         rangejs_altered += "// this:\n"
         rangejs_altered += "// require 'blacklight_range_limit'\n"
-        
+
         rangejs_new = "\n//= require 'flot/jquery.flot.js'\n"
         rangejs_new += "//= require 'flot/jquery.flot.selection.js'\n"
         rangejs_new += "//= require 'bootstrap-slider'\n"

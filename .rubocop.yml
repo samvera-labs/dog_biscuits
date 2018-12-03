@@ -22,6 +22,10 @@ Metrics/BlockLength:
     - 'lib/dog_biscuits/models/concerns/metadata_properties/archivematica/archivematica.rb'
     - 'lib/dog_biscuits/models/concerns/extended_solr_document.rb'
 
+Metrics/ModuleLength:
+  Exclude:
+    - 'lib/dog_biscuits.rb'
+
 RSpec/ExampleLength:
   Exclude:
     - 'spec/**/*'
