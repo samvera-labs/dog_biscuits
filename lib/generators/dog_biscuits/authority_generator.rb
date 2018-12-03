@@ -48,7 +48,7 @@ This generator makes the following changes to your application:
 
   def inject_into_authority_service
     file_path = 'app/services/authority_service.rb'
-    copy_file 'authority_service.rb', file_path
+    copy_file 'app/services/authority_service.rb', file_path
 
     ::DogBiscuits::Terms.constants.each do |term|
       t = term.to_s
@@ -67,11 +67,7 @@ This generator makes the following changes to your application:
     end
   end
 
-  def copy_local_authority_concern
-    copy_file 'local_authority_concern.rb', 'app/services/concerns/local_authority_concern.rb'
-  end
-
-  def copy_file_authority_concern
-    copy_file 'file_authority_concern.rb', 'app/services/concerns/file_authority_concern.rb'
+  def copy_concerns
+    directory 'app/services/concerns', 'app/services/concerns'
   end
 end
