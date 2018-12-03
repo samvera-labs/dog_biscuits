@@ -63,18 +63,4 @@ describe DogBiscuits::Person do
     stubby.add_pure_type
     expect(stubby.type).to include('http://dlib.york.ac.uk/ontologies/pure#Person')
   end
-
-  describe '#update usages for thesis' do
-    it 'thesis has creator' do
-      thesis.creator_resource << stubby
-      stubby.add_label
-      expect(thesis.to_solr['creator_label_tesim'].should(include(stubby.preflabel)))
-    end
-    #
-    it 'thesis does not have the creator after person is destroyed' do
-      stubby.destroy
-      thesis.reload
-      expect(thesis.to_solr['creator_label_tesim']).not_to include(stubby.preflabel)
-    end
-  end
 end
