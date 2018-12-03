@@ -43,13 +43,6 @@ describe Dataset do
   it_behaves_like 'simple_versions'
   it_behaves_like 'subtitle'
 
-  describe '#metadata' do
-    before do
-      stubby.managing_organisation_resource << org
-    end
-    specify { stubby.managing_organisation_resource.first.should eq(org) }
-  end
-
   describe '#rdftypes' do
     specify { stubby.type.should include('http://www.w3.org/ns/dcat#Dataset') }
     specify { stubby.type.should_not include('https://bib.schema.org/Thesis') }

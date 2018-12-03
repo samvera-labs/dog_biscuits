@@ -134,6 +134,7 @@ FactoryBot.define do
     rights_description { ['some additional stuff about rights'] }
     source { ['tomato'] }
     subject { ['Official Heading for Woe'] }
+    awarding_institution { ['Awarding Institution'] }
   end
 
   factory :journal_article, class: JournalArticle do
@@ -152,5 +153,7 @@ FactoryBot.define do
     output_of { ['some project'] }
     publication_status { ['Published'] }
     part_of { ['The Journal of Woe'] }
+    managing_organisation { ['Managing Organisation'] }
+    funder { ['The National Parks Service'] }
   end
 end

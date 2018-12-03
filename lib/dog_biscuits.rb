@@ -224,6 +224,7 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/marc_relators' do
+    autoload :Advisor
     autoload :Funder
     autoload :Editor
     autoload :PlaceOfPublication
@@ -277,7 +278,6 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/uketd' do
-    autoload :Advisor
     autoload :DateOfAward
     autoload :Qualification
   end
