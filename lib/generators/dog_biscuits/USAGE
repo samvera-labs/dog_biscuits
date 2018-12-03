@@ -50,8 +50,7 @@ Examples:
     rails generate dog_biscuits:edit_fields_and_inputs
     rails generate dog_biscuits:catalog_controller
     rails generate dog_biscuits:schema_org
-
-    rails generate dog_biscuits:locales All
-    rails generate dog_biscuits:locales ConferenceItem
+    rails generate dog_biscuits:locales
+    
     rails generate dog_biscuits:attribute_rows All
     rails generate dog_biscuits:attribute_rows ConferenceItem

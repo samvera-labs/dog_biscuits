@@ -14,7 +14,7 @@ This generator makes the following changes to your application:
     say_status("info", "Generating schema_org.yml", :blue)
   end
 
-  def create_actor
+  def create_schema_org
     template('schema_org.yml.erb', 'config/schema_org.yml')
   end
 end

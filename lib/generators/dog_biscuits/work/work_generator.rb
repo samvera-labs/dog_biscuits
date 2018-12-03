@@ -92,7 +92,7 @@ This generator makes the following changes to your application:
   end
 
   def update_locales
-    generate "dog_biscuits:locales #{class_name}", '-f'
+    generate 'dog_biscuits:locales', '-f'
   end
 
   def create_schema_org
