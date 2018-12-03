@@ -10,7 +10,7 @@ shared_examples_for 'editor' do
   end
 
   it 'has contributor in solr' do
-    expect(stubby.to_solr['contributor_combined_tesim'].should(include('Street, Stephen', person.preflabel)))
+    expect(stubby.to_solr['contributor_combined_tesim'].should(include('Street, Stephen')))
     expect(stubby.to_solr['contributor_type_sim'].should(include('editor')))
   end
 

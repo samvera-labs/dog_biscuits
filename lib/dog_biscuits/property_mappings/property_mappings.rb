@@ -82,6 +82,10 @@ module DogBiscuits
             index: "('alt', :stored_searchable)",
             label: 'Altitude'
           },
+          awarding_institution: {
+            index: "('awarding_institution', :stored_searchable), link_to_search: solr_name('awarding_institution', :facetable)",
+            label: 'Awarding institution'
+          },
           based_near_label: {
             index: "('based_near_label', :stored_searchable), link_to_search: solr_name('based_near_label', :facetable)",
             schema_org: {
@@ -346,6 +350,10 @@ module DogBiscuits
           long: {
             index: "('long', :stored_searchable)",
             label: 'Longitude'
+          },
+          managing_organisation: {
+            index: "('managing_organisation', :stored_searchable)",
+            label: 'Managing organisation'
           },
           module_code: {
             index: "('module_code', :stored_searchable)",

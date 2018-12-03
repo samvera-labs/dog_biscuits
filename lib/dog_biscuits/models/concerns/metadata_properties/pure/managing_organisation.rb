@@ -6,8 +6,8 @@ module DogBiscuits
 
     included do
       property :managing_organisation,
-          predicate: DogBiscuits::Vocab::PureTerms.pureManagingUnit do |index|
-            index.as :stored_searchable, :facetable
+               predicate: DogBiscuits::Vocab::PureTerms.pureManagingUnit do |index|
+        index.as :stored_searchable, :facetable
       end
     end
   end

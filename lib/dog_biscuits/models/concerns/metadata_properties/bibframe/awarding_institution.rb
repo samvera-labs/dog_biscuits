@@ -5,7 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      property :awarding_institution, predicate: ::RDF::Vocab::BF2.grantingInstitution.fnd do |index|
+      property :awarding_institution, predicate: ::RDF::Vocab::BF2.grantingInstitution do |index|
         index.as :stored_searchable, :facetable
       end
     end

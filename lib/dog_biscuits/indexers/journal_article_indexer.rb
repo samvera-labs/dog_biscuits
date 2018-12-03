@@ -6,7 +6,7 @@ module DogBiscuits
 
     # Add any properties to ensure they are 'mixed in' with the *_labels field in solr
     def contributors_to_index
-      ['editor', 'funder']
+      ['funder']
     end
 
     # Add any custom indexing into here. Method must exist, but can be empty.

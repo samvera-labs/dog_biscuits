@@ -4,7 +4,7 @@ shared_examples_for 'presented_at' do
   it 'has conference' do
     expect(stubby.presented_at).to eq(['The International Conference of Misery'])
   end
-  
+
   it 'has presented at predicate' do
     expect(rdf.should(include('http://purl.org/ontology/bibo/presentedAt')))
   end

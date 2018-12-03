@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 shared_examples_for 'subject' do
-  
   it 'has subject (external)' do
     expect(stubby.subject).to eq(['Official Heading for Woe'])
   end
   it 'has dc11 subject predicate' do
     expect(rdf.should(include('http://purl.org/dc/elements/1.1/subject')))
   end
-  
+
   it 'is in the solr_document' do
     expect(solr_doc.should(respond_to(:subject)))
   end

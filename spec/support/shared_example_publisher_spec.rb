@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'publisher' do
-  
   it 'has publisher' do
     expect(stubby.publisher).to eq(['Rough Trade Records'])
   end

@@ -2,7 +2,6 @@
 
 module DogBiscuits
   module IndexesCommon
-
     def generate_solr_document
       super.tap do |solr_doc|
         solr_doc_for_contributors(solr_doc)
@@ -19,7 +18,6 @@ module DogBiscuits
       if respond_to? :contributors_to_index
         contributors_to_index.each do |v|
           labels = object.send(v).to_a
-          labels.push(*object.send("#{v}_resource").collect(&:preflabel))
           # If there is anything in the solr_doc, add to it
           if solr_doc["contributor_combined_tesim"]
             solr_doc[Solrizer.solr_name("contributor_combined", :stored_searchable)].push(*labels).uniq!
@@ -28,7 +26,7 @@ module DogBiscuits
             solr_doc[Solrizer.solr_name("contributor_combined", :stored_searchable)] = labels
             solr_doc[Solrizer.solr_name("contributor_combined", :facetable)] = labels
           end
-          # I don't think the logic is quite right here as there will only ever be one result
+          # @todo I don't think the logic is quite right here as there will only ever be one result
           labels.each do |_label|
             if solr_doc['contributor_type_sim']
               solr_doc[Solrizer.solr_name("contributor_type", :facetable)] << v

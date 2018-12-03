@@ -154,5 +154,6 @@ FactoryBot.define do
     publication_status { ['Published'] }
     part_of { ['The Journal of Woe'] }
     managing_organisation { ['Managing Organisation'] }
+    funder { ['The National Parks Service'] }
   end
 end

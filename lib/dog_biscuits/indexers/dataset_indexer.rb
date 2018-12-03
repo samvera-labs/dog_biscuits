@@ -21,6 +21,5 @@ module DogBiscuits
     def do_local_indexing(solr_doc)
       solr_doc['dc_access_rights_tesi'] = object.dc_access_rights.collect { |x| x }
     end
-
   end
 end

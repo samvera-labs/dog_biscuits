@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 shared_examples_for 'advisor' do
-
   it 'has advisor string' do
     expect(stubby.advisor).to eq(['Rourke, Andy'])
   end
@@ -11,7 +10,7 @@ shared_examples_for 'advisor' do
   end
 
   it 'has contributor in solr' do
-    expect(stubby.to_solr['contributor_combined_tesim'].should(include('Rourke, Andy', person.preflabel)))
+    expect(stubby.to_solr['contributor_combined_tesim'].should(include('Rourke, Andy')))
     expect(stubby.to_solr['contributor_type_sim'].should(include('advisor')))
   end
 

@@ -6,7 +6,7 @@ module DogBiscuits
 
     included do
       # alternative (local) predicate DogBiscuits::Vocab::Uketd.advisor
-      property :advisor, predicate: DogBiscuits::Vocab::Uketd.advisor do |index|
+      property :advisor, predicate: ::RDF::Vocab::MARCRelators.ths do |index|
         index.as :stored_searchable, :facetable
       end
     end
