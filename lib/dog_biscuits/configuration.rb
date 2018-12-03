@@ -188,6 +188,7 @@ module DogBiscuits
         aip_resource_uri
         dip_resource_uri
         origin_pipeline
+        last_access
       ]
     end
 
@@ -222,7 +223,7 @@ module DogBiscuits
     # Default is none
     attr_writer :restricted_properties
     def restricted_properties
-      @restricted_properties ||= %i[]
+      @restricted_properties ||= %i[last_access]
     end
 
     # Role to use when restricting properties
@@ -389,7 +390,7 @@ module DogBiscuits
     attr_writer :dataset_properties
 
     # omitting pure (_uuid, _creation, _type and _link),
-    #   requestor_email, last_access, no_downloads
+    #   requestor_email, no_downloads
     #   these are admin info, not for standard form/view
     def dataset_properties
       properties = %i[
