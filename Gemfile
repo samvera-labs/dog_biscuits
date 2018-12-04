@@ -8,6 +8,7 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in dog_biscuits.gemspec
 gemspec
 
+# rubocop:disable Bundler/DuplicatedGem
 # BEGIN ENGINE_CART BLOCK
 # engine_cart: 1.1.0
 # engine_cart stanza: 0.10.0
@@ -42,3 +43,4 @@ else
   end
 end
 # END ENGINE_CART BLOCK
+# rubocop:enable Bundler/DuplicatedGem

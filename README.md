@@ -16,6 +16,13 @@ Models, vocabularies and behaviours for Hyrax applications :dog: :cookie:
 
 Julie Allinson [geekscruff](https://github.com/geekscruff)
 
+## Current Status (October 2018)
+
+`master` is stable
+
+`latest` contains significant functionality additions (new models, new features), but there is currently an issue with travis due to the length of the build which means the test suite doesn't complete; until this is fixed, `latest` won't be merged into `master`
+
+Refactoring planned in Q4 2018 should reduce the build time.
 
 ## Installation
 
@@ -51,7 +58,7 @@ If the work is not supported, the generator will give you a list of supported mo
 
 Add the -f flag to overwrite any existing files with new ones.
 
-Add the --skipmodel flag to overwrite any existing files but leave the model and indexer unchanged.
+Add the --skipmodel flag to overwrite any existing files but leave the model and indexer unchanged (eg. when you have custom properties in the model and/or custom indexing).
 
 ## Documentation
 
