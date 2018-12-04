@@ -99,10 +99,6 @@ This generator makes the following changes to your application:
     generate 'dog_biscuits:schema_org', '-f'
   end
 
-  def create_catalog_controller
-    generate 'dog_biscuits:catalog_controller', '-f'
-  end
-
   # moved out due to NameError (caused by controlled_properties call)
   def presenter_and_controlled_properties
     generate "dog_biscuits:controlled_properties #{class_name}", '-f'

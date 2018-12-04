@@ -16,10 +16,24 @@ module DogBiscuits
     end
   end
 
+  module Blacklight
+    extend ActiveSupport::Autoload
+    eager_autoload do
+      autoload :Commands
+    end
+  end
+
   module Importers
     extend ActiveSupport::Autoload
     eager_autoload do
       autoload :Authority
+    end
+  end
+
+  module Solr
+    extend ActiveSupport::Autoload
+    eager_autoload do
+      autoload :IndexTypes
     end
   end
 

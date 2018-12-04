@@ -60,6 +60,10 @@ This generator makes the following changes to your application:
     generate 'dog_biscuits:schema_org'
   end
 
+  def create_catalog_controller
+    generate 'dog_biscuits:catalog_controller', '-f'
+  end
+
   # TODO: remove when fixed
   def create_views
     copy_file 'app/views/hyrax/base/_work_description.erb', 'app/views/hyrax/base/_work_description.erb'

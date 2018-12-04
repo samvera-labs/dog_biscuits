@@ -111,5 +111,10 @@ This generator .
       end
     end
   end
+
+  # ensure date range config is in catalog_controller
+  def create_catalog_controller
+    generate 'dog_biscuits:catalog_controller', '-f' if DogBiscuits.config.date_range
+  end
   # rubocop:enable Style/GuardClause
 end
