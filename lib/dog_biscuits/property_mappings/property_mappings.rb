@@ -10,12 +10,12 @@ module DogBiscuits
 
     # Add all properties to the property_mappings hash.
     # Allowed values:
+    #   label: a human-readable label for the property REQUIRED
     #   index: any additional options for the blacklight index in an array
     #     excluding helper_method and item prop
     #     provide in a hash, eg. [{ if: false }], or [{ link_to_search: true }]
     #     nb. for link_to_search, just provide true
     #   schema_org: hash containing property; can also include type and value
-    #   label: a human-readable label for the property
     #   help_text: help text to include in the form
     #   render_as: a custom renderer for the field (omit facetable)
     #   helper_method: a helper method used to render this property in the catalog
@@ -349,12 +349,12 @@ module DogBiscuits
             label: 'Output of project or grant'
           },
           package_ids: {
-            label: "Package (AIP/DIP) contains",
+            label: "Package contains",
             help_text: 'Packages these works. Customarily, the package is a digital preservation AIP or DIP.',
             render_as: :package_ids
           },
           packaged_by_ids: {
-            label: "In package (AIP/DIP",
+            label: "In package",
             help_text: 'Packaged by the following work. Customarily, the package is a digital preservation AIP or DIP.',
             render_as: :packaged_by_ids
           },

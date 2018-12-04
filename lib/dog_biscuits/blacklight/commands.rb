@@ -23,7 +23,7 @@ module DogBiscuits
           end
 
           def default_label(name)
-            I18n.t('dog_biscuits.fields.' + name.to_s)
+            I18n.t('dog_biscuits.labels.' + name.to_s)
           end
 
           def default_label_options(name)
