@@ -4,17 +4,8 @@ module DogBiscuits
   class DatasetIndexer < Hyrax::WorkIndexer
     include DogBiscuits::IndexesCommon
 
-    # Add all properties called *_resource to ensure the preflabel and altlabel of the related object
-    #   are indexed in solr
-    # Method must exist, but can return an empty array
-    def labels_to_index
-      ['creator', 'publisher', 'managing_organisation']
-    end
-
-    # Add any properties to ensure they are 'mixed in' with the *_labels field in solr
-    # Method must exist, but can return an empty array
-    def strings_to_index
-      ['creator']
+    def contributors_to_index
+      ['funder']
     end
 
     # Force the type of certain indexed fields in solr

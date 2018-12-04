@@ -5,9 +5,9 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      has_and_belongs_to_many :awarding_institution_resource,
-                              class_name: 'DogBiscuits::Organisation',
-                              predicate: ::RDF::Vocab::BF2.grantingInstitution
+      property :awarding_institution, predicate: ::RDF::Vocab::BF2.grantingInstitution do |index|
+        index.as :stored_searchable, :facetable
+      end
     end
   end
 end

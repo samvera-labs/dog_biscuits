@@ -25,6 +25,7 @@ module DogBiscuits
     include DogBiscuits::Identifier # BasicMetadata
     include DogBiscuits::Keyword # BasicMetadata (schema:keywords)
     include DogBiscuits::Language # BasicMetadata
+    include DogBiscuits::OutputOf
     include DogBiscuits::Publisher # BasicMetadata
     include DogBiscuits::ResourceType # BasicMetadata
     include DogBiscuits::Source # BasicMetadata
@@ -32,6 +33,8 @@ module DogBiscuits
 
     # Common other properties
     include DogBiscuits::Doi
+    include DogBiscuits::Geo
+    include DogBiscuits::Location
     include DogBiscuits::ManagingOrganisation
     include DogBiscuits::RelatedUrl # BasicMetadata
     include DogBiscuits::SkosNote

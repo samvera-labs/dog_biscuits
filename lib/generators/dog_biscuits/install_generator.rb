@@ -26,6 +26,10 @@ This generator makes the following changes to your application:
     copy_file 'config/initializers/dog_biscuits.rb', init_path unless File.exist?(init_path)
   end
 
+  def create_app
+    directory 'app', 'app'
+  end
+
   def update_initializer
     gsub_file 'config/initializers/dog_biscuits.rb', /#   Available models are:/, "#   Available models are: #{DogBiscuits.config.available_models.join(', ')}"
   end
@@ -40,24 +44,29 @@ This generator makes the following changes to your application:
   end
 
   def create_authorities
-    generate 'dog_biscuits:authority', '-f'
+    generate 'dog_biscuits:authority'
   end
 
-  def create_local_form_metadata_service
-    copy_file 'services/local_form_metadata_service.rb', 'app/services/local_form_metadata_service.rb'
+  def create_helpers
+    db_injection = '  include ::DogBiscuitsHelper'
+    unless File.read('app/helpers/hyrax_helper.rb').include? db_injection
+      inject_into_file 'app/helpers/hyrax_helper.rb', after: "Hyrax::HyraxHelperBehavior\n" do
+        "#{db_injection}\n"
+      end
+    end
   end
 
   def create_schema_org
-    generate 'dog_biscuits:schema_org', '-f'
+    generate 'dog_biscuits:schema_org'
   end
 
-  def create_edit_fields_and_inputs
-    directory 'views/records', 'app/views/records'
+  def create_catalog_controller
+    generate 'dog_biscuits:catalog_controller', '-f'
   end
 
   # TODO: remove when fixed
   def create_views
-    copy_file 'views/hyrax/base/_work_description.erb', 'app/views/hyrax/base/_work_description.erb'
-    copy_file 'views/shared/_citations.html.erb', 'app/views/shared/_citations.html.erb'
+    copy_file 'app/views/hyrax/base/_work_description.erb', 'app/views/hyrax/base/_work_description.erb'
+    copy_file 'app/views/shared/_citations.html.erb', 'app/views/shared/_citations.html.erb'
   end
 end

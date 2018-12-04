@@ -25,9 +25,10 @@ module DogBiscuits
 
     # Create single date field from all dates.
     def combine_dates
-      self.date = []
-      date << date_of_award
-      date << date_created
+      tmpdate = date
+      tmpdate << date_of_award
+      tmpdate << date_created
+      self.date = tmpdate
     end
   end
 end

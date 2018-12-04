@@ -88,19 +88,15 @@ This generator makes the following changes to your application:
   end
 
   def create_attribute_rows
-    generate "dog_biscuits:attribute_rows #{class_name}", '-f'
+    copy_file '_attribute_rows.html.erb', "app/views/hyrax/#{file_name.pluralize}/_attribute_rows.html.erb"
   end
 
   def update_locales
-    generate "dog_biscuits:locales #{class_name}", '-f'
+    generate 'dog_biscuits:locales', '-f'
   end
 
   def create_schema_org
     generate 'dog_biscuits:schema_org', '-f'
-  end
-
-  def create_catalog_controller
-    generate 'dog_biscuits:catalog_controller', '-f'
   end
 
   # moved out due to NameError (caused by controlled_properties call)

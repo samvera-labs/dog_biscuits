@@ -18,7 +18,14 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:facet_properties) }
   it { is_expected.to respond_to(:facet_only_properties) }
   it { is_expected.to respond_to(:index_properties) }
+  it { is_expected.to respond_to(:exclude_from_search_properties) }
   it { is_expected.to respond_to(:singular_properties) }
+  it { is_expected.to respond_to(:date_properties) }
+  it { is_expected.to respond_to(:date_picker) }
+  it { is_expected.to respond_to(:date_picker_dates) }
+  it { is_expected.to respond_to(:date_range) }
+  it { is_expected.to respond_to(:restricted_properties) }
+  it { is_expected.to respond_to(:restricted_role) }
   it { is_expected.to respond_to(:property_mappings) }
   it { is_expected.to respond_to(:conference_item_properties) }
   it { is_expected.to respond_to(:conference_item_properties_required) }
@@ -34,6 +41,8 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:dataset_properties_required) }
   it { is_expected.to respond_to(:package_properties) }
   it { is_expected.to respond_to(:package_properties_required) }
+  it { is_expected.to respond_to(:digital_archival_object_properties) }
+  it { is_expected.to respond_to(:digital_archival_object_properties_required) }
 
   # writers
   it { is_expected.to respond_to(:all_properties=) }
@@ -41,7 +50,14 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:facet_properties=) }
   it { is_expected.to respond_to(:facet_only_properties=) }
   it { is_expected.to respond_to(:index_properties=) }
+  it { is_expected.to respond_to(:exclude_from_search_properties=) }
   it { is_expected.to respond_to(:singular_properties=) }
+  it { is_expected.to respond_to(:date_properties=) }
+  it { is_expected.to respond_to(:date_picker=) }
+  it { is_expected.to respond_to(:date_picker_dates=) }
+  it { is_expected.to respond_to(:date_range=) }
+  it { is_expected.to respond_to(:restricted_properties=) }
+  it { is_expected.to respond_to(:restricted_role=) }
   it { is_expected.to respond_to(:property_mappings=) }
   it { is_expected.to respond_to(:conference_item_properties=) }
   it { is_expected.to respond_to(:conference_item_properties_required=) }
@@ -57,4 +73,6 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:dataset_properties_required=) }
   it { is_expected.to respond_to(:package_properties=) }
   it { is_expected.to respond_to(:package_properties_required=) }
+  it { is_expected.to respond_to(:digital_archival_object_properties=) }
+  it { is_expected.to respond_to(:digital_archival_object_properties_required=) }
 end

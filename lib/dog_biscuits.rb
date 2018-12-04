@@ -16,10 +16,24 @@ module DogBiscuits
     end
   end
 
+  module Blacklight
+    extend ActiveSupport::Autoload
+    eager_autoload do
+      autoload :Commands
+    end
+  end
+
   module Importers
     extend ActiveSupport::Autoload
     eager_autoload do
       autoload :Authority
+    end
+  end
+
+  module Solr
+    extend ActiveSupport::Autoload
+    eager_autoload do
+      autoload :IndexTypes
     end
   end
 
@@ -43,6 +57,7 @@ module DogBiscuits
   autoload_under 'services' do
     autoload :Terms
     autoload :TermsService
+    autoload :TableBasedAuthorityExtended
   end
 
   autoload_under 'models' do
@@ -74,6 +89,7 @@ module DogBiscuits
   autoload_under 'models/works' do
     autoload :ConferenceItem
     autoload :Dataset
+    autoload :DigitalArchivalObject
     autoload :ExamPaper
     autoload :JournalArticle
     autoload :Package
@@ -89,6 +105,7 @@ module DogBiscuits
     autoload :AgentMetadata
     autoload :ConferenceItemMetadata
     autoload :DatasetMetadata
+    autoload :DigitalArchivalObjectMetadata
     autoload :ExamPaperMetadata
     autoload :JournalArticleMetadata
     autoload :PackageMetadata
@@ -107,11 +124,14 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/archives_hub' do
+    autoload :AccessProvidedBy
+    autoload :MaintenanceAgencyCode
     autoload :HubDates
   end
 
   autoload_under 'models/concerns/metadata_properties/bibframe' do
     autoload :AwardingInstitution
+    autoload :DateValid
     autoload :Edition
     autoload :IdentifiedBy
     autoload :InJournal
@@ -119,6 +139,7 @@ module DogBiscuits
     autoload :Part
     autoload :PartOf
     autoload :Series
+    autoload :Subtitle
   end
 
   autoload_under 'models/concerns/metadata_properties/bibo' do
@@ -126,17 +147,25 @@ module DogBiscuits
     autoload :PublicationStatus
   end
 
+  autoload_under 'models/concerns/metadata_properties/datacite' do
+    autoload :ResourceTypeGeneral
+  end
+
   autoload_under 'models/concerns/metadata_properties/dc' do
     autoload :Abstract
     autoload :AccessRights
-    autoload :Available
     autoload :BibliographicCitation
     autoload :Creator
     autoload :Contributor
     autoload :Date
     autoload :DateAccepted
+    autoload :DateAvailable
+    autoload :DateCopyrighted
     autoload :DateCreated
+    autoload :DateIssued
     autoload :Description
+    autoload :Extent
+    autoload :Format
     autoload :Identifier
     autoload :Language
     autoload :Publisher
@@ -149,7 +178,11 @@ module DogBiscuits
     autoload :SimpleVersions
   end
 
-  autoload_under 'models/concerns/metadata_properties/dlib' do
+  autoload_under 'models/concerns/metadata_properties/dwc' do
+    autoload :EventDate
+  end
+
+  autoload_under 'models/concerns/metadata_properties/local' do
     autoload :ForIndexing
     autoload :FormerIdentifier
     autoload :GenericAuthorityTerms
@@ -158,7 +191,9 @@ module DogBiscuits
     autoload :LastAccess
     autoload :MainFile
     autoload :NumberOfDownloads
+    autoload :PackagedBy
     autoload :ReadmeFile
+    autoload :RequestorEmail
   end
 
   autoload_under 'models/concerns/metadata_properties/edm' do
@@ -166,12 +201,25 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/fabio' do
-    autoload :EmbargoRelease
+    autoload :DateCollected
   end
 
   autoload_under 'models/concerns/metadata_properties/foaf' do
     autoload :BasedNear
     autoload :FoafName
+  end
+
+  autoload_under 'models/concerns/metadata_properties/frapo' do
+    autoload :OutputOf
+  end
+
+  autoload_under 'models/concerns/metadata_properties/geo' do
+    autoload :Geo
+  end
+
+  autoload_under 'models/concerns/metadata_properties/geonames' do
+    autoload :CountryCode
+    autoload :PlaceProperties
   end
 
   autoload_under 'models/concerns/metadata_properties/lc_identifiers' do
@@ -185,7 +233,12 @@ module DogBiscuits
     autoload :RelatedAuthority
   end
 
+  autoload_under 'models/concerns/metadata_properties/mods' do
+    autoload :DateValid
+  end
+
   autoload_under 'models/concerns/metadata_properties/marc_relators' do
+    autoload :Advisor
     autoload :Funder
     autoload :Editor
     autoload :PlaceOfPublication
@@ -201,7 +254,6 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/property_sets' do
     autoload :PersonProperties
-    autoload :PlaceProperties
   end
 
   autoload_under 'models/concerns/metadata_properties/pure' do
@@ -217,7 +269,9 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/schema' do
     autoload :ContentVersion
+    autoload :DateUpdated
     autoload :DatePublished
+    autoload :Department
     autoload :EndDate
     autoload :IssueNumber
     autoload :Location
@@ -238,15 +292,12 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/uketd' do
-    autoload :Advisor
     autoload :DateOfAward
-    autoload :Department
     autoload :Qualification
   end
 
   autoload_under 'models/concerns/metadata_properties/ulcc' do
     autoload :DateSubmitted
-    autoload :ProjectOutput
     autoload :Refereed
   end
 
@@ -265,6 +316,7 @@ module DogBiscuits
     # Indexer classes
     autoload :ConferenceItemIndexer
     autoload :DatasetIndexer
+    autoload :DigitalArchivalObjectIndexer
     autoload :ExamPaperIndexer
     autoload :JournalArticleIndexer
     autoload :PackageIndexer

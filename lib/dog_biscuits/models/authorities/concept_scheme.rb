@@ -11,7 +11,6 @@ module DogBiscuits
     has_many :places, class_name: 'DogBiscuits::Place', inverse_of: :concept_scheme
     has_many :groups, class_name: 'DogBiscuits::Group', inverse_of: :concept_scheme
     has_many :projects, class_name: 'DogBiscuits::Project', inverse_of: :concept_scheme
-    has_many :persons # this is needed
 
     # Used for nested schemes. Will be added automatically via inverse.
     has_and_belongs_to_many :has_top_concept,

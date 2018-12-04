@@ -5,7 +5,7 @@ module DogBiscuits
   module JournalArticleMetadata
     extend ActiveSupport::Concern
     include DogBiscuits::Abstract
-    include DogBiscuits::Available
+    include DogBiscuits::DateAvailable
     include DogBiscuits::DatePublished
     include DogBiscuits::DateSubmitted
     include DogBiscuits::DateAccepted
@@ -15,7 +15,6 @@ module DogBiscuits
     include DogBiscuits::Orcid
     include DogBiscuits::Pagination
     include DogBiscuits::PartOf
-    include DogBiscuits::ProjectOutput
     include DogBiscuits::PublicationStatus
     include DogBiscuits::Refereed
     include DogBiscuits::VolumeNumber

@@ -1,0 +1,8 @@
+<% # the hyrax version of this file will mess up singular field display @TODO - why? %>
+<% if (DogBiscuits.config.restricted_properties.include?(key) && current_user.send("#{DogBiscuits.config.restricted_role}?") == true) || !DogBiscuits.config.restricted_properties.include?(key) %>
+  <% if f.object.class.multiple? key %>
+    <%= f.input key, as: :multi_value, input_html: { class: 'form-control' }, required: f.object.required?(key) %>
+  <% else %>
+    <%= f.input key, required: f.object.required?(key), input_html: { value: f.object.model[key].first } %>
+  <% end %>
+<% end %>

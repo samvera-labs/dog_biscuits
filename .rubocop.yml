@@ -1,8 +1,18 @@
+inherit_from: 
+  - .rubocop_todo.yml
+#  - .rubocop_fixme.yml
+
 inherit_gem:
   bixby: bixby_default.yml
 
-inherit_from:
-- .rubocop_fixme.yml
+AllCops:
+  TargetRubyVersion: 2.3
+  DisplayCopNames: true
+  Exclude:
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'spec/test_app_templates/**/*'
+    - 'vendor/**/*'
 
 AllCops:
   TargetRubyVersion: 2.3
@@ -19,6 +29,10 @@ Metrics/BlockLength:
     - 'lib/dog_biscuits/models/concerns/metadata_properties/property_sets/*'
     - 'lib/dog_biscuits/models/concerns/metadata_properties/archivematica/archivematica.rb'
     - 'lib/dog_biscuits/models/concerns/extended_solr_document.rb'
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'lib/dog_biscuits.rb'
 
 RSpec/ExampleLength:
   Exclude:

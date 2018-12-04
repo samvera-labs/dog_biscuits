@@ -29,9 +29,14 @@ module DogBiscuits
 
     # Create single date field from all dates.
     def combine_dates
-      self.date = []
-      date << date_available
-      date << date_created
+      tmpdate = date
+      tmpdate << date_available
+      tmpdate << date_created
+      tmpdate << date_updated
+      tmpdate << date_copyrighted
+      tmpdate << date_collected
+      tmpdate << date_valid
+      self.date = tmpdate
     end
   end
 end

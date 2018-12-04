@@ -6,6 +6,8 @@ shared_examples_for 'part_of' do
       expect(stubby.part_of).to eq(['Proceedings of the Conference of Misery'])
     elsif described_class.is_a? JournalArticle
       expect(stubby.part_of).to eq(['The Journal of Woe'])
+    elsif described_class.is_a? DigitalArchivalObject
+      expect(stubby.part_of).to eq(['Accession 51'])
     end
   end
 

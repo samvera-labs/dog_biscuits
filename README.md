@@ -1,9 +1,14 @@
 # DogBiscuits
 
-[![Build Status](https://travis-ci.org/samvera-labs/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/samvera-labs/dog_biscuits)
+Code: [![Build Status](https://travis-ci.org/samvera-labs/dog_biscuits.svg?branch=cleanup)](https://travis-ci.org/samvera-labs/dog_biscuits)
 [![Coverage Status](https://coveralls.io/repos/github/samvera-labs/dog_biscuits/badge.svg?branch=master)](https://coveralls.io/github/samvera-labs/dog_biscuits?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/10912dcb2451a6c4490c/maintainability)](https://codeclimate.com/github/samvera-labs/dog_biscuits/maintainability)
 [![Inline docs](http://inch-ci.org/github/samvera-labs/dog_biscuits.svg?branch=master)](http://inch-ci.org/github/samvera-labs/dog_biscuits)
+
+Docs: 
+[![Documentation](http://img.shields.io/badge/DOCUMENTATION-wiki-blue.svg)](https://github.com/samvera-labs/dog_biscuits/wiki)
+[![Contribution Guidelines](http://img.shields.io/badge/CONTRIBUTING-Guidelines-blue.svg)](./CONTRIBUTING.md)
+[![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE)
 
 Models, vocabularies and behaviours for Hyrax applications :dog: :cookie:
 
@@ -58,17 +63,3 @@ Add the --skipmodel flag to overwrite any existing files but leave the model and
 ## Documentation
 
 Further documentation is available in the [wiki](https://github.com/samvera-labs/dog_biscuits/wiki).
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/dog_biscuits/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
