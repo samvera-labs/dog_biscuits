@@ -23,7 +23,6 @@ class TestAppGenerator < Rails::Generators::Base
   
   # required for restricted properties
   def install_hydra_role_management
-    gem 'hydra-role-management'
     run 'bundle install'
     generate('roles')
     rake('db:migrate')
