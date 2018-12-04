@@ -1,7 +1,4 @@
-<% all_properties = []
-  DogBiscuits.config.selected_models.collect(&:underscore).each { |model| all_properties += DogBiscuits.config.send("#{model.underscore}_properties") }
-  all_properties -= DogBiscuits.config.base_properties %>schema_org:
-  <% all_properties.uniq.sort.each { | prop | if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:schema_org] %> 
+schema_org:<% DogBiscuits.config.all_properties.sort.each { | prop | if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:schema_org] %>
   <%= prop.to_s %>:
     <% DogBiscuits.config.property_mappings[prop][:schema_org].each { |k, v| %><%= k %>: <%= v %>
     <% } end } %>

@@ -24,7 +24,7 @@ This generator makes the following changes to your application
   end
 
   # @todo internationalization
-  def create_hyrax_metadata_locale
-    template('hyrax_metadata.en.yml.erb', 'config/locales/hyrax_metadata.en.yml')
+  def create_dog_biscuits_locale
+    template('dog_biscuits.en.yml.erb', 'config/locales/dog_biscuits.en.yml')
   end
 end

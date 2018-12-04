@@ -1,0 +1,11 @@
+en:
+  dog_biscuits:
+    labels:<% DogBiscuits.config.all_properties.sort.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
+      <%= prop %>: <%= DogBiscuits.config.property_mappings[prop][:label] %><% end } %>
+  simple_form:
+    hints:
+      defaults:<% DogBiscuits.config.all_properties.sort.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:help_text] %>
+        <%= prop %>: <%= DogBiscuits.config.property_mappings[prop][:help_text] %><% end } %> 
+    labels:
+      defaults:<% DogBiscuits.config.all_properties.sort.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
+        <%= prop %>: <%= DogBiscuits.config.property_mappings[prop][:label] %><% end } %>

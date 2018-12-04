@@ -51,6 +51,12 @@ DogBiscuits.config do |config|
   # config.index_properties -= [] # remove from the current list
   # config.index_properties = [] # replace the current list
 
+  # Solr fields to exclude from search
+  #   Add values as symbols (eg. :creator)
+  # config.exclude_from_search_properties += [] # add to the end of the current list
+  # config.exclude_from_search_properties -= [] # remove from the current list
+  # config.exclude_from_search_properties = [] # replace the current list
+
   # Fields in the form that should only accept a single value, ie. disable the 'add another' button.
   #   Add values as symbols (eg. :creator)
   # config.singular_properties += [] # add to the list
