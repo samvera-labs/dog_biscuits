@@ -45,6 +45,8 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     facet_props = DogBiscuits.config.facet_properties
     add_facet_field config, facet_props
+    
+    add_facet_field config, [:date_range], { range: true } if DogBiscuits.config.date_range
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile

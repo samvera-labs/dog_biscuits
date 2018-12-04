@@ -20,7 +20,6 @@ This generator makes the following changes to your application:
     yml_path = 'config/dog_biscuits.yml'
 
     copy_file 'config/dog_biscuits.yml', yml_path unless File.exist?(yml_path)
-
     copy_file 'config/initializers/dog_biscuits.rb', init_path unless File.exist?(init_path)
   end
 
@@ -46,25 +45,8 @@ This generator makes the following changes to your application:
     end
   end
 
-  def inject_into_authority_service
-    file_path = 'app/services/authority_service.rb'
-    copy_file 'app/services/authority_service.rb', file_path
-
-    ::DogBiscuits::Terms.constants.each do |term|
-      t = term.to_s
-      term_string = "\n\tclass #{t.gsub('Terms', '')}Service < DogBiscuits::Terms::#{t}\n\t\tinclude ::LocalAuthorityConcern\n\tend"
-      inject_into_file file_path, after: '# Object based' do
-        term_string
-      end
-    end
-
-    Dir.entries('config/authorities').each do |file|
-      next unless file.end_with?('.yml')
-      term_string = "\n\tclass #{file.gsub('.yml', '').camelize}Service < Hyrax::QaSelectService\n\tinclude ::FileAuthorityConcern\n\t\tdef initialize\n\t\t\tsuper('#{file.gsub('.yml', '')}')\n\t\tend\n\tend"
-      inject_into_file file_path, after: '# File based' do
-        term_string
-      end
-    end
+  def authority_service
+    template('authority_service.rb.erb', 'app/services/authority_service.rb')
   end
 
   def copy_concerns

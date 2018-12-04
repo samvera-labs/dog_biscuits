@@ -88,7 +88,7 @@ This generator makes the following changes to your application:
   end
 
   def create_attribute_rows
-    copy_file '_attribute_rows.html.erb', "app/views/hyrax/#{file_name.pluralize}/_attribute_rows.html.erb"
+    generate "dog_biscuits:attribute_rows #{class_name}", '-f'
   end
 
   def update_locales
@@ -99,13 +99,8 @@ This generator makes the following changes to your application:
     generate 'dog_biscuits:schema_org', '-f'
   end
 
-  # moved out due to NameError (caused by controlled_properties call)
-  def presenter_and_controlled_properties
-    generate "dog_biscuits:controlled_properties #{class_name}", '-f'
-  end
-
   def imagify
-    generate "dog_biscuits:imagify #{class_name}", '-f'
+    generate "dog_biscuits:imagify #{class_name}", '-f' if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
   end
 
   def display_readme

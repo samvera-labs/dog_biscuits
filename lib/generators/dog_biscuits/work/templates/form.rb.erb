@@ -5,12 +5,12 @@ module Hyrax
     self.model_class = <%= class_name %>
 
     self.terms -= DogBiscuits.config.base_properties
-    self.terms += DogBiscuits.config.<%= class_name.underscore %>_properties
+    self.terms += DogBiscuits.config.<%= file_name %>_properties
 
     # Add any local properties here
     self.terms += []
 
-    self.required_fields = DogBiscuits.config.<%= class_name.underscore %>_properties_required
+    self.required_fields = DogBiscuits.config.<%= file_name %>_properties_required
 
     # The service that determines the cardinality of each field
     self.field_metadata_service = ::LocalFormMetadataService
