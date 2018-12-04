@@ -45,7 +45,6 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:digital_archival_object_properties_required) }
 
   # writers
-  it { is_expected.to respond_to(:all_properties=) }
   it { is_expected.to respond_to(:authorities_add_new=) }
   it { is_expected.to respond_to(:facet_properties=) }
   it { is_expected.to respond_to(:facet_only_properties=) }

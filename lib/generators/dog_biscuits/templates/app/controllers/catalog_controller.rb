@@ -65,7 +65,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    show_props = DogBiscuits.config.all_properties << :contributor_combined
+    show_props = DogBiscuits.config.all_properties
     add_show_field config, show_props
 
     # "fielded" search configuration. Used by pulldown among other places.
@@ -102,7 +102,6 @@ class CatalogController < ApplicationController
     add_search_field config, DogBiscuits.config.all_properties.reject { |v|
       DogBiscuits.config.exclude_from_search_properties.include?(v)
     }
-    add_search_field config, [:contributor_combined]
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
