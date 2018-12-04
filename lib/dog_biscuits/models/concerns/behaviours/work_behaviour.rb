@@ -17,28 +17,5 @@ module DogBiscuits
     # application to do so.
 
     # For spec tests, these are performed on the generated model in Hyrax *not* on the DogBiscuits model
-
-    # For information, this is the current set of include statements from Hyrax::WorkBehavior:
-    # include ::Hydra::Works::WorkBehavior
-    # include ::Hyrax::CoreMetadata
-    # include ::Hyrax::HasRepresentative
-    # include ::Hyrax::InAdminSet
-    # include ::Hyrax::Suppressible
-    # include GlobalID::Identification
-    # include Hydra::AccessControls::Embargoable
-    # include Hyrax::HumanReadableType
-    # include Hyrax::Permissions
-    # include Hyrax::Serializers
-    # include Hydra::WithDepositor
-    # include Solrizer::Common
-    # include Hyrax::WithFileSets
-    # include Hyrax::Naming
-    # include Hyrax::NestedWorks # RuntimeError: Circular dependency detected in calling app
-    # include Hyrax::ProxyDeposit
-    # include ::Works::Trophies
-    # include ::Works::Metadata
-    # include ::Works::Featured
-    # include Hyrax::WithEvents
-    # include ::Hyrax::Noid
   end
 end

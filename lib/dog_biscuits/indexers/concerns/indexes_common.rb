@@ -20,18 +20,18 @@ module DogBiscuits
           labels = object.send(v).to_a
           # If there is anything in the solr_doc, add to it
           if solr_doc["contributor_combined_tesim"]
-            solr_doc[Solrizer.solr_name("contributor_combined", :stored_searchable)].push(*labels).uniq!
-            solr_doc[Solrizer.solr_name("contributor_combined", :facetable)].push(*labels).uniq!
+            solr_doc[ActiveFedora.index_field_mapper.solr_name("contributor_combined", :stored_searchable)].push(*labels).uniq!
+            solr_doc[ActiveFedora.index_field_mapper.solr_name("contributor_combined", :facetable)].push(*labels).uniq!
           else
-            solr_doc[Solrizer.solr_name("contributor_combined", :stored_searchable)] = labels
-            solr_doc[Solrizer.solr_name("contributor_combined", :facetable)] = labels
+            solr_doc[ActiveFedora.index_field_mapper.solr_name("contributor_combined", :stored_searchable)] = labels
+            solr_doc[ActiveFedora.index_field_mapper.solr_name("contributor_combined", :facetable)] = labels
           end
           # @todo I don't think the logic is quite right here as there will only ever be one result
           labels.each do |_label|
             if solr_doc['contributor_type_sim']
-              solr_doc[Solrizer.solr_name("contributor_type", :facetable)] << v
+              solr_doc[ActiveFedora.index_field_mapper.solr_name("contributor_type", :facetable)] << v
             else
-              solr_doc[Solrizer.solr_name("contributor_type", :facetable)] = [v]
+              solr_doc[ActiveFedora.index_field_mapper.solr_name("contributor_type", :facetable)] = [v]
             end
           end
         end
