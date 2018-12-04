@@ -1,0 +1,19 @@
+en:
+  blacklight:
+    search:
+      fields:
+        facet:<% DogBiscuits.config.facet_properties.sort.each { | prop | if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
+          <%= prop.to_s %>_sim: <%= DogBiscuits.config.property_mappings[prop][:label] %> <% end } %>
+        index:<% DogBiscuits.config.index_properties.sort.each { | prop | if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
+          <%= prop.to_s %>_tesim: <%= DogBiscuits.config.property_mappings[prop][:label] %> <% end } %>
+<% all_properties = []
+  DogBiscuits.config.selected_models.collect(&:underscore).each { |model| all_properties += DogBiscuits.config.send("#{model.underscore}_properties") } %>        show: <% all_properties.uniq!.sort.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
+            <%= prop %>_tesim: <%= DogBiscuits.config.property_mappings[prop][:label] %><% end } %>
+  simple_form:
+    hints:
+      defaults:<% all_properties.sort.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:help_text] %>
+        <%= prop %>: <%= DogBiscuits.config.property_mappings[prop][:help_text] %><% end } %> 
+    labels:
+      defaults:<% all_properties.sort.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
+        <%= prop %>: <%= DogBiscuits.config.property_mappings[prop][:label] %><% end } %> 
+      
