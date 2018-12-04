@@ -81,10 +81,13 @@ This generator makes the following changes to your application:
   # This is the same as the Hyrax file, but we want to ensure we are running against a clean file
   def create_presenter
     template('presenter.rb.erb', File.join('app/presenters/hyrax', class_path, "#{file_name}_presenter.rb"))
+    rescue NameError
+     create_indexer
   end
 
   def create_actor
     template('actor.rb.erb', File.join('app/actors/hyrax/actors', class_path, "#{file_name}_actor.rb"))
+    # On first run, sometimes we get a NameError
   end
 
   def create_attribute_rows
