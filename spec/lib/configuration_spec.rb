@@ -18,6 +18,7 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:facet_properties) }
   it { is_expected.to respond_to(:facet_only_properties) }
   it { is_expected.to respond_to(:index_properties) }
+  it { is_expected.to respond_to(:exclude_from_search_properties) }
   it { is_expected.to respond_to(:singular_properties) }
   it { is_expected.to respond_to(:date_properties) }
   it { is_expected.to respond_to(:date_picker) }
@@ -49,6 +50,7 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:facet_properties=) }
   it { is_expected.to respond_to(:facet_only_properties=) }
   it { is_expected.to respond_to(:index_properties=) }
+  it { is_expected.to respond_to(:exclude_from_search_properties=) }
   it { is_expected.to respond_to(:singular_properties=) }
   it { is_expected.to respond_to(:date_properties=) }
   it { is_expected.to respond_to(:date_picker=) }

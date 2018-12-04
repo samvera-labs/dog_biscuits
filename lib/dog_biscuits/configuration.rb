@@ -68,7 +68,7 @@ module DogBiscuits
 
     # Common properties from DogBiscuits atop those in BasicMetadata
     # Also include resource_type which is part of BasicMetadata but not part of the Hyrax WorkForm
-    # omitting date as this is used for faceting only
+    # Omitting date as this is used for faceting only
     def common_properties
       %i[department doi former_identifier note output_of lat long alt location managing_organisation funder].freeze
     end
@@ -148,6 +148,21 @@ module DogBiscuits
         proxy_depositor
         embargo_release_date
         lease_expiration_date
+      ]
+    end
+
+    attr_writer :exclude_from_search_properties
+    def exclude_from_search_properties
+      @exclude_from_search_properties ||= %i[
+        last_access
+        number_of_downloads
+        aip_current_path
+        dip_current_path
+        aip_current_location
+        dip_current_location
+        aip_resource_uri
+        dip_resource_uri
+        packaged_by_ids
       ]
     end
 
