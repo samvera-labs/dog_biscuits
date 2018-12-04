@@ -16,14 +16,6 @@ Models, vocabularies and behaviours for Hyrax applications :dog: :cookie:
 
 Julie Allinson [geekscruff](https://github.com/geekscruff)
 
-## Current Status (October 2018)
-
-`master` is stable
-
-`latest` contains significant functionality additions (new models, new features), but there is currently an issue with travis due to the length of the build which means the test suite doesn't complete; until this is fixed, `latest` won't be merged into `master`
-
-Refactoring planned in Q4 2018 should reduce the build time.
-
 ## Installation
 
 For use within [Hyrax 2](https://github.com/samvera/hyrax) applications. 
