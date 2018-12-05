@@ -1,0 +1,19 @@
+<% DogBiscuits.config.send("#{presenter.model_name.singular}_properties").each do | prop |
+  # skip title, description and license
+  next if [:title, :description, :license].include? prop
+
+  if DogBiscuits.config.property_mappings[prop]
+    if DogBiscuits.config.property_mappings[prop][:render_as]
+      render = DogBiscuits.config.property_mappings[prop][:render_as]
+    elsif DogBiscuits.config.facet_properties.include? prop
+      render = 'faceted'
+    else
+      render = nil
+    end
+  end %>
+  <%= presenter.attribute_to_html(prop, 
+    label: I18n.t("dog_biscuits.labels.#{prop.to_s}"),
+    render_as: render) 
+  %>
+<% end %>
+

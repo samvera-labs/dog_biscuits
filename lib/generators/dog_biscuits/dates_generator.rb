@@ -50,34 +50,17 @@ This generator .
 
   def date_range
     if DogBiscuits.config.date_range
-
+      
       gem "blacklight_range_limit"
-
+      
       Bundler.with_clean_env do
         run "bundle install"
       end
-
       generate 'blacklight_range_limit:install'
-
       copy_file 'config/initializers/catalog_search_builder_overrides.rb', 'config/initializers/catalog_search_builder_overrides.rb'
-
-      catalog = "    config.add_facet_field 'date_range_sim', label: 'Date Range', range: true"
-
-      unless File.read('app/controllers/catalog_controller.rb').include? catalog
-        inject_into_file 'app/controllers/catalog_controller.rb', before: '    # replace facets end' do
-          "#{catalog}\n"
-        end
-      end
-
-      range = "          #date_range_sim: #{DogBiscuits.config.property_mappings[:date_range][:label]}\n"
-
-      unless File.read('config/locales/hyrax.en.yml').include? range
-        inject_into_file 'config/locales/hyrax.en.yml', after: "        facet:\n" do
-          range
-        end
-      end
     end
   end
+
 
   # In Hyku, the blacklight_range_limit javascript inserts jquery, this causes other js to fail cos of multiple loads
   #  (eg. add work modal doesn't work)
@@ -110,11 +93,6 @@ This generator .
         end
       end
     end
-  end
-
-  # ensure date range config is in catalog_controller
-  def create_catalog_controller
-    generate 'dog_biscuits:catalog_controller', '-f' if DogBiscuits.config.date_range
   end
   # rubocop:enable Style/GuardClause
 end

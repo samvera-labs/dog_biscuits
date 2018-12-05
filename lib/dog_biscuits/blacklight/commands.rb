@@ -68,7 +68,7 @@ module DogBiscuits
             end
           end
 
-          def add_labelled_facet_field(config, name, options = { limit: 5 })
+          def add_labelled_facet_field(config, name, options)
             send_to_configuration(config, name, :facet_field, :facetable, options)
           end
 
@@ -93,8 +93,8 @@ module DogBiscuits
             end
           end
 
-          def add_facet_field(config, names)
-            names.each { |name| add_labelled_facet_field(config, name) }
+          def add_facet_field(config, names, options = { limit: 5 })
+            names.each { |name| add_labelled_facet_field(config, name, options) }
           end
 
           def add_index_field(config, names)

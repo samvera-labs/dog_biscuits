@@ -1,0 +1,25 @@
+# frozen_string_literal: true
+
+module AuthorityService
+  # Object based
+  <% ::DogBiscuits::Terms.constants.each do |term| %>
+  class <%=term.to_s.gsub('Terms', '')%>Service < DogBiscuits::Terms::<%=term.to_s%>Service
+    include ::LocalAuthorityConcern
+  end
+  <% end %>
+  # File based
+  <% Dir.entries('config/authorities').each do |file|
+    next unless file.end_with?('.yml') %>
+  class <%=file.gsub('.yml', '').camelize%>Service < Hyrax::QaSelectService
+    include ::FileAuthorityConcern
+    
+    def initialize
+      super('<%=file.gsub('.yml', '')%>')
+    end
+  end
+  <% end %>
+
+  # Table based
+  class TableBasedAuthorityService < DogBiscuits::TableBasedAuthorityExtended
+  end
+end

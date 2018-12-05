@@ -81,14 +81,17 @@ This generator makes the following changes to your application:
   # This is the same as the Hyrax file, but we want to ensure we are running against a clean file
   def create_presenter
     template('presenter.rb.erb', File.join('app/presenters/hyrax', class_path, "#{file_name}_presenter.rb"))
+    rescue NameError
+     create_indexer
   end
 
   def create_actor
     template('actor.rb.erb', File.join('app/actors/hyrax/actors', class_path, "#{file_name}_actor.rb"))
+    # On first run, sometimes we get a NameError
   end
 
   def create_attribute_rows
-    copy_file '_attribute_rows.html.erb', "app/views/hyrax/#{file_name.pluralize}/_attribute_rows.html.erb"
+    generate "dog_biscuits:attribute_rows #{class_name}", '-f'
   end
 
   def update_locales
@@ -99,13 +102,8 @@ This generator makes the following changes to your application:
     generate 'dog_biscuits:schema_org', '-f'
   end
 
-  # moved out due to NameError (caused by controlled_properties call)
-  def presenter_and_controlled_properties
-    generate "dog_biscuits:controlled_properties #{class_name}", '-f'
-  end
-
   def imagify
-    generate "dog_biscuits:imagify #{class_name}", '-f'
+    generate "dog_biscuits:imagify #{class_name}", '-f' if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
   end
 
   def display_readme

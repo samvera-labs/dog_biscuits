@@ -29,36 +29,9 @@ This generator makes the following changes to your application:
   #  eg. <%= presenter.attribute_to_html(:editor) %>
   def attribute_rows
     @models.each do |model|
+      @model = model
       attributes_file = "app/views/hyrax/#{model.underscore.pluralize}/_attribute_rows.html.erb"
       copy_file '_attribute_rows.html.erb', attributes_file
-
-      DogBiscuits.config.send("#{model.underscore}_properties").each do |term|
-        # Some attributes are included outside of the _attribute_rows.html.erb
-        #   add them in for completeness, but commented out
-        injection = case term
-                    when :title
-                      "\n<%#= presenter.attribute_to_html(:#{term}"
-                    when :description
-                      "\n<%#= presenter.attribute_to_html(:#{term}"
-                    when :license
-                      "\n<%#= presenter.attribute_to_html(:#{term}"
-                    else
-                      "\n<%= presenter.attribute_to_html(:#{term}"
-                    end
-
-        # Append _label onto any controlled properties
-        injection += "_label" if model.camelize.to_s.constantize.controlled_properties.include? term
-
-        injection += ", render_as: :faceted" if DogBiscuits.config.facet_properties.include? term
-
-        if DogBiscuits.config.property_mappings[term]
-          injection += ", label: '#{DogBiscuits.config.property_mappings[term][:label]}'" if DogBiscuits.config.property_mappings[term][:label]
-          injection += ", render_as: :#{DogBiscuits.config.property_mappings[term][:render_as]}" if DogBiscuits.config.property_mappings[term][:render_as]
-        end
-        injection += ") %>"
-
-        append_file attributes_file, injection
-      end
     end
   end
 end

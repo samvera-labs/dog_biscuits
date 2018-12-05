@@ -14,15 +14,6 @@ This generator makes the following changes to your application
     say_status("info", "Generating locales", :blue)
   end
 
-  # Remove all blacklight labels from hyrax locales; we're going to re-add them below
-  def wipe_from_hyrax_locales
-    Dir.entries('config/locales').select { |file| file.start_with?('hyrax.') }.each do |locale|
-      gsub_file "config/locales/#{locale}", /        index:(.*)        show:/m, "        index:\n        show:"
-      gsub_file "config/locales/#{locale}", /        facet:(.*)        index:/m, "        facet:\n        index:"
-      gsub_file "config/locales/#{locale}", /        show:(.*)  hyrax:/m, "        show:\n  hyrax:"
-    end
-  end
-
   # @todo internationalization
   def create_dog_biscuits_locale
     template('dog_biscuits.en.yml.erb', 'config/locales/dog_biscuits.en.yml')

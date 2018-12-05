@@ -1,19 +1,17 @@
 Description:
     Install Generator
         This generator makes the following changes to your application:
-         1. Adds a dog_biscuits initializer in config/initializers/dog_biscuits.rb.
-         2. Adds a dog_biscuits yml configuration file in config/dog_biscuits.yml.
-         3. Includes DogBiscuits::ExtendedSolrDocument in the SolrDocument
-         4. Runs the authorities and schema_org generators
-         5. Adds the LocalFormMetadataService
-         6. Adds two view files as a temporary fix.
+         1. Adds dog_biscuits initializer and config
+         2. Includes DogBiscuits::ExtendedSolrDocument in the SolrDocument
+         3. Runs the authorities, locales and schema_org generators
+         4. Adds various new files into app/
+         5. Runs the dates generator if date_picker or date_range are true
 
     Generate All Generator
         This generator makes the following changes to your application:
          1. Runs the work generator for all selected models
-         2. Runs the catalog_controller generator
-         3. Runs the locales generator
-         4. Runs the schema_org generator
+         2. Runs the locales generator
+         3. Runs the schema_org generator
 
     Authority Generator:
         This generator makes the following changes to your application:
@@ -21,23 +19,20 @@ Description:
          2. Registers all subauthorities in config/intitializers/dog_biscuits.rb
          3. Sets up references to the authority concept_schemes in config/dog_biscuits.yml
          4. Copies the authority services into app/services/
-
-    Catalog Controller Generator
+    
+    Catalog Generator
         This generator makes the following changes to your application:
-         1. Creates a new app/controllers/catalog_controller.rb.
-         2. Injects facet, show and index fields using confingured properties
+         1. Adds a new app/controllers/catalog_controller.rb
 
     Schema Org Generator
         This generator makes the following changes to your application:
-        1. Creates a schema_org.yml file in ./config
-        2. Injects schema_org metadata for all properties
-            where this information is configured in property_mappings
+         1. Creates a schema_org.yml file in ./config
+            using information configured in property_mappings
 
     Locales Generator
-        This generator can be run for an existing Model, or for All models (with All).
         This generator makes the following changes to your application
-            where information is available in property_mappings:
-             1. Injects labels and help_text into the en en hyrax locale.
+         1. Creates a dog_biscuits.en.yml file in ./config/locales
+            using information configured in property_mappings
 
     Imagify Generator
         This generator can be run for an existing Model, or for All models (with All).
@@ -47,10 +42,9 @@ Description:
 Examples:
     rails generate dog_biscuits:install
     rails generate dog_biscuits:authority
-    rails generate dog_biscuits:edit_fields_and_inputs
-    rails generate dog_biscuits:catalog_controller
     rails generate dog_biscuits:schema_org
     rails generate dog_biscuits:locales
+    rails generate dog_biscuits:catalog
     
     rails generate dog_biscuits:attribute_rows All
     rails generate dog_biscuits:attribute_rows ConferenceItem
