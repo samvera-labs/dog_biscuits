@@ -8,7 +8,6 @@ describe DogBiscuits::Event do
 
   it_behaves_like 'end_date'
   it_behaves_like 'start_date'
-  # TODO: location
 
   it 'is an event' do
     expect(stubby).to be_event

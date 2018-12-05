@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 module DogBiscuitsHelper
-  # TODO: better comments
   # Return the label for publication status
   #
   # @param value [String]
@@ -20,7 +19,6 @@ module DogBiscuitsHelper
     value
   end
 
-  # TODO: doc and test
   def truncate_text_and_iconify_link(value)
     if value.is_a? String
       iconify_auto_link(truncate_text(value).to_s)

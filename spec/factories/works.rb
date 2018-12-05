@@ -135,6 +135,7 @@ FactoryBot.define do
     source { ['tomato'] }
     subject { ['Official Heading for Woe'] }
     awarding_institution { ['Awarding Institution'] }
+    based_near { ['Sheffield'] }
   end
 
   factory :journal_article, class: JournalArticle do

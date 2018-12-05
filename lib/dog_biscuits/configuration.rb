@@ -7,8 +7,6 @@ module DogBiscuits
   class Configuration
     include PropertyMappings
 
-    # TODO: valid_child_concerns
-
     # All available properties
     def all_properties
       props = selected_models.map { |m| send("#{m.underscore}_properties") }.flatten

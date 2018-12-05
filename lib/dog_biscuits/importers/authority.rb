@@ -24,7 +24,6 @@ module DogBiscuits
       # @param uri [String] the uri, optional
       def create_record(label, uri = nil)
         uri = construct_uri(label) if uri.blank?
-        # TODO: check valid URI
         Qa::LocalAuthorityEntry.create(local_authority: @authority,
                                        label: cleanup_label(label),
                                        uri: uri)

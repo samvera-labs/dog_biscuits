@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# TODO: check for model inclusion
+# Currently unused
 shared_examples_for 'alternate_name' do
   it 'has alternate name' do
     expect(stubby.alternate_name).to eq(['Ziggy Stardust'])

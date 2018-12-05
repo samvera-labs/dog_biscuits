@@ -26,7 +26,6 @@ module DogBiscuits
             solr_doc[ActiveFedora.index_field_mapper.solr_name("contributor_combined", :stored_searchable)] = labels
             solr_doc[ActiveFedora.index_field_mapper.solr_name("contributor_combined", :facetable)] = labels
           end
-          # @todo I don't think the logic is quite right here as there will only ever be one result
           labels.each do |_label|
             if solr_doc['contributor_type_sim']
               solr_doc[ActiveFedora.index_field_mapper.solr_name("contributor_type", :facetable)] << v

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 shared_examples_for 'based_near' do
-  # TODO: create proper test and add to thesis
+  
   it 'has based_near' do
-    expect(stubby.based_near).to eq([])
+    expect(stubby.based_near).to eq(['Sheffield'])
   end
 
   it 'has predicate' do
-    expect(rdf.should(include('http://xmlns.com/foaf/0.1/basedNear')))
+    expect(rdf.should(include('http://xmlns.com/foaf/0.1/based_near')))
   end
 
   it 'is in the solr_document' do
@@ -16,7 +16,7 @@ shared_examples_for 'based_near' do
   end
 
   it 'is in the configuration property_mappings' do
-    expect(DogBiscuits.config.property_mappings[:based_near].should(be_truthy))
+    expect(DogBiscuits.config.property_mappings[:based_near_label].should(be_truthy))
   end
 
   it 'is in the properties' do

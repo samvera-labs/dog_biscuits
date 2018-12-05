@@ -87,6 +87,16 @@ module DogBiscuits
             index: [{ link_to_search: true }],
             label: 'Awarding institution'
           },
+          based_near: {
+            index: [{ link_to_search: true }],
+            schema_org: {
+              property: "contentLocation",
+              type: "http://schema.org/Place",
+              value: "name"
+            },
+            label: 'Location',
+            help_text: "A place name related to the work, such as its site of publication, or the city, state, or country the work contents are about. Calls upon the <a href='http://www.geonames.org'>GeoNames web service</a>."
+          },
           based_near_label: {
             index: [{ link_to_search: true }],
             schema_org: {

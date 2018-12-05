@@ -3,8 +3,6 @@
 module DogBiscuits
   module Actors
     module SingularAttributes
-      # TODO: Test This
-
       # Override the BaseActor #clean_attributes method to apply this to all configured singular properties
       # Cast any singular values from the form to multiple values for persistence
       def clean_attributes(attributes)

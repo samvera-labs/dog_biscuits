@@ -64,7 +64,6 @@ FactoryBot.define do
     name { 'International Conference of Misery' }
     start_date { ['1-1-2016'] }
     end_date { ['10-1-2016'] }
-    # TODO: location
   end
 
   factory :broader_concept, class: DogBiscuits::Concept do
