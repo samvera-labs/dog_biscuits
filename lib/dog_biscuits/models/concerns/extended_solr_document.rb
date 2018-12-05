@@ -47,8 +47,6 @@ module DogBiscuits
       end
     end
 
-    # TODO: dates
-
     # Keep these alphebetized; comments indicate those in basic_metadata
     #   see https://github.com/samvera/hyrax/blob/master/app/models/concerns/hyrax/solr_document/metadata.rb
     included do

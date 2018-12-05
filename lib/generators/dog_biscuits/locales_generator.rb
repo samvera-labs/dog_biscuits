@@ -14,7 +14,6 @@ This generator makes the following changes to your application
     say_status("info", "Generating locales", :blue)
   end
 
-  # @todo internationalization
   def create_dog_biscuits_locale
     template('dog_biscuits.en.yml.erb', 'config/locales/dog_biscuits.en.yml')
   end

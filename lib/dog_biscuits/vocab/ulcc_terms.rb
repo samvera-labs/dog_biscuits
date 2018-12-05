@@ -10,14 +10,15 @@ module DogBiscuits
                    'A document created for delivery or presentation at a conference, for example a paper, presentation, workshop or poster.',
                label: 'Conference Item',
                'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
-               type: 'rdf:Class'
+               type: 'rdf:Class',
+               subClassOf: "schema:CreativeWork"
       property :PublishedWork,
                comment:
                    'A single published work, eg. a book, report, monograph etc.',
                label: 'Published Work',
                'rdf:isDefinedBy' => 'http://london.ac.uk/ontologies/terms#',
-               type: 'rdf:Class'
-      # TODO: add subclass of and subclasses
+               type: 'rdf:Class',
+               subClassOf: "schema:CreativeWork"
 
       # Property definitions
       property :refereed,

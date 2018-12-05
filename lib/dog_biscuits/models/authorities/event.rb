@@ -12,8 +12,6 @@ module DogBiscuits
 
     type [::RDF::URI.new('http://schema.org/Event')]
 
-    # TODO: add proper indexing
-
     def agent?
       false
     end

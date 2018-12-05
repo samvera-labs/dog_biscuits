@@ -20,6 +20,7 @@ describe DogBiscuits::Thesis do
   # Concerns
   it_behaves_like 'abstract'
   it_behaves_like 'advisor'
+  it_behaves_like 'based_near'
   it_behaves_like 'bibliographic_citation'
   it_behaves_like 'awarding_institution'
   it_behaves_like 'common_labels'

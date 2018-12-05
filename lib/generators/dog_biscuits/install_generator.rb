@@ -79,7 +79,7 @@ This generator makes the following changes to your application:
     generate 'dog_biscuits:schema_org'
   end
 
-  # TODO: remove when fixed
+  # @todo remove this when the issue is identified and fixed, see #51
   def create_views
     copy_file 'app/views/hyrax/base/_work_description.erb', 'app/views/hyrax/base/_work_description.erb'
     copy_file 'app/views/shared/_citations.html.erb', 'app/views/shared/_citations.html.erb'

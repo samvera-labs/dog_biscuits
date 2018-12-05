@@ -2,7 +2,6 @@
 
 module DogBiscuits
   # Common metadata for all collections and works.
-  # TODO align with BasicMetadata
   module CommonMetadata
     extend ActiveSupport::Concern
 
