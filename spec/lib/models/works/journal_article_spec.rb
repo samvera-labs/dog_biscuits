@@ -16,18 +16,18 @@ describe DogBiscuits::JournalArticle do
   end
 
   # Concerns
-  it_behaves_like 'date_available'
   it_behaves_like 'date_accepted'
-  it_behaves_like 'date_submitted'
+  it_behaves_like 'date_available'
   it_behaves_like 'date_published'
+  it_behaves_like 'date_submitted'
   it_behaves_like 'funder'
   it_behaves_like 'identifier'
   it_behaves_like 'issue_number'
   it_behaves_like 'managing_organisation'
   it_behaves_like 'official_url'
+  it_behaves_like 'output_of'
   it_behaves_like 'pagination'
   it_behaves_like 'part_of'
-  it_behaves_like 'output_of'
   it_behaves_like 'publication_status'
   it_behaves_like 'refereed'
   it_behaves_like 'volume_number'

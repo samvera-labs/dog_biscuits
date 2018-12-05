@@ -14,19 +14,9 @@ class TestAppGenerator < Rails::Generators::Base
       "require 'bootsnap/setup'\n"
     end
   end
-
-  def install_hyrax
-    gem 'hyrax', '>= 2', '< 3'
-    run 'bundle install'
-    generate 'hyrax:install', '-f'
-  end
   
-  # required for restricted properties
-  def install_hydra_role_management
-    gem 'hydra-role-management'
-    run 'bundle install'
-    generate('roles')
-    rake('db:migrate')
+  def install_hyrax
+    generate 'hyrax:install', '-f'
   end
 
   # Fix for running on vagrant on windows with nfs
@@ -55,5 +45,11 @@ class TestAppGenerator < Rails::Generators::Base
     DogBiscuits.config.available_models.each do |model|
       generate "dog_biscuits:work #{model}", '-f'
     end
+  end
+  
+  # required for restricted properties
+  def install_hydra_role_management
+    generate('roles')
+    rake('db:migrate')
   end
 end

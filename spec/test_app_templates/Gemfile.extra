@@ -1,1 +1,4 @@
 # Use this file to reference specific commits of gems.
+
+gem 'bootsnap', require: false
+gem 'hydra-role-management'
