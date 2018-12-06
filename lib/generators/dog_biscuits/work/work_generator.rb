@@ -63,10 +63,16 @@ This generator makes the following changes to your application:
 
   def create_form
     template('form.rb.erb', File.join('app/forms/hyrax', class_path, "#{file_name}_form.rb"))
+  rescue NameError
+    create_indexer
+    create_form
   end
 
   def create_presenter
     template('presenter.rb.erb', File.join('app/presenters/hyrax', class_path, "#{file_name}_presenter.rb"))
+  rescue NameError
+    create_indexer
+    create_presenter
   end
 
   def create_actor
@@ -74,7 +80,8 @@ This generator makes the following changes to your application:
   end
 
   def create_attribute_rows
-    generate "dog_biscuits:attribute_rows #{class_name}", '-f'
+    attributes_file = "app/views/hyrax/#{file_name}/_attribute_rows.html.erb"
+    copy_file '_attribute_rows.html.erb', attributes_file
   end
 
   def update_locales

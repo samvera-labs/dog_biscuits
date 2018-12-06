@@ -33,7 +33,7 @@ module DogBiscuitsHelper
   end
   
   def restricted?(term)
-    return false if DogBiscuits.config.restricted_properties_enabled
+    return false if DogBiscuits.config.restricted_properties_enabled == false
     # evaluate restriction
     (
       DogBiscuits.config.restricted_properties.include?(term) && 

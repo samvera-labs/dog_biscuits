@@ -2,13 +2,7 @@
 
 After creating your work you may wish to:
 
-  1. Customize the show page
-
-  2. Customize facets and search results
-
-  3. Further modify the model, actor, form or presenter
-
-Customizing a Work the 'dog_biscuits way':
+  1. Customize the Work (the 'dog_biscuits way'):
 
   in config/initializers/dog_biscuits.rb change the defaults:
 
@@ -23,8 +17,15 @@ Customizing a Work the 'dog_biscuits way':
 
     required fields in the form
       config.your_work_properties_required
+      
+    Restart your application to see changes take effect.
+  
+  2. Further modify the model, indexer, actor, form or presenter
 
-  Re-run the Work generators (these will overwrite any local changes):
+  Remember that if you re-run the Work generator, select 'n' if you have made local changes:
     rails g dog_biscuits:work Work
+  
+  You can ensure the model and indexer are not overwritten with the --skipmodel flag
+    rails g dog_biscuits:work Work --skipmodel
 
 ===============================================================================
