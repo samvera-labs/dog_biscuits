@@ -1,12 +1,13 @@
 language: ruby
 sudo: false
 rvm:
-  - 2.4.1
+  - 2.5.3
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+    - ENGINE_CART_RAILS_OPTIONS='--skip-git --skip-listen --skip-spring'
   matrix:
-    - "RAILS_VERSION=5.1.4"
+    - "RAILS_VERSION=5.1.6"
 
 cache:
   bundler: true
