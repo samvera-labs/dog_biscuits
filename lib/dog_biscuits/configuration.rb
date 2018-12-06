@@ -233,6 +233,14 @@ module DogBiscuits
       ]
     end
 
+    # Enable restricted properties in the form.
+    # If set to false, no restrictions will be applied
+    # Default is false
+    attr_writer :restricted_properties_enabled
+    def restricted_properties_enabled
+      @restricted_properties_enabled ||= false
+    end
+
     # Restrict the following properties in the form to the role specified in
     #   restricted_role
     # Restrictions apply to 'below the fold' properties only, they are not
