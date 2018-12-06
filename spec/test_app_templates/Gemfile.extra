@@ -1,1 +1,4 @@
 # Use this file to reference specific commits of gems.
+gem 'hyrax', '>= 2', '< 3'
+gem 'hydra-role-management'
+gem 'bootsnap', require: false
