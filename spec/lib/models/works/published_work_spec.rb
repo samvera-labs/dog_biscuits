@@ -16,22 +16,13 @@ describe DogBiscuits::PublishedWork do
   end
 
   # Concerns
-  it_behaves_like 'date_available'
-  it_behaves_like 'date_accepted'
-  it_behaves_like 'date_submitted'
-  it_behaves_like 'date_published'
   it_behaves_like 'edition'
   it_behaves_like 'editor'
   it_behaves_like 'isbn'
-  it_behaves_like 'issue_number'
-  it_behaves_like 'official_url'
-  it_behaves_like 'pagination'
   it_behaves_like 'part'
   it_behaves_like 'place_of_publication'
   it_behaves_like 'publication_status'
-  it_behaves_like 'refereed'
   it_behaves_like 'series'
-  it_behaves_like 'volume_number'
 
   describe '#rdftypes' do
     specify { stubby.type.should include('http://london.ac.uk/ontologies/terms#PublishedWork') }

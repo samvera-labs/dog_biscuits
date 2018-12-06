@@ -16,20 +16,10 @@ describe DogBiscuits::ConferenceItem do
   end
 
   # Concerns
-  it_behaves_like 'date_available'
-  it_behaves_like 'date_accepted'
-  it_behaves_like 'date_submitted'
-  it_behaves_like 'date_published'
   it_behaves_like 'editor'
   it_behaves_like 'event_date'
-  it_behaves_like 'isbn'
   it_behaves_like 'location'
-  it_behaves_like 'pagination'
-  it_behaves_like 'place_of_publication'
   it_behaves_like 'presented_at'
-  it_behaves_like 'part_of'
-  it_behaves_like 'publication_status'
-  it_behaves_like 'refereed'
 
   describe '#rdftypes' do
     specify { stubby.type.should include('http://london.ac.uk/ontologies/terms#ConferenceItem') }
