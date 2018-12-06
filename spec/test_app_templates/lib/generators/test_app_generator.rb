@@ -18,12 +18,6 @@ class TestAppGenerator < Rails::Generators::Base
   def install_hyrax
     generate 'hyrax:install', '-f'
   end
-  
-  # required for restricted properties
-  def install_hydra_role_management
-    generate('roles')
-    rake('db:migrate')
-  end
 
   # Fix for running on vagrant on windows with nfs
   def configure_tmp_directory
@@ -51,5 +45,11 @@ class TestAppGenerator < Rails::Generators::Base
     DogBiscuits.config.available_models.each do |model|
       generate "dog_biscuits:work #{model}", '-f'
     end
+  end
+  
+  # required for restricted properties
+  def install_hydra_role_management
+    generate('roles')
+    rake('db:migrate')
   end
 end

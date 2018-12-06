@@ -66,14 +66,21 @@ DogBiscuits.config do |config|
   # Date properties
   # These will be indexed into the date_picker if present
   # config.date_properties += []
-
+  
+  # Enable restricted properties in the form. 
+  # If set to false, no restrictions will be applied
+  # Default is false
+  # config.restricted_properties_enabled = false
+  
   # Restrict the following properties in the form to the role specified in
   #   restricted_role
   # Restrictions apply to 'below the fold' properties only, they are not
   #   applied to required properties
   # Restrictions apply in the form only, properties are still visible in the
   #   show page
-  # Default is none
+  # Required current_user to respond to the role ( current_user.admin? )
+  #   this is provided by the 'hydra-role-management' gem
+  # config.restricted_properties_enabled? must be set to true for this to take effect
   # config.restricted_properties = []
 
   # Role to use when restricting properties

@@ -3,9 +3,6 @@
 RSpec.describe DogBiscuits::Configuration do
   subject { described_class.new }
 
-  # it { is_expected.to respond_to(:creator_class) }
-  # it { is_expected.to respond_to(:creator_class=) }
-
   # frozen, no writers
   it { is_expected.to respond_to(:available_models) }
   it { is_expected.to respond_to(:base_properties) }
@@ -24,6 +21,7 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:date_picker) }
   it { is_expected.to respond_to(:date_picker_dates) }
   it { is_expected.to respond_to(:date_range) }
+  it { is_expected.to respond_to(:restricted_properties_enabled) }
   it { is_expected.to respond_to(:restricted_properties) }
   it { is_expected.to respond_to(:restricted_role) }
   it { is_expected.to respond_to(:property_mappings) }
@@ -55,6 +53,7 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:date_picker=) }
   it { is_expected.to respond_to(:date_picker_dates=) }
   it { is_expected.to respond_to(:date_range=) }
+  it { is_expected.to respond_to(:restricted_properties_enabled=) }
   it { is_expected.to respond_to(:restricted_properties=) }
   it { is_expected.to respond_to(:restricted_role=) }
   it { is_expected.to respond_to(:property_mappings=) }
@@ -74,4 +73,5 @@ RSpec.describe DogBiscuits::Configuration do
   it { is_expected.to respond_to(:package_properties_required=) }
   it { is_expected.to respond_to(:digital_archival_object_properties=) }
   it { is_expected.to respond_to(:digital_archival_object_properties_required=) }
+  
 end
