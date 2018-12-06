@@ -22,7 +22,6 @@ describe Dataset do
 
   it_behaves_like 'access_rights'
   it_behaves_like 'creator'
-  it_behaves_like 'date_available'
   it_behaves_like 'date_collected'
   it_behaves_like 'date_copyrighted'
   it_behaves_like 'date_issued'
@@ -31,7 +30,6 @@ describe Dataset do
   it_behaves_like 'dc_format'
   it_behaves_like 'doi'
   it_behaves_like 'for_indexing'
-  it_behaves_like 'resource_type_general'
   it_behaves_like 'has_restriction'
   it_behaves_like 'last_access'
   it_behaves_like 'number_of_downloads'
@@ -40,7 +38,7 @@ describe Dataset do
   it_behaves_like 'readme_file'
   it_behaves_like 'requestor_email'
   it_behaves_like 'resource_type'
-  it_behaves_like 'simple_versions'
+  it_behaves_like 'resource_type_general'
   it_behaves_like 'subtitle'
 
   describe '#rdftypes' do

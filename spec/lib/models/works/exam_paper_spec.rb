@@ -17,7 +17,7 @@ describe DogBiscuits::ExamPaper do
     expect(stubby).to be_exam_paper
   end
 
-  it_behaves_like 'creator'
+  # Concerns
   it_behaves_like 'date'
   it_behaves_like 'main_file'
   it_behaves_like 'module_code'
