@@ -16,15 +16,11 @@ class TestAppGenerator < Rails::Generators::Base
   end
 
   def install_hyrax
-    gem 'hyrax', '>= 2', '< 3'
-    run 'bundle install'
     generate 'hyrax:install', '-f'
   end
   
   # required for restricted properties
   def install_hydra_role_management
-    gem 'hydra-role-management'
-    run 'bundle install'
     generate('roles')
     rake('db:migrate')
   end

@@ -2,9 +2,6 @@
 
 source 'https://rubygems.org'
 
-# if using gems from git, we can't load them in the gemspec
-# gem 'git'
-
 # Specify your gem's dependencies in dog_biscuits.gemspec
 gemspec
 # BEGIN ENGINE_CART BLOCK
