@@ -3,7 +3,7 @@
 module AuthorityService
   # Object based
   <% ::DogBiscuits::Terms.constants.each do |term| %>
-  class <%=term.to_s.gsub('Terms', '')%>Service < DogBiscuits::Terms::<%=term.to_s%>Service
+  class <%=term.to_s.gsub('Terms', '')%>Service < DogBiscuits::Terms::<%=term.to_s%>
     include ::LocalAuthorityConcern
   end
   <% end %>
