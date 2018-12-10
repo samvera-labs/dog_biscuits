@@ -1,6 +1,8 @@
 <% DogBiscuits.config.send("#{presenter.model_name.singular}_properties").each do | prop |
   # skip title, description and license
   next if [:title, :description, :license].include? prop
+  
+  prop = "#{prop}_label".to_sym if presenter.model_name.to_s.constantize.controlled_properties.include? prop
 
   if DogBiscuits.config.property_mappings[prop]
     if DogBiscuits.config.property_mappings[prop][:render_as]

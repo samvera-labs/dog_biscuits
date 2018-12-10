@@ -38,8 +38,6 @@ Run the generator
 
     $ rails generate dog_biscuits:install
 
-Add the -f flag to overwrite any existing files with new ones.
-
 ## Generate Works
 
 Run the work generator
@@ -48,9 +46,23 @@ Run the work generator
     
 If the work is not supported, the generator will give you a list of supported models.
 
-Add the -f flag to overwrite any existing files with new ones.
+Add the --skipmodel flag leave the model and indexer unchanged (eg. when you have custom properties in the model and/or custom indexing).
 
-Add the --skipmodel flag to overwrite any existing files but leave the model and indexer unchanged (eg. when you have custom properties in the model and/or custom indexing).
+## Configure Works
+
+Edit `config/initializers/dog_biscuits.rb` to configure the properties used by your work - see the comments in that file for details.
+
+## Dates
+
+Add `blacklight_range_limit` by setting the following flag in `config/initializers/dog_biscuits.rb`:
+
+```
+config.date_range = true
+```
+
+Then run:
+
+    $ rails generate dog_biscuits:dates
 
 ## Documentation
 
