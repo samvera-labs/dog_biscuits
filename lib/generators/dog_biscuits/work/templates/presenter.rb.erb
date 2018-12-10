@@ -5,8 +5,16 @@
 #  `rails generate dog_biscuits:work <%= class_name %>`
 module Hyrax
   class <%= class_name %>Presenter < Hyrax::WorkShowPresenter
-    delegate <% DogBiscuits.config.send("#{file_name}_properties").each { | prop| 
-             if class_name.to_s.constantize.controlled_properties.include? prop %>:<%= "#{prop}_label".to_sym %>,<% else %>:<%= prop %>,<% end %>
-             <% } %>to: :solr_document
+    class << self
+      def delegated_properties
+        props = DogBiscuits.config.<%=file_name%>_properties
+        controlled = <%=class_name.constantize%>.controlled_properties
+        props.reject { |p| controlled.include? p }.concat(
+          props.select { |p| controlled.include? p }.collect { |c| "#{c}_label".to_sym }
+        )
+      end
+    end
+
+    delegate(*delegated_properties, to: :solr_document)
   end
 end

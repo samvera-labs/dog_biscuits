@@ -10,15 +10,13 @@ class DogBiscuits::WorkGenerator < Rails::Generators::NamedBase
 
   desc '
 This generator makes the following changes to your application:
+    The DogBiscuits Work generator makes the following changes to your application:
     1. Checks that the requested Work is supported by DogBiscuits
     2. Runs the Hyrax generator for the given model
-    3. Creates a new model, form and indexer to replace the Hyrax one
-    3a. When --skipmodel is specified the model and indexer steps in 3. are skipped to allow for custom local properties
-    4. Injects properties into the Hyrax-generated presenter
-    5. Creates an attribute_rows view file using the configured properties for the work
-    6. Updates the schema_org config, hyrax (en) locale using the configured properties for the work
-    7. Updates the catalog controller with the configured properties for the work
-    8. If this is a Hyku application, enables UV / IIIF
+    3. Creates a new model, form, presenter and indexer to replace the Hyrax one
+    4. Creates views/hyrax/work_name_plural/_attribute_rows.html.erb
+    5. Updates the schema_org config, hyrax (en) locale using the configured properties for the work
+    (If this is a Hyku application, it also enables UV / IIIF)
        '
 
   def banner
@@ -29,17 +27,6 @@ This generator makes the following changes to your application:
     unless DogBiscuits.config.available_models.include? class_name
       say_status("error", "UNSUPPORTED MODEL. SUPPORTED MODELS ARE: #{DogBiscuits.config.available_models.map { |m| m }.join(', ')}", :red)
       exit 0
-    end
-  end
-
-  def ask_about_property_configuration
-    unless options[:force]
-      question = 'The work will be configured with default properties. To customize properties before running the generator, edit config/initiazliers/dog_biscuits.rb. Continue?'
-      answer = ask question, default: 'Y'
-      unless answer == 'Y'
-        say_status("info", "CANCELLING", :red)
-        exit 0
-      end
     end
   end
 
@@ -78,16 +65,12 @@ This generator makes the following changes to your application:
     template('form.rb.erb', File.join('app/forms/hyrax', class_path, "#{file_name}_form.rb"))
   end
 
-  # This is the same as the Hyrax file, but we want to ensure we are running against a clean file
   def create_presenter
     template('presenter.rb.erb', File.join('app/presenters/hyrax', class_path, "#{file_name}_presenter.rb"))
-    rescue NameError
-     create_indexer
   end
 
   def create_actor
     template('actor.rb.erb', File.join('app/actors/hyrax/actors', class_path, "#{file_name}_actor.rb"))
-    # On first run, sometimes we get a NameError
   end
 
   def create_attribute_rows
