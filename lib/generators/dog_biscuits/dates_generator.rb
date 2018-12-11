@@ -6,7 +6,7 @@ class DogBiscuits::DatesGenerator < Rails::Generators::Base
   desc '
 This generator .
   1. configures the date_picker, if config.date_picker is true;
-       it adds a form partial for all dates in config.date_picker_dates.
+       it adds a form partial for all dates listed in config.date_picker_dates.
   2. Configures the date_range in blacklight, if config.date_range is true.
        '
 
@@ -37,7 +37,7 @@ This generator .
       # insert into application.js
       js = '//= require bootstrap-datepicker'
       unless File.read('app/assets/javascripts/application.js').include? js
-        inject_into_file 'app/assets/javascripts/application.js', after: " //= require_tree ." do
+        inject_into_file 'app/assets/javascripts/application.js', after: "//= require_tree ." do
           "\n #{js}"
         end
       end

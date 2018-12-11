@@ -12,6 +12,7 @@ module DogBiscuits
       props = selected_models.map { |m| send("#{m.underscore}_properties") }.flatten
       props.concat(facet_properties)
       props.concat(index_properties)
+      props << :date_range if date_range == true
       props.sort.uniq!
     end
 

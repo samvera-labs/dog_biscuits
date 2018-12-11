@@ -46,7 +46,10 @@ class CatalogController < ApplicationController
     facet_props = DogBiscuits.config.facet_properties
     add_facet_field config, facet_props
     
-    add_facet_field config, [:date_range], { range: true } if DogBiscuits.config.date_range
+    # Add the date_range facet if configured
+    if DogBiscuits.config.date_range == true
+      config.add_facet_field solr_name('date_range', :facetable), label: default_label(:date_range), range: true
+    end
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile

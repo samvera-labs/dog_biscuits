@@ -37,6 +37,18 @@ Or install it yourself as:
 Run the generator
 
     $ rails generate dog_biscuits:install
+    
+The installer adds some new field templates in `views/hyrax/records/edit_fields`:
+
+* abstract - show as a paragraph
+* funder - use the crossref fundref autosuggest service
+* note - show as a paragraph
+* part_of - for JournalArticle use the crossref journals autosuggest service
+* publication_status - use a file_based authority (from config/authorities)
+* refereeed - show radio buttons for Yes and No
+* resource_type_general - use a file_based authority (from config/authorities)
+
+Removing these will default back to standard text field display
 
 ## Generate Works
 
@@ -54,12 +66,28 @@ Edit `config/initializers/dog_biscuits.rb` to configure the properties used by y
 
 ## Dates
 
+### Date slider in search results
+
 Add `blacklight_range_limit` by setting the following flag in `config/initializers/dog_biscuits.rb`:
 
 ```
 config.date_range = true
 ```
 
+Then run:
+
+    $ rails generate dog_biscuits:dates
+
+### Date picker in edit form
+
+Control date fields with a date picker by setting the following flag in `config/initializers/dog_biscuits.rb`:
+
+```
+config.date_picker = true
+```
+
+Change which fields are controlled by the picker by changing `config.date_properties` in `config/initializers/dog_biscuits.rb`. The default is all date fields.
+ 
 Then run:
 
     $ rails generate dog_biscuits:dates
