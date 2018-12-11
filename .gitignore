@@ -19,3 +19,6 @@ coverage/*
 *~
 
 .internal_test_app
+
+## rubygems
+pkg/
