@@ -117,6 +117,7 @@ module DogBiscuits
               type: "http://schema.org/Person",
               value: "name"
             },
+            label: 'Contributor',
             help_text: "A person or group you want to recognize for playing a role in the creation of the work, but not the primary role."
           },
           contributor_combined: {
@@ -495,6 +496,9 @@ module DogBiscuits
               value: "name"
             },
             label: 'Series'
+          },
+          source: {
+            label: 'Source'
           },
           subject: {
             index: [{ link_to_search: true }],
