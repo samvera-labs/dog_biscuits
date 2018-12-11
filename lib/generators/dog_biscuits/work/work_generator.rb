@@ -80,7 +80,7 @@ This generator makes the following changes to your application:
   end
 
   def create_attribute_rows
-    attributes_file = "app/views/hyrax/#{file_name}/_attribute_rows.html.erb"
+    attributes_file = "app/views/hyrax/#{file_name.pluralize}/_attribute_rows.html.erb"
     copy_file '_attribute_rows.html.erb', attributes_file
   end
 
