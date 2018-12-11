@@ -119,6 +119,9 @@ module DogBiscuits
             },
             help_text: "A person or group you want to recognize for playing a role in the creation of the work, but not the primary role."
           },
+          contributor: {
+            label: 'Contributor'
+          },
           contributor_combined: {
             index: [{ link_to_search: true }],
             schema_org: {
@@ -495,6 +498,9 @@ module DogBiscuits
               value: "name"
             },
             label: 'Series'
+          },
+          source: {
+            label: 'Source'
           },
           subject: {
             index: [{ link_to_search: true }],
