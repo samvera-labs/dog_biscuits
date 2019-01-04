@@ -35,4 +35,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'solr_wrapper'
   spec.add_development_dependency 'webmock'
+  spec.add_development_dependency 'i18n-tasks'
+  spec.add_development_dependency 'easy_translate'
 end

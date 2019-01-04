@@ -1,6 +1,46 @@
+---
 en:
+  blacklight:
+    search:
+      fields:
+        facet:
+          based_near_label_sim: Location
+          contributor_combined_sim: Contributor
+          contributor_type_sim: Contributor type
+          creator_sim: Creator
+          date_sim: Date
+          department_sim: Department, School or Faculty
+          funder_sim: Funder
+          human_readable_type_sim: Type
+          keyword_sim: Keywords
+          language_sim: Language
+          packaged_by_titles_sim: In package
+          part_of_sim: Part of
+          publication_status_sim: Publication status
+          publisher_sim: Publisher
+          qualification_level_sim: Qualification level
+          qualification_name_sim: Qualification name
+          refereed_sim: Peer reviewed?
+          resource_type_sim: Resource type
+          subject_sim: Subject
+        index:
+          contributor_combined_tesim: Contributor
+          creator_tesim: Creator
+          date_tesim: Date
+          depositor_tesim: Owner
+          embargo_release_date_tesim: Embargo releases on
+          keyword_tesim: Keywords
+          language_tesim: Language
+          lease_expiration_date_tesim: Lease expires on
+          license_tesim: License
+          proxy_depositor_tesim: Depositor
+          publisher_tesim: Publisher
+          resource_type_tesim: Resource type
+          rights_statement_tesim: Rights statement
+          subject_tesim: Subject
+          title_tesim: Title
   dog_biscuits:
-    fields:
+    labels:
       abstract: Abstract
       access_provided_by: Access provided by
       advisor: Advisor / supervisor
@@ -121,7 +161,7 @@ en:
         related_url: A link to a website or other specific content (audio, video, PDF document) related to the work. An example is the URL of a research project from which the work was derived.
         resource_type: Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected.
         subject: Headings or index terms describing what the work is about; these do need to conform to an existing vocabulary.
-        title: A name to aid in identifying a work. 
+        title: A name to aid in identifying a work.
     labels:
       defaults:
         abstract: Abstract
@@ -215,42 +255,3 @@ en:
         title: Title
         transfer_uuid: Transfer UUID
         volume_number: Volume
-  blacklight:
-    search:
-      fields:
-        facet:
-          human_readable_type_sim: Type
-          resource_type_sim: Resource type
-          creator_sim: Creator
-          contributor_combined_sim: Contributor
-          contributor_type_sim: Contributor type
-          publisher_sim: Publisher
-          department_sim: Department, School or Faculty
-          funder_sim: Funder
-          date_sim: Date
-          keyword_sim: Keywords
-          subject_sim: Subject
-          language_sim: Language
-          based_near_label_sim: Location
-          part_of_sim: Part of
-          qualification_level_sim: Qualification level
-          qualification_name_sim: Qualification name
-          refereed_sim: Peer reviewed?
-          publication_status_sim: Publication status
-          packaged_by_titles_sim: In package
-        index:
-          title_tesim: Title
-          creator_tesim: Creator
-          publisher_tesim: Publisher
-          contributor_combined_tesim: Contributor
-          date_tesim: Date
-          keyword_tesim: Keywords
-          subject_tesim: Subject
-          resource_type_tesim: Resource type
-          rights_statement_tesim: Rights statement
-          license_tesim: License
-          language_tesim: Language
-          depositor_tesim: Owner
-          proxy_depositor_tesim: Depositor
-          embargo_release_date_tesim: Embargo releases on
-          lease_expiration_date_tesim: Lease expires on

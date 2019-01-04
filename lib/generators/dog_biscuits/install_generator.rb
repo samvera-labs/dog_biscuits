@@ -24,9 +24,12 @@ This generator makes the following changes to your application:
     copy_file 'config/initializers/dog_biscuits.rb', init_path unless File.exist?(init_path) && !options[:force]
   end
 
-  # copy all new files in app
   def create_app
     directory 'app', 'app'
+  end
+  
+  def create_locales
+    directory 'config/locales', 'config/locales'
   end
 
   def update_initializer

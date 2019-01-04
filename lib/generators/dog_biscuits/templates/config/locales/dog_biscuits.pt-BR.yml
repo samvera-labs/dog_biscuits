@@ -1,0 +1,257 @@
+---
+pt-BR:
+  blacklight:
+    search:
+      fields:
+        facet:
+          based_near_label_sim: Localização
+          contributor_combined_sim: Contribuinte
+          contributor_type_sim: Tipo de contribuidor
+          creator_sim: O Criador
+          date_sim: Encontro
+          department_sim: Departamento, escola ou faculdade
+          funder_sim: Financiador
+          human_readable_type_sim: Tipo
+          keyword_sim: Palavras-chave
+          language_sim: Língua
+          packaged_by_titles_sim: Em pacote
+          part_of_sim: Parte de
+          publication_status_sim: Status de publicação
+          publisher_sim: Editor
+          qualification_level_sim: Nível de qualificação
+          qualification_name_sim: Nome da qualificação
+          refereed_sim: Peer reviewed?
+          resource_type_sim: Tipo de recurso
+          subject_sim: Sujeito
+        index:
+          contributor_combined_tesim: Contribuinte
+          creator_tesim: O Criador
+          date_tesim: Encontro
+          depositor_tesim: Proprietário
+          embargo_release_date_tesim: Lançamentos de embargo em
+          keyword_tesim: Palavras-chave
+          language_tesim: Língua
+          lease_expiration_date_tesim: Arrendamento expira em
+          license_tesim: Licença
+          proxy_depositor_tesim: Depositante
+          publisher_tesim: Editor
+          resource_type_tesim: Tipo de recurso
+          rights_statement_tesim: Declaração de direitos
+          subject_tesim: Sujeito
+          title_tesim: Título
+  dog_biscuits:
+    labels:
+      abstract: Abstrato
+      access_provided_by: Acesso fornecido por
+      advisor: Assessor / supervisor
+      aip_current_location: Local atual do AIP
+      aip_current_path: Caminho Atual do AIP
+      aip_resource_uri: URI de recurso AIP
+      aip_size: Tamanho AIP
+      aip_status: Status do AIP
+      aip_uuid: AIP UUID
+      alt: Altitude
+      awarding_institution: Instituição de premiação
+      based_near: Localização
+      based_near_label: Localização
+      contributor: Contribuinte
+      contributor_combined: Contribuinte
+      contributor_type: Tipo de contribuidor
+      creator: O Criador
+      date: Encontro
+      date_accepted: Data aceita
+      date_collected: Data recolhida
+      date_copyrighted: Data protegida por direitos autorais
+      date_issued: Data de emissão
+      date_of_award: Data do prêmio
+      date_published: Data de publicação
+      date_submitted: Data Enviada
+      date_valid: Data válida
+      dc_access_rights: Direitos de acesso
+      dc_format: Formato
+      department: Departamento, escola ou faculdade
+      depositor: Proprietário
+      description: Descrição ou resumo
+      dip_current_location: Localização atual do DIP
+      dip_current_path: Caminho atual do DIP
+      dip_resource_uri: URI do recurso DIP
+      dip_size: Tamanho DIP
+      dip_status: Status do DIP
+      dip_uuid: DIP UUID
+      doi: DOI
+      edition: Edição
+      editor: editor
+      embargo_release_date: Lançamentos de embargo em
+      event_date: Data do evento
+      extent: Extensão
+      former_identifier: Antigo identificador
+      funder: Financiador
+      has_restriction: Nota de restrição
+      human_readable_type: Tipo
+      identifier: Identificador
+      isbn: ISBN
+      issue_number: Questão
+      keyword: Palavras-chave
+      language: Língua
+      last_access: Data do último acesso
+      lat: Latitude
+      lease_expiration_date: Arrendamento expira em
+      license: Licença
+      location: Localização
+      long: Longitude
+      managing_organisation: Organização gerenciadora
+      module_code: Código do módulo
+      note: Nota
+      number_of_downloads: Número de downloads
+      official_url: URL oficial
+      origin_pipeline: Pipeline de Origem
+      output_of: Saída do projeto ou concessão
+      package_ids: Pacote contém
+      packaged_by_ids: Em pacote
+      packaged_by_titles: Em pacote
+      pagination: Páginas
+      part: Nome da peça
+      part_of: Parte de
+      place_of_publication: Local de publicação
+      presented_at: Apresentado em
+      proxy_depositor: Depositante
+      publication_status: Status de publicação
+      publisher: Editor
+      qualification_level: Nível de qualificação
+      qualification_name: Nome da qualificação
+      refereed: Peer reviewed?
+      related_url: URL relacionado
+      resource_type: Tipo de recurso
+      resource_type_general: Tipo de recurso geral
+      rights_statement: Declaração de direitos
+      series: Series
+      sip_uuid: SIP UUID
+      source: Fonte
+      subject: Sujeito
+      subtitle: Subtítulo
+      title: Título
+      transfer_uuid: Transferir UUID
+      volume_number: Volume
+  simple_form:
+    hints:
+      defaults:
+        access_provided_by: Repositório
+        advisor: Orientador ou supervisor de tese.
+        based_near: Um nome de local relacionado ao trabalho, como o site de publicação, ou a cidade, o estado ou o país do conteúdo do trabalho. Solicita o <a href='http://www.geonames.org'> serviço da web GeoNames </a>.
+        based_near_label: Um nome de local relacionado ao trabalho, como o site de publicação, ou a cidade, o estado ou o país do conteúdo do trabalho. Solicita o <a href='http://www.geonames.org'> serviço da web GeoNames </a>.
+        content_version: A versão do arquivo, por exemplo. Original do autor ou manuscrito aceito.
+        contributor: Uma pessoa ou grupo que você deseja reconhecer por desempenhar um papel na criação do trabalho, mas não no papel principal.
+        creator: A pessoa ou grupo responsável pelo trabalho. Geralmente este é o autor do conteúdo. Nomes pessoais devem ser digitados com o sobrenome primeiro, por exemplo, "Smith, John".
+        date: Uma data para o trabalho.
+        date_created: A data em que o trabalho foi criado.
+        description: Notas de texto livre sobre o trabalho. Exemplos incluem resumos de um artigo ou informações sobre citações para um artigo de periódico.
+        doi: Digital Object Identifier (DOI) para o trabalho.
+        former_identifier: Um antigo identificador, URL ou outra referência para o trabalho.
+        funder: Órgão de financiamento ou oraganização que financia o trabalho.
+        identifier: Um identificador exclusivo que identifica o trabalho. Um exemplo seria um DOI para um artigo de periódico ou um número ISBN ou OCLC de um livro.
+        isbn: O número do livro padrão internacional para o trabalho.
+        keyword: Palavras ou frases selecionadas para descrever o trabalho. Estes são usados para procurar conteúdo.
+        language: A linguagem do conteúdo da obra.
+        license: Licenciamento e distribuição de informações que regem o acesso ao trabalho. Selecione na lista suspensa fornecida.
+        note: Uma nota geral sobre o trabalho.
+        package_ids: Pacotes esses trabalhos. Habitualmente, o pacote é uma preservação digital AIP ou DIP.
+        packaged_by_ids: Embalado pelo seguinte trabalho. Habitualmente, o pacote é uma preservação digital AIP ou DIP.
+        part_of: Um Trabalho em que isto está fisicamente ou logicamente contido, como um processo de conferência ou série.
+        publisher: A pessoa ou grupo que disponibiliza o trabalho. Geralmente esta é a instituição.
+        related_url: Um link para um site ou outro conteúdo específico (áudio, vídeo, documento PDF) relacionado ao trabalho. Um exemplo é a URL de um projeto de pesquisa do qual o trabalho foi derivado.
+        resource_type: Categorias predefinidas para descrever o tipo de conteúdo que está sendo enviado, como & quot; article & quot; ou & quot; conjunto de dados & quot; Mais de um tipo pode ser selecionado.
+        subject: Cabeçalhos ou termos de índice descrevendo o trabalho; estes precisam estar em conformidade com um vocabulário existente.
+        title: Um nome para ajudar na identificação de um trabalho.
+    labels:
+      defaults:
+        abstract: Abstrato
+        access_provided_by: Acesso fornecido por
+        advisor: Assessor / supervisor
+        aip_current_location: Local atual do AIP
+        aip_current_path: Caminho Atual do AIP
+        aip_resource_uri: URI de recurso AIP
+        aip_size: Tamanho AIP
+        aip_status: Status do AIP
+        aip_uuid: AIP UUID
+        alt: Altitude
+        awarding_institution: Instituição de premiação
+        based_near: Localização
+        based_near_label: Localização
+        contributor: Contribuinte
+        contributor_combined: Contribuinte
+        contributor_type: Tipo de contribuidor
+        creator: O Criador
+        date: Encontro
+        date_accepted: Data aceita
+        date_collected: Data recolhida
+        date_copyrighted: Data protegida por direitos autorais
+        date_issued: Data de emissão
+        date_of_award: Data do prêmio
+        date_published: Data de publicação
+        date_submitted: Data Enviada
+        date_valid: Data válida
+        dc_access_rights: Direitos de acesso
+        dc_format: Formato
+        department: Departamento, escola ou faculdade
+        depositor: Proprietário
+        description: Descrição ou resumo
+        dip_current_location: Localização atual do DIP
+        dip_current_path: Caminho atual do DIP
+        dip_resource_uri: URI do recurso DIP
+        dip_size: Tamanho DIP
+        dip_status: Status do DIP
+        dip_uuid: DIP UUID
+        doi: DOI
+        edition: Edição
+        editor: editor
+        embargo_release_date: Lançamentos de embargo em
+        event_date: Data do evento
+        extent: Extensão
+        former_identifier: Antigo identificador
+        funder: Financiador
+        has_restriction: Nota de restrição
+        human_readable_type: Tipo
+        identifier: Identificador
+        isbn: ISBN
+        issue_number: Questão
+        keyword: Palavras-chave
+        language: Língua
+        last_access: Data do último acesso
+        lat: Latitude
+        lease_expiration_date: Arrendamento expira em
+        license: Licença
+        location: Localização
+        long: Longitude
+        managing_organisation: Organização gerenciadora
+        module_code: Código do módulo
+        note: Nota
+        number_of_downloads: Número de downloads
+        official_url: URL oficial
+        origin_pipeline: Pipeline de Origem
+        output_of: Saída do projeto ou concessão
+        package_ids: Pacote contém
+        packaged_by_ids: Em pacote
+        packaged_by_titles: Em pacote
+        pagination: Páginas
+        part: Nome da peça
+        part_of: Parte de
+        place_of_publication: Local de publicação
+        presented_at: Apresentado em
+        proxy_depositor: Depositante
+        publication_status: Status de publicação
+        publisher: Editor
+        qualification_level: Nível de qualificação
+        qualification_name: Nome da qualificação
+        refereed: Peer reviewed?
+        related_url: URL relacionado
+        resource_type: Tipo de recurso
+        resource_type_general: Tipo de recurso geral
+        rights_statement: Declaração de direitos
+        series: Series
+        sip_uuid: SIP UUID
+        source: Fonte
+        subject: Sujeito
+        subtitle: Subtítulo
+        title: Título
+        transfer_uuid: Transferir UUID
+        volume_number: Volume
