@@ -68,9 +68,7 @@ This generator makes the following changes to your application:
   # Remove all blacklight labels from hyrax locales
   def wipe_hyrax_locales
     Dir.entries('config/locales').select { |file| file.start_with?('hyrax.') }.each do |locale|
-      gsub_file "config/locales/#{locale}", /        index:(.*)        show:/m, "        index:\n        show:"
-      gsub_file "config/locales/#{locale}", /        facet:(.*)        index:/m, "        facet:\n        index:"
-      gsub_file "config/locales/#{locale}", /        show:(.*)  hyrax:/m, "        show:\n  hyrax:"
+      gsub_file "config/locales/#{locale}", /  blacklight:(.*)  hyrax:/m, "  hyrax:"
     end
   end
   
