@@ -1,0 +1,256 @@
+en:
+  dog_biscuits:
+    fields:
+      abstract: Abstract
+      access_provided_by: Access provided by
+      advisor: Advisor / supervisor
+      aip_current_location: AIP Current Location
+      aip_current_path: AIP Current Path
+      aip_resource_uri: AIP Resource URI
+      aip_size: AIP Size
+      aip_status: AIP Status
+      aip_uuid: AIP UUID
+      alt: Altitude
+      awarding_institution: Awarding institution
+      based_near: Location
+      based_near_label: Location
+      contributor: Contributor
+      contributor_combined: Contributor
+      contributor_type: Contributor type
+      creator: Creator
+      date: Date
+      date_accepted: Date accepted
+      date_collected: Date collected
+      date_copyrighted: Date copyrighted
+      date_issued: Date issued
+      date_of_award: Date of award
+      date_published: Publication date
+      date_submitted: Date submitted
+      date_valid: Date valid
+      dc_access_rights: Access rights
+      dc_format: Format
+      department: Department, School or Faculty
+      depositor: Owner
+      description: Description or summary
+      dip_current_location: DIP Current Location
+      dip_current_path: DIP Current Path
+      dip_resource_uri: DIP Resource URI
+      dip_size: DIP Size
+      dip_status: DIP Status
+      dip_uuid: DIP UUID
+      doi: DOI
+      edition: Edition
+      editor: Editor
+      embargo_release_date: Embargo releases on
+      event_date: Date of event
+      extent: Extent
+      former_identifier: Former identifier
+      funder: Funder
+      has_restriction: Restriction note
+      human_readable_type: Type
+      identifier: Identifier
+      isbn: ISBN
+      issue_number: Issue
+      keyword: Keywords
+      language: Language
+      last_access: Date of last access
+      lat: Latitude
+      lease_expiration_date: Lease expires on
+      license: License
+      location: Location
+      long: Longitude
+      managing_organisation: Managing organisation
+      module_code: Module code
+      note: Note
+      number_of_downloads: Number of downloads
+      official_url: Official URL
+      origin_pipeline: Origin Pipeline
+      output_of: Output of project or grant
+      package_ids: Package contains
+      packaged_by_ids: In package
+      packaged_by_titles: In package
+      pagination: Pages
+      part: Part name
+      part_of: Part of
+      place_of_publication: Place of publication
+      presented_at: Presented at
+      proxy_depositor: Depositor
+      publication_status: Publication status
+      publisher: Publisher
+      qualification_level: Qualification level
+      qualification_name: Qualification name
+      refereed: Peer reviewed?
+      related_url: Related URL
+      resource_type: Resource type
+      resource_type_general: General resource type
+      rights_statement: Rights statement
+      series: Series
+      sip_uuid: SIP UUID
+      source: Source
+      subject: Subject
+      subtitle: Subtitle
+      title: Title
+      transfer_uuid: Transfer UUID
+      volume_number: Volume
+  simple_form:
+    hints:
+      defaults:
+        access_provided_by: Repository
+        advisor: Thesis advisor or supervisor.
+        based_near: A place name related to the work, such as its site of publication, or the city, state, or country the work contents are about. Calls upon the <a href='http://www.geonames.org'>GeoNames web service</a>.
+        based_near_label: A place name related to the work, such as its site of publication, or the city, state, or country the work contents are about. Calls upon the <a href='http://www.geonames.org'>GeoNames web service</a>.
+        content_version: The version of the file, eg. Author's Original or Accepted Manuscript.
+        contributor: A person or group you want to recognize for playing a role in the creation of the work, but not the primary role.
+        creator: The person or group responsible for the work. Usually this is the author of the content. Personal names should be entered with the last name first, e.g. &quot;Smith, John.&quot;.
+        date: A date for the work.
+        date_created: The date on which the work was created.
+        description: Free-text notes about the work. Examples include abstracts of a paper or citation information for a journal article.
+        doi: Digital Object Identifier (DOI) for the work.
+        former_identifier: A former identifier, URL or other reference for the work.
+        funder: Funding body or oraganisation funding the work.
+        identifier: A unique handle identifying the work. An example would be a DOI for a journal article, or an ISBN or OCLC number for a book.
+        isbn: The International Standard Book Number for the work.
+        keyword: Words or phrases you select to describe what the work is about. These are used to search for content.
+        language: The language of the work's content.
+        license: Licensing and distribution information governing access to the work. Select from the provided drop-down list.
+        note: A general note about the work.
+        package_ids: Packages these works. Customarily, the package is a digital preservation AIP or DIP.
+        packaged_by_ids: Packaged by the following work. Customarily, the package is a digital preservation AIP or DIP.
+        part_of: A Work that this this physically or logically contained in, such as a conference proceeding, or series.
+        publisher: The person or group making the work available. Generally this is the institution.
+        related_url: A link to a website or other specific content (audio, video, PDF document) related to the work. An example is the URL of a research project from which the work was derived.
+        resource_type: Pre-defined categories to describe the type of content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected.
+        subject: Headings or index terms describing what the work is about; these do need to conform to an existing vocabulary.
+        title: A name to aid in identifying a work. 
+    labels:
+      defaults:
+        abstract: Abstract
+        access_provided_by: Access provided by
+        advisor: Advisor / supervisor
+        aip_current_location: AIP Current Location
+        aip_current_path: AIP Current Path
+        aip_resource_uri: AIP Resource URI
+        aip_size: AIP Size
+        aip_status: AIP Status
+        aip_uuid: AIP UUID
+        alt: Altitude
+        awarding_institution: Awarding institution
+        based_near: Location
+        based_near_label: Location
+        contributor: Contributor
+        contributor_combined: Contributor
+        contributor_type: Contributor type
+        creator: Creator
+        date: Date
+        date_accepted: Date accepted
+        date_collected: Date collected
+        date_copyrighted: Date copyrighted
+        date_issued: Date issued
+        date_of_award: Date of award
+        date_published: Publication date
+        date_submitted: Date submitted
+        date_valid: Date valid
+        dc_access_rights: Access rights
+        dc_format: Format
+        department: Department, School or Faculty
+        depositor: Owner
+        description: Description or summary
+        dip_current_location: DIP Current Location
+        dip_current_path: DIP Current Path
+        dip_resource_uri: DIP Resource URI
+        dip_size: DIP Size
+        dip_status: DIP Status
+        dip_uuid: DIP UUID
+        doi: DOI
+        edition: Edition
+        editor: Editor
+        embargo_release_date: Embargo releases on
+        event_date: Date of event
+        extent: Extent
+        former_identifier: Former identifier
+        funder: Funder
+        has_restriction: Restriction note
+        human_readable_type: Type
+        identifier: Identifier
+        isbn: ISBN
+        issue_number: Issue
+        keyword: Keywords
+        language: Language
+        last_access: Date of last access
+        lat: Latitude
+        lease_expiration_date: Lease expires on
+        license: License
+        location: Location
+        long: Longitude
+        managing_organisation: Managing organisation
+        module_code: Module code
+        note: Note
+        number_of_downloads: Number of downloads
+        official_url: Official URL
+        origin_pipeline: Origin Pipeline
+        output_of: Output of project or grant
+        package_ids: Package contains
+        packaged_by_ids: In package
+        packaged_by_titles: In package
+        pagination: Pages
+        part: Part name
+        part_of: Part of
+        place_of_publication: Place of publication
+        presented_at: Presented at
+        proxy_depositor: Depositor
+        publication_status: Publication status
+        publisher: Publisher
+        qualification_level: Qualification level
+        qualification_name: Qualification name
+        refereed: Peer reviewed?
+        related_url: Related URL
+        resource_type: Resource type
+        resource_type_general: General resource type
+        rights_statement: Rights statement
+        series: Series
+        sip_uuid: SIP UUID
+        source: Source
+        subject: Subject
+        subtitle: Subtitle
+        title: Title
+        transfer_uuid: Transfer UUID
+        volume_number: Volume
+  blacklight:
+    search:
+      fields:
+        facet:
+          human_readable_type_sim: Type
+          resource_type_sim: Resource type
+          creator_sim: Creator
+          contributor_combined_sim: Contributor
+          contributor_type_sim: Contributor type
+          publisher_sim: Publisher
+          department_sim: Department, School or Faculty
+          funder_sim: Funder
+          date_sim: Date
+          keyword_sim: Keywords
+          subject_sim: Subject
+          language_sim: Language
+          based_near_label_sim: Location
+          part_of_sim: Part of
+          qualification_level_sim: Qualification level
+          qualification_name_sim: Qualification name
+          refereed_sim: Peer reviewed?
+          publication_status_sim: Publication status
+          packaged_by_titles_sim: In package
+        index:
+          title_tesim: Title
+          creator_tesim: Creator
+          publisher_tesim: Publisher
+          contributor_combined_tesim: Contributor
+          date_tesim: Date
+          keyword_tesim: Keywords
+          subject_tesim: Subject
+          resource_type_tesim: Resource type
+          rights_statement_tesim: Rights statement
+          license_tesim: License
+          language_tesim: Language
+          depositor_tesim: Owner
+          proxy_depositor_tesim: Depositor
+          embargo_release_date_tesim: Embargo releases on
+          lease_expiration_date_tesim: Lease expires on
