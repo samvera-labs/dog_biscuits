@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # From JiscRDSS/rdss-samvera
-#   https://github.com/JiscRDSS/rdss-samvera/blob/master/willow/app/controllers/concerns/blacklight/commands.rb
+#   https://github.com/JiscRDSS/rdss-samvera/blob/master/willow/app/controllers/blacklight/concerns/commands.rb
 #   Copyright Jisc
 module DogBiscuits
   module Blacklight
@@ -23,7 +23,7 @@ module DogBiscuits
           end
 
           def default_label(name)
-            I18n.t('dog_biscuits.labels.' + name.to_s)
+            I18n.t('dog_biscuits.fields.' + name.to_s)
           end
 
           def default_label_options(name)

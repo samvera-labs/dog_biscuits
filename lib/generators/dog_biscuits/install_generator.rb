@@ -24,9 +24,12 @@ This generator makes the following changes to your application:
     copy_file 'config/initializers/dog_biscuits.rb', init_path unless File.exist?(init_path) && !options[:force]
   end
 
-  # copy all new files in app
   def create_app
     directory 'app', 'app'
+  end
+  
+  def create_locales
+    directory 'config/locales', 'config/locales'
   end
 
   def update_initializer
@@ -62,7 +65,7 @@ This generator makes the following changes to your application:
     end
   end
   
-  # Remove all blacklight labels from hyrax locales; we're going to re-add them below
+  # Remove all blacklight labels from hyrax locales
   def wipe_hyrax_locales
     Dir.entries('config/locales').select { |file| file.start_with?('hyrax.') }.each do |locale|
       gsub_file "config/locales/#{locale}", /        index:(.*)        show:/m, "        index:\n        show:"
@@ -72,7 +75,7 @@ This generator makes the following changes to your application:
   end
   
   def generate_locales
-    generate 'dog_biscuits:locales'
+    generate 'dog_biscuits:locales', '-f'
   end
   
   def create_schema_org

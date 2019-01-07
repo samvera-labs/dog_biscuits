@@ -1,6 +1,6 @@
 en:
   dog_biscuits:
-    labels:<% DogBiscuits.config.all_properties.sort.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
+    fields:<% DogBiscuits.config.all_properties.sort.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
       <%= prop %>: <%= DogBiscuits.config.property_mappings[prop][:label] %><% end } %>
   simple_form:
     hints:
@@ -9,3 +9,10 @@ en:
     labels:
       defaults:<% DogBiscuits.config.all_properties.sort.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
         <%= prop %>: <%= DogBiscuits.config.property_mappings[prop][:label] %><% end } %>
+  blacklight:
+    search:
+      fields:
+        facet:<% DogBiscuits.config.facet_properties.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
+          <%= prop %>_sim: <%= DogBiscuits.config.property_mappings[prop][:label] %><% end } %>
+        index:<% DogBiscuits.config.index_properties.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
+          <%= prop %>_tesim: <%= DogBiscuits.config.property_mappings[prop][:label] %><% end } %>
