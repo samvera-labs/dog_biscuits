@@ -24,16 +24,12 @@ For use within [Hyrax 2](https://github.com/samvera/hyrax) applications.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'dog_biscuits', :git => 'git://github.com/geekscruff/dog_biscuits.git'
+gem 'dog_biscuits', :git => 'git://github.com/samvera-labs/dog_biscuits.git'
 ```
 
 And then execute:
 
     $ bundle install
-
-Or install it yourself as:
-
-    $ gem install dog_biscuits
 
 Run the generator
 
