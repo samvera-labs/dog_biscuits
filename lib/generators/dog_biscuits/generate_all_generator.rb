@@ -16,6 +16,10 @@ This generator makes the following changes to your application:
   def banner
     say_status("info", "Re-generating catalog_controller, locales, attribute_rows and schema_org", :blue)
   end
+  
+  def create_indexers
+    directory 'app/indexers', 'app/indexers'
+  end
 
   def generate_works
     DogBiscuits.config.selected_models.each do |model|
