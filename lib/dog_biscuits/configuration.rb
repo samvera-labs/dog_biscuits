@@ -18,7 +18,7 @@ module DogBiscuits
 
     # All available models
     def available_models
-      ['ConferenceItem', 'Dataset', 'DigitalArchivalObject', 'ExamPaper', 'JournalArticle', 'Package', 'PublishedWork', 'Thesis'].freeze
+      ['ConferenceItem', 'Dataset', 'DigitalArchivalObject', 'ExamPaper', 'JournalArticle', 'Image', 'Package', 'PublishedWork', 'Thesis'].freeze
     end
 
     # Models used in the app (used by the generate_all generator)
