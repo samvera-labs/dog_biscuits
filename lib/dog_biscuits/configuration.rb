@@ -515,6 +515,7 @@ module DogBiscuits
   def image_properties_required
     @image_properties_required ||= required_properties
   end
+  
 end
 
 # rubocop:enable Metrics/MethodLength
