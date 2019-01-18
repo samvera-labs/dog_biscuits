@@ -499,21 +499,21 @@ module DogBiscuits
     # def creator_class
     #   @creator_class ||= String
     # end
-  end
+    
+    # Image
   
-  # Image
+    attr_writer :image_properties
   
-  attr_writer :image_properties
-
-  def image_properties
-    properties = base_properties + common_properties
-    properties.sort!
-    @image_properties ||= properties
-  end
-  
-  attr_writer :image_properties_required
-  def image_properties_required
-    @image_properties_required ||= required_properties
+    def image_properties
+      properties = base_properties + common_properties
+      properties.sort!
+      @image_properties ||= properties
+    end
+    
+    attr_writer :image_properties_required
+    def image_properties_required
+      @image_properties_required ||= required_properties
+    end
   end
   
 end
