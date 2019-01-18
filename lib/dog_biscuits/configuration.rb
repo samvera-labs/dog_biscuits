@@ -511,7 +511,7 @@ module DogBiscuits
     @image_properties ||= properties
   end
   
-  attr_writer :package_properties_required
+  attr_writer :image_properties_required
   def image_properties_required
     @image_properties_required ||= required_properties
   end
