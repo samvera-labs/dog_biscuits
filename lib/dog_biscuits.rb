@@ -92,6 +92,7 @@ module DogBiscuits
     autoload :DigitalArchivalObject
     autoload :ExamPaper
     autoload :JournalArticle
+    autoload :Image
     autoload :Package
     autoload :PublishedWork
     autoload :Thesis
@@ -108,6 +109,7 @@ module DogBiscuits
     autoload :DigitalArchivalObjectMetadata
     autoload :ExamPaperMetadata
     autoload :JournalArticleMetadata
+    autoload :ImageMetadata
     autoload :PackageMetadata
     autoload :PublishedWorkMetadata
     autoload :ThesisMetadata
@@ -319,6 +321,7 @@ module DogBiscuits
     autoload :DigitalArchivalObjectIndexer
     autoload :ExamPaperIndexer
     autoload :JournalArticleIndexer
+    autoload :ImageIndexer
     autoload :PackageIndexer
     autoload :PublishedWorkIndexer
     autoload :ThesisIndexer
