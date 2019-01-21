@@ -537,7 +537,7 @@ module DogBiscuits
     attr_writer :archival_item_properties_required
     
     def archival_item_required
-      @archival_item_required ||= required_properties
+      @archival_item_properties_required ||= required_properties
     end
     
     attr_writer :archival_item_properties
