@@ -18,7 +18,17 @@ module DogBiscuits
 
     # All available models
     def available_models
-      ['ConferenceItem', 'Dataset', 'DigitalArchivalObject', 'ExamPaper', 'JournalArticle', 'Image', 'Package', 'PublishedWork', 'Thesis'].freeze
+      ['ConferenceItem', 
+      'Dataset', 
+      'DigitalArchivalObject', 
+      'ExamPaper', 
+      'JournalArticle', 
+      'Image', 
+      'Package', 
+      'PublishedWork', 
+      'Thesis', 
+      'InformationResource',
+      'ArchivalItem'].freeze
     end
 
     # Models used in the app (used by the generate_all generator)
@@ -511,8 +521,37 @@ module DogBiscuits
     end
     
     attr_writer :image_properties_required
+    
     def image_properties_required
       @image_properties_required ||= required_properties
+    end
+    
+    attr_writer :information_resource_properties
+  
+    def information_resource_properties
+      properties = base_properties + common_properties
+      properties.sort!
+      @information_resource_properties ||= properties
+    end
+    
+    attr_writer :archival_item_properties_required
+    
+    def archival_item_required
+      @archival_item_required ||= required_properties
+    end
+    
+    attr_writer :archival_item_properties
+  
+    def archival_item_properties
+      properties = base_properties + common_properties
+      properties.sort!
+      @archival_item_properties ||= properties
+    end
+    
+    attr_writer :information_resource_properties_required
+    
+    def information_resource_properties_required
+      @information_resource_properties_required ||= required_properties
     end
   end
   

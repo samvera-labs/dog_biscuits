@@ -87,12 +87,14 @@ module DogBiscuits
     autoload :FileSet
   end
   autoload_under 'models/works' do
+    autoload :ArchivalItem
     autoload :ConferenceItem
     autoload :Dataset
     autoload :DigitalArchivalObject
     autoload :ExamPaper
     autoload :JournalArticle
     autoload :Image
+    autoload :InformationResource
     autoload :Package
     autoload :PublishedWork
     autoload :Thesis
@@ -103,6 +105,7 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/model_property_sets' do
+    autoload :ArchivalItemMetadata
     autoload :AgentMetadata
     autoload :ConferenceItemMetadata
     autoload :DatasetMetadata
@@ -110,6 +113,7 @@ module DogBiscuits
     autoload :ExamPaperMetadata
     autoload :JournalArticleMetadata
     autoload :ImageMetadata
+    autoload :InformationResourceMetadata
     autoload :PackageMetadata
     autoload :PublishedWorkMetadata
     autoload :ThesisMetadata
@@ -316,12 +320,14 @@ module DogBiscuits
 
   autoload_under 'indexers' do
     # Indexer classes
+    autoload :ArchivalItemIndexer
     autoload :ConferenceItemIndexer
     autoload :DatasetIndexer
     autoload :DigitalArchivalObjectIndexer
     autoload :ExamPaperIndexer
     autoload :JournalArticleIndexer
     autoload :ImageIndexer
+    autoload :InformationResourceIndexer
     autoload :PackageIndexer
     autoload :PublishedWorkIndexer
     autoload :ThesisIndexer
