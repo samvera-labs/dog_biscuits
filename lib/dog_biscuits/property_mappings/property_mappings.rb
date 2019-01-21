@@ -256,6 +256,9 @@ module DogBiscuits
           has_restriction: {
             label: 'Restriction note'
           },
+          height: {
+            label: 'Height'
+          },
           human_readable_type: {
             label: 'Type',
             schema_org: {
@@ -530,6 +533,10 @@ module DogBiscuits
             },
             label: 'Volume'
           },
+          width: {
+            label: 'Width'
+          },
+          # Archivematica terms
           aip_uuid: {
             label: 'AIP UUID'
           },

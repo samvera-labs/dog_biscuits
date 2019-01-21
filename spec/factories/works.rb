@@ -157,4 +157,10 @@ FactoryBot.define do
     managing_organisation { ['Managing Organisation'] }
     funder { ['The National Parks Service'] }
   end
+  
+  factory :image, class: Image do
+    title { ['Image'] }
+    height { ['55cm'] }
+    width { ['11cm'] }
+  end
 end

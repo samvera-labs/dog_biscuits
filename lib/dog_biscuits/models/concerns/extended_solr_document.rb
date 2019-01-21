@@ -47,7 +47,7 @@ module DogBiscuits
       end
     end
 
-    # Keep these alphebetized; comments indicate those in basic_metadata
+    # Keep these alphebetized;
     #   see https://github.com/samvera/hyrax/blob/master/app/models/concerns/hyrax/solr_document/metadata.rb
     included do
       attribute :abstract, Solr::Array, solr_name('abstract')
@@ -55,17 +55,17 @@ module DogBiscuits
       attribute :advisor, Solr::Array, solr_name('advisor')
       attribute :alt, Solr::Array, solr_name('alt')
       attribute :awarding_institution, Solr::Array, solr_name('awarding_institution')
-      # based_near and based_near
+      # based_near already defined by hyrax
       attribute :content_version, Solr::Array, solr_name('content_version')
-      # contributor
-      # creator
+      # contributor already defined by hyrax
+      # creator already defined by hyrax
       attribute :date, Solr::Array, solr_name('date')
       attribute :date_accepted, Solr::Array, solr_name('date_accepted')
       attribute :date_available, Solr::Array, solr_name('date_available')
       attribute :date_collected, Solr::Array, solr_name('date_collected')
       attribute :date_copyrighted, Solr::Array, solr_name('date_copyrighted')
       attribute :date_issued, Solr::Array, solr_name('date_issued')
-      # date_created
+      # date_created already defined by hyrax
       attribute :date_of_award, Solr::Array, solr_name('date_of_award')
       attribute :date_published, Solr::Array, solr_name('date_published')
       attribute :date_submitted, Solr::Array, solr_name('date_submitted')
@@ -73,8 +73,9 @@ module DogBiscuits
       attribute :date_valid, Solr::Array, solr_name('date_valid')
       attribute :dc_access_rights, Solr::Array, solr_name('dc_access_rights')
       attribute :department, Solr::Array, solr_name('department')
-      # description
+      # description already defined by hyrax
       attribute :doi, Solr::Array, solr_name('doi')
+      attribute :height, Solr::Array, solr_name('height')
       attribute :edition, Solr::Array, solr_name('edition')
       attribute :editor, Solr::Array, solr_name('editor')
       attribute :end_date, Solr::Array, solr_name('end_date')
@@ -86,15 +87,14 @@ module DogBiscuits
       attribute :resource_type_general, Solr::Array, solr_name('resource_type_general')
       attribute :has_restriction, Solr::Array, solr_name('has_restriction')
       # rubocop:enable Naming/PredicateName
-
-      # identifier
+      # identifier already defined by hyrax
       attribute :isbn, Solr::Array, solr_name('isbn')
       attribute :issue_number, Solr::Array, solr_name('issue_number')
-      # keyword
-      # language
+      # keyword already defined by hyrax
+      # language already defined by hyrax
       attribute :last_access, Solr::Array, solr_name('last_access')
       attribute :lat, Solr::Array, solr_name('lat')
-      # license
+      # license already defined by hyrax
       attribute :location, Solr::Array, solr_name('location')
       attribute :long, Solr::Array, solr_name('long')
       attribute :managing_organisation, Solr::Array, solr_name('managing_organisation')
@@ -113,19 +113,20 @@ module DogBiscuits
       attribute :part_of, Solr::Array, solr_name('part_of')
       attribute :project, Solr::Array, solr_name('project')
       attribute :publication_status, Solr::Array, solr_name('publication_status')
-      # publisher
+      # publisher already defined by hyrax
       attribute :qualification_level, Solr::Array, solr_name('qualification_level')
       attribute :qualification_name, Solr::Array, solr_name('qualification_name')
       attribute :refereed, Solr::Array, solr_name('refereed')
       attribute :related_url, Solr::Array, solr_name('related_url')
-      # resource_type
-      # rights_statement
+      # resource_type already defined by hyrax
+      # rights_statement already defined by hyrax
       attribute :series, Solr::Array, solr_name('series')
-      # source
+      # source already defined by hyrax
       attribute :start_date, Solr::Array, solr_name('start_date')
-      # subject
+      # subject already defined by hyrax
       attribute :subtitle, Solr::Array, solr_name('subtitle')
       attribute :volume_number, Solr::Array, solr_name('volume_number')
+      attribute :width, Solr::Array, solr_name('width')
       # archivematica
       attribute :aip_uuid, Solr::Array, solr_name('aip_uuid')
       attribute :transfer_uuid, Solr::Array, solr_name('transfer_uuid')

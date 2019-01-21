@@ -206,6 +206,11 @@ module DogBiscuits
     autoload :EdmRights
   end
 
+  autoload_under 'models/concerns/metadata_properties/exif' do
+    autoload :Height
+    autoload :Width
+  end
+
   autoload_under 'models/concerns/metadata_properties/fabio' do
     autoload :DateCollected
   end
