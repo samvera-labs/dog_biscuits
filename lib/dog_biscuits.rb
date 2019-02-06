@@ -131,6 +131,7 @@ module DogBiscuits
 
   autoload_under 'models/concerns/metadata_properties/archives_hub' do
     autoload :AccessProvidedBy
+    autoload :AccessRestrictions
     autoload :MaintenanceAgencyCode
     autoload :HubDates
   end
@@ -279,15 +280,18 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/schema' do
+    autoload :Brand
     autoload :ContentVersion
     autoload :DateUpdated
     autoload :DatePublished
     autoload :Department
     autoload :EndDate
+    autoload :ExampleOfWork
     autoload :IssueNumber
     autoload :Location
     autoload :Keyword
     autoload :Pagination
+    autoload :ReleaseDate
     autoload :StartDate
     autoload :VolumeNumber
     autoload :AlternateName

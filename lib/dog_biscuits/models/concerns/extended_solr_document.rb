@@ -52,6 +52,7 @@ module DogBiscuits
     included do
       attribute :abstract, Solr::Array, solr_name('abstract')
       attribute :access_provided_by, Solr::Array, solr_name('access_provided_by')
+      attribute :access_restrictions, Solr::Array, solr_name('access_restrictions')
       attribute :advisor, Solr::Array, solr_name('advisor')
       attribute :alt, Solr::Array, solr_name('alt')
       attribute :awarding_institution, Solr::Array, solr_name('awarding_institution')
@@ -80,15 +81,17 @@ module DogBiscuits
       attribute :editor, Solr::Array, solr_name('editor')
       attribute :end_date, Solr::Array, solr_name('end_date')
       attribute :event_date, Solr::Array, solr_name('event_date')
+      attribute :example_of_work, Solr::Array, solr_name('example_of_work')
       attribute :extent, Solr::Array, solr_name('extent')
       attribute :dc_format, Solr::Array, solr_name('dc_format')
       attribute :former_identifier, Solr::Array, solr_name('former_identifier')
       attribute :funder, Solr::Array, solr_name('funder')
-      attribute :resource_type_general, Solr::Array, solr_name('resource_type_general')
+      attribute :has_dao_ids, Solr::Array, solr_name('has_dao_ids', :symbol)
       attribute :has_restriction, Solr::Array, solr_name('has_restriction')
       # rubocop:enable Naming/PredicateName
       # identifier already defined by hyrax
       attribute :isbn, Solr::Array, solr_name('isbn')
+      attribute :in_archival_item_ids, Solr::Array, solr_name('in_archival_item_ids', :symbol)
       attribute :issue_number, Solr::Array, solr_name('issue_number')
       # keyword already defined by hyrax
       # language already defined by hyrax
@@ -118,7 +121,9 @@ module DogBiscuits
       attribute :qualification_name, Solr::Array, solr_name('qualification_name')
       attribute :refereed, Solr::Array, solr_name('refereed')
       attribute :related_url, Solr::Array, solr_name('related_url')
+      attribute :release_date, Solr::Array, solr_name('release_date')
       # resource_type already defined by hyrax
+      attribute :resource_type_general, Solr::Array, solr_name('resource_type_general')
       # rights_statement already defined by hyrax
       attribute :series, Solr::Array, solr_name('series')
       # source already defined by hyrax

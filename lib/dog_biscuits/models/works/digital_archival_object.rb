@@ -16,6 +16,8 @@ module DogBiscuits
 
     type << ::RDF::URI.new('http://data.archiveshub.ac.uk/def/ArchivalResource')
 
+    filters_association :in_archival_item, as: :has_dao, condition: :digital_archival_object?
+
     # Indexer
     # self.indexer = DogBiscuits::DigitalArchivalObjectIndexer
     # Metadata

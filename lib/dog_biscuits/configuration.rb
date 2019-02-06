@@ -121,6 +121,7 @@ module DogBiscuits
         publication_status
         content_version
         packaged_by_titles
+        in_archival_item_titles
       ]
     end
 
@@ -135,6 +136,7 @@ module DogBiscuits
         date
         human_readable_type
         packaged_by_titles
+        in_archival_item_titles
       ]
     end
 
@@ -177,6 +179,7 @@ module DogBiscuits
         aip_resource_uri
         dip_resource_uri
         packaged_by_ids
+        in_archival_item_ids
       ]
     end
 
@@ -240,6 +243,7 @@ module DogBiscuits
         date_of_award
         end_date
         event_date
+        release_date
         start_date
       ]
     end
@@ -317,7 +321,10 @@ module DogBiscuits
                       lat
                       long
                       alt
-                      packaged_by_ids]
+                      height
+                      width
+                      packaged_by_ids
+                      in_archival_item_ids]
       properties = base_properties + properties + common_properties
       properties.sort!
       @digital_archival_object_properties ||= properties
@@ -492,6 +499,7 @@ module DogBiscuits
         dip_resource_uri
         origin_pipeline
         package_ids
+        has_dao_ids
       ]
       properties = base_properties + properties + common_properties
       properties.sort!
@@ -516,6 +524,7 @@ module DogBiscuits
 
     def image_properties
       properties = %i[
+        example_of_work
         height
         width
       ]
@@ -533,7 +542,11 @@ module DogBiscuits
     attr_writer :information_resource_properties
 
     def information_resource_properties
-      properties = base_properties + common_properties
+      properties = %i[
+        brand
+        release_date
+      ]
+      properties = base_properties + properties + common_properties
       properties.sort!
       @information_resource_properties ||= properties
     end
@@ -547,7 +560,14 @@ module DogBiscuits
     attr_writer :archival_item_properties
 
     def archival_item_properties
-      properties = base_properties + common_properties
+      properties = %i[
+        access_provided_by
+        access_restrictions
+        dates
+        extent
+        has_dao_ids
+      ]
+      properties = base_properties + properties + common_properties
       properties.sort!
       @archival_item_properties ||= properties
     end

@@ -62,6 +62,9 @@ module DogBiscuits
               property: "description"
             }
           },
+          access_restrictions: {
+            label: 'Access Restrictions',
+          },
           advisor: {
             schema_org: {
               property: "contributor",
@@ -106,6 +109,9 @@ module DogBiscuits
             },
             label: 'Location',
             help_text: "A place name related to the work, such as its site of publication, or the city, state, or country the work contents are about. Calls upon the <a href='http://www.geonames.org'>GeoNames web service</a>."
+          },
+          brand: {
+            label: 'Brand',
           },
           content_version: {
             help_text: "The version of the file, eg. Author's Original or Accepted Manuscript."
@@ -224,6 +230,9 @@ module DogBiscuits
               property: "editor"
             }
           },
+          example_of_work: {
+            label: 'Example of work'
+          },
           extent: {
             label: 'Extent'
           },
@@ -253,6 +262,10 @@ module DogBiscuits
             },
             help_text: 'Funding body or oraganisation funding the work.'
           },
+          has_dao_ids: {
+            label: "Has Digital Objects",
+            render_as: :has_dao_ids
+          },
           has_restriction: {
             label: 'Restriction note'
           },
@@ -277,6 +290,13 @@ module DogBiscuits
               property: "identifier"
             },
             help_text: "A unique handle identifying the work. An example would be a DOI for a journal article, or an ISBN or OCLC number for a book."
+          },
+          in_archival_item_ids: {
+            label: "Belongs to Archival Item",
+            render_as: :in_archival_item_ids
+          },
+          in_archival_item_title: {
+            label: "Belongs to Archival Item"
           },
           isbn: {
             schema_org: {
@@ -437,6 +457,12 @@ module DogBiscuits
           },
           refereed: {
             label: 'Peer reviewed?'
+          },
+          release_date: {
+            label: 'Release date',
+            schema_org: {
+              property: "releaseDate"
+            }
           },
           related_url: {
             schema_org: {

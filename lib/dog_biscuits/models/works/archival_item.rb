@@ -10,8 +10,12 @@ module DogBiscuits
     #  2) indexer
     #  3) included metadata
 
-    # @todo find a predicate
-    type << ::RDF::Vocab::DCMIType.Image
+    type << ::RDF::URI.new('http://data.archiveshub.ac.uk/def/ArchivalResource')
+
+    has_and_belongs_to_many :has_dao,
+                            class_name: 'DogBiscuits::DigitalArchivalItem',
+                            predicate: DogBiscuits::Vocab::Generic.hasDao,
+                            inverse_of: :in_archival_item
 
     # before_save :combine_dates
 

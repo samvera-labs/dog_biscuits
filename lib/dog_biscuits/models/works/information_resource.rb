@@ -10,24 +10,19 @@ module DogBiscuits
     #  2) indexer
     #  3) included metadata
 
-    # @todo find a predicate
-    type << ::RDF::Vocab::DCMIType.Image
+    type << ::RDF::URI.new('http://purl.org/spar/fabio/InstructionalWork')
 
-    # before_save :combine_dates
+    before_save :combine_dates
 
-    def information_resource?
+    def infromation_resource?
       true
     end
 
     # Create single date field from all dates.
-    # def combine_dates
-    #   tmpdate = date
-    #   tmpdate << date_published
-    #   tmpdate << date_available
-    #   tmpdate << date_accepted
-    #   tmpdate << date_submitted
-    #   tmpdate << date_created
-    #   self.date = tmpdate
-    # end
+    def combine_dates
+      tmpdate = date
+      tmpdate << release_date
+      self.date = tmpdate
+    end
   end
 end
