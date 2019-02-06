@@ -17,21 +17,17 @@ module DogBiscuits
                             predicate: DogBiscuits::Vocab::Generic.hasDao,
                             inverse_of: :in_archival_item
 
-    # before_save :combine_dates
+    before_save :combine_dates
 
     def archival_item?
       true
     end
 
     # Create single date field from all dates.
-    # def combine_dates
-    #   tmpdate = date
-    #   tmpdate << date_published
-    #   tmpdate << date_available
-    #   tmpdate << date_accepted
-    #   tmpdate << date_submitted
-    #   tmpdate << date_created
-    #   self.date = tmpdate
-    # end
+    def combine_dates
+      tmpdate = date
+      tmpdate << date_created
+      self.date = tmpdate
+    end
   end
 end

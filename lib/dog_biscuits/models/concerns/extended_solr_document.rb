@@ -55,6 +55,7 @@ module DogBiscuits
       attribute :access_restrictions, Solr::Array, solr_name('access_restrictions')
       attribute :advisor, Solr::Array, solr_name('advisor')
       attribute :alt, Solr::Array, solr_name('alt')
+      attribute :archival_level, Solr::Array, solr_name('archival_level')
       attribute :awarding_institution, Solr::Array, solr_name('awarding_institution')
       # based_near already defined by hyrax
       attribute :content_version, Solr::Array, solr_name('content_version')

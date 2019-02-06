@@ -130,6 +130,7 @@ module DogBiscuits
   end
 
   autoload_under 'models/concerns/metadata_properties/archives_hub' do
+    autoload :ArchivalLevel
     autoload :AccessProvidedBy
     autoload :AccessRestrictions
     autoload :MaintenanceAgencyCode

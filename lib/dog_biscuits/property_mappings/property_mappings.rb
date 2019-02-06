@@ -86,6 +86,9 @@ module DogBiscuits
           alt: {
             label: 'Altitude'
           },
+          archival_level: {
+            label: 'Archival Level'
+          },
           awarding_institution: {
             index: [{ link_to_search: true }],
             label: 'Awarding institution'

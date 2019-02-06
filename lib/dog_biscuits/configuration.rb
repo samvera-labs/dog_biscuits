@@ -241,10 +241,10 @@ module DogBiscuits
         date_updated
         date_valid
         date_of_award
-        end_date
         event_date
         release_date
         start_date
+        end_date
       ]
     end
 
@@ -561,6 +561,7 @@ module DogBiscuits
 
     def archival_item_properties
       properties = %i[
+        archival_level
         access_provided_by
         access_restrictions
         dates
