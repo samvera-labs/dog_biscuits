@@ -15,7 +15,7 @@
     <%= render 'form_media', f: f %>
     <% f.object.secondary_terms.each do |term| %>
       <%# override partial from Hyrax, restricted_properties control %>
-      <% if restricted?(term) %>
+      <% unless restricted?(term) %>
         <%= render_edit_field_partial(term, f: f) %>
       <% end %>
     <% end %>
