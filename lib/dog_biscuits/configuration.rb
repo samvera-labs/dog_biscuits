@@ -525,7 +525,9 @@ module DogBiscuits
 
     def image_properties
       properties = %i[
+        brand
         example_of_work
+        product
         height
         width
       ]
@@ -545,6 +547,7 @@ module DogBiscuits
     def information_sheet_properties
       properties = %i[
         brand
+        product
         release_date
       ]
       properties = base_properties + properties + common_properties

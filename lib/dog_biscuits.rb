@@ -292,6 +292,7 @@ module DogBiscuits
     autoload :Location
     autoload :Keyword
     autoload :Pagination
+    autoload :Product
     autoload :ReleaseDate
     autoload :StartDate
     autoload :VolumeNumber

@@ -5,6 +5,7 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     include DogBiscuits::Brand
+    include DogBiscuits::Product
     include DogBiscuits::ReleaseDate
 
     # Controlled Properties must go last

@@ -7,6 +7,7 @@ module DogBiscuits
     include DogBiscuits::Brand
     include DogBiscuits::DateCreated
     include DogBiscuits::Height
+    include DogBiscuits::Product
     include DogBiscuits::Width
     # Controlled Properties must go last
     include DogBiscuits::CommonMetadata

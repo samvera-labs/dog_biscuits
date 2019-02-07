@@ -443,6 +443,9 @@ module DogBiscuits
               value: "name"
             }
           },
+          product: {
+            label: 'Product',
+          },
           publication_status: {
             label: 'Publication status',
             render_as: 'term_label',

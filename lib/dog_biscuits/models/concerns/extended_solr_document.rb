@@ -117,6 +117,7 @@ module DogBiscuits
       attribute :place_of_publication, Solr::Array, solr_name('place_of_publication')
       attribute :presented_at, Solr::Array, solr_name('presented_at')
       attribute :part_of, Solr::Array, solr_name('part_of')
+      attribute :product, Solr::Array, solr_name('product')
       attribute :project, Solr::Array, solr_name('project')
       attribute :publication_status, Solr::Array, solr_name('publication_status')
       # publisher already defined by hyrax
