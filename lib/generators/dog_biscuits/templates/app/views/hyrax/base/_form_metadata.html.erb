@@ -14,7 +14,7 @@
   <div id="extended-terms" class='collapse'>
     <%= render 'form_media', f: f %>
     <% f.object.secondary_terms.each do |term| %>
-      <%# override partial from Hyrax, restricted_properties control %>
+    <%# override partial from Hyrax, restricted_properties control %>
       <% unless restricted?(term) %>
         <%= render_edit_field_partial(term, f: f) %>
       <% end %>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  class InformationResource < Work
+  class InformationSheet < Work
     # Needed to set the type
     include ::Hydra::Works::WorkBehavior
 

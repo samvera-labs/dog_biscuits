@@ -177,17 +177,17 @@ module DogBiscuits
                type: 'rdf:Property'
     property :hasDao,
                comment:
-                   'This property should be used for a the relationship between an ArchivalItem and its DigitalArchivalObjects.',
+                   'This property should be used for a the relationship between an ArchivalResource and its DigitalArchivalObjects.',
                label: 'Has Digital Archival Object',
                'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
                subPropertyOf: 'http://pcdm.org/models#hasRelatedObject',
                type: 'rdf:Property'
-    property :inArchivalItem,
+    property :inArchivalResource,
                comment:
-                   'This property should be used for a the relationship between a DigitalArchivalObjects and its containing ArchivalItem.',
+                   'This property should be used for a the relationship between a DigitalArchivalObjects and its containing ArchivalResource.',
                label: 'In Archival Item',
                'rdf:isDefinedBy' => 'http://dlib.york.ac.uk/ontologies/generic#',
-               subPropertyOf: 'http://pcdm.org/models#hasRelatedObject',
+               subPropertyOf: 'http://pcdm.org/models#relatedObjectOf',
                type: 'rdf:Property'
       property :numberOfDownloads,
                comment:

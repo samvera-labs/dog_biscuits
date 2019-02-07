@@ -6,7 +6,7 @@ module DogBiscuits
 
     included do
       property :brand, predicate: RDF::Vocab::SCHEMA.brand do |index|
-        index.as :stored_searchable
+        index.as :stored_searchable, :facetable
       end
     end
   end

@@ -1,0 +1,13 @@
+terms:
+  - id: collection
+    term: Collection
+    active: true
+  - id: series
+    term: Series
+    active: true
+  - id: subseries
+    term: Sub series
+    active: true
+  - id: item
+    term: Item
+    active: true

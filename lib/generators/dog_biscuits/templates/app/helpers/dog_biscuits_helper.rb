@@ -1,22 +1,34 @@
 # frozen_string_literal: true
 module DogBiscuitsHelper
-  # Return the label for publication status
+  # Generic helper where the field name is a singular version of the authority name,
+  #  eg. publication_status and publication_statuses
+  # Returns the label for the value from QA
   #
-  # @param value [String]
+  # @param value [String] or [Hash]
   # @return [String]
-  def publication_status(value)
+  def term_label(value)
     if value.is_a? String
-      publication_status_label(status)
+      term_label_from_id(value)
     elsif value.is_a? Hash
-      value[:value].map { |status| publication_status_label(status) }
+      value[:value].map { |v| term_label_from_id(v) }
     end
   end
 
-  def publication_status_label(value)
-    service = AuthorityService::PublicationStatusesService.new
+  def term_label_from_id(value, service = nil)
+    field = @field unless @field.blank?
+    service ||= "AuthorityService::#{field.to_s.pluralize.camelize}Service".constantize.new
     service.label(value)
   rescue KeyError
     value
+  end
+
+  def truncate_text_and_iconify_link(value)
+    if value.is_a? String
+      iconify_auto_link(truncate_text(value).to_s)
+    elsif value.is_a? Hash
+      value[:value] = value[:value].map { |text| truncate_text(text).to_s }
+      iconify_auto_link(value)
+    end
   end
 
   def truncate_text_and_iconify_link(value)

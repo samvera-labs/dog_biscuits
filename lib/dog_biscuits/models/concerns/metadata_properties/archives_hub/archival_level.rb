@@ -5,10 +5,10 @@ module DogBiscuits
     extend ActiveSupport::Concern
 
     included do
-      # strictly the range is a Level resource
+      # strictly the range should be a Level resource, not a string
       property :archival_level,
-               predicate: ::RDF::URI.new('http://data.archiveshub.ac.uk/def/level') do |index|
-        index.as :stored_searchable
+               predicate: ::RDF::URI.new('http://data.archiveshub.ac.uk/def/level')  do |index|
+        index.as :stored_searchable, :facetable
       end
     end
   end

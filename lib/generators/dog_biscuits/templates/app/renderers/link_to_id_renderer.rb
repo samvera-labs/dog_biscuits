@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class PackageIdsRenderer < Hyrax::Renderers::AttributeRenderer
-  # Render the bibilionumber as a link to the King's Fund Library Catalogue record
+class LinkToIdRenderer < Hyrax::Renderers::AttributeRenderer
+  
   def attribute_value_to_html(value)
     object = ActiveFedora::Base.find(value)
 

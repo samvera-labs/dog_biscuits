@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module InformationResourceMetadata
+  module InformationSheetMetadata
     extend ActiveSupport::Concern
 
     include DogBiscuits::Brand

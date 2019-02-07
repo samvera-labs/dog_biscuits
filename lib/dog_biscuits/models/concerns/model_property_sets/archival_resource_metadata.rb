@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  module ArchivalItemMetadata
+  module ArchivalResourceMetadata
     extend ActiveSupport::Concern
 
     include DogBiscuits::ArchivalLevel
     include DogBiscuits::AccessProvidedBy
-    include DogBiscuits::AccessRights
+    include DogBiscuits::AccessRestrictions
+    include DogBiscuits::Brand
     include DogBiscuits::DateCreated
     include DogBiscuits::Extent
     include DogBiscuits::HubDates

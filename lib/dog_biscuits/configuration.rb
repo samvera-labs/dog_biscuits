@@ -27,8 +27,8 @@ module DogBiscuits
        'Package',
        'PublishedWork',
        'Thesis',
-       'InformationResource',
-       'ArchivalItem'].freeze
+       'InformationSheet',
+       'ArchivalResource'].freeze
     end
 
     # Models used in the app (used by the generate_all generator)
@@ -121,7 +121,7 @@ module DogBiscuits
         publication_status
         content_version
         packaged_by_titles
-        in_archival_item_titles
+        in_archival_resource_titles
       ]
     end
 
@@ -136,7 +136,7 @@ module DogBiscuits
         date
         human_readable_type
         packaged_by_titles
-        in_archival_item_titles
+        in_archival_resource_titles
       ]
     end
 
@@ -179,7 +179,7 @@ module DogBiscuits
         aip_resource_uri
         dip_resource_uri
         packaged_by_ids
-        in_archival_item_ids
+        in_archival_resource_ids
       ]
     end
 
@@ -203,6 +203,7 @@ module DogBiscuits
         pagination
         publication_status
         refereed
+        release_date
         start_date
         volume_number
         aip_uuid
@@ -324,7 +325,7 @@ module DogBiscuits
                       height
                       width
                       packaged_by_ids
-                      in_archival_item_ids]
+                      in_archival_resource_ids]
       properties = base_properties + properties + common_properties
       properties.sort!
       @digital_archival_object_properties ||= properties
@@ -539,27 +540,27 @@ module DogBiscuits
       @image_properties_required ||= required_properties
     end
 
-    attr_writer :information_resource_properties
+    attr_writer :information_sheet_properties
 
-    def information_resource_properties
+    def information_sheet_properties
       properties = %i[
         brand
         release_date
       ]
       properties = base_properties + properties + common_properties
       properties.sort!
-      @information_resource_properties ||= properties
+      @information_sheet_properties ||= properties
     end
 
-    attr_writer :archival_item_properties_required
+    attr_writer :archival_resource_properties_required
 
-    def archival_item_properties_required
-      @archival_item_properties_required ||= required_properties
+    def archival_resource_properties_required
+      @archival_resource_properties_required ||= required_properties
     end
 
-    attr_writer :archival_item_properties
+    attr_writer :archival_resource_properties
 
-    def archival_item_properties
+    def archival_resource_properties
       properties = %i[
         archival_level
         access_provided_by
@@ -570,13 +571,13 @@ module DogBiscuits
       ]
       properties = base_properties + properties + common_properties
       properties.sort!
-      @archival_item_properties ||= properties
+      @archival_resource_properties ||= properties
     end
 
-    attr_writer :information_resource_properties_required
+    attr_writer :information_sheet_properties_required
 
-    def information_resource_properties_required
-      @information_resource_properties_required ||= required_properties
+    def information_sheet_properties_required
+      @information_sheet_properties_required ||= required_properties
     end
   end
 end

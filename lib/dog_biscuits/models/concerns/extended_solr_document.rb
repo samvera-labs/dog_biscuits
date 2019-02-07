@@ -58,10 +58,12 @@ module DogBiscuits
       attribute :archival_level, Solr::Array, solr_name('archival_level')
       attribute :awarding_institution, Solr::Array, solr_name('awarding_institution')
       # based_near already defined by hyrax
+      attribute :brand, Solr::Array, solr_name('brand')
       attribute :content_version, Solr::Array, solr_name('content_version')
       # contributor already defined by hyrax
       # creator already defined by hyrax
       attribute :date, Solr::Array, solr_name('date')
+      attribute :dates, Solr::Array, solr_name('dates')
       attribute :date_accepted, Solr::Array, solr_name('date_accepted')
       attribute :date_available, Solr::Array, solr_name('date_available')
       attribute :date_collected, Solr::Array, solr_name('date_collected')
@@ -92,7 +94,7 @@ module DogBiscuits
       # rubocop:enable Naming/PredicateName
       # identifier already defined by hyrax
       attribute :isbn, Solr::Array, solr_name('isbn')
-      attribute :in_archival_item_ids, Solr::Array, solr_name('in_archival_item_ids', :symbol)
+      attribute :in_archival_resource_ids, Solr::Array, solr_name('in_archival_resource_ids', :symbol)
       attribute :issue_number, Solr::Array, solr_name('issue_number')
       # keyword already defined by hyrax
       # language already defined by hyrax

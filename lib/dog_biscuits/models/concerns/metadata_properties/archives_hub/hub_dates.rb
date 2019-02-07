@@ -8,8 +8,7 @@ module DogBiscuits
       # Eg. NCA Rules 4.4.
       # Eg. NCA Rules 2.5A.
       property :dates,
-               predicate: ::RDF::URI.new('http://data.archiveshub.ac.uk/def/dates'),
-               multiple: false do |index|
+        predicate: ::RDF::URI.new('http://data.archiveshub.ac.uk/def/dates') do |index|
         index.as :stored_searchable
       end
     end

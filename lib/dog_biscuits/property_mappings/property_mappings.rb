@@ -87,7 +87,9 @@ module DogBiscuits
             label: 'Altitude'
           },
           archival_level: {
-            label: 'Archival Level'
+            label: 'Archival level',
+            render_as: 'term_label',
+            helper_method: 'term_label'
           },
           awarding_institution: {
             index: [{ link_to_search: true }],
@@ -155,6 +157,10 @@ module DogBiscuits
             label: 'Date',
             help_text: 'A date for the work.'
           },
+          dates: {
+            label: 'Dates',
+            help_text: 'The date of creation. May be in the form of text or numbers, and may consist of a single date or range of dates.'
+          },
           date_accepted: {
             label: 'Date accepted'
           },
@@ -180,7 +186,7 @@ module DogBiscuits
           },
           # Only used for the date range facet
           date_range: {
-            label: 'Date range'
+            label: 'Dates'
           },
           date_published: {
             schema_org: {
@@ -267,7 +273,7 @@ module DogBiscuits
           },
           has_dao_ids: {
             label: "Has Digital Objects",
-            render_as: :has_dao_ids
+            render_as: :link_to_id
           },
           has_restriction: {
             label: 'Restriction note'
@@ -294,11 +300,11 @@ module DogBiscuits
             },
             help_text: "A unique handle identifying the work. An example would be a DOI for a journal article, or an ISBN or OCLC number for a book."
           },
-          in_archival_item_ids: {
+          in_archival_resource_ids: {
             label: "Belongs to Archival Item",
-            render_as: :in_archival_item_ids
+            render_as: :link_to_id
           },
-          in_archival_item_title: {
+          in_archival_resource_title: {
             label: "Belongs to Archival Item"
           },
           isbn: {
@@ -388,12 +394,12 @@ module DogBiscuits
           package_ids: {
             label: "Package contains",
             help_text: 'Packages these works. Customarily, the package is a digital preservation AIP or DIP.',
-            render_as: :package_ids
+            render_as: :link_to_id
           },
           packaged_by_ids: {
             label: "In package",
             help_text: 'Packaged by the following work. Customarily, the package is a digital preservation AIP or DIP.',
-            render_as: :packaged_by_ids
+            render_as: :link_to_id
           },
           packaged_by_titles: {
             label: "In package"
@@ -439,8 +445,8 @@ module DogBiscuits
           },
           publication_status: {
             label: 'Publication status',
-            render_as: 'publication_status',
-            helper_method: 'publication_status'
+            render_as: 'term_label',
+            helper_method: 'term_label'
           },
           publisher: {
             index: [{ link_to_search: true }],

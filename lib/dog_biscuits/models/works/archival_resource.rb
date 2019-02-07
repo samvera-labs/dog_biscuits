@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DogBiscuits
-  class ArchivalItem < Work
+  class ArchivalResource < Work
     # Needed to set the type
     include ::Hydra::Works::WorkBehavior
 
@@ -13,13 +13,13 @@ module DogBiscuits
     type << ::RDF::URI.new('http://data.archiveshub.ac.uk/def/ArchivalResource')
 
     has_and_belongs_to_many :has_dao,
-                            class_name: 'DogBiscuits::DigitalArchivalItem',
+                            class_name: 'DogBiscuits::DigitalArchivalObject',
                             predicate: DogBiscuits::Vocab::Generic.hasDao,
-                            inverse_of: :in_archival_item
+                            inverse_of: :in_archival_resource
 
     before_save :combine_dates
 
-    def archival_item?
+    def archival_resource?
       true
     end
 
