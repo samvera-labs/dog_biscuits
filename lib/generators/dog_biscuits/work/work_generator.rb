@@ -63,7 +63,7 @@ This generator makes the following changes to your application:
 
   def create_form
     template('form.rb.erb', File.join('app/forms/hyrax', class_path, "#{file_name}_form.rb"))
-    rescue NameError
+    rescue StandardError
   end
 
   def create_presenter
