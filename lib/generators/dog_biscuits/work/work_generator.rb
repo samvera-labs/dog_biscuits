@@ -44,7 +44,11 @@ This generator makes the following changes to your application:
     say_status("info", "RUNNING rails generate hyrax:work #{class_name}", :blue)
     generate "hyrax:work #{class_name}", '-f'
   end
-
+  
+  def create_actor
+    template('actor.rb.erb', File.join('app/actors/hyrax/actors', class_path, "#{file_name}_actor.rb"))
+  end
+  
   def create_indexer
     if options[:skipmodel]
       say_status("info", "SKIPPING INDEXER GENERATION", :blue)
@@ -52,7 +56,7 @@ This generator makes the following changes to your application:
       template('indexer.rb.erb', File.join('app/indexers', class_path, "#{file_name}_indexer.rb"))
     end
   end
-
+  
   def create_model
     if options[:skipmodel]
       say_status("info", "SKIPPING MODEL GENERATION", :blue)
@@ -60,15 +64,15 @@ This generator makes the following changes to your application:
       template('model.rb.erb', File.join('app/models/', class_path, "#{file_name}.rb"))
     end
   end
-
+  
+  def create_form
+    template('form.rb.erb', File.join('app/forms/hyrax', class_path, "#{file_name}_form.rb"))
+  end
+  
   def create_presenter
-    template('presenter.rb.erb', File.join('app/presenters/hyrax', class_path, "#{file_name}_presenter.rb"))
+    generate "dog_biscuits:presenter #{class_name}", '-f'
   end
-
-  def create_actor
-    template('actor.rb.erb', File.join('app/actors/hyrax/actors', class_path, "#{file_name}_actor.rb"))
-  end
-
+  
   def create_attribute_rows
     attributes_file = "app/views/hyrax/#{file_name.pluralize}/_attribute_rows.html.erb"
     copy_file '_attribute_rows.html.erb', attributes_file
@@ -84,12 +88,6 @@ This generator makes the following changes to your application:
 
   def imagify
     generate "dog_biscuits:imagify #{class_name}", '-f' if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
-  end
-  
-  # Sometimes we see a name error NameError because *_form.rb references the Model which hasn't yet been loaded
-  #  rescue doesn't help, so run this last to ensure files are all in place before the error
-  def create_form
-    template('form.rb.erb', File.join('app/forms/hyrax', class_path, "#{file_name}_form.rb"))
   end
 
   def display_readme
