@@ -61,11 +61,6 @@ This generator makes the following changes to your application:
     end
   end
 
-  def create_form
-    template('form.rb.erb', File.join('app/forms/hyrax', class_path, "#{file_name}_form.rb"))
-    rescue StandardError
-  end
-
   def create_presenter
     template('presenter.rb.erb', File.join('app/presenters/hyrax', class_path, "#{file_name}_presenter.rb"))
   end
@@ -89,6 +84,12 @@ This generator makes the following changes to your application:
 
   def imagify
     generate "dog_biscuits:imagify #{class_name}", '-f' if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
+  end
+  
+  # Sometimes we see a name error NameError because *_form.rb references the Model which hasn't yet been loaded
+  #  rescue doesn't help, so run this last to ensure files are all in place before the error
+  def create_form
+    template('form.rb.erb', File.join('app/forms/hyrax', class_path, "#{file_name}_form.rb"))
   end
 
   def display_readme
