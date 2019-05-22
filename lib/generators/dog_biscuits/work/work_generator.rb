@@ -86,10 +86,6 @@ This generator makes the following changes to your application:
     generate 'dog_biscuits:schema_org', '-f'
   end
 
-  def imagify
-    generate "dog_biscuits:imagify #{class_name}", '-f' if File.exist?('config/initializers/version.rb') && File.read('config/initializers/version.rb').include?('Hyku')
-  end
-
   def display_readme
     readme 'README'
   end
