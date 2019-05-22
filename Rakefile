@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 require 'solr_wrapper'   # necessary for rake_support to work
 require 'fcrepo_wrapper' # necessary for rake_support to work
