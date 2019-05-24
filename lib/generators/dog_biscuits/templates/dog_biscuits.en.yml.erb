@@ -14,6 +14,6 @@ en:
       fields:
         facet:<% DogBiscuits.config.facet_properties.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
           <%= prop %>_sim: <%= DogBiscuits.config.property_mappings[prop][:label] %><% end } %>
-          <% if DogBiscuits.config.date_range == true %>date_range_sim: <%= DogBiscuits.config.property_mappings[date_range][:label] %> <% end %>
+          <% if DogBiscuits.config.date_range == true %>date_range_sim: <%= DogBiscuits.config.property_mappings[:date_range][:label] %> <% end %>
         index:<% DogBiscuits.config.index_properties.each {|prop| if DogBiscuits.config.property_mappings[prop] && DogBiscuits.config.property_mappings[prop][:label] %>
           <%= prop %>_tesim: <%= DogBiscuits.config.property_mappings[prop][:label] %><% end } %>
