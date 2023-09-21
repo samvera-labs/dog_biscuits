@@ -40,7 +40,7 @@ module DogBiscuits
     # Extract years from all date fields and index into 'date_range_sim'
     def solr_doc_for_dates(solr_doc)
       DogBiscuits.config.date_properties.each do |d|
-        next unless object.respond_to? d
+        next unless (object.respond_to? d && object.send(d).respond_to?(:each))
         object.send(d).each do |dd|
           dd.to_s.scan(/\b\d{4}\b/).each do |year|
             if solr_doc['date_range_sim']
